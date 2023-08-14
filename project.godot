@@ -11,5 +11,14 @@ config_version=5
 [application]
 
 config/name="GD-FPSJuegos"
+run/main_scene="res://Core/Maps/Dummy/DummyScene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[input]
+
+dummy={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":44,"key_label":0,"unicode":44,"echo":false,"script":null)
+]
+}
