@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://db36f8ux7a06p"]
+
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="1_ghafs"]
+[ext_resource type="PackedScene" uid="uid://46b8ja33mo1e" path="res://Core/Piece/piece.tscn" id="2_161lw"]
+
+[node name="DummyScene" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(574.5, 283.5)
+scale = Vector2(8.96094, 4.38281)
+texture = ExtResource("1_ghafs")
+
+[node name="Piece" parent="." instance=ExtResource("2_161lw")]
+position = Vector2(593, 276)
