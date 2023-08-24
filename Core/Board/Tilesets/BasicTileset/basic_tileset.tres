@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cxql6c4d1tdd0"]
+
+[ext_resource type="Texture2D" uid="uid://uhqvqiuy5vlv" path="res://Core/Board/Tilesets/BasicTileset/basic_tile.png" id="1_vxar6"]
+[ext_resource type="Texture2D" uid="uid://cwglrajhalqm" path="res://Core/Board/Tilesets/BasicTileset/movement_tile.png" id="2_gv8fo"]
+[ext_resource type="Texture2D" uid="uid://qdgijuryvkh0" path="res://Core/Board/Tilesets/BasicTileset/movement_blocked_tile.png" id="3_uesua"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r6bfy"]
+texture = ExtResource("1_vxar6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y73ql"]
+texture = ExtResource("2_gv8fo")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klx5k"]
+texture = ExtResource("3_uesua")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_r6bfy")
+sources/1 = SubResource("TileSetAtlasSource_y73ql")
+sources/2 = SubResource("TileSetAtlasSource_klx5k")
