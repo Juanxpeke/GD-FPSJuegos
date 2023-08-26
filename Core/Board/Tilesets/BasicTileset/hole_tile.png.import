@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qdgijuryvkh0"
-path="res://.godot/imported/movement_blocked_tile.png-8cd8b105b7d21af435ca95e9145a68b0.ctex"
+path="res://.godot/imported/hole_tile.png-c4de0e55988d7b5eaadb1a2368428014.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/Board/Tilesets/BasicTileset/movement_blocked_tile.png"
-dest_files=["res://.godot/imported/movement_blocked_tile.png-8cd8b105b7d21af435ca95e9145a68b0.ctex"]
+source_file="res://Core/Board/Tilesets/BasicTileset/hole_tile.png"
+dest_files=["res://.godot/imported/hole_tile.png-c4de0e55988d7b5eaadb1a2368428014.ctex"]
 
 [params]
 

@@ -1,23 +1,20 @@
 class_name Board
 extends TileMap
 
-enum Layer { BOARD_LAYER, MOVEMENT_LAYER }
-enum Tile { BOARD_TILE, MOVEMENT_TILE, MOVEMENT_BLOCKED_TILE }
+enum Layer { BOARD_LAYER, HOLE_LAYER, MOVEMENT_LAYER }
+enum Tile { BOARD_TILE, HOLE_TILE, MOVEMENT_TILE }
 
-var units: Array[Node2D] = []
+var units: Array[Unit] = []
 
 # Private
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	GameManager.board = self
+	GameManager.set_board(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
-	if Input.is_action_pressed("dummy"):
-		show_movement_cells([Vector2i(0,0)], [])
-	if Input.is_action_pressed("ui_accept"):
-		hide_movement_cells()
+	pass
 
 # Returns an array with the cells in the discrete line from (x0, y0) to (x1, y1)
 # Low part of modified Dofus' line algorithm
@@ -35,9 +32,9 @@ func _get_cells_line_low(x0: int, y0: int, x1: int, y1: int) -> Array:
 	var y: int = y0
 
 	for x in range(x0, x1 + 1):
-		cells_line.append(Vector2(x, y))
+		cells_line.append(Vector2i(x, y))
 		if D > 0:
-			cells_line.append(Vector2(x, y + yi))
+			cells_line.append(Vector2i(x, y + yi))
 			y = y + yi
 			D = D + (2 * (dy - dx))
 		elif D < 0:
@@ -64,9 +61,9 @@ func _get_cells_line_high(x0: int, y0: int, x1: int, y1: int) -> Array:
 	var x: int = x0
 
 	for y in range(y0, y1 + 1):
-		cells_line.append(Vector2(x, y))
+		cells_line.append(Vector2i(x, y))
 		if D > 0:
-			cells_line.append(Vector2(x + xi, y))
+			cells_line.append(Vector2i(x + xi, y))
 			x = x + xi
 			D = D + (2 * (dx - dy))
 		elif D < 0:
@@ -108,11 +105,11 @@ func get_max_cell_range() -> int:
 	var board_cells_size := get_used_rect().size
 	return max(board_cells_size.x, board_cells_size.y)
 	
-# Filter the given cells by free cells or blocked cells
-func filter_cells(cells: Array, origin_cell := Vector2i(0, 0), is_blockable := true) -> Array:
+# Filter the given cells by free cells
+func get_free_cells(cells: Array, origin_cell := Vector2i(0, 0), is_blockable := true) -> Array:
 	var free_cells := []
-	var blocked_cells := []
 	var board_cells := get_used_cells(Layer.BOARD_LAYER)
+	var hole_cells := get_used_cells(Layer.HOLE_LAYER)
 	
 	for cell in cells:
 		var is_cell_blocked := false
@@ -132,26 +129,32 @@ func filter_cells(cells: Array, origin_cell := Vector2i(0, 0), is_blockable := t
 			if unit_cell in cells_line and unit_cell != origin_cell and unit_cell != cell:
 				is_cell_blocked = true
 				break
+				
+		for hole_cell in hole_cells:
+			if hole_cell in cells_line:
+				is_cell_blocked = true
+				break
 
-		if is_cell_blocked:
-			blocked_cells.append(cell)
-		else:
+		if not is_cell_blocked:
 			free_cells.append(cell)
 	
-	return [free_cells, blocked_cells]
+	return free_cells
 
 # Shows the movement cells
-func show_movement_cells(free_cells: Array, blocked_cells: Array) -> void:
-	# TODO para la propiedad salto, tener en cuenta movimientos no lineales como el caballo
-	# En ese caso serian 4 casillas de movimiento y no se podria definir la propiedad NO SALTO
-	# para el caballo o cualquiera que no tenga casillas de movimientos conexas hasta el origen
-	# del personaje
-	# TODO una pieza como el peon tiene distintas celdas de movimiento y de ataque
-	for cell in free_cells:
+func show_movement_cells(cells: Array) -> void:
+	# TODO caso peon con distinto ataque y movimiento se ignora
+	for cell in cells:
 		set_cell(Layer.MOVEMENT_LAYER, cell, Tile.MOVEMENT_TILE, Vector2i(0, 0))
-	for cell in blocked_cells:
-		set_cell(Layer.MOVEMENT_LAYER, cell, Tile.MOVEMENT_BLOCKED_TILE, Vector2i(0, 0))
 
 # Hides the movement cells
 func hide_movement_cells() -> void:
 	clear_layer(Layer.MOVEMENT_LAYER)
+
+# Adds a unit to the unit list
+func add_unit(unit: Unit) -> void:
+	units.append(unit)
+	unit.connect("tree_exiting", func(): remove_unit(unit))
+
+# Removes a unit from the unit list
+func remove_unit(unit: Unit) -> void:
+	units.erase(unit)

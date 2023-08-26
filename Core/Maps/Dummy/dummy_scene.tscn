@@ -6,6 +6,13 @@
 [node name="DummyScene" type="Node2D"]
 
 [node name="Board" parent="." instance=ExtResource("1_uphg7")]
+position = Vector2(337, 133)
 
 [node name="Unit" parent="." instance=ExtResource("2_miyyu")]
-position = Vector2(145, 111)
+position = Vector2(545, 246)
+
+[node name="Unit2" parent="." instance=ExtResource("2_miyyu")]
+position = Vector2(544, 374)
+
+[node name="Unit3" parent="." instance=ExtResource("2_miyyu")]
+position = Vector2(544, 311)
