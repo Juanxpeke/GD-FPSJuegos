@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://deu52wnh547lv"]
+[gd_scene load_steps=6 format=3 uid="uid://deu52wnh547lv"]
 
 [ext_resource type="Script" path="res://Core/Units/unit.gd" id="1_eqqdm"]
 [ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="1_w3vpn"]
 [ext_resource type="Resource" uid="uid://dep5lkhh7bs4k" path="res://Core/Board/CellDescriptors/tower_descriptor.tres" id="2_s0yr5"]
+[ext_resource type="Resource" uid="uid://d2m4ogufqdybg" path="res://Core/Board/CellDescriptors/bishop_descriptor.tres" id="3_y4omx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oce3x"]
 size = Vector2(25, 25)
 
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_eqqdm")
-cell_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_s0yr5")])
+cell_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_s0yr5"), ExtResource("3_y4omx")])
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true

@@ -99,6 +99,10 @@ func _get_cells_line(start_cell: Vector2i, end_cell: Vector2i) -> Array:
 # Gets the cell from a given 2D position
 func get_cell(cell_position: Vector2) -> Vector2i:
 	return local_to_map(to_local(cell_position))
+
+# Gets the cell center in global coordinates
+func get_cell_center(cell: Vector2i) -> Vector2:
+	return to_global(map_to_local(cell))
 	
 # Get the max range of cells
 func get_max_cell_range() -> int:

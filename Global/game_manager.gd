@@ -18,6 +18,14 @@ func _process(delta: float) -> void:
 
 # Public
 
+# Sets the cursor shape
+func set_cursor_shape(shape: String) -> void:
+	match shape:
+		"default": Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		"pointer": Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+		"grab": Input.set_default_cursor_shape(Input.CURSOR_DRAG)
+		"grabbing": Input.set_default_cursor_shape(Input.CURSOR_CROSS)
+
 # Called to set the board
 func set_board(board: Board) -> void:
 	self.board = board
