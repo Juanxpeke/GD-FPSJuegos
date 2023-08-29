@@ -33,13 +33,13 @@ func _on_mouse_entered() -> void:
 	if is_grabbing: return
 	update_movement_cells()
 	GameManager.board.show_movement_cells(movement_cells)
-	GameManager.set_cursor_shape("grab")
+	ConfigManager.set_cursor_shape("grab")
 	
 # Called when the mouse exits the unit
 func _on_mouse_exited() -> void:
 	if is_grabbing: return
 	GameManager.board.hide_movement_cells()
-	GameManager.set_cursor_shape("default")
+	ConfigManager.set_cursor_shape("default")
 	
 # Called when an input event occurs
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -48,7 +48,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			grab_cell = GameManager.board.get_cell(position)
 			grabbed = true
 			is_grabbing = true # Caution: This has to be called by one unit
-			GameManager.set_cursor_shape("grabbing")
+			ConfigManager.set_cursor_shape("grabbing")
 		elif grabbed:
 			var origin_cell = GameManager.board.get_cell(position)
 			
@@ -64,7 +64,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			
 			grabbed = false
 			is_grabbing = false # Caution: This has to be called by one unit
-			GameManager.set_cursor_shape("grab")
+			ConfigManager.set_cursor_shape("grab")
 
 # Called when the game changes
 func _on_game_changed() -> void:
