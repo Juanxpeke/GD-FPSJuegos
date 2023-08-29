@@ -11,10 +11,15 @@ var units: Array[Unit] = []
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	GameManager.set_board(self)
+	GameManager.connect("game_changed", _on_game_changed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
 	pass
+	
+# Called when the game changes
+func _on_game_changed() -> void:
+	hide_movement_cells()
 
 # Returns an array with the cells in the discrete line from (x0, y0) to (x1, y1)
 # Low part of modified Dofus' line algorithm

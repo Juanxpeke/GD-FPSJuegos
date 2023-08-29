@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Core/UI/Lobby/lobby.gd" id="1_kkwo8"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://Core/UI/Lobby/lobby_player.tscn" id="2_2atg2"]
-[ext_resource type="PackedScene" uid="uid://b5hufqs7sbm01" path="res://Core/UI/Lobby/main.tscn" id="2_cjhso"]
+[ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_d24t2"]
 
 [node name="Lobby" type="MarginContainer"]
 anchors_preset = 15
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kkwo8")
-game_map_scene = ExtResource("2_cjhso")
+game_map_scene = ExtResource("2_d24t2")
 lobby_player_scene = ExtResource("2_2atg2")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

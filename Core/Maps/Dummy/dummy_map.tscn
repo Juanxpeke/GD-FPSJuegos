@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://db36f8ux7a06p"]
+
+[ext_resource type="Script" path="res://Core/Maps/map.gd" id="1_uo3n2"]
+[ext_resource type="PackedScene" uid="uid://8n47mb14jmmk" path="res://Core/Board/board.tscn" id="1_uphg7"]
+[ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://Core/Players/player.tscn" id="2_x0elb"]
+
+[node name="DummyMap" type="Node2D"]
+script = ExtResource("1_uo3n2")
+player_scene = ExtResource("2_x0elb")
+
+[node name="Board" parent="." instance=ExtResource("1_uphg7")]
+position = Vector2(337, 133)
+
+[node name="Players" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AuthorityPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(542, 467)
+
+[node name="PuppetPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(580, 244)
