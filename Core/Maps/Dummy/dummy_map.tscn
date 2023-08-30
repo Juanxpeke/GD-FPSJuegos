@@ -9,7 +9,7 @@ script = ExtResource("1_uo3n2")
 player_scene = ExtResource("2_x0elb")
 
 [node name="Board" parent="." instance=ExtResource("1_uphg7")]
-position = Vector2(337, 133)
+position = Vector2(562, 354)
 
 [node name="Players" type="Node2D" parent="."]
 unique_name_in_owner = true

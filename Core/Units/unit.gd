@@ -104,7 +104,10 @@ func _update_movement_cells() -> void:
 # Changes the unit position on each peer, including current
 @rpc("call_local", "reliable")
 func change_position(target_position: Vector2) -> void:
-	position = target_position
+	if is_multiplayer_authority():
+		position = target_position
+	else:
+		position = GameManager.board.get_mirror_position(target_position)
 	GameManager.game_changed.emit()
 	
 # Level ups the unit on each peer, including current

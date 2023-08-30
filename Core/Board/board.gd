@@ -101,7 +101,7 @@ func _get_cells_line(start_cell: Vector2i, end_cell: Vector2i) -> Array:
 
 # Public
 
-# Gets the cell from a given 2D position
+# Gets the cell from a given position
 func get_cell(cell_position: Vector2) -> Vector2i:
 	return local_to_map(to_local(cell_position))
 
@@ -158,6 +158,11 @@ func show_movement_cells(cells: Array) -> void:
 # Hides the movement cells
 func hide_movement_cells() -> void:
 	clear_layer(Layer.MOVEMENT_LAYER)
+	
+# Gets the vertical mirrored position of the given position
+func get_mirror_position(cell_position: Vector2) -> Vector2:
+	var mirror_position = to_global(to_local(cell_position) * -1)
+	return mirror_position
 
 # Adds a unit to the unit list
 func add_unit(unit: Unit) -> void:
