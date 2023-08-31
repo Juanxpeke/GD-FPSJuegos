@@ -59,6 +59,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		var mouse_left_button_pressed = event.pressed
 		# Mouse left button pressed
 		if mouse_left_button_pressed:
+			_update_movement_cells()
+			GameManager.board.show_movement_cells(movement_cells)
 			grab_cell = GameManager.board.get_cell(position)
 			grabbed = true
 			is_grabbing = true # Caution: This has to be called by one unit
