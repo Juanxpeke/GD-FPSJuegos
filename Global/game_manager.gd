@@ -5,6 +5,8 @@ signal board_destroyed
 signal game_changed # Called on ANY game change
 
 var board: Board
+var map: Map
+var turn: int = 0
 
 # Private
 
@@ -22,3 +24,7 @@ func _process(delta: float) -> void:
 func set_board(board: Board) -> void:
 	self.board = board
 	board_initialized.emit()
+	
+# Called to set the map
+func set_map(map: Map) -> void:
+	self.map = map

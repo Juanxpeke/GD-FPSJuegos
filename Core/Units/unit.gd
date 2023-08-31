@@ -67,7 +67,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		elif not mouse_left_button_pressed and grabbed:
 			var target_cell = GameManager.board.get_cell(position)
 			
-			if target_cell in movement_cells:
+			# Grabbed unit was dropped in a valid cell
+			if target_cell in movement_cells and get_parent() == GameManager.map.get_current_turn_player():
 				change_position.rpc(GameManager.board.get_cell_center(target_cell))
 			else:
 				position = GameManager.board.get_cell_center(grab_cell)
@@ -108,6 +109,7 @@ func change_position(target_position: Vector2) -> void:
 		position = target_position
 	else:
 		position = GameManager.board.get_mirror_position(target_position)
+	GameManager.map.advance_turn()
 	GameManager.game_changed.emit()
 	
 # Level ups the unit on each peer, including current
