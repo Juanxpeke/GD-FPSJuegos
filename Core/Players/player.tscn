@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3mhsy021dqog"]
 
 [ext_resource type="Script" path="res://Core/Players/player.gd" id="1_abhif"]
-[ext_resource type="PackedScene" uid="uid://deu52wnh547lv" path="res://Core/Units/unit.tscn" id="2_i7ojj"]
+[ext_resource type="PackedScene" uid="uid://ctd4f7l06mlv7" path="res://Core/Units/king.tscn" id="2_kkq87"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_abhif")
-initial_unit_scene = ExtResource("2_i7ojj")
+king_unit_scene = ExtResource("2_kkq87")

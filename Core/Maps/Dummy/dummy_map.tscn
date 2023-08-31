@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://db36f8ux7a06p"]
+[gd_scene load_steps=5 format=3 uid="uid://db36f8ux7a06p"]
 
 [ext_resource type="Script" path="res://Core/Maps/map.gd" id="1_uo3n2"]
 [ext_resource type="PackedScene" uid="uid://8n47mb14jmmk" path="res://Core/Board/board.tscn" id="1_uphg7"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://Core/Players/player.tscn" id="2_x0elb"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m7wy4"]
+properties/0/path = NodePath(".:first_turn_player_index")
+properties/0/spawn = true
+properties/0/sync = false
+properties/0/watch = true
 
 [node name="DummyMap" type="Node2D"]
 script = ExtResource("1_uo3n2")
@@ -14,10 +20,10 @@ position = Vector2(562, 354)
 [node name="Players" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="AuthorityPosition" type="Marker2D" parent="."]
+[node name="KingMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(542, 467)
+position = Vector2(383, 532)
 
-[node name="PuppetPosition" type="Marker2D" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true
-position = Vector2(580, 244)
+replication_config = SubResource("SceneReplicationConfig_m7wy4")

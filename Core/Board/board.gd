@@ -108,6 +108,10 @@ func get_cell(cell_position: Vector2) -> Vector2i:
 # Gets the cell center in global coordinates
 func get_cell_center(cell: Vector2i) -> Vector2:
 	return to_global(map_to_local(cell))
+
+# Gets the cell center in global coordinates, given a position
+func get_cell_centerp(cell_position: Vector2) -> Vector2:
+	return get_cell_center(get_cell(cell_position))
 	
 # Get the max range of cells
 func get_max_cell_range() -> int:
