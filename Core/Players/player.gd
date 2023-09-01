@@ -2,7 +2,7 @@ class_name Player
 extends Node2D
 
 @export var king_unit_scene: PackedScene
-
+var enemy_player : Player
 # Public
 
 # Sets up the multiplayer data for the player node

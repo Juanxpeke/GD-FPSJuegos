@@ -104,6 +104,10 @@ func _update_movement_cells() -> void:
 		
 # Public
 
+func get_movement_cells() -> Array:
+	_update_movement_cells()
+	return movement_cells
+
 # Changes the unit position on each peer, including current
 @rpc("call_local", "reliable")
 func change_position(target_position: Vector2) -> void:

@@ -23,6 +23,10 @@ func _ready() -> void:
 		var player = player_scene.instantiate()
 		players.add_child(player)
 		player.multiplayer_setup(peer_player)
+		
+	if players.get_child_count() == 2:
+		players.get_child(0).enemy_player = players.get_child(1)
+		players.get_child(1).enemy_player = players.get_child(0)
 	
 	multiplayer_synchronizer.connect("delta_synchronized", _on_delta_synchronized)
 	
