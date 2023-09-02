@@ -2,7 +2,7 @@ class_name Board
 extends TileMap
 
 enum Layer { BOARD_LAYER, HOLE_LAYER, MOVEMENT_LAYER }
-enum Tile { BOARD_TILE, HOLE_TILE, MOVEMENT_TILE }
+enum Tile { BOARD_TILE, HOLE_TILE, MOVEMENT_TILE, ALT_BOARD_TILE }
 
 var units: Array[Unit] = []
 
@@ -12,6 +12,9 @@ var units: Array[Unit] = []
 func _ready() -> void:
 	GameManager.set_board(self)
 	GameManager.connect("game_changed", _on_game_changed)
+	for cell in get_used_cells(Layer.BOARD_LAYER):
+		if ((cell[0] + cell[1]) % 2 != 0):
+			set_cell(Layer.BOARD_LAYER, cell, Tile.ALT_BOARD_TILE, Vector2i(0, 0))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
