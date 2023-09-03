@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Core/Units/king.gd" id="1_nwkod"]
 [ext_resource type="Resource" uid="uid://jkfp0wy0n5yv" path="res://Core/Board/CellDescriptors/ClassicDescriptors/king_descriptor.tres" id="2_apiqb"]
 [ext_resource type="Script" path="res://Core/Board/CellDescriptors/line_descriptor.gd" id="3_m3o7w"]
-[ext_resource type="Texture2D" uid="uid://btnpkoyxkh2my" path="res://assests/pixel chess_v1.2/16x32 pieces/B_King.png" id="4_4yf86"]
+[ext_resource type="Texture2D" uid="uid://btnpkoyxkh2my" path="res://assets/pixel chess_v1.2/16x32 pieces/B_King.png" id="4_wqgbo"]
 
 [sub_resource type="Resource" id="Resource_deaaw"]
 script = ExtResource("3_m3o7w")
@@ -23,7 +23,7 @@ level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_desc
 unique_name_in_owner = true
 position = Vector2(0, -8)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_4yf86")
+texture = ExtResource("4_wqgbo")
 
 [node name="Area" type="Area2D" parent="."]
 unique_name_in_owner = true
