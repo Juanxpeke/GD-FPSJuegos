@@ -1,6 +1,8 @@
 extends Unit
 class_name King
 
+# Private
+
 # extremely unefficient code
 func _update_movement_cells():
 	super._update_movement_cells()
@@ -17,6 +19,8 @@ func _update_movement_cells():
 		if safe:
 			final_movement_cells.append(cell)
 	movement_cells = final_movement_cells
+	
+# Public
 	
 # patch to avoid infinite recursion
 func get_movement_cells():

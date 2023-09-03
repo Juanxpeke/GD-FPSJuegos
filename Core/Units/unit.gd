@@ -1,6 +1,8 @@
 class_name Unit
 extends Node2D
 
+@export var unit_name: String
+
 @export var level_1_descriptors: Array[CellDescriptor]
 @export var level_2_descriptors: Array[CellDescriptor]
 @export var level_3_descriptors: Array[CellDescriptor]

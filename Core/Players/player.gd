@@ -22,16 +22,17 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	for i in range(position_unit_array.size()):
 		var offset = position_unit_array[i][1]
 		var piece_name = position_unit_array[i][0]
-		var king_unit = load(pieces_scenes[piece_name]).instantiate() # cant preload as cell_descriptors get added before GameManager
 		
-		add_child(king_unit)
+		var unit = load(pieces_scenes[piece_name]).instantiate() # cant preload as cell_descriptors get added before GameManager
 		
-		king_unit.name = str(i) + str(peer_player.id)
+		add_child(unit)
+		
+		unit.name = unit.unit_name + str(i) + str(peer_player.id)
 		
 		if multiplayer.get_unique_id() == peer_player.id:
-			king_unit.position = GameManager.map.get_initial_king_position() + offset
+			unit.position = GameManager.map.get_initial_king_position() + offset
 		else:
-			king_unit.position = GameManager.board.get_mirror_position(GameManager.map.get_initial_king_position() + offset)
+			unit.position = GameManager.board.get_mirror_position(GameManager.map.get_initial_king_position() + offset)
 		
 	set_multiplayer_authority(peer_player.id)
 	GameManager.set_board(GameManager.board) # unit's cell_descriptors aren't updating as board was set before

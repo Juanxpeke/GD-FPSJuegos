@@ -16,6 +16,7 @@ size = Vector2(25, 25)
 
 [node name="King" type="Node2D"]
 script = ExtResource("1_nwkod")
+unit_name = "King"
 level_1_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_apiqb")])
 level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_apiqb"), SubResource("Resource_deaaw")])
 
