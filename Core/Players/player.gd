@@ -2,7 +2,8 @@ class_name Player
 extends Node2D
 
 @export var king_unit_scene: PackedScene
-var enemy_player : Player
+
+var enemy_player: Player
 
 var pieces_scenes: Dictionary = {
 	"king": "res://Core/Units/king.tscn",
@@ -34,3 +35,33 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 		
 	set_multiplayer_authority(peer_player.id)
 	GameManager.set_board(GameManager.board) # unit's cell_descriptors aren't updating as board was set before
+
+# Gets units
+func get_units() -> Array:
+	return get_children()
+	
+# Gets a unit by the given cell
+func get_unit_by_cell(cell: Vector2i) -> Unit:
+	var units = get_units()
+	for unit in units:
+		if GameManager.board.get_cell(unit.position) == cell:
+			return unit
+	return null
+
+# Get all the players units cells
+func get_all_units_cells() -> Array[Vector2i]:
+	var units_cells = []
+	var units = get_units()
+	
+	for unit in units:
+		units_cells += unit.get_movement_cells()
+	
+	return units_cells
+
+# Tries to kill the unit in the given cell
+func receive_attack_in_cell(cell: Vector2i) -> void:
+	var units = get_units()
+	for unit in units:
+		if GameManager.board.get_cell(unit.position) == cell:
+			unit.die()
+			return

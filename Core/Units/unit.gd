@@ -104,21 +104,38 @@ func _update_movement_cells() -> void:
 		
 # Public
 
+# Gets the unit player
+func get_player() -> Player:
+	return get_parent()
+
+# Gets the unit movement cells
 func get_movement_cells() -> Array:
 	_update_movement_cells()
 	return movement_cells
 
-# Changes the unit position on each peer, including current
+# Dies
+func die():
+	print("die ", name)
+	queue_free()
+
+# Changes the unit position on each peer, including self
 @rpc("call_local", "reliable")
 func change_position(target_position: Vector2) -> void:
-	if is_multiplayer_authority():
-		position = target_position
-	else:
-		position = GameManager.board.get_mirror_position(target_position)
+	var final_position = target_position
+	
+	if not is_multiplayer_authority():
+		final_position = GameManager.board.get_mirror_position(target_position)
+		
+	position = final_position
+	
+	var final_cell = GameManager.board.get_cell(final_position)
+	
+	get_player().enemy_player.receive_attack_in_cell(final_cell)
+		
 	GameManager.map.advance_turn()
 	GameManager.game_changed.emit()
 	
-# Level ups the unit on each peer, including current
+# Level ups the unit on each peer, including self
 @rpc("call_local", "reliable")
 func level_up() -> void:
 	level += 1
