@@ -32,6 +32,8 @@ func _ready() -> void:
 	
 	if multiplayer.is_server():
 		first_turn_player_index = map_rng.randi_range(0, players.get_children().size() - 1)
+		get_player_by_turn(first_turn_player_index).paint_units.rpc(Color(1.2, 1.2, 1.2))
+		get_player_by_turn(first_turn_player_index+1).paint_units.rpc(Color(0.4, 0.1, 0.6))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(delta: float) -> void:

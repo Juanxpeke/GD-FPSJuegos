@@ -82,3 +82,9 @@ func handle_unit_movement(unit: Unit, target_cell : Vector2i) -> bool:
 	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
 	return true
 
+@rpc("call_local", "reliable", "any_peer")
+func paint_units(color: Color) -> void:
+	for unit in get_children():
+		unit.sprite.modulate = color
+		
+
