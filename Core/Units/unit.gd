@@ -71,11 +71,9 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		elif not mouse_left_button_pressed and grabbed:
 			var target_cell = GameManager.board.get_cell(position)
 			
-			# Grabbed unit was dropped in a valid cell
-			if target_cell in movement_cells and get_parent() == GameManager.map.get_current_turn_player():
-				change_position.rpc(GameManager.board.get_cell_center(target_cell))
-			else:
-				position = GameManager.board.get_cell_center(grab_cell)
+			# if requested move is invalid reset position
+			if !get_parent().handle_unit_movement(self, target_cell):
+				_reset_position()
 
 			grabbed = false
 			is_grabbing = false # Caution: This has to be called by one unit
@@ -103,7 +101,11 @@ func _update_movement_cells() -> void:
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
 		movement_cells += GameManager.board.get_free_cells(
 				descriptor_cells, origin_cell, cell_descriptor.is_blockable)
-		
+
+
+func _reset_position() -> void:
+	position = GameManager.board.get_cell_center(grab_cell)
+
 # Public
 
 # Gets the unit player
@@ -120,7 +122,7 @@ func die():
 	print("die ", name)
 	queue_free()
 
-# Changes the unit position on each peer, including self
+# Changes the unit position on each peer, including current
 @rpc("call_local", "reliable")
 func change_position(target_position: Vector2) -> void:
 	var final_position = target_position

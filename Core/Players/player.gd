@@ -14,6 +14,11 @@ var position_unit_array: Array[Array] = [
 	["bishop", Vector2(-30, 0)],
 	["bishop", Vector2(30, 0)],
 ]
+
+# Private
+func _combine_units(unit1: Unit, unit2: Unit) -> bool:
+	return false
+
 # Public
 
 # Sets up the multiplayer data for the player node
@@ -66,3 +71,14 @@ func receive_attack_in_cell(cell: Vector2i) -> void:
 		if GameManager.board.get_cell(unit.position) == cell:
 			unit.die()
 			return
+
+# handles the movement of one of its units, return true if requested move is valid
+func handle_unit_movement(unit: Unit, target_cell : Vector2i) -> bool:
+	if not (target_cell in unit.movement_cells) or self != GameManager.map.get_current_turn_player():
+		return false
+	for other_unit in get_children():
+		if target_cell == GameManager.board.get_cell(other_unit.position) and unit != other_unit:
+			return _combine_units(unit, other_unit)
+	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
+	return true
+
