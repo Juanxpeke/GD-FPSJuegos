@@ -16,8 +16,8 @@ var position_unit_array: Array[Array] = [
 ]
 
 # Private
-func _combine_units(unit1: Unit, unit2: Unit) -> bool:
-	return false
+
+# TBA
 
 # Public
 
@@ -33,6 +33,7 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 		add_child(unit)
 		
 		unit.name = unit.unit_name + str(i) + str(peer_player.id)
+		unit.sprite.modulate = peer_player.role
 		
 		if multiplayer.get_unique_id() == peer_player.id:
 			unit.position = GameManager.map.get_initial_king_position() + offset
@@ -45,6 +46,10 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 # Gets units
 func get_units() -> Array:
 	return get_children()
+	
+# Gets a unit by the given index
+func get_unit(index: int) -> Unit:
+	return get_units()[index]
 	
 # Gets a unit by the given cell
 func get_unit_by_cell(cell: Vector2i) -> Unit:
@@ -72,19 +77,43 @@ func receive_attack_in_cell(cell: Vector2i) -> void:
 			unit.die()
 			return
 
-# handles the movement of one of its units, return true if requested move is valid
-func handle_unit_movement(unit: Unit, target_cell : Vector2i) -> bool:
-	if not (target_cell in unit.movement_cells) or self != GameManager.map.get_current_turn_player():
-		return false
-	for other_unit in get_children():
-		if target_cell == GameManager.board.get_cell(other_unit.position) and unit != other_unit:
-			return _combine_units(unit, other_unit)
+# Handles the movement of one of its units
+func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
+	# Is not a valid movement cell, or its not player's turn
+	if not (target_cell in unit.get_movement_cells()) or self != GameManager.map.get_current_turn_player():
+		unit.reset_position()
+		return
+		
+	for other_unit in get_units():
+		if unit != other_unit and target_cell == other_unit.get_current_cell():
+			if unit.get_unit_class() == other_unit.get_unit_class():
+				# TODO: Config stuff
+				fuse_units.rpc(unit.get_index(), other_unit.get_index(), target_cell)
+				return
+			else:
+				unit.reset_position()
+				return
+			
 	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
-	return true
+
+# Fuse two units
+@rpc("call_local", "reliable")
+func fuse_units(first_unit_index: int, second_unit_index: int, target_cell: Vector2i) -> void:
+	var first_unit = get_child(first_unit_index)
+	var second_unit = get_child(second_unit_index)
+	
+	print("fuse units: ", first_unit.name, "\t", second_unit.name)
+	
+	call_deferred("remove_child", first_unit)
+	call_deferred("remove_child", second_unit)
+	
+	# TODO: Fusion stuff
+	
+	GameManager.map.advance_turn()
+	GameManager.game_changed.emit()
 
 @rpc("call_local", "reliable", "any_peer")
 func paint_units(color: Color) -> void:
 	for unit in get_children():
 		unit.sprite.modulate = color
-		
 

@@ -14,7 +14,7 @@ var level_cell_descriptors: Array[CellDescriptor]
 var movement_cells: Array = []
 
 # Grab logic
-static var is_grabbing: bool = false # TODO: Maintain this logic with multiplayer
+static var is_grabbing: bool = false
 var grabbed: bool = false
 var grab_cell: Vector2
 
@@ -63,17 +63,16 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		if mouse_left_button_pressed:
 			_update_movement_cells()
 			GameManager.board.show_movement_cells(movement_cells)
-			grab_cell = GameManager.board.get_cell(position)
+			grab_cell = get_current_cell()
 			grabbed = true
 			is_grabbing = true # Caution: This has to be called by one unit
 			ConfigManager.set_cursor_shape("grabbing")
-		# Mouse left button unpressed and was this unit was grabbed
+		# Mouse left button unpressed and this unit was grabbed
 		elif not mouse_left_button_pressed and grabbed:
-			var target_cell = GameManager.board.get_cell(position)
+			var target_cell = get_current_cell()
 			
-			# if requested move is invalid reset position
-			if !get_parent().handle_unit_movement(self, target_cell):
-				_reset_position()
+			# Request move to the player
+			get_player().handle_unit_movement(self, target_cell)
 
 			grabbed = false
 			is_grabbing = false # Caution: This has to be called by one unit
@@ -95,27 +94,36 @@ func _update_movement_cells() -> void:
 	if not movement_cells.is_empty():
 		return
 		
-	var origin_cell := GameManager.board.get_cell(position)
+	var origin_cell := get_current_cell()
 	
 	for cell_descriptor in level_cell_descriptors:
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
 		movement_cells += GameManager.board.get_free_cells(
 				descriptor_cells, origin_cell, cell_descriptor.is_blockable)
 
-
-func _reset_position() -> void:
-	position = GameManager.board.get_cell_center(grab_cell)
-
 # Public
+
+# Gets the unit class
+func get_unit_class() -> String:
+	return "Unit"
 
 # Gets the unit player
 func get_player() -> Player:
 	return get_parent()
 
+# Gets the unit current cell
+func get_current_cell() -> Vector2i:
+	return GameManager.board.get_cell(position)
+
 # Gets the unit movement cells
 func get_movement_cells() -> Array:
 	_update_movement_cells()
 	return movement_cells
+
+# Resets the unit position
+func reset_position() -> void:
+	print("reset unit position: ", name)
+	position = GameManager.board.get_cell_center(grab_cell)
 
 # Dies
 func die():
@@ -125,6 +133,7 @@ func die():
 # Changes the unit position on each peer, including current
 @rpc("call_local", "reliable")
 func change_position(target_position: Vector2) -> void:
+	print("change unit position: ", name)
 	var final_position = target_position
 	
 	if not is_multiplayer_authority():
@@ -140,6 +149,7 @@ func change_position(target_position: Vector2) -> void:
 	GameManager.game_changed.emit()
 	
 # Level ups the unit on each peer, including self
+# CAUTION: This is intended to be called from the store
 @rpc("call_local", "reliable")
 func level_up() -> void:
 	level += 1
