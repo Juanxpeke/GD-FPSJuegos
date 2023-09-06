@@ -105,7 +105,7 @@ func _update_movement_cells() -> void:
 
 # Gets the unit class
 func get_unit_class() -> String:
-	return "Unit"
+	return unit_name
 
 # Gets the unit player
 func get_player() -> Player:

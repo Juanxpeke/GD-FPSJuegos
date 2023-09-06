@@ -22,10 +22,6 @@ func _update_movement_cells():
 	
 # Public
 
-# Gets the unit class
-func get_unit_class() -> String:
-	return "King"
-	
 # patch to avoid infinite recursion
 func get_movement_cells():
 	super._update_movement_cells()
