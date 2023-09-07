@@ -10,6 +10,8 @@ extends Resource
 
 # Private
 
+var _directions: Array[Array] = [] 
+
 # Constructor
 func _init() -> void:
 	GameManager.connect("board_initialized", _on_board_initialized)
@@ -20,6 +22,9 @@ func _on_board_initialized() -> void:
 		cell_range = GameManager.board.get_max_cell_range()
 
 # Public
+
+func get_directions() -> Array[Array]:
+	return _directions
 
 # Returns the set of cells only by a certain index
 func _get_cells_by_index(origin_cell: Vector2i, index: int) -> Array[Vector2i]:
@@ -34,3 +39,4 @@ func get_cells(origin_cell: Vector2i) -> Array:
 		cells = cells + _get_cells_by_index(origin_cell, i + 1)
 	
 	return cells
+

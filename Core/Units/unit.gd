@@ -99,7 +99,7 @@ func _update_movement_cells() -> void:
 	for cell_descriptor in level_cell_descriptors:
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
 		movement_cells += GameManager.board.get_free_cells(
-				descriptor_cells, origin_cell, cell_descriptor.is_blockable)
+				cell_descriptor, origin_cell)
 
 # Public
 

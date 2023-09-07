@@ -107,6 +107,21 @@ func _get_cells_line(start_cell: Vector2i, end_cell: Vector2i) -> Array:
 		else:
 			return _get_cells_line_high(x0, y0, x1, y1)
 
+func _get_lines_from_cell_descriptor(cell_descriptor: CellDescriptor, origin_cell: Vector2i) -> Array[Array]:
+	var result: Array[Array] = []
+	for direction in cell_descriptor.get_directions():
+		var line = []
+		var dir_size = direction.size()
+		var last_cell: Vector2i = origin_cell
+		
+		for index in range(0, cell_descriptor.cell_range):
+			last_cell += direction[index % dir_size]
+			line.append(last_cell)
+			
+		result.append(line)
+	return result
+
+
 # Public
 
 # Gets the cell from a given position
@@ -127,37 +142,42 @@ func get_max_cell_range() -> int:
 	return max(board_cells_size.x, board_cells_size.y)
 	
 # Filter the given cells by free cells
-func get_free_cells(cells: Array, origin_cell := Vector2i(0, 0), is_blockable := true) -> Array:
+func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 0)) -> Array:
 	var free_cells := []
 	var board_cells := get_used_cells(Layer.BOARD_LAYER)
 	var hole_cells := get_used_cells(Layer.HOLE_LAYER)
+	var is_blockable = cell_descriptor.is_blockable
+	var lines = _get_lines_from_cell_descriptor(cell_descriptor, origin_cell)
 	
-	for cell in cells:
-		var is_cell_blocked := false
-		
-		if not cell in board_cells:
-			continue
-		
-		if not is_blockable:
+	for line in lines:
+		var is_line_blocked := false
+		for cell in line:
+			
+			if not cell in board_cells:
+				if cell in hole_cells:
+					if is_blockable:
+						break
+					else:
+						continue
+				break
+					
+			
+			if not is_blockable:
+				free_cells.append(cell)
+				continue
+			
+			
+			for unit in units:
+				var unit_cell := get_cell(unit.global_position)
+					
+				if unit_cell == cell:
+					is_line_blocked = true
+					break
+			
 			free_cells.append(cell)
-			continue
-		
-		var cells_line := _get_cells_line(origin_cell, cell)
-		
-		for unit in units:
-			var unit_cell := get_cell(unit.global_position)
-				
-			if unit_cell in cells_line and unit_cell != origin_cell and unit_cell != cell:
-				is_cell_blocked = true
-				break
-				
-		for hole_cell in hole_cells:
-			if hole_cell in cells_line:
-				is_cell_blocked = true
-				break
 
-		if not is_cell_blocked:
-			free_cells.append(cell)
+			if is_line_blocked:
+				break
 	
 	return free_cells
 
