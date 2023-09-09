@@ -12,6 +12,8 @@ extends Resource
 
 var _directions: Array[Array] = [] 
 
+var _base_movement: Array[Vector2i] = []
+
 # Constructor
 func _init() -> void:
 	GameManager.connect("board_initialized", _on_board_initialized)
@@ -26,6 +28,9 @@ func _on_board_initialized() -> void:
 func get_directions() -> Array[Array]:
 	return _directions
 
+func get_base_movement() -> Array[Vector2i]:
+	return _base_movement
+	
 # Returns the set of cells only by a certain index
 func _get_cells_by_index(origin_cell: Vector2i, index: int) -> Array[Vector2i]:
 	return []

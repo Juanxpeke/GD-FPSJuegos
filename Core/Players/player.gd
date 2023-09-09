@@ -8,11 +8,12 @@ var enemy_player: Player
 var pieces_scenes: Dictionary = {
 	"king": "res://Core/Units/king.tscn",
 	"bishop": "res://Core/Units/bishop.tscn",
+	"knight": "res://Core/Units/knight.tscn",
 }
 var position_unit_array: Array[Array] = [
 	["king", Vector2(0, 0)],
 	["bishop", Vector2(-30, 0)],
-	["bishop", Vector2(30, 0)],
+	["knight", Vector2(30, 0)],
 ]
 
 # Private

@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="CircleDescriptor" load_steps=2 format=3 uid="uid://btsv0j2whk28i"]
+[gd_resource type="Resource" script_class="LDescriptor" load_steps=2 format=3 uid="uid://j1jnunok5hwd"]
 
-[ext_resource type="Script" path="res://Core/Board/CellDescriptors/L_descriptor.gd" id="1_kx5nj"]
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/L_descriptor_v2.gd" id="1_p3gmy"]
 
 [resource]
-script = ExtResource("1_kx5nj")
+script = ExtResource("1_p3gmy")
 is_blockable = false
 is_filled = false
-cell_range = 1
+cell_range = 2
