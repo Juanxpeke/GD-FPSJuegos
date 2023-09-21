@@ -10,6 +10,7 @@ extends Node2D
 # Unit level
 var level: int = 1
 var level_cell_descriptors: Array[CellDescriptor]
+var current_cell_descriptors: Array[CellDescriptor]
 # Cached cells the unit can move in current game state
 var movement_cells: Array = []
 
@@ -91,12 +92,17 @@ func _update_level_data() -> void:
 		
 # Updates the movement cells 
 func _update_movement_cells() -> void:
+	
 	if not movement_cells.is_empty():
 		return
 		
 	var origin_cell := get_current_cell()
 	
-	for cell_descriptor in level_cell_descriptors:
+	current_cell_descriptors = level_cell_descriptors
+	for skill in get_player().get_active_skills():
+		skill.modify_current_cell_descriptor(self)
+	
+	for cell_descriptor in current_cell_descriptors:
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
 		movement_cells += GameManager.board.get_free_cells(
 				cell_descriptor, origin_cell)

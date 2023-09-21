@@ -16,7 +16,16 @@ var position_unit_array: Array[Array] = [
 	["knight", Vector2(30, 0)],
 ]
 
+### Skills ####
+var activable_skills : Array[Skill] = []
+
+var active_skills : Array[Skill] = []
+
 # Private
+
+func _activate_skill(index : int) -> void:
+	if activable_skills[index].activate():
+		active_skills.append(activable_skills[index])
 
 # TBA
 
@@ -117,4 +126,6 @@ func fuse_units(first_unit_index: int, second_unit_index: int, target_cell: Vect
 func paint_units(color: Color) -> void:
 	for unit in get_children():
 		unit.sprite.modulate = color
-
+		
+func get_active_skills() -> Array:
+	return active_skills

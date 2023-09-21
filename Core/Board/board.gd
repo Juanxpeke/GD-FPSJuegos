@@ -112,7 +112,6 @@ func _get_lines_from_cell_descriptor(cell_descriptor: CellDescriptor, origin_cel
 	var directions: Array[Array] = cell_descriptor.get_directions()
 	var initial_cell_index = 0 if cell_descriptor.is_filled else cell_descriptor.cell_range - 1
 	var base_movements: Array[Vector2i] = cell_descriptor.get_base_movement()
-	print(cell_descriptor.cell_range, "  ", initial_cell_index)
 	
 	for i in range(0, directions.size()):
 		var line = []
@@ -123,7 +122,6 @@ func _get_lines_from_cell_descriptor(cell_descriptor: CellDescriptor, origin_cel
 		for index in range(0, cell_descriptor.cell_range):
 			last_cell += direction[index % dir_size]
 			if index >= initial_cell_index:
-				print(last_cell)
 				line.append(last_cell)
 			
 		result.append(line)
