@@ -1,24 +1,18 @@
 class_name Player
 extends Node2D
 
-@export var king_unit_scene: PackedScene
 
 var enemy_player: Player
 
-var pieces_scenes: Dictionary = {
-	"king": "res://Core/Units/king.tscn",
-	"bishop": "res://Core/Units/bishop.tscn",
-	"knight": "res://Core/Units/knight.tscn",
-}
-var position_unit_array: Array[Array] = [
-	["king", Vector2(0, 0)],
-	["bishop", Vector2(-30, 0)],
-	["knight", Vector2(30, 0)],
-]
+var role: RolesManager.Role
+
+var current_health: int
+var current_money: int 
+
+var units_initial_positions: Array[Vector2] = []
 
 ### Skills ####
 var activable_skills : Array[Skill] = []
-
 var active_skills : Array[Skill] = []
 
 # Private
@@ -27,31 +21,31 @@ func _activate_skill(index : int) -> void:
 	if activable_skills[index].activate():
 		active_skills.append(activable_skills[index])
 
-# TBA
-
 # Public
 
 # Sets up the multiplayer data for the player node
 func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	name = "Player" + str(peer_player.id)
-	for i in range(position_unit_array.size()):
-		var offset = position_unit_array[i][1]
-		var piece_name = position_unit_array[i][0]
-		
-		var unit = load(pieces_scenes[piece_name]).instantiate() # cant preload as cell_descriptors get added before GameManager
+	role = GameManager.get_role(peer_player.role)
+	
+	current_health = role.initial_health
+	current_money = role.initial_money
+	
+	for i in range(role.initial_units_names.size()):
+		var unit = GameManager.units_scenes[role.initial_units_names[i]].instantiate() # REVIEW: Preload, as cell_descriptors get added before GameManager
+		var unit_position = GameManager.map.get_initial_king_position() + GameManager.board.get_cell_center(role.initial_units_offsets[i])
 		
 		add_child(unit)
 		
 		unit.name = unit.unit_name + str(i) + str(peer_player.id)
-		unit.sprite.modulate = peer_player.role
 		
 		if multiplayer.get_unique_id() == peer_player.id:
-			unit.position = GameManager.map.get_initial_king_position() + offset
+			unit.position = unit_position
 		else:
-			unit.position = GameManager.board.get_mirror_position(GameManager.map.get_initial_king_position() + offset)
+			unit.position = GameManager.board.get_mirror_position(unit_position)
 		
 	set_multiplayer_authority(peer_player.id)
-	GameManager.set_board(GameManager.board) # unit's cell_descriptors aren't updating as board was set before
+	GameManager.set_board(GameManager.board) # REVIEW: Unit's cell_descriptors aren't updating as board was set before
 
 # Gets units
 func get_units() -> Array:
@@ -106,6 +100,10 @@ func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
 			
 	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
 
+# Returns the player active skills
+func get_active_skills() -> Array:
+	return active_skills
+
 # Fuse two units
 @rpc("call_local", "reliable")
 func fuse_units(first_unit_index: int, second_unit_index: int, target_cell: Vector2i) -> void:
@@ -126,6 +124,4 @@ func fuse_units(first_unit_index: int, second_unit_index: int, target_cell: Vect
 func paint_units(color: Color) -> void:
 	for unit in get_children():
 		unit.sprite.modulate = color
-		
-func get_active_skills() -> Array:
-	return active_skills
+
