@@ -25,11 +25,13 @@ func _ready() -> void:
 		player.multiplayer_setup(peer_player)
 		
 	if players.get_child_count() == 2:
+		print("2 PLAYERS")
 		players.get_child(0).enemy_player = players.get_child(1)
 		players.get_child(1).enemy_player = players.get_child(0)
 	
 	multiplayer_synchronizer.connect("delta_synchronized", _on_delta_synchronized)
 	
+	# ERROR COMES HERE, SOMETHING IS BAD WITH PLAYER SETUP
 	if multiplayer.is_server():
 		first_turn_player_index = map_rng.randi_range(0, players.get_children().size() - 1)
 		get_player_by_turn(first_turn_player_index).paint_units.rpc(Color(1.2, 1.2, 1.2))
@@ -49,7 +51,7 @@ func _on_delta_synchronized() -> void:
 # Gets the player by the given index
 func get_player_by_turn(turn: int) -> Player:
 	var player_index = (turn + first_turn_player_index) % players.get_children().size()
-	return players.get_child(player_index )
+	return players.get_child(player_index)
 
 # Gets the current turn player
 func get_current_turn_player() -> Player:
