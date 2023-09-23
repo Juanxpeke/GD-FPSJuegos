@@ -16,7 +16,6 @@ level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_desc
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 0.12549, 0.568627, 1)
 position = Vector2(0, -9)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_bm6ua")

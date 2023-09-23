@@ -34,7 +34,8 @@ func _ready() -> void:
 			Vector2i(1, 0)
 		],
 		[ # Passives
-		]
+		],
+		Color.WHITE
 	)
 
 # Public
@@ -56,6 +57,8 @@ class Role:
 	var initial_units_names: Array[String]
 	var initial_units_offsets: Array[Vector2i]
 	var initial_passives: Array[Skill]
+	# TODO: Change this with sprites for each role
+	var color: Color
 	
 	# Constructor
 	func _init(
@@ -64,7 +67,8 @@ class Role:
 			initial_money: int,
 			initial_units_names: Array[String],
 			initial_units_offsets: Array[Vector2i],
-			initial_passives: Array[Skill]
+			initial_passives: Array[Skill],
+			color: Color = Color.BLACK,
 			) -> void:
 		assert(initial_units_names.size() == initial_units_offsets.size(), "role constructor error")
 		self.name = name
@@ -73,4 +77,5 @@ class Role:
 		self.initial_units_names = initial_units_names
 		self.initial_units_offsets = initial_units_offsets
 		self.initial_passives = initial_passives
+		self.color = color
 		

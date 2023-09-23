@@ -25,7 +25,6 @@ func _ready() -> void:
 		player.multiplayer_setup(peer_player)
 		
 	if players.get_child_count() == 2:
-		print("2 PLAYERS")
 		players.get_child(0).enemy_player = players.get_child(1)
 		players.get_child(1).enemy_player = players.get_child(0)
 	
@@ -33,9 +32,7 @@ func _ready() -> void:
 	
 	# ERROR COMES HERE, SOMETHING IS BAD WITH PLAYER SETUP
 	if multiplayer.is_server():
-		first_turn_player_index = map_rng.randi_range(0, players.get_children().size() - 1)
-		get_player_by_turn(first_turn_player_index).paint_units.rpc(Color(1.2, 1.2, 1.2))
-		get_player_by_turn(first_turn_player_index+1).paint_units.rpc(Color(0.4, 0.1, 0.6))
+		first_turn_player_index = map_rng.randi_range(0, players.get_child_count() - 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(delta: float) -> void:

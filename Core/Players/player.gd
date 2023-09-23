@@ -33,19 +33,19 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	
 	for i in range(role.initial_units_names.size()):
 		var unit = GameManager.units_scenes[role.initial_units_names[i]].instantiate() # REVIEW: Preload, as cell_descriptors get added before GameManager
-		var unit_position = GameManager.map.get_initial_king_position() + GameManager.board.get_cell_center(role.initial_units_offsets[i])
+		var unit_position = GameManager.map.get_initial_king_position() + GameManager.board.get_cell_local_origin(role.initial_units_offsets[i])
 		
 		add_child(unit)
 		
 		unit.name = unit.unit_name + str(i) + str(peer_player.id)
+		unit.sprite.modulate = role.color
 		
 		if multiplayer.get_unique_id() == peer_player.id:
 			unit.position = unit_position
 		else:
 			unit.position = GameManager.board.get_mirror_position(unit_position)
 		
-	set_multiplayer_authority(peer_player.id)
-	GameManager.set_board(GameManager.board) # REVIEW: Unit's cell_descriptors aren't updating as board was set before
+	set_multiplayer_authority(peer_player.id) # REVIEW: Unit's cell_descriptors aren't updating as board was set before
 
 # Gets units
 func get_units() -> Array:
@@ -119,9 +119,3 @@ func fuse_units(first_unit_index: int, second_unit_index: int, target_cell: Vect
 	
 	GameManager.map.advance_turn()
 	GameManager.game_changed.emit()
-
-@rpc("call_local", "reliable", "any_peer")
-func paint_units(color: Color) -> void:
-	for unit in get_children():
-		unit.sprite.modulate = color
-

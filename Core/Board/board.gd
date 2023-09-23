@@ -130,10 +130,26 @@ func _get_lines_from_cell_descriptor(cell_descriptor: CellDescriptor, origin_cel
 
 # Public
 
+# Gets the cell size
+func get_cell_size() -> Vector2:
+	return tile_set.tile_size
+
 # Gets the cell from a given position
 func get_cell(cell_position: Vector2) -> Vector2i:
 	return local_to_map(to_local(cell_position))
+	
+# Gets the cell origin in global coordinates
+func get_cell_origin(cell: Vector2i) -> Vector2:
+	return to_global(map_to_local(cell)) - get_cell_size() / 2
+	
+# Gets the cell origin in global coordinates, given a position
+func get_cell_originp(cell_position: Vector2) -> Vector2:
+	return get_cell_origin(get_cell(cell_position))
 
+# Gets the cell origin in local coordinates
+func get_cell_local_origin(cell: Vector2i) -> Vector2:
+	return map_to_local(cell) - get_cell_size() / 2
+	
 # Gets the cell center in global coordinates
 func get_cell_center(cell: Vector2i) -> Vector2:
 	return to_global(map_to_local(cell))
