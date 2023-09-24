@@ -80,8 +80,10 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 		unit.sprite.modulate = role.color
 		if multiplayer.get_unique_id() == peer_player.id:
 			unit.position = unit_position
+			unit.match_initial_position = unit_position
 		else:
 			unit.position = GameManager.board.get_mirror_position(unit_position)
+			unit.match_initial_position = GameManager.board.get_mirror_position(unit_position)
 	
 		match_live_units.append(unit)
 		
@@ -173,9 +175,9 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 # Fuses two units
 func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 	match_live_units.erase(other_unit) # REVIEW: Possible bug, when erasing element in for
-	other_unit.dissapear_forever.rpc()
+	unit.dissapear_forever.rpc()
 	
-	unit.level_up.rpc(GameManager.board.get_cell_center(target_cell))
+	other_unit.level_up.rpc(GameManager.board.get_cell_center(target_cell))
 	
 # Returns the player active skills
 func get_active_skills() -> Array:

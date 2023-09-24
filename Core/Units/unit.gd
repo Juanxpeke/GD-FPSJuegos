@@ -99,7 +99,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 # Called when the store ends
 func _on_store_ended() -> void:
-	match_initial_position = position
+	pass
 
 # Called when the turn ends
 func _on_turn_ended() -> void:
@@ -207,9 +207,12 @@ func change_position(target_position: Vector2) -> void:
 		final_position = GameManager.board.get_mirror_position(target_position)
 		
 	position = final_position
-		
-	if GameManager.map.match_phase == GameManager.map.MatchPhase.BATTLE:
-		var final_cell = GameManager.board.get_cell(final_position)
-		get_player().enemy_player.receive_attack_in_cell(final_cell)
-		
-		GameManager.map.end_turn()
+	
+	match GameManager.map.match_phase:
+		GameManager.map.MatchPhase.STORE:
+			match_initial_position = final_position
+		GameManager.map.MatchPhase.BATTLE:
+			var final_cell = GameManager.board.get_cell(final_position)
+			get_player().enemy_player.receive_attack_in_cell(final_cell)
+			GameManager.map.end_turn()
+
