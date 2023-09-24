@@ -17,15 +17,34 @@ var position_unit_array: Array[Array] = [
 ]
 
 ### Skills ####
-var activable_skills : Array[Skill] = []
+var activable_skills : Array[Active] = [Ghost.new(self)]
 
 var active_skills : Array[Skill] = []
 
 # Private
-
+@rpc("call_local", "reliable")
 func _activate_skill(index : int) -> void:
-	if activable_skills[index].activate():
-		active_skills.append(activable_skills[index])
+	var skill: Active = activable_skills[index]
+	if skill.activate():
+		var active_index = active_skills.size()
+		active_skills.append(skill)
+		skill.set_index(active_index)
+		GameManager.game_changed.emit()
+
+func deactivate_skill(index : int) -> void:
+	print(str(active_skills[index]) + " dettached")
+	active_skills.remove_at(index)
+
+# temp function to test active skills
+func _unhandled_input(event: InputEvent) -> void:
+	if not GameManager.map.get_current_turn_player() == self or not is_multiplayer_authority():
+		return
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_1:
+				_activate_skill.rpc(0)
+
+	
 
 # TBA
 
@@ -119,7 +138,7 @@ func fuse_units(first_unit_index: int, second_unit_index: int, target_cell: Vect
 	
 	# TODO: Fusion stuff
 	
-	GameManager.map.advance_turn()
+	GameManager.map.turn_ended.emit()
 	GameManager.game_changed.emit()
 
 @rpc("call_local", "reliable", "any_peer")
@@ -129,3 +148,4 @@ func paint_units(color: Color) -> void:
 		
 func get_active_skills() -> Array:
 	return active_skills
+		

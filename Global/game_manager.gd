@@ -2,6 +2,7 @@ extends Node
 
 signal board_initialized
 signal board_destroyed
+signal turn_ended
 signal game_changed # Called on ANY game change
 
 var board: Board

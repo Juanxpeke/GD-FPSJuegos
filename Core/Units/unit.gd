@@ -98,7 +98,11 @@ func _update_movement_cells() -> void:
 		
 	var origin_cell := get_current_cell()
 	
-	current_cell_descriptors = level_cell_descriptors
+	# new array needs to contain copies of cell_descriptors
+	current_cell_descriptors = []
+	for cell_descriptor in level_cell_descriptors:
+		current_cell_descriptors.append(cell_descriptor.duplicate())
+		
 	for skill in get_player().get_active_skills():
 		skill.modify_current_cell_descriptor(self)
 	
@@ -151,7 +155,7 @@ func change_position(target_position: Vector2) -> void:
 	
 	get_player().enemy_player.receive_attack_in_cell(final_cell)
 		
-	GameManager.map.advance_turn()
+	GameManager.turn_ended.emit()
 	GameManager.game_changed.emit()
 	
 # Level ups the unit on each peer, including self

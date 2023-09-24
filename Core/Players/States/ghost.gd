@@ -1,15 +1,11 @@
-extends Node
-class_name Skill
+extends Active
+class_name Ghost
 
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	uses_remaining = 3
 
 func modify_current_cell_descriptor(unit : Unit) -> void:
-	pass
-
-func end_turn() -> void:
-	pass
-
-	
+	for descriptor in unit.current_cell_descriptors:
+		descriptor.is_blockable = false
