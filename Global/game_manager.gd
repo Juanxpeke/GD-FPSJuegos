@@ -2,7 +2,8 @@ extends Node
 
 signal board_initialized
 signal board_destroyed
-signal game_changed # Called on ANY game change
+signal map_initialized
+signal map_destroyed
 
 enum RoleEnum {
 	NONE,
@@ -39,6 +40,7 @@ func set_board(board: Board) -> void:
 # Called to set the map
 func set_map(map: Map) -> void:
 	self.map = map
+	map_initialized.emit()
 	
 # Called to get the role parameters
 func get_role(role_enum: RoleEnum) -> RolesManager.Role:

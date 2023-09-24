@@ -1,8 +1,8 @@
 class_name Board
 extends TileMap
 
-enum Layer { BOARD_LAYER, HOLE_LAYER, MOVEMENT_LAYER }
-enum Tile { BOARD_TILE, ALT_BOARD_TILE, HOLE_TILE, MOVEMENT_TILE }
+enum Layer { BOARD_LAYER, HOLE_LAYER, MOVEMENT_LAYER, BASE_LAYER }
+enum Tile { BOARD_TILE, ALT_BOARD_TILE, HOLE_TILE, MOVEMENT_TILE, BASE_TILE }
 
 var units: Array[Unit] = []
 
@@ -11,17 +11,28 @@ var units: Array[Unit] = []
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	GameManager.set_board(self)
-	GameManager.connect("game_changed", _on_game_changed)
+	GameManager.map_initialized.connect(_on_map_initialized)
 	
 	_init_board_layer()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame
-func _process(_delta: float) -> void:
-	pass
-	
-# Called when the game changes
-func _on_game_changed() -> void:
+# Called when map is initialized
+func _on_map_initialized() -> void:
+	GameManager.map.store_ended.connect(_on_store_ended)
+	GameManager.map.turn_ended.connect(_on_turn_ended)
+	GameManager.map.match_ended.connect(_on_match_ended)
+
+# Called when the store ends
+func _on_store_ended() -> void:
+	hide_base_cells()
+
+# Called when the turn advances
+func _on_turn_ended() -> void:
 	hide_movement_cells()
+	
+# Called when the match ends
+func _on_match_ended() -> void:
+	hide_movement_cells()
+	show_base_cells()
 
 # Initializes the board layer (just aesthetically) 
 func _init_board_layer() -> void:
@@ -205,13 +216,24 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 
 # Shows the movement cells
 func show_movement_cells(cells: Array) -> void:
-	# TODO caso peon con distinto ataque y movimiento se ignora
 	for cell in cells:
 		set_cell(Layer.MOVEMENT_LAYER, cell, Tile.MOVEMENT_TILE, Vector2i(0, 0))
 
 # Hides the movement cells
 func hide_movement_cells() -> void:
 	clear_layer(Layer.MOVEMENT_LAYER)
+	
+# Gets the base cells
+func get_base_cells() -> Array[Vector2i]:
+	return get_used_cells(Layer.BASE_LAYER)
+	
+# Shows the base cells
+func show_base_cells() -> void:
+	set_layer_enabled(Layer.BASE_LAYER, true)
+
+# Hides the base cells
+func hide_base_cells() -> void:
+	set_layer_enabled(Layer.BASE_LAYER, false)
 	
 # Gets the vertical mirrored position of the given position
 func get_mirror_position(cell_position: Vector2) -> Vector2:
@@ -221,8 +243,14 @@ func get_mirror_position(cell_position: Vector2) -> Vector2:
 # Adds a unit to the unit list
 func add_unit(unit: Unit) -> void:
 	units.append(unit)
-	unit.connect("tree_exiting", func(): remove_unit(unit))
+	unit.tree_exited.connect(func(): remove_unit(unit))
+	unit.has_dead.connect(func(): remove_unit(unit))
+	unit.has_revived.connect(func(): readd_unit(unit))
 
+# Readds a unit
+func readd_unit(unit: Unit) -> void:
+	units.append(unit)
+	
 # Removes a unit from the unit list
 func remove_unit(unit: Unit) -> void:
 	units.erase(unit)

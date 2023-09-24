@@ -1,12 +1,19 @@
 class_name Unit
 extends Node2D
 
+signal has_dead
+signal has_revived
+
 @export var unit_name: String
 
 @export var level_1_descriptors: Array[CellDescriptor]
 @export var level_2_descriptors: Array[CellDescriptor]
 @export var level_3_descriptors: Array[CellDescriptor]
 
+# Match initial position
+var match_initial_position: Vector2
+# Is dead in the current match
+var is_dead: bool = false
 # Unit level
 var level: int = 1
 var level_cell_descriptors: Array[CellDescriptor]
@@ -28,10 +35,11 @@ var grab_cell: Vector2
 func _ready() -> void:
 	GameManager.board.add_unit(self)
 		
-	area.connect("mouse_entered", _on_mouse_entered)
-	area.connect("mouse_exited", _on_mouse_exited)
-	area.connect("input_event", _on_input_event)
-	GameManager.connect("game_changed", _on_game_changed)
+	area.mouse_entered.connect(_on_mouse_entered)
+	area.mouse_exited.connect(_on_mouse_exited)
+	area.input_event.connect(_on_input_event)
+	GameManager.map.turn_ended.connect(_on_turn_ended)
+	GameManager.map.match_ended.connect(_on_match_ended)
 	
 	_update_level_data()
 
@@ -43,15 +51,23 @@ func _process(_delta: float) -> void:
 # Called when the mouse enters the unit
 func _on_mouse_entered() -> void:
 	if is_grabbing: return
+	
+	ConfigManager.set_cursor_shape("grab")
+	
+	if GameManager.map.match_phase == GameManager.map.MatchPhase.STORE: return
+	
 	_update_movement_cells()
 	GameManager.board.show_movement_cells(movement_cells)
-	ConfigManager.set_cursor_shape("grab")
 	
 # Called when the mouse exits the unit
 func _on_mouse_exited() -> void:
 	if is_grabbing: return
-	GameManager.board.hide_movement_cells()
+	
 	ConfigManager.set_cursor_shape("default")
+	
+	if GameManager.map.match_phase == GameManager.map.MatchPhase.STORE: return
+	
+	GameManager.board.hide_movement_cells()
 	
 # Called when an input event occurs inside the unit
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -62,8 +78,9 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		var mouse_left_button_pressed = event.pressed
 		# Mouse left button pressed
 		if mouse_left_button_pressed:
-			_update_movement_cells()
-			GameManager.board.show_movement_cells(movement_cells)
+			if GameManager.map.match_phase != GameManager.map.MatchPhase.STORE:
+				_update_movement_cells()
+				GameManager.board.show_movement_cells(movement_cells)
 			grab_cell = get_current_cell()
 			grabbed = true
 			is_grabbing = true # Caution: This has to be called by one unit
@@ -79,9 +96,16 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			is_grabbing = false # Caution: This has to be called by one unit
 			ConfigManager.set_cursor_shape("grab")
 
-# Called when the game changes
-func _on_game_changed() -> void:
+# Called when the turn ends
+func _on_turn_ended() -> void:
 	movement_cells.clear()
+	
+# Called when the match ends
+func _on_match_ended() -> void:
+	movement_cells.clear()
+	if is_dead:
+		revive()
+	position = match_initial_position
 	
 # Updates the unit data by its level
 func _update_level_data() -> void:
@@ -132,9 +156,26 @@ func reset_position() -> void:
 	position = GameManager.board.get_cell_center(grab_cell)
 
 # Dies
-func die():
+func die() -> void:
 	print("die ", name)
+	is_dead = true
+	has_dead.emit()
+	
+# Revives
+func revive() -> void:
+	print("revive ", name)
+	is_dead = false
+	has_revived.emit()
+	
+# Dissapears forever
+func dissapear_forever() -> void:
+	print("dissapear forever")
 	queue_free()
+	
+# Level ups the unit
+func level_up() -> void:
+	level += 1
+	_update_level_data()
 
 # Changes the unit position on each peer, including current
 @rpc("call_local", "reliable")
@@ -146,18 +187,9 @@ func change_position(target_position: Vector2) -> void:
 		final_position = GameManager.board.get_mirror_position(target_position)
 		
 	position = final_position
-	
-	var final_cell = GameManager.board.get_cell(final_position)
-	
-	get_player().enemy_player.receive_attack_in_cell(final_cell)
 		
-	GameManager.map.advance_turn()
-	GameManager.game_changed.emit()
-	
-# Level ups the unit on each peer, including self
-# CAUTION: This is intended to be called from the store
-@rpc("call_local", "reliable")
-func level_up() -> void:
-	level += 1
-	_update_level_data()
-	GameManager.game_changed.emit()
+	if GameManager.map.match_phase == GameManager.map.MatchPhase.BATTLE:
+		var final_cell = GameManager.board.get_cell(final_position)
+		get_player().enemy_player.receive_attack_in_cell(final_cell)
+		
+		GameManager.map.end_turn()
