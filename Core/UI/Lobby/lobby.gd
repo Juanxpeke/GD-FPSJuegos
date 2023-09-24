@@ -60,8 +60,8 @@ func _ready():
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
 	
-	role_a.pressed.connect(func(): MultiplayerManager.set_current_peer_player_role(MultiplayerManager.Role.ROLE_A))
-	role_b.pressed.connect(func(): MultiplayerManager.set_current_peer_player_role(MultiplayerManager.Role.ROLE_B))
+	role_a.pressed.connect(func(): MultiplayerManager.set_current_peer_player_role(GameManager.RoleEnum.ROLE_A))
+	role_b.pressed.connect(func(): MultiplayerManager.set_current_peer_player_role(GameManager.RoleEnum.ROLE_B))
 	
 	ready_toggle.pressed.connect(_on_ready_toggled)
 	
@@ -236,9 +236,9 @@ func start_game() -> void:
 func _check_ready() -> void:
 	var roles = []
 	for player in MultiplayerManager.peer_players:
-		if not player.role in roles and player.role != MultiplayerManager.Role.NONE:
+		if not player.role in roles and player.role != GameManager.RoleEnum.NONE:
 			roles.push_back(player.role)
-	ready_toggle.disabled = roles.size() != MultiplayerManager.Role.size() - 1
+	ready_toggle.disabled = roles.size() != GameManager.RoleEnum.size() - 1
 
 
 func _disconnect():

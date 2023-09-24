@@ -34,14 +34,9 @@ func _set_player_name(value: String) -> void:
 	player_name.text = value
 
 
-func _set_player_role(value: MultiplayerManager.Role) -> void:
-	player_role.visible = value != MultiplayerManager.Role.NONE
-	match value:
-		MultiplayerManager.Role.ROLE_A:
-			player_role.text = "Role A"
-		MultiplayerManager.Role.ROLE_B:
-			player_role.text = "Role B"
-
+func _set_player_role(value: GameManager.RoleEnum) -> void:
+	player_role.visible = value != GameManager.RoleEnum.NONE
+	player_role.text = GameManager.get_role(value).name
 
 func set_ready(value: bool) -> void:
 	ready_texture.visible = value
