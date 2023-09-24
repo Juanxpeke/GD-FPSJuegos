@@ -14,7 +14,7 @@ var active : bool
 func _init(p: Player) -> void:
 	player = p
 	active = false
-	GameManager.connect("turn_ended", end_turn)
+	GameManager.map.turn_ended.connect(end_turn)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

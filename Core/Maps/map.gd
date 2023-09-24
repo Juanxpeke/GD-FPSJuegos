@@ -67,7 +67,6 @@ func get_initial_king_position() -> Vector2:
 # Gets the player by the given index
 func get_player_by_turn(turn: int) -> Player:
 	var player_index = (turn + first_turn_player_index) % players.get_children().size()
-	print("for turn ", turn, " player index is ", player_index)
 	return players.get_child(player_index)
 
 # Gets the current turn player

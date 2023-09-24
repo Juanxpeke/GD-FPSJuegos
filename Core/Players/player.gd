@@ -19,10 +19,35 @@ var activable_skills : Array[Active] = [Ghost.new(self)]
 var active_skills : Array[Skill] = []
 
 # Private
+
+# Called when the node enters the tree for the first time
+func _ready() -> void:
+	GameManager.map.match_ended.connect(_on_match_ended)
+
+# Activates the given skill
 @rpc("call_local", "reliable")
 func _activate_skill(index : int) -> void:
-	if activable_skills[index].activate():
-		active_skills.append(activable_skills[index])
+	var skill: Active = activable_skills[index]
+	if skill.activate():
+		var active_index = active_skills.size()
+		active_skills.append(skill)
+		skill.set_index(active_index)
+		GameManager.game_changed.emit()
+
+func deactivate_skill(index : int) -> void:
+	print(str(active_skills[index]) + " dettached")
+	active_skills.remove_at(index)
+
+# Temp function to test active skills (TODO: Remove this)
+func _unhandled_input(event: InputEvent) -> void:
+	if not (event is InputEventKey and event.pressed): return
+	if not is_multiplayer_authority(): return
+	if not GameManager.map.get_current_turn_player() == self: return
+	
+	match event.keycode:
+		KEY_1:
+			_activate_skill.rpc(0)
+
 
 # Reset the dead and live units lists
 func _reset_units() -> void:
