@@ -84,29 +84,24 @@ func get_live_unit(index: int) -> Unit:
 	
 # Gets a live unit by the given cell
 func get_live_unit_by_cell(cell: Vector2i) -> Unit:
-	var units = get_live_units()
-	for unit in units:
-		if GameManager.board.get_cell(unit.position) == cell:
-			return unit
+	var live_units = get_live_units()
+	for live_unit in live_units:
+		if GameManager.board.get_cell(live_unit.position) == cell:
+			return live_unit
 	return null
-
-# Get all the players units cells
-func get_all_live_units_cells() -> Array[Vector2i]:
-	var units_cells = []
-	var units = get_live_units()
-	
-	for unit in units:
-		units_cells += unit.get_movement_cells()
-	
-	return units_cells
 
 # Tries to kill the unit in the given cell
 func receive_attack_in_cell(cell: Vector2i) -> void:
-	var units = get_live_units()
-	for unit in units:
-		if GameManager.board.get_cell(unit.position) == cell:
-			unit.die()
-			return
+	var target_unit = get_live_unit_by_cell(cell)
+	
+	if target_unit == null: return
+	
+	if target_unit.get_unit_class() == "king":
+		lose_match()
+	else:
+		match_live_units.erase(target_unit)
+		match_dead_units.append(target_unit)
+		target_unit.die()
 
 # Handles the movement of one of its units
 func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
@@ -127,7 +122,7 @@ func handle_unit_movement_store(unit: Unit, target_cell: Vector2i) -> void:
 		if unit != other_unit and target_cell == other_unit.get_current_cell():
 			if unit.get_unit_class() == other_unit.get_unit_class():
 				# TODO: Config stuff
-				fuse_units.rpc(unit.get_index(), other_unit.get_index(), target_cell)
+				fuse_units(unit, other_unit, target_cell)
 				return
 			else:
 				unit.reset_position()
@@ -146,7 +141,7 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 		if unit != other_unit and target_cell == other_unit.get_current_cell():
 			if unit.get_unit_class() == other_unit.get_unit_class():
 				# TODO: Config stuff
-				fuse_units.rpc(unit.get_index(), other_unit.get_index(), target_cell)
+				fuse_units(unit, other_unit, target_cell)
 				return
 			else:
 				unit.reset_position()
@@ -154,23 +149,18 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 			
 	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
 
+# Fuses two units
+func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
+	match_live_units.erase(other_unit) # REVIEW: Possible bug, when erasing element in for
+	other_unit.dissapear_forever.rpc()
+	
+	unit.level_up.rpc(GameManager.board.get_cell_center(target_cell))
+	
 # Returns the player active skills
 func get_active_skills() -> Array:
 	return active_skills
 
-# Fuse two units
-@rpc("call_local", "reliable")
-func fuse_units(first_unit_index: int, second_unit_index: int, target_cell: Vector2i) -> void:
-	var first_unit = get_child(first_unit_index)
-	var second_unit = get_child(second_unit_index)
-	
-	print("fuse units: ", first_unit.name, "\t", second_unit.name)
-	
-	call_deferred("remove_child", first_unit)
-	call_deferred("remove_child", second_unit)
-	
-	# TODO: Fusion stuff
-	
-	
-	if GameManager.map.match_phase == GameManager.map.MatchPhase.BATTLE:
-		GameManager.map.end_turn()
+# Loses the match
+func lose_match() -> void:
+	print("lose match, ", name)
+	GameManager.map.end_match()

@@ -38,6 +38,7 @@ func _ready() -> void:
 	area.mouse_entered.connect(_on_mouse_entered)
 	area.mouse_exited.connect(_on_mouse_exited)
 	area.input_event.connect(_on_input_event)
+	GameManager.map.store_ended.connect(_on_store_ended)
 	GameManager.map.turn_ended.connect(_on_turn_ended)
 	GameManager.map.match_ended.connect(_on_match_ended)
 	
@@ -96,6 +97,10 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			is_grabbing = false # Caution: This has to be called by one unit
 			ConfigManager.set_cursor_shape("grab")
 
+# Called when the store ends
+func _on_store_ended() -> void:
+	match_initial_position = position
+
 # Called when the turn ends
 func _on_turn_ended() -> void:
 	movement_cells.clear()
@@ -135,7 +140,7 @@ func _update_movement_cells() -> void:
 
 # Gets the unit class
 func get_unit_class() -> String:
-	return unit_name
+	return unit_name.to_lower()
 
 # Gets the unit player
 func get_player() -> Player:
@@ -159,23 +164,34 @@ func reset_position() -> void:
 func die() -> void:
 	print("die ", name)
 	is_dead = true
+	sprite.hide()
+	area.monitoring = false
+	area.input_pickable = false
 	has_dead.emit()
 	
 # Revives
 func revive() -> void:
 	print("revive ", name)
 	is_dead = false
+	sprite.show()
+	area.monitoring = true
+	area.input_pickable = true
 	has_revived.emit()
 	
 # Dissapears forever
+@rpc("call_local", "reliable")
 func dissapear_forever() -> void:
-	print("dissapear forever")
+	print("dissapear forever ", name)
 	queue_free()
 	
 # Level ups the unit
+@rpc("call_local", "reliable")
 func level_up() -> void:
 	level += 1
 	_update_level_data()
+	
+	if GameManager.map.match_phase == GameManager.map.MatchPhase.BATTLE:
+		GameManager.map.end_turn()
 
 # Changes the unit position on each peer, including current
 @rpc("call_local", "reliable")

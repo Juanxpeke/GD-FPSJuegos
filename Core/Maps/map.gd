@@ -13,8 +13,8 @@ enum MatchPhase { STORE, BATTLE }
 
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-var matchi: int = 0
 var turn: int = 0
+var matchi: int = 0
 
 var match_phase: MatchPhase = MatchPhase.STORE
 
@@ -67,6 +67,7 @@ func get_initial_king_position() -> Vector2:
 # Gets the player by the given index
 func get_player_by_turn(turn: int) -> Player:
 	var player_index = (turn + first_turn_player_index) % players.get_children().size()
+	print("for turn ", turn, " player index is ", player_index)
 	return players.get_child(player_index)
 
 # Gets the current turn player
@@ -82,6 +83,7 @@ func end_store() -> void:
 
 # Ends the turn
 func end_turn() -> void:
+	if (match_phase != MatchPhase.BATTLE): return
 	print("end_turn ", multiplayer.get_unique_id())
 	turn += 1
 	turn_ended.emit()
@@ -93,8 +95,11 @@ func end_match() -> void:
 	
 	if multiplayer.is_server():
 		var store_timer = get_tree().create_timer(store_time)
-		store_timer.timeout.connect(func(): end_store.rpc())
+		store_timer.timeout.connect(_on_store_timer)
+		first_turn_player_index = (first_turn_player_index + 1) % players.get_children().size()
 	
+	turn = 0
 	matchi += 1
+	
 	match_ended.emit()
 	
