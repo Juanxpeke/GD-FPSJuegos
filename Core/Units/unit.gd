@@ -26,6 +26,9 @@ static var is_grabbing: bool = false
 var grabbed: bool = false
 var grab_cell: Vector2
 
+# Store logic
+var in_store: bool = false
+
 @onready var sprite := %Sprite
 @onready var area := %Area
 
@@ -33,7 +36,8 @@ var grab_cell: Vector2
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	GameManager.board.add_unit(self)
+	if not in_store:
+		GameManager.board.add_unit(self)
 		
 	area.mouse_entered.connect(_on_mouse_entered)
 	area.mouse_exited.connect(_on_mouse_exited)
@@ -74,6 +78,20 @@ func _on_mouse_exited() -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if not is_multiplayer_authority():
 		return
+	
+	# Store logic
+	if in_store and InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		var mouse_left_button_pressed = event.pressed
+		if mouse_left_button_pressed:
+			grabbed = true
+			is_grabbing = true
+			ConfigManager.set_cursor_shape("grabbing")
+		else:
+			if GameManager.board.can_place_unit(self, get_current_cell()):
+				in_store = false
+				get_player().handle_unit_movement_store(self, get_current_cell())
+			grabbed = false
+			is_grabbing = false
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		var mouse_left_button_pressed = event.pressed

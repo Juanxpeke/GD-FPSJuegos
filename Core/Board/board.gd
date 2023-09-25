@@ -254,3 +254,18 @@ func readd_unit(unit: Unit) -> void:
 # Removes a unit from the unit list
 func remove_unit(unit: Unit) -> void:
 	units.erase(unit)
+	
+# Checks if a unit can be placed in a specific cell in the board
+func can_place_unit(unit: Unit, target_cell: Vector2i) -> bool:
+	var board_cells := get_used_cells(Layer.BOARD_LAYER)
+	var hole_cells := get_used_cells(Layer.HOLE_LAYER)
+	
+	# check if the target cell is in the board and not a hole
+	if target_cell in board_cells and not target_cell in hole_cells:
+		for other_unit in units:
+			if other_unit != unit:
+				var unit_cell := get_cell(other_unit.global_position)
+				if unit_cell == target_cell:
+					return false # cell taken
+		return true
+	return false
