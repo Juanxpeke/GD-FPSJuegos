@@ -1,6 +1,8 @@
 class_name Player
 extends Node2D
 
+signal money_changed(new_money)
+
 var enemy_player: Player
 
 var role: RolesManager.Role
@@ -11,7 +13,6 @@ var current_money: int
 var match_units_positions: Array[Vector2] = []
 var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
-
 
 ### Skills ####
 var activable_skills : Array[Active] = [Ghost.new(self)]
@@ -136,10 +137,6 @@ func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
 	
 # Handles the movement of one of its units, in store
 func handle_unit_movement_store(unit: Unit, target_cell: Vector2i) -> void:
-	var unit_cost = get_unit_cost(unit)
-	if not can_afford(unit_cost):
-		return
-		
 	# Is not a valid base cell
 	if not (target_cell in GameManager.board.get_base_cells()):
 		unit.reset_position()
@@ -187,7 +184,7 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 func get_active_skills() -> Array:
 	return active_skills
 
-# Checks if the player can afford the cost given
+# Checks if the player can afford a piece
 func can_afford(cost: int) -> bool:
 	return current_money >= cost
 	
@@ -195,16 +192,10 @@ func can_afford(cost: int) -> bool:
 func subtract_coins(amount: int) -> void:
 	if current_money >= amount:
 		current_money -= amount
+		emit_signal("money_changed", current_money)
 	else:
 		pass
 		
-# Return the cost of a unit determined by the store
-func get_unit_cost(unit: Unit) -> int:
-	var unit_type = unit.get_unit_class()
-	var store_script = get_node("res://Core/UI/Store/store.gd")
-	var cost = store_script.get_unit_cost(unit_type)
-	return cost
-
 # Loses the match
 func lose_match() -> void:
 	print("lose match, ", name)

@@ -27,7 +27,7 @@ var grabbed: bool = false
 var grab_cell: Vector2
 
 # Store logic
-var in_store: bool = false
+@export var in_store: bool = false
 
 @onready var sprite := %Sprite
 @onready var area := %Area
@@ -39,13 +39,14 @@ func _ready() -> void:
 	if not in_store:
 		GameManager.board.add_unit(self)
 		
+		
+		GameManager.map.store_ended.connect(_on_store_ended)
+		GameManager.map.turn_ended.connect(_on_turn_ended)
+		GameManager.map.match_ended.connect(_on_match_ended)
 	area.mouse_entered.connect(_on_mouse_entered)
 	area.mouse_exited.connect(_on_mouse_exited)
 	area.input_event.connect(_on_input_event)
-	GameManager.map.store_ended.connect(_on_store_ended)
-	GameManager.map.turn_ended.connect(_on_turn_ended)
-	GameManager.map.match_ended.connect(_on_match_ended)
-	
+		
 	_update_level_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
@@ -79,19 +80,19 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	if not is_multiplayer_authority():
 		return
 	
-	# Store logic
-	if in_store and InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		var mouse_left_button_pressed = event.pressed
-		if mouse_left_button_pressed:
-			grabbed = true
-			is_grabbing = true
-			ConfigManager.set_cursor_shape("grabbing")
-		else:
-			if GameManager.board.can_place_unit(self, get_current_cell()):
-				in_store = false
-				get_player().handle_unit_movement_store(self, get_current_cell())
-			grabbed = false
-			is_grabbing = false
+#	# Store logic
+#	if in_store and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+#		var mouse_left_button_pressed = event.pressed
+#		if mouse_left_button_pressed:
+#			grabbed = true
+#			is_grabbing = true
+#			ConfigManager.set_cursor_shape("grabbing")
+#		else:
+#			if GameManager.board.can_place_unit(self, get_current_cell()):
+#				in_store = false
+#				get_player().handle_unit_movement_store(self, get_current_cell()) # otra funcion
+#			grabbed = false
+#			is_grabbing = false
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		var mouse_left_button_pressed = event.pressed
@@ -150,8 +151,8 @@ func _update_movement_cells() -> void:
 	for cell_descriptor in level_cell_descriptors:
 		current_cell_descriptors.append(cell_descriptor.duplicate())
 		
-	for skill in get_player().get_active_skills():
-		skill.modify_current_cell_descriptor(self)
+	#for skill in get_player().get_active_skills():
+		#skill.modify_current_cell_descriptor(self)
 	
 	for cell_descriptor in current_cell_descriptors:
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
