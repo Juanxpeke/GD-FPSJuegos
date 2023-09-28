@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://db36f8ux7a06p"]
+[gd_scene load_steps=6 format=3 uid="uid://db36f8ux7a06p"]
 
 [ext_resource type="Script" path="res://Core/Maps/map.gd" id="1_uo3n2"]
 [ext_resource type="PackedScene" uid="uid://8n47mb14jmmk" path="res://Core/Board/board.tscn" id="1_uphg7"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://Core/Players/player.tscn" id="2_x0elb"]
+[ext_resource type="PackedScene" uid="uid://brcstcwwf13it" path="res://Core/UI/Store/store.tscn" id="3_gxe2a"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m7wy4"]
 properties/0/path = NodePath(".:first_turn_player_index")
@@ -13,6 +14,10 @@ properties/0/watch = true
 [node name="DummyMap" type="Node2D"]
 script = ExtResource("1_uo3n2")
 player_scene = ExtResource("2_x0elb")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_gxe2a")]
+offset = Vector2(400, 0)
+transform = Transform2D(1, 0, 0, 1, 400, 0)
 
 [node name="Board" parent="." instance=ExtResource("1_uphg7")]
 position = Vector2(562, 354)

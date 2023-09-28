@@ -5,7 +5,7 @@
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="Store" type="Control" parent="."]
+[node name="store" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbvrn")
 
-[node name="Panel" type="Panel" parent="Store"]
+[node name="Panel" type="Panel" parent="store"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,49 +30,49 @@ offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Store/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="store/Panel"]
 layout_mode = 0
 offset_right = 148.0
 offset_bottom = 193.0
 
-[node name="StoreTitle" type="Label" parent="Store/Panel/VBoxContainer"]
+[node name="StoreTitle" type="Label" parent="store/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Tienda"
 horizontal_alignment = 1
 
-[node name="CurrentMoney" type="Label" parent="Store/Panel/VBoxContainer"]
+[node name="CurrentMoney" type="Label" parent="store/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Monedas: "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="store/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Store/Panel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="store/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "XX"
 
-[node name="Unit" parent="Store/Panel/VBoxContainer/HBoxContainer" instance=ExtResource("2_f3a3q")]
+[node name="Unit" parent="store/Panel/VBoxContainer/HBoxContainer" instance=ExtResource("2_f3a3q")]
 position = Vector2(71, 13)
 in_store = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="store/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Store/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="store/Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "YY"
 
-[node name="Unit" parent="Store/Panel/VBoxContainer/HBoxContainer2" instance=ExtResource("2_f3a3q")]
+[node name="Unit" parent="store/Panel/VBoxContainer/HBoxContainer2" instance=ExtResource("2_f3a3q")]
 position = Vector2(71, 12)
 in_store = true
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="store/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Store/Panel/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="store/Panel/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "ZZ"
 
-[node name="Unit" parent="Store/Panel/VBoxContainer/HBoxContainer3" instance=ExtResource("2_f3a3q")]
+[node name="Unit" parent="store/Panel/VBoxContainer/HBoxContainer3" instance=ExtResource("2_f3a3q")]
 position = Vector2(71, 11)
 in_store = true
