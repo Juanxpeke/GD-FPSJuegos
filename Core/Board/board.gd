@@ -19,6 +19,7 @@ func _ready() -> void:
 func _on_map_initialized() -> void:
 	GameManager.map.store_ended.connect(_on_store_ended)
 	GameManager.map.turn_ended.connect(_on_turn_ended)
+	GameManager.map.game_changed.connect(_on_turn_ended)
 	GameManager.map.match_ended.connect(_on_match_ended)
 
 # Called when the store ends

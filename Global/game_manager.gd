@@ -4,6 +4,7 @@ signal board_initialized
 signal board_destroyed
 signal map_initialized
 signal map_destroyed
+signal activate_skill
 
 enum RoleEnum {
 	NONE,

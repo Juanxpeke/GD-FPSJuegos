@@ -4,6 +4,7 @@ extends Node2D
 signal store_ended
 signal turn_ended
 signal match_ended
+signal game_changed
 
 enum MatchPhase { STORE, BATTLE }
 

@@ -40,6 +40,7 @@ func _ready() -> void:
 	area.input_event.connect(_on_input_event)
 	GameManager.map.store_ended.connect(_on_store_ended)
 	GameManager.map.turn_ended.connect(_on_turn_ended)
+	GameManager.map.game_changed.connect(_on_turn_ended)
 	GameManager.map.match_ended.connect(_on_match_ended)
 	
 	_update_level_data()

@@ -24,6 +24,7 @@ func activate() -> bool:
 	if cooldown_remaining <= 0 and uses_remaining > 0 and not active:
 		uses_remaining-=1
 		active = true
+		print("skill activated")
 		return true
 	return false
 	

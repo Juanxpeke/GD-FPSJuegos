@@ -24,6 +24,7 @@ var active_skills : Array[Skill] = []
 func _ready() -> void:
 	GameManager.map.match_ended.connect(_on_match_ended)
 
+
 # Activates the given skill
 @rpc("call_local", "reliable")
 func _activate_skill(index : int) -> void:
@@ -32,7 +33,9 @@ func _activate_skill(index : int) -> void:
 		var active_index = active_skills.size()
 		active_skills.append(skill)
 		skill.set_index(active_index)
-		GameManager.game_changed.emit()
+		GameManager.map.game_changed.emit()
+		
+		
 
 func deactivate_skill(index : int) -> void:
 	print(str(active_skills[index]) + " dettached")
