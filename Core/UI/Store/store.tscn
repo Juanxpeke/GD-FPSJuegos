@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://brcstcwwf13it"]
+[gd_scene load_steps=2 format=3 uid="uid://brcstcwwf13it"]
 
 [ext_resource type="Script" path="res://Core/UI/Store/store.gd" id="1_tbvrn"]
-[ext_resource type="PackedScene" uid="uid://deu52wnh547lv" path="res://Core/Units/unit.tscn" id="2_f3a3q"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -12,6 +11,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = 364.0
+offset_right = 364.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbvrn")
@@ -41,38 +42,30 @@ text = "Tienda"
 horizontal_alignment = 1
 
 [node name="CurrentMoney" type="Label" parent="Store/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Monedas: "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+[node name="Unit1Container" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Store/Panel/VBoxContainer/HBoxContainer"]
+[node name="Unit1Cost" type="Label" parent="Store/Panel/VBoxContainer/Unit1Container"]
 layout_mode = 2
 text = "XX"
 
-[node name="Unit" parent="Store/Panel/VBoxContainer/HBoxContainer" instance=ExtResource("2_f3a3q")]
-position = Vector2(71, 13)
-in_store = true
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+[node name="Unit2Container" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Store/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Unit2Cost" type="Label" parent="Store/Panel/VBoxContainer/Unit2Container"]
 layout_mode = 2
 text = "YY"
 
-[node name="Unit" parent="Store/Panel/VBoxContainer/HBoxContainer2" instance=ExtResource("2_f3a3q")]
-position = Vector2(71, 12)
-in_store = true
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+[node name="Unit3Container" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Store/Panel/VBoxContainer/HBoxContainer3"]
+[node name="Unit3Cost" type="Label" parent="Store/Panel/VBoxContainer/Unit3Container"]
 layout_mode = 2
 text = "ZZ"
-
-[node name="Unit" parent="Store/Panel/VBoxContainer/HBoxContainer3" instance=ExtResource("2_f3a3q")]
-position = Vector2(71, 11)
-in_store = true

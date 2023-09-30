@@ -1,7 +1,7 @@
 class_name Player
 extends Node2D
 
-signal money_changed(new_money)
+signal money_changed()
 
 var enemy_player: Player
 
@@ -79,7 +79,9 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	
 		unit.name = unit.unit_name + str(i) + str(peer_player.id)
 		unit.sprite.modulate = role.color
+		print("apareci xd")
 		if multiplayer.get_unique_id() == peer_player.id:
+			GameManager.set_player(self)
 			unit.position = unit_position
 			unit.match_initial_position = unit_position
 		else:
@@ -138,6 +140,7 @@ func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
 # Handles the movement of one of its units, in store
 func handle_unit_movement_store(unit: Unit, target_cell: Vector2i) -> void:
 	# Is not a valid base cell
+	print("TARGET_CELL: ", target_cell)
 	if not (target_cell in GameManager.board.get_base_cells()):
 		unit.reset_position()
 		return
@@ -192,7 +195,7 @@ func can_afford(cost: int) -> bool:
 func subtract_coins(amount: int) -> void:
 	if current_money >= amount:
 		current_money -= amount
-		emit_signal("money_changed", current_money)
+		money_changed.emit()
 	else:
 		pass
 		

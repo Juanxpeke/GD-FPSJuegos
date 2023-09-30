@@ -4,6 +4,8 @@ signal board_initialized
 signal board_destroyed
 signal map_initialized
 signal map_destroyed
+signal player_initialized
+signal player_destroyed
 
 enum RoleEnum {
 	NONE,
@@ -14,6 +16,7 @@ enum RoleEnum {
 var board: Board
 var map: Map
 var store: Store
+var player: Player # Myself
 var turn: int = 0
 
 var units_scenes: Dictionary
@@ -24,12 +27,11 @@ var units_scenes: Dictionary
 func _ready() -> void:
 	units_scenes = {
 		"king": load("res://Core/Units/king.tscn"),
-		"bishop": load("res://Core/Units/bishop.tscn")
+		"queen": load("res://Core/Units/king.tscn"),
+		"bishop": load("res://Core/Units/bishop.tscn"),
+		"knight": load("res://Core/Units/knight.tscn"),
+		"pawn": load("res://Core/Units/king.tscn"),
 	}
-
-# Called every frame. 'delta' is the elapsed time since the previous frame
-func _process(delta: float) -> void:
-	pass
 
 # Public
 
@@ -46,6 +48,11 @@ func set_map(map: Map) -> void:
 # Called to set the store
 func set_store(store: Store) -> void:
 	self.store = store
+	
+# Called to set the player
+func set_player(player: Player) -> void:
+	self.player = player
+	player_initialized.emit()
 	
 # Called to get the role parameters
 func get_role(role_enum: RoleEnum) -> RolesManager.Role:

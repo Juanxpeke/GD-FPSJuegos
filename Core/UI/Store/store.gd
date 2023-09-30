@@ -2,8 +2,6 @@ extends Control
 
 class_name Store
 
-@onready var current_money = $Panel/VBoxContainer/CurrentMoney
-
 var unit_costs: Dictionary = {
 	"pawn": {"cost": 1, "probability": 0.4},
 	"knight": {"cost": 2, "probability": 0.2},
@@ -13,24 +11,32 @@ var unit_costs: Dictionary = {
 
 var current_piece_set: Array = []
 
+var player: Player = null
+
+@onready var current_money = %CurrentMoney
+@onready var unit_1_container = %Unit1Container
+@onready var unit_2_container = %Unit2Container
+@onready var unit_3_container = %Unit3Container
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("store apareci xd")
 	GameManager.set_store(self)
+	GameManager.player_initialized.connect(_on_player_initialized)
 	initialize_store()
-	var player = MultiplayerManager.get_current_peer_player()
-	var role = GameManager.get_role(player.role)
-	var money = role.initial_money
-	current_money.text = "Monedas: " + str(money)
 	
-	player.connect("money_changed", _on_money_changed)
-	
-func _on_money_changed(new_money: int):
-	current_money = "Monedas: " + str(new_money)
+# Called when the player is initialized
+func _on_player_initialized() -> void:
+	GameManager.player.money_changed.connect(_on_money_changed)
+	_update_player_information()
 
+# Called when the player money changes
+func _on_money_changed():
+	_update_player_information()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+# Updates the store with the player information
+func _update_player_information() -> void:
+	current_money.text = "Monedas: " + str(GameManager.player.current_money)
 	
 func initialize_store():
 	unit_costs["pawn"]["cost"] = 1
@@ -57,7 +63,23 @@ func choose_random_piece_set():
 			cumulative_probability += data["probability"]
 			if rand <= cumulative_probability:
 				current_piece_set.append(piece_type)
+				
 				break
+	
+	print("CHOSE RANDOM PIECE")
+	
+	var unit_1 = GameManager.units_scenes[current_piece_set[0]].instantiate()
+	unit_1.in_store = true
+	unit_1_container.add_child(unit_1)
+	unit_1_container.get_child(0).text = "xd"
+	var unit_2 = GameManager.units_scenes[current_piece_set[1]].instantiate()
+	unit_2.in_store = true
+	unit_2_container.add_child(unit_2)
+	unit_2_container.get_child(0).text = "xd2"
+	var unit_3 = GameManager.units_scenes[current_piece_set[2]].instantiate()
+	unit_3.in_store = true
+	unit_3_container.add_child(unit_3)
+	unit_3_container.get_child(0).text = "xd3"
 				
 func adjust_probabilities():
 	unit_costs["pawn"]["probability"] -= 0.1
