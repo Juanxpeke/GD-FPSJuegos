@@ -22,6 +22,10 @@ MultiplayerManager="*res://Global/multiplayer_manager.gd"
 ConfigManager="*res://Global/config_manager.gd"
 RolesManager="*res://Global/roles_manager.gd"
 
+[gui]
+
+theme/custom="res://Themes/main_theme.tres"
+
 [input]
 
 dummy={

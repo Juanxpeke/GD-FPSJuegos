@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://lg4bolku7exk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulij4"]
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxFlat_ulij4")
+VBoxContainer/constants/separation = 20

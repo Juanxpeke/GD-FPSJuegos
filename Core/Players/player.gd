@@ -10,7 +10,6 @@ var role: RolesManager.Role
 var current_health: int
 var current_money: int 
 
-var match_units_positions: Array[Vector2] = []
 var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
 
@@ -79,7 +78,7 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	
 		unit.name = unit.unit_name + str(i) + str(peer_player.id)
 		unit.sprite.modulate = role.color
-		print("apareci xd")
+		
 		if multiplayer.get_unique_id() == peer_player.id:
 			GameManager.set_player(self)
 			unit.position = unit_position
