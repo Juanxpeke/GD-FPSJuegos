@@ -3,6 +3,7 @@ extends Node2D
 
 signal money_changed()
 
+var peer_player: MultiplayerManager.PeerPlayer
 var enemy_player: Player
 
 var role: RolesManager.Role
@@ -64,6 +65,7 @@ func _on_match_ended() -> void:
 
 # Sets up the multiplayer data for the player node
 func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
+	self.peer_player = peer_player
 	name = "Player" + str(peer_player.id)
 	role = GameManager.get_role(peer_player.role)
 	
@@ -198,6 +200,29 @@ func subtract_coins(amount: int) -> void:
 	else:
 		pass
 		
+
+func spawn_unit(unit_name: String) -> void:
+	var base_cells = GameManager.board.get_base_cells()
+	for base_cell in base_cells:
+		var live_unit = get_live_unit_by_cell(base_cell)
+		if live_unit == null:
+			var unit_position = GameManager.board.get_cell_center(base_cell)
+			test.rpc(unit_name, unit_position)
+			break
+		
+@rpc("call_local", "reliable")
+func test(unit_name: String, target_position: Vector2) -> void:
+	var final_position = target_position
+	if not is_multiplayer_authority():
+		final_position = GameManager.board.get_mirror_position(target_position)
+	var unit = GameManager.units_scenes["king"].instantiate()
+	add_child(unit)
+	unit.name = unit.unit_name + str(10) + str(peer_player.id)
+	unit.sprite.modulate = role.color
+	unit.position = final_position
+	unit.match_initial_position = final_position
+	
+	match_live_units.append(unit)
 # Loses the match
 func lose_match() -> void:
 	print("lose match, ", name)

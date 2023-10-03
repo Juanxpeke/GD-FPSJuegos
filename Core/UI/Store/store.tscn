@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://brcstcwwf13it"]
+[gd_scene load_steps=3 format=3 uid="uid://brcstcwwf13it"]
 
 [ext_resource type="Script" path="res://Core/UI/Store/store.gd" id="1_tbvrn"]
+[ext_resource type="PackedScene" uid="uid://bc4ccqamupi1i" path="res://Core/UI/Store/store_unit.tscn" id="2_phwby"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -46,26 +47,15 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Monedas: "
 
-[node name="Unit1Container" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
+[node name="StoreUnitContainer" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Unit1Cost" type="Label" parent="Store/Panel/VBoxContainer/Unit1Container"]
-layout_mode = 2
-text = "XX"
-
-[node name="Unit2Container" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
-unique_name_in_owner = true
+[node name="StoreUnit1" parent="Store/Panel/VBoxContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
 layout_mode = 2
 
-[node name="Unit2Cost" type="Label" parent="Store/Panel/VBoxContainer/Unit2Container"]
-layout_mode = 2
-text = "YY"
-
-[node name="Unit3Container" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
-unique_name_in_owner = true
+[node name="StoreUnit2" parent="Store/Panel/VBoxContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
 layout_mode = 2
 
-[node name="Unit3Cost" type="Label" parent="Store/Panel/VBoxContainer/Unit3Container"]
+[node name="StoreUnit3" parent="Store/Panel/VBoxContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
 layout_mode = 2
-text = "ZZ"
