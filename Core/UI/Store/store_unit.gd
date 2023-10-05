@@ -16,16 +16,14 @@ func _process(delta):
 	pass
 	
 func _on_pressed():
-	print("dddd")
 	if unit_cost > 0:
-		print("asd")
 		unit_button.disabled = true
 		self.visible = false
 		GameManager.player.spawn_unit(unit_name)
 		
-func set_unit(unit_name: String, cost: int):
+func set_unit(unit_name: String, unit_cost: int):
 	#unit_button.texture_normal = load("res://icon.svg")
 	unit_button.set_texture_normal(load("res://icon.svg"))
-	self.text = str(cost)
-	unit_cost = cost
-	unit_name = unit_name
+	self.text = str(unit_cost)
+	self.unit_cost = unit_cost
+	self.unit_name = unit_name

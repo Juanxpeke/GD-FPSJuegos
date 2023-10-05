@@ -217,7 +217,7 @@ func test(unit_name: String, target_position: Vector2) -> void:
 	var final_position = target_position
 	if not is_multiplayer_authority():
 		final_position = GameManager.board.get_mirror_position(target_position)
-	var unit = GameManager.units_scenes["king"].instantiate()
+	var unit = GameManager.units_scenes[unit_name].instantiate()
 	add_child(unit)
 	unit.name = unit.unit_name + str(10) + str(peer_player.id)
 	unit.sprite.modulate = role.color
