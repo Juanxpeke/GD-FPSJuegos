@@ -14,7 +14,7 @@ var match_dead_units: Array[Unit] = []
 
 
 ### Skills ####
-var activable_skills : Array[Active] = [Ghost.new(self)]
+var activable_skills : Array[Active] = []
 
 var active_skills : Array[Skill] = []
 
@@ -23,7 +23,13 @@ var active_skills : Array[Skill] = []
 # Called when the node enters the tree for the first time
 func _ready() -> void:
 	GameManager.map.match_ended.connect(_on_match_ended)
+	Ghost.new().add_to_player(self) # test #
+	
 
+# When player obtains a new usable skill
+@rpc("call_local", "reliable")
+func add_skill(skill : Skill) -> void:
+	skill.add_to_player(self)
 
 # Activates the given skill
 @rpc("call_local", "reliable")
@@ -34,7 +40,6 @@ func _activate_skill(index : int) -> void:
 		active_skills.append(skill)
 		skill.set_index(active_index)
 		GameManager.map.game_changed.emit()
-		
 		
 
 func deactivate_skill(index : int) -> void:
@@ -50,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	match event.keycode:
 		KEY_1:
 			_activate_skill.rpc(0)
-
+		
 
 # Reset the dead and live units lists
 func _reset_units() -> void:

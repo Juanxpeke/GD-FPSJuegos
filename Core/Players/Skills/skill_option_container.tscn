@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwgdeeruw16oq"]
+
+[ext_resource type="Script" path="res://Core/Players/Skills/skill_chooser_option.gd" id="1_03vg1"]
+[ext_resource type="Texture2D" uid="uid://bu261a6gb08kx" path="res://assets/skill icons/skill issue.png" id="2_wm5o4"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+modulate = Color(0.752941, 0.752941, 0.752941, 0.54902)
+clip_contents = true
+offset_left = 100.0
+offset_top = 132.0
+offset_right = 340.0
+offset_bottom = 493.0
+script = ExtResource("1_03vg1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(261, 261)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_wm5o4")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "descripcion de skill 1"
+autowrap_mode = 3

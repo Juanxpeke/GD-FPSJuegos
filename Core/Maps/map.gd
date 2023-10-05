@@ -12,6 +12,8 @@ enum MatchPhase { STORE, BATTLE }
 @export var store_time: float = 10.0
 @export var first_turn_player_index: int = 0 # TODO: Remove @export
 
+var skill_picker_scene : PackedScene = preload("res://Core/Players/Skills/skill_picker.tscn")
+
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var turn: int = 0
@@ -100,6 +102,9 @@ func end_match() -> void:
 	
 	turn = 0
 	matchi += 1
+	
+	var skill_picker = skill_picker_scene.instantiate()
+	add_child(skill_picker)
 	
 	match_ended.emit()
 	
