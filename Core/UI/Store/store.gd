@@ -15,12 +15,10 @@ var random_unit_classes: Array = []
 var player: Player = null
 
 @onready var current_money = %CurrentMoney
-@onready var unit_container = %StoreUnitContainer
-var store_unit = preload("res://Core/UI/Store/store_unit.tscn")
+@onready var store_unit_container = %StoreUnitContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("store apareci xd")
 	GameManager.set_store(self)
 	GameManager.player_initialized.connect(_on_player_initialized)
 	initialize_store()
@@ -49,7 +47,7 @@ func initialize_store():
 	for i in range(current_piece_set.size()):
 		var unit_name = current_piece_set[i]
 		var cost = unit_costs[unit_name]["cost"]
-		unit_container.get_child(i).set_unit(unit_name, cost)
+		store_unit_container.get_child(i).set_unit(unit_name, cost)
 	
 func get_unit_cost(unit_type: String) -> int:
 	return unit_costs.get(unit_type, {"cost": 0})["cost"]
@@ -70,22 +68,7 @@ func choose_random_piece_set():
 				current_piece_set.append(piece_type)
 				
 				break
-	
-	print("CHOSE RANDOM PIECE")
-	
-#	var unit_1 = GameManager.units_scenes[current_piece_set[0]].instantiate()
-#	unit_1.in_store = true
-#	unit_1_container.add_child(unit_1)
-#	unit_1_container.get_child(0).text = "xd"
-#	var unit_2 = GameManager.units_scenes[current_piece_set[1]].instantiate()
-#	unit_2.in_store = true
-#	unit_2_container.add_child(unit_2)
-#	unit_2_container.get_child(0).text = "xd2"
-#	var unit_3 = GameManager.units_scenes[current_piece_set[2]].instantiate()
-#	unit_3.in_store = true
-#	unit_3_container.add_child(unit_3)
-#	unit_3_container.get_child(0).text = "xd3"
-				
+
 func adjust_probabilities():
 	unit_costs["pawn"]["probability"] -= 0.1
 	unit_costs["knight"]["probability"] += 0.1

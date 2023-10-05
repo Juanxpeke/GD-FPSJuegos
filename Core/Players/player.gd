@@ -82,7 +82,6 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 		unit.sprite.modulate = role.color
 		
 		if multiplayer.get_unique_id() == peer_player.id:
-			GameManager.set_player(self)
 			unit.position = unit_position
 			unit.match_initial_position = unit_position
 		else:
@@ -92,6 +91,9 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 		match_live_units.append(unit)
 		
 	set_multiplayer_authority(peer_player.id) # REVIEW: Unit's cell_descriptors aren't updating as board was set before
+
+	if multiplayer.get_unique_id() == peer_player.id:
+		GameManager.set_player(self)
 
 # Gets all the dead units
 func get_dead_units() -> Array:
