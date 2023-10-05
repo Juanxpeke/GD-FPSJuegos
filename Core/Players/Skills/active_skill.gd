@@ -8,17 +8,12 @@ var COOLDOWN : int = 0
 var TURNS_ACTIVE : int = 1
 var cooldown_remaining : int = 0
 var active_turns_count : int = 0
-var uses_remaining : int = 9999
+var uses_remaining : int = 3
 var active : bool
 
-func _init(p: Player) -> void:
-	player = p
+func _init() -> void:
 	active = false
 	GameManager.map.turn_ended.connect(end_turn)
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 func activate() -> bool:
 	if cooldown_remaining <= 0 and uses_remaining > 0 and not active:
@@ -43,3 +38,7 @@ func deactivate() -> void:
 	active_turns_count = 0
 	cooldown_remaining = COOLDOWN
 	player.deactivate_skill(index_in_skill_array)
+
+func add_to_player(p: Player) -> void:
+	p.activable_skills.append(self)
+	player = p
