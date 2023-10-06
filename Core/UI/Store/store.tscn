@@ -1,61 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://brcstcwwf13it"]
+[gd_scene load_steps=4 format=3 uid="uid://brcstcwwf13it"]
 
 [ext_resource type="Script" path="res://Core/UI/Store/store.gd" id="1_tbvrn"]
 [ext_resource type="PackedScene" uid="uid://bc4ccqamupi1i" path="res://Core/UI/Store/store_unit.tscn" id="2_phwby"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75pp1"]
+bg_color = Color(0.843137, 0.517647, 0.2, 1)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
 
-[node name="Store" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 364.0
-offset_right = 364.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Store" type="CanvasLayer"]
 script = ExtResource("1_tbvrn")
 
-[node name="Panel" type="Panel" parent="Store"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+[node name="StoreOuterContainer" type="PanelContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -100.0
-offset_right = 73.0
-offset_bottom = 94.0
-grow_horizontal = 2
+offset_left = -178.0
+offset_top = -140.5
+offset_right = -25.0
+offset_bottom = 140.5
+grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_75pp1")
+metadata/_edit_group_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Store/Panel"]
-layout_mode = 0
-offset_right = 148.0
-offset_bottom = 193.0
-
-[node name="StoreTitle" type="Label" parent="Store/Panel/VBoxContainer"]
+[node name="StoreContainer" type="VBoxContainer" parent="StoreOuterContainer"]
 layout_mode = 2
-text = "Tienda"
+
+[node name="StoreTitle" type="Label" parent="StoreOuterContainer/StoreContainer"]
+texture_filter = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Store"
 horizontal_alignment = 1
 
-[node name="CurrentMoney" type="Label" parent="Store/Panel/VBoxContainer"]
+[node name="MoneyLabel" type="Label" parent="StoreOuterContainer/StoreContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+text = "Money: "
+
+[node name="StoreUnitContainer" type="VBoxContainer" parent="StoreOuterContainer/StoreContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Monedas: "
+size_flags_vertical = 3
 
-[node name="StoreUnitContainer" type="HBoxContainer" parent="Store/Panel/VBoxContainer"]
-unique_name_in_owner = true
+[node name="StoreUnit1" parent="StoreOuterContainer/StoreContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
 layout_mode = 2
 
-[node name="StoreUnit1" parent="Store/Panel/VBoxContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
+[node name="StoreUnit2" parent="StoreOuterContainer/StoreContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
 layout_mode = 2
 
-[node name="StoreUnit2" parent="Store/Panel/VBoxContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
-layout_mode = 2
-
-[node name="StoreUnit3" parent="Store/Panel/VBoxContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
+[node name="StoreUnit3" parent="StoreOuterContainer/StoreContainer/StoreUnitContainer" instance=ExtResource("2_phwby")]
 layout_mode = 2

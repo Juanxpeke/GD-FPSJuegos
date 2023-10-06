@@ -78,20 +78,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	if not is_multiplayer_authority() and not in_store:
 		return
 	
-#	# Store logic
-#	if in_store and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-#		var mouse_left_button_pressed = event.pressed
-#		if mouse_left_button_pressed:
-#			grabbed = true
-#			is_grabbing = true
-#			ConfigManager.set_cursor_shape("grabbing")
-#		else:
-#			if GameManager.board.can_place_unit(self, get_current_cell()):
-#				in_store = false
-#				get_player().handle_unit_movement_store(self, get_current_cell()) # otra funcion
-#			grabbed = false
-#			is_grabbing = false
-	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		var mouse_left_button_pressed = event.pressed
 		# Mouse left button pressed

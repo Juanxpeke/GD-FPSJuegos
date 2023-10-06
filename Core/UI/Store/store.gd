@@ -1,6 +1,5 @@
-extends Control
-
 class_name Store
+extends CanvasLayer
 
 var unit_costs: Dictionary = {
 	"pawn": {"cost": 1, "probability": 0.4},
@@ -14,7 +13,7 @@ var random_unit_classes: Array = []
 
 var player: Player = null
 
-@onready var current_money = %CurrentMoney
+@onready var money_label = %MoneyLabel
 @onready var store_unit_container = %StoreUnitContainer
 
 # Called when the node enters the scene tree for the first time.
@@ -34,7 +33,7 @@ func _on_money_changed():
 
 # Updates the store with the player information
 func _update_player_information() -> void:
-	current_money.text = "Monedas: " + str(GameManager.player.current_money)
+	money_label.text = "Monedas: " + str(GameManager.player.current_money)
 	
 func initialize_store():
 	unit_costs["pawn"]["cost"] = 1
@@ -46,8 +45,7 @@ func initialize_store():
 	
 	for i in range(current_piece_set.size()):
 		var unit_name = current_piece_set[i]
-		var cost = unit_costs[unit_name]["cost"]
-		store_unit_container.get_child(i).set_unit(unit_name, cost)
+		store_unit_container.get_child(i).set_unit(unit_name)
 	
 func get_unit_cost(unit_type: String) -> int:
 	return unit_costs.get(unit_type, {"cost": 0})["cost"]

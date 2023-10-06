@@ -1,29 +1,44 @@
-extends Label
+extends TextureButton
 
-var unit_cost: int = 0
+static var store_units_sprites: Dictionary = {
+	"king": preload("res://assets/backgrounds/medieval/medieval_1.png")
+}
+
 var unit_name: String
 
-@onready var unit_button: TextureButton = %UnitButton
+@onready var unit_cost_label: Label = %UnitCostLabel
 
+# Public
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	unit_button.pressed.connect(_on_pressed)
+func _ready() -> void:
+	pressed.connect(_on_pressed)
 
+# Called when the store unit button is pressed
+func _on_pressed() -> void:
+	if GameManager.player.can_afford(0):
+		_hide()
+		GameManager.player.buy_unit(unit_name)
+	else:
+		pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+# Shows the current store unit
+func _show() -> void:
+	disabled = false
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	unit_cost_label.show()
 	
-func _on_pressed():
-	if unit_cost > 0:
-		unit_button.disabled = true
-		self.visible = false
-		GameManager.player.spawn_unit(unit_name)
+# Hides the current store unit
+func _hide() -> void:
+	disabled = true
+	mouse_default_cursor_shape = Control.CURSOR_ARROW
+	unit_cost_label.hide()
 		
-func set_unit(unit_name: String, unit_cost: int):
-	#unit_button.texture_normal = load("res://icon.svg")
-	unit_button.set_texture_normal(load("res://icon.svg"))
-	self.text = str(unit_cost)
-	self.unit_cost = unit_cost
+# Public
+
+# Sets all the store unit data to the correspondent unit name
+func set_unit(unit_name: String):
 	self.unit_name = unit_name
+	unit_cost_label.text = str(GameManager.units_data["king"].cost)
+	
+	_show()
