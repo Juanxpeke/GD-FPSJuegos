@@ -5,6 +5,7 @@ signal board_destroyed
 signal map_initialized
 signal map_destroyed
 signal activate_skill
+signal player_initialized
 
 enum RoleEnum {
 	NONE,
@@ -15,6 +16,7 @@ enum RoleEnum {
 var board: Board
 var map: Map
 var turn: int = 0
+var player: Player #myself
 
 var units_scenes: Dictionary
 
@@ -46,3 +48,9 @@ func set_map(map: Map) -> void:
 # Called to get the role parameters
 func get_role(role_enum: RoleEnum) -> RolesManager.Role:
 	return RolesManager.get_role(role_enum)
+	
+	
+# Called to set the player
+func set_player(player: Player) -> void:
+	self.player = player
+	player_initialized.emit()

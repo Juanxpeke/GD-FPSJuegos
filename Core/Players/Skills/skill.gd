@@ -15,5 +15,5 @@ func end_turn() -> void:
 	pass
 
 func add_to_player(player: Player) -> void:
-	player.active_skillls.append(self)
+	player.active_skills.append(self)
 	

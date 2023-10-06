@@ -30,6 +30,7 @@ func _ready() -> void:
 @rpc("call_local", "reliable")
 func add_skill(skill : Skill) -> void:
 	skill.add_to_player(self)
+	print(activable_skills, active_skills)
 
 # Activates the given skill
 @rpc("call_local", "reliable")
@@ -67,6 +68,7 @@ func _reset_units() -> void:
 # Called when the match ends
 func _on_match_ended() -> void:
 	_reset_units()
+	
 
 # Public
 
@@ -96,6 +98,9 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 		match_live_units.append(unit)
 		
 	set_multiplayer_authority(peer_player.id) # REVIEW: Unit's cell_descriptors aren't updating as board was set before
+
+	if multiplayer.get_unique_id() == peer_player.id:
+		GameManager.set_player(self)
 
 # Gets all the dead units
 func get_dead_units() -> Array:

@@ -24,8 +24,8 @@ func _on_mouse_exited():
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		GameManager.player.add_skill(skill_attached)
-		print("skill elegida")
+		GameManager.player.add_skill.rpc(skill_attached)
+		print("skill elegida, ", skill_attached)
 		get_parent().queue_free()
 
 # when panel is created, each container should be setted a skill
