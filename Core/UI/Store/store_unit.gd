@@ -4,7 +4,7 @@ static var store_units_sprites: Dictionary = {
 	"king": preload("res://assets/backgrounds/medieval/medieval_1.png")
 }
 
-var unit_name: String
+var unit_class: String
 
 @onready var unit_cost_label: Label = %UnitCostLabel
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	if GameManager.player.can_afford(0):
 		_hide()
-		GameManager.player.buy_unit(unit_name)
+		GameManager.player.buy_unit(unit_class)
 	else:
 		pass
 
@@ -37,8 +37,9 @@ func _hide() -> void:
 # Public
 
 # Sets all the store unit data to the correspondent unit name
-func set_unit(unit_name: String):
-	self.unit_name = unit_name
-	unit_cost_label.text = str(GameManager.units_data["king"].cost)
+func set_unit(unit_class: String):
+	self.unit_class = unit_class
+	texture_normal = GameManager.units_data[unit_class].store_sprite
+	unit_cost_label.text = str(GameManager.units_data[unit_class].cost)
 	
 	_show()

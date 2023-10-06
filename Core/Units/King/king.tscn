@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ctd4f7l06mlv7"]
 
-[ext_resource type="Script" path="res://Core/Units/king.gd" id="1_nwkod"]
+[ext_resource type="Script" path="res://Core/Units/King/king.gd" id="1_nwkod"]
 [ext_resource type="Resource" uid="uid://jkfp0wy0n5yv" path="res://Core/Board/CellDescriptors/ClassicDescriptors/king_descriptor.tres" id="2_apiqb"]
 [ext_resource type="Script" path="res://Core/Board/CellDescriptors/line_descriptor.gd" id="3_m3o7w"]
 [ext_resource type="Texture2D" uid="uid://btnpkoyxkh2my" path="res://assets/pixel chess_v1.2/16x32 pieces/B_King.png" id="4_wqgbo"]

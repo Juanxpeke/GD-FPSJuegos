@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://bi2rof6y1ru7g"]
+
+[ext_resource type="PackedScene" uid="uid://n28025wl8oj0" path="res://Core/Units/Knight/knight.tscn" id="1_0pg73"]
+[ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_0ytq6"]
+[ext_resource type="Texture2D" uid="uid://ddixasp4e2u4n" path="res://Core/Units/Knight/store_knight.png" id="3_anrr6"]
+
+[resource]
+script = ExtResource("1_0ytq6")
+scene = ExtResource("1_0pg73")
+cost = 5
+early_weight = 8
+middle_weight = 0
+late_weight = 0
+store_sprite = ExtResource("3_anrr6")

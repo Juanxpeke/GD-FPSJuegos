@@ -20,25 +20,17 @@ var player: Player # Myself
 var turn: int = 0
 
 var units_data: Dictionary
-var units_scenes: Dictionary
-var units_store_sprites: Dictionary
 
 # Private
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	units_data = {
-		"king": load("res://Global/UnitData/king.tres")
+		"king": load("res://Global/UnitData/king.tres"),
+		"bishop": load("res://Global/UnitData/bishop.tres"),
+		"knight": load("res://Global/UnitData/knight.tres"),
 	}
 	
-	units_scenes = {
-		"king": units_data["king"].scene,
-		"queen": load("res://Core/Units/king.tscn"),
-		"bishop": load("res://Core/Units/bishop.tscn"),
-		"knight": load("res://Core/Units/knight.tscn"),
-		"pawn": load("res://Core/Units/king.tscn"),
-	}
-
 # Public
 
 # Called to set the board

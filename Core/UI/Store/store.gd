@@ -1,26 +1,21 @@
 class_name Store
 extends CanvasLayer
 
-var unit_costs: Dictionary = {
-	"pawn": {"cost": 1, "probability": 0.4},
-	"knight": {"cost": 2, "probability": 0.2},
-	"queen": {"cost": 4, "probability": 0.1},
-	"bishop": {"cost": 3, "probability": 0.3}
-}
-
-var current_piece_set: Array = []
-var random_unit_classes: Array = []
-
 var player: Player = null
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 @onready var money_label = %MoneyLabel
 @onready var store_unit_container = %StoreUnitContainer
 
+# Private
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng.randomize()
+	
 	GameManager.set_store(self)
 	GameManager.player_initialized.connect(_on_player_initialized)
-	initialize_store()
+	update_store()
 	
 # Called when the player is initialized
 func _on_player_initialized() -> void:
@@ -30,52 +25,47 @@ func _on_player_initialized() -> void:
 # Called when the player money changes
 func _on_money_changed():
 	_update_player_information()
+	
+# Called when the match ends
+func _on_match_ended() -> void:
+	update_store()
 
 # Updates the store with the player information
 func _update_player_information() -> void:
 	money_label.text = "Monedas: " + str(GameManager.player.current_money)
 	
-func initialize_store():
-	unit_costs["pawn"]["cost"] = 1
-	unit_costs["knight"]["cost"] = 2
-	unit_costs["queen"]["cost"] = 4
-	unit_costs["bishop"]["cost"] = 3
-
-	choose_random_piece_set()
+# Public
 	
-	for i in range(current_piece_set.size()):
-		var unit_name = current_piece_set[i]
-		store_unit_container.get_child(i).set_unit(unit_name)
+# Updates the store
+func update_store():
+	var store_units_count = store_unit_container.get_child_count()
+	var random_unit_set = get_random_unit_set(store_units_count)
 	
-func get_unit_cost(unit_type: String) -> int:
-	return unit_costs.get(unit_type, {"cost": 0})["cost"]
+	for i in range(store_units_count):
+		store_unit_container.get_child(i).set_unit(random_unit_set[i])
+
+# Gets a random unit set
+func get_random_unit_set(unit_count: int) -> Array:
+	var random_unit_set = []
 	
-func choose_random_piece_set():
+	var total_units_weight = GameManager.units_data.keys().reduce(
+	func(accum, key):
+		print("Key: ", key)
+		print("Weight: ", GameManager.units_data[key].early_weight)
+		return accum + GameManager.units_data[key].early_weight
+	, 0)
+	
+	print("TUW: ", total_units_weight)
 
-	var set_size = 3  # Tamaño del conjunto de piezas
-	current_piece_set.clear()
+	for i in range(unit_count):
+		var random_unit_weigth = rng.randi_range(0, total_units_weight)
+		var cumulative_weight = 0
 
-	for i in range(set_size):
-		var rand = randf()
-		var cumulative_probability = 0.0
-
-		for piece_type in unit_costs:
-			var data = unit_costs[piece_type]
-			cumulative_probability += data["probability"]
-			if rand <= cumulative_probability:
-				current_piece_set.append(piece_type)
-				
+		for unit_class in GameManager.units_data:
+			cumulative_weight += GameManager.units_data[unit_class].early_weight
+			if random_unit_weigth <= cumulative_weight:
+				random_unit_set.append(unit_class)
 				break
-
-func adjust_probabilities():
-	unit_costs["pawn"]["probability"] -= 0.1
-	unit_costs["knight"]["probability"] += 0.1
-	unit_costs["queen"]["probability"] += 0.05
-	unit_costs["bishop"]["probability"] += 0.05
-
-func on_match_ended() -> void:
-	adjust_probabilities()
-	# Borrar los stores units
-	choose_random_piece_set()
-	initialize_store()
+				
+	return random_unit_set
 	
