@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7afmc1q0x1tm"
-path="res://.godot/imported/basic_tile_alt.png-7cb736de77a071630017b816d2bba257.ctex"
+uid="uid://cpax7lgxcokx5"
+path="res://.godot/imported/board.png-5ffbb31d75e0365ee5d676119a378b5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/Board/Tilesets/BasicTileset/basic_tile_alt.png"
-dest_files=["res://.godot/imported/basic_tile_alt.png-7cb736de77a071630017b816d2bba257.ctex"]
+source_file="res://Core/Board/Tilesets/board.png"
+dest_files=["res://.godot/imported/board.png-5ffbb31d75e0365ee5d676119a378b5a.ctex"]
 
 [params]
 
