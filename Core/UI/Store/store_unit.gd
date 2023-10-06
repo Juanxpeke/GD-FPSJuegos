@@ -1,9 +1,5 @@
 extends TextureButton
 
-static var store_units_sprites: Dictionary = {
-	"king": preload("res://assets/backgrounds/medieval/medieval_1.png")
-}
-
 var unit_class: String
 
 @onready var unit_cost_label: Label = %UnitCostLabel
