@@ -1,17 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://bc4ccqamupi1i"]
 
-[ext_resource type="Script" path="res://Core/UI/Store/store_unit.gd" id="1_mcqqj"]
-[ext_resource type="Texture2D" uid="uid://dddlvrsr4epa0" path="res://Core/UI/Store/store_unit_disabled.png" id="1_xv1ic"]
+[ext_resource type="Texture2D" uid="uid://dddlvrsr4epa0" path="res://Core/UI/HUD/Store/store_unit_disabled.png" id="1_v1adk"]
+[ext_resource type="Script" path="res://Core/UI/HUD/Store/store_unit.gd" id="2_3rvqx"]
 
 [node name="UnitCost" type="TextureButton"]
 offset_right = 100.0
 offset_bottom = 50.0
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
-texture_disabled = ExtResource("1_xv1ic")
+texture_disabled = ExtResource("1_v1adk")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("1_mcqqj")
+script = ExtResource("2_3rvqx")
 
 [node name="UnitCostLabel" type="Label" parent="."]
 unique_name_in_owner = true

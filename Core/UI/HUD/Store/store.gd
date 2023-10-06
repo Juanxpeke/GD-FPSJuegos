@@ -1,5 +1,5 @@
 class_name Store
-extends CanvasLayer
+extends PanelContainer
 
 var player: Player = null
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()

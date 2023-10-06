@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dddlvrsr4epa0"
-path="res://.godot/imported/store_unit_disabled.png-18618c4da2065178ac8e7bcdb2d23573.ctex"
+uid="uid://dx7t4omxenkpt"
+path="res://.godot/imported/preparation_time_bar_process.png-79da8fbe50029da94709ce70cf3def55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/UI/Store/store_unit_disabled.png"
-dest_files=["res://.godot/imported/store_unit_disabled.png-18618c4da2065178ac8e7bcdb2d23573.ctex"]
+source_file="res://Core/UI/HUD/preparation_time_bar_process.png"
+dest_files=["res://.godot/imported/preparation_time_bar_process.png-79da8fbe50029da94709ce70cf3def55.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Core/Maps/map.gd" id="1_uo3n2"]
 [ext_resource type="PackedScene" uid="uid://8n47mb14jmmk" path="res://Core/Board/board.tscn" id="1_uphg7"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://Core/Players/player.tscn" id="2_x0elb"]
-[ext_resource type="PackedScene" uid="uid://brcstcwwf13it" path="res://Core/UI/Store/store.tscn" id="3_gxe2a"]
+[ext_resource type="PackedScene" uid="uid://dy17jaermquaa" path="res://Core/UI/HUD/hud.tscn" id="4_xdrfe"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m7wy4"]
 properties/0/path = NodePath(".:first_turn_player_index")
@@ -39,7 +39,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(449, 434)
 
-[node name="Store" parent="." instance=ExtResource("3_gxe2a")]
+[node name="HUD" parent="." instance=ExtResource("4_xdrfe")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true

@@ -8,7 +8,7 @@ signal match_ended
 enum MatchPhase { STORE, BATTLE }
 
 @export var player_scene: PackedScene
-@export var store_time: float = 10.0
+@export var preparation_time: float = 10.0
 @export var first_turn_player_index: int = 0 # TODO: Remove @export
 
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -41,8 +41,8 @@ func _ready() -> void:
 	multiplayer_synchronizer.connect("delta_synchronized", _on_delta_synchronized)
 	
 	if multiplayer.is_server():
-		var store_timer = get_tree().create_timer(store_time)
-		store_timer.timeout.connect(_on_store_timer)
+		var preparation_timer = get_tree().create_timer(preparation_time)
+		preparation_timer.timeout.connect(_on_preparation_timeout)
 		first_turn_player_index = map_rng.randi_range(0, players.get_child_count() - 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
@@ -55,7 +55,7 @@ func _on_delta_synchronized() -> void:
 	print("\tFTPI: ", first_turn_player_index)
 	
 # Called when the store timer timeouts
-func _on_store_timer() -> void:
+func _on_preparation_timeout() -> void:
 	end_store.rpc()
 
 # Public
@@ -93,8 +93,8 @@ func end_match() -> void:
 	match_phase = MatchPhase.STORE
 	
 	if multiplayer.is_server():
-		var store_timer = get_tree().create_timer(store_time)
-		store_timer.timeout.connect(_on_store_timer)
+		var preparation_timer = get_tree().create_timer(preparation_time)
+		preparation_timer.timeout.connect(_on_preparation_timeout)
 		first_turn_player_index = (first_turn_player_index + 1) % players.get_children().size()
 	
 	turn = 0
