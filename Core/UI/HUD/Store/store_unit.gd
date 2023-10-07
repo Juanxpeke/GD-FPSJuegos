@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # Called when the store unit button is pressed
 func _on_pressed() -> void:
-	if GameManager.player.can_afford(0):
+	if GameManager.player.can_afford(GameManager.units_data[unit_class].cost):
 		_hide()
 		GameManager.player.buy_unit(unit_class)
 	else:

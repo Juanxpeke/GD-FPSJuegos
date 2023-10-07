@@ -232,6 +232,7 @@ func buy_unit(unit_name: String) -> void:
 		if live_unit == null:
 			var unit_position = GameManager.board.get_cell_center(base_cell)
 			spawn_unit.rpc(unit_name, unit_position)
+			subtract_coins(GameManager.units_data[unit_name].cost)
 			break
 		
 @rpc("call_local", "reliable")
