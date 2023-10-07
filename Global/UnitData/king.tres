@@ -13,7 +13,4 @@ weights = {
 "late": 0,
 "middle": 0
 }
-early_weight = 1
-middle_weight = 0
-late_weight = 0
 store_sprite = ExtResource("3_mau7g")
