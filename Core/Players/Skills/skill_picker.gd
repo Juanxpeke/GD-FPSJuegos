@@ -6,8 +6,9 @@ class_name SkillPicker
 var skill_pool : Array[Skill] = [
 	Ghost.new(), 
 	DimensionalJump.new(),
+	BishopLevelUp.new(),
 	Skill.new(), #test claramente
-	]
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
