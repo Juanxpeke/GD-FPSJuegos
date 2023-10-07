@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx7t4omxenkpt"
-path="res://.godot/imported/preparation_time_bar_process.png-79da8fbe50029da94709ce70cf3def55.ctex"
+uid="uid://c7wmtjxrg3qon"
+path="res://.godot/imported/life_bar_progress.png-c73e84e85311631a408d4dfe9a68c128.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/UI/HUD/preparation_time_bar_process.png"
-dest_files=["res://.godot/imported/preparation_time_bar_process.png-79da8fbe50029da94709ce70cf3def55.ctex"]
+source_file="res://Core/UI/HUD/PlayerInterface/life_bar_progress.png"
+dest_files=["res://.godot/imported/life_bar_progress.png-c73e84e85311631a408d4dfe9a68c128.ctex"]
 
 [params]
 

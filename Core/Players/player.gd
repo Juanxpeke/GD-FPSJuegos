@@ -1,6 +1,7 @@
 class_name Player
 extends Node2D
 
+signal health_changed()
 signal money_changed()
 
 var peer_player: MultiplayerManager.PeerPlayer
@@ -202,6 +203,8 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 # Loses the match
 func lose_match() -> void:
 	print("lose match, ", name)
+	current_health -= GameManager.phase_damages[GameManager.get_phase()]
+	health_changed.emit()
 	GameManager.map.end_match()
 
 #### Skills #### 

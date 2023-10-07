@@ -46,23 +46,17 @@ func update_store():
 
 # Gets a random unit set
 func get_random_unit_set(unit_count: int) -> Array:
+	var game_phase = GameManager.get_phase()
 	var random_unit_set = []
-	
 	var total_units_weight = GameManager.units_data.keys().reduce(
-	func(accum, key):
-		print("Key: ", key)
-		print("Weight: ", GameManager.units_data[key].early_weight)
-		return accum + GameManager.units_data[key].early_weight
-	, 0)
+		func(accum, key): return accum + GameManager.units_data[key].weights[game_phase], 0)
 	
-	print("TUW: ", total_units_weight)
-
 	for i in range(unit_count):
 		var random_unit_weigth = rng.randi_range(0, total_units_weight)
 		var cumulative_weight = 0
 
 		for unit_class in GameManager.units_data:
-			cumulative_weight += GameManager.units_data[unit_class].early_weight
+			cumulative_weight += GameManager.units_data[unit_class].weights[game_phase]
 			if random_unit_weigth <= cumulative_weight:
 				random_unit_set.append(unit_class)
 				break

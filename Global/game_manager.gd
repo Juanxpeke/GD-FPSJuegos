@@ -17,9 +17,20 @@ var board: Board
 var map: Map
 var store: Store
 var player: Player # Myself
-var turn: int = 0
 
 var units_data: Dictionary
+
+var phase_matchi_changes: Dictionary = {
+	"early": 0,
+	"middle": 1,
+	"late": 2,
+}
+
+var phase_damages: Dictionary = {
+	"early": 2,
+	"middle": 2,
+	"late": 2,
+}
 
 # Private
 
@@ -30,7 +41,7 @@ func _ready() -> void:
 		"bishop": load("res://Global/UnitData/bishop.tres"),
 		"knight": load("res://Global/UnitData/knight.tres"),
 	}
-	
+
 # Public
 
 # Called to set the board
@@ -55,3 +66,18 @@ func set_player(player: Player) -> void:
 # Called to get the role parameters
 func get_role(role_enum: RoleEnum) -> RolesManager.Role:
 	return RolesManager.get_role(role_enum)
+
+# Gets the current game phase
+func get_phase() -> String:
+	var game_phase = "early"
+	
+	if not map:
+		print("game phase is ", game_phase, " ", multiplayer.get_unique_id())
+		return game_phase
+	
+	for phase in phase_matchi_changes.keys():
+		if phase_matchi_changes[phase] <= map.matchi:
+			game_phase = phase
+	
+	print("game phase is ", game_phase, " ", multiplayer.get_unique_id())
+	return game_phase

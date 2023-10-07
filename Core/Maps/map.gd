@@ -26,7 +26,8 @@ var match_phase: MatchPhase = MatchPhase.STORE
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	GameManager.set_map(self)
+	GameManager.set_map(self) # REVIEW: Skills need this to be here
+	
 	map_rng.randomize()
 	
 	for peer_player in MultiplayerManager.peer_players:

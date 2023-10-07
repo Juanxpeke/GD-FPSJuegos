@@ -3,14 +3,14 @@ extends Resource
 
 @export var scene: PackedScene
 @export var cost: int
-@export var early_weight: int
-@export var middle_weight: int
-@export var late_weight: int
+@export var weights: Dictionary = {
+	"early": 0,
+	"middle": 0,
+	"late": 0,
+}
 @export var store_sprite: Texture2D
 
-var current_early_weight: int = early_weight
-var current_middle_weight: int = middle_weight
-var current_late_weight: int = late_weight
+var current_weights: Dictionary = weights
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

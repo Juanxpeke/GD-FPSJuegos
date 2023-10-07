@@ -3,6 +3,8 @@ extends CanvasLayer
 
 var timer_on: bool = false
 
+@onready var player_interface: PlayerInterface = %PlayerInterface
+@onready var enemy_interface: PlayerInterface = %EnemyInterface
 @onready var store: Store = %Store
 @onready var preparation_time_bar: TextureProgressBar = %PreparationTimeBar
 @onready var preparation_timer: Timer = %PreparationTimer
@@ -17,6 +19,11 @@ func _ready() -> void:
 			
 			timer_on = true
 			preparation_timer.start()
+			
+			await get_tree().create_timer(0.5).timeout
+			
+			player_interface.set_player(GameManager.player)
+			enemy_interface.set_player(GameManager.player.enemy_player)
 			
 			GameManager.map.store_ended.connect(_on_store_ended)
 			GameManager.map.match_ended.connect(_on_match_ended)
