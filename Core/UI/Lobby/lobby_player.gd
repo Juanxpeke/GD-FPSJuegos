@@ -25,9 +25,9 @@ func _on_player_updated(id: int) -> void:
 		_update(MultiplayerManager.get_peer_player(player_id))
 
 
-func _update(player: MultiplayerManager.PeerPlayer):
-	_set_player_name(player.name)
-	_set_player_role(player.role)
+func _update(peer_player: MultiplayerManager.PeerPlayer):
+	_set_player_name(peer_player.name)
+	_set_player_role(peer_player.role_enum)
 
 
 func _set_player_name(value: String) -> void:

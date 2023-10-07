@@ -235,9 +235,9 @@ func start_game() -> void:
 
 func _check_ready() -> void:
 	var roles = []
-	for player in MultiplayerManager.peer_players:
-		if not player.role in roles and player.role != GameManager.RoleEnum.NONE:
-			roles.push_back(player.role)
+	for peer_player in MultiplayerManager.peer_players:
+		if not peer_player.role_enum in roles and peer_player.role_enum != GameManager.RoleEnum.NONE:
+			roles.push_back(peer_player.role_enum)
 	ready_toggle.disabled = roles.size() != GameManager.RoleEnum.size() - 1
 
 

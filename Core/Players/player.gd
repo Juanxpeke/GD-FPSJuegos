@@ -73,7 +73,7 @@ func _on_match_ended() -> void:
 func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	self.peer_player = peer_player
 	name = "Player" + str(peer_player.id)
-	role = GameManager.get_role(peer_player.role)
+	role = GameManager.get_role(peer_player.role_enum)
 	
 	current_health = role.initial_health
 	current_money = role.initial_money
