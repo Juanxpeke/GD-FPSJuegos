@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://4wlomewun2vb"]
+
+[ext_resource type="PackedScene" uid="uid://ctd4f7l06mlv7" path="res://Core/Units/King/king.tscn" id="1_8kexo"]
+[ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_x4nh0"]
+[ext_resource type="Texture2D" uid="uid://do8tnvg8h3y0m" path="res://Core/Units/King/store_king.png" id="3_mau7g"]
+
+[resource]
+script = ExtResource("1_x4nh0")
+scene = ExtResource("1_8kexo")
+cost = 10
+weights = {
+"early": 1,
+"late": 0,
+"middle": 0
+}
+early_weight = 1
+middle_weight = 0
+late_weight = 0
+store_sprite = ExtResource("3_mau7g")

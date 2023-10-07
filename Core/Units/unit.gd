@@ -26,6 +26,9 @@ static var is_grabbing: bool = false
 var grabbed: bool = false
 var grab_cell: Vector2
 
+# Store logic
+@export var in_store: bool = false
+
 @onready var sprite := %Sprite
 @onready var area := %Area
 
@@ -33,8 +36,11 @@ var grab_cell: Vector2
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	GameManager.board.add_unit(self)
-		
+	if not in_store:
+		GameManager.board.add_unit(self)
+		GameManager.map.store_ended.connect(_on_store_ended)
+		GameManager.map.turn_ended.connect(_on_turn_ended)
+		GameManager.map.match_ended.connect(_on_match_ended)
 	area.mouse_entered.connect(_on_mouse_entered)
 	area.mouse_exited.connect(_on_mouse_exited)
 	area.input_event.connect(_on_input_event)
@@ -48,7 +54,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
 	if grabbed:
-		position = get_global_mouse_position()
+		global_position = get_global_mouse_position()
 
 # Called when the mouse enters the unit
 func _on_mouse_entered() -> void:
@@ -73,7 +79,7 @@ func _on_mouse_exited() -> void:
 	
 # Called when an input event occurs inside the unit
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if not is_multiplayer_authority():
+	if not is_multiplayer_authority() and not in_store:
 		return
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -133,8 +139,8 @@ func _update_movement_cells() -> void:
 	for cell_descriptor in level_cell_descriptors:
 		current_cell_descriptors.append(cell_descriptor.duplicate())
 		
-	for skill in get_player().get_active_skills():
-		skill.modify_current_cell_descriptor(self)
+	#for skill in get_player().get_active_skills():
+		#skill.modify_current_cell_descriptor(self)
 	
 	for cell_descriptor in current_cell_descriptors:
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
@@ -149,11 +155,13 @@ func get_unit_class() -> String:
 
 # Gets the unit player
 func get_player() -> Player:
+	if in_store:
+		return GameManager.player
 	return get_parent()
 
 # Gets the unit current cell
 func get_current_cell() -> Vector2i:
-	return GameManager.board.get_cell(position)
+	return GameManager.board.get_cell(global_position)
 
 # Gets the unit movement cells
 func get_movement_cells() -> Array:

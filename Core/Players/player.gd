@@ -1,6 +1,10 @@
 class_name Player
 extends Node2D
 
+signal health_changed()
+signal money_changed()
+
+var peer_player: MultiplayerManager.PeerPlayer
 var enemy_player: Player
 
 var role: RolesManager.Role
@@ -8,7 +12,7 @@ var role: RolesManager.Role
 var current_health: int
 var current_money: int 
 
-var match_units_positions: Array[Vector2] = []
+#### Match ####
 var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
 
@@ -31,6 +35,8 @@ func _ready() -> void:
 func add_skill(skill : Skill) -> void:
 	skill.add_to_player(self)
 	print(activable_skills, active_skills)
+
+#### Skills ####
 
 # Activates the given skill
 @rpc("call_local", "reliable")
@@ -56,7 +62,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	match event.keycode:
 		KEY_1:
 			_activate_skill.rpc(0)
-		
+
+#### Match ####
 
 # Reset the dead and live units lists
 func _reset_units() -> void:
@@ -72,8 +79,11 @@ func _on_match_ended() -> void:
 
 # Public
 
+#### Multiplayer ####
+
 # Sets up the multiplayer data for the player node
 func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
+	self.peer_player = peer_player
 	name = "Player" + str(peer_player.id)
 	role = GameManager.get_role(peer_player.role)
 	
@@ -81,23 +91,17 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	current_money = role.initial_money
 	
 	for i in range(role.initial_units_names.size()):
-		var unit = GameManager.units_scenes[role.initial_units_names[i]].instantiate() # REVIEW: Preload, as cell_descriptors get added before GameManager
-		var unit_position = GameManager.map.get_initial_king_position() + GameManager.board.get_cell_local_origin(role.initial_units_offsets[i])
+		add_unit(
+			role.initial_units_names[i],
+			GameManager.map.get_initial_king_position() + GameManager.board.get_cell_local_origin(role.initial_units_offsets[i])
+		)
 		
-		add_child(unit)
-	
-		unit.name = unit.unit_name + str(i) + str(peer_player.id)
-		unit.sprite.modulate = role.color
-		if multiplayer.get_unique_id() == peer_player.id:
-			unit.position = unit_position
-			unit.match_initial_position = unit_position
-		else:
-			unit.position = GameManager.board.get_mirror_position(unit_position)
-			unit.match_initial_position = GameManager.board.get_mirror_position(unit_position)
-	
-		match_live_units.append(unit)
-		
-	set_multiplayer_authority(peer_player.id) # REVIEW: Unit's cell_descriptors aren't updating as board was set before
+	set_multiplayer_authority(peer_player.id)
+
+	if multiplayer.get_unique_id() == peer_player.id:
+		GameManager.set_player(self)
+
+#### Match ####
 
 	if multiplayer.get_unique_id() == peer_player.id:
 		GameManager.set_player(self)
@@ -125,6 +129,25 @@ func get_live_unit_by_cell(cell: Vector2i) -> Unit:
 		if GameManager.board.get_cell(live_unit.position) == cell:
 			return live_unit
 	return null
+
+# Adds a unit to the player
+func add_unit(unit_class: String, target_position: Vector2) -> void:
+	var unit = GameManager.units_data[unit_class].scene.instantiate() # REVIEW: Preload, as cell_descriptors get added before GameManager
+
+	add_child(unit)
+	set_multiplayer_authority(peer_player.id) # Necessary for units added after setup
+
+	unit.name = unit.unit_name + str(get_child_count()) + str(peer_player.id)
+	unit.sprite.modulate = role.color
+
+	if multiplayer.get_unique_id() == peer_player.id:
+		unit.position = target_position
+		unit.match_initial_position = target_position
+	else:
+		unit.position = GameManager.board.get_mirror_position(target_position)
+		unit.match_initial_position = GameManager.board.get_mirror_position(target_position)
+
+	match_live_units.append(unit)
 
 # Tries to kill the unit in the given cell
 func receive_attack_in_cell(cell: Vector2i) -> void:
@@ -191,12 +214,42 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 	unit.dissapear_forever.rpc()
 	
 	other_unit.level_up.rpc(GameManager.board.get_cell_center(target_cell))
-	
-# Returns the player active skills
-func get_active_skills() -> Array:
-	return active_skills
 
 # Loses the match
 func lose_match() -> void:
 	print("lose match, ", name)
+	current_health -= GameManager.phase_damages[GameManager.get_phase()]
+	health_changed.emit()
 	GameManager.map.end_match()
+
+#### Skills #### 
+
+# Returns the player active skills
+func get_active_skills() -> Array:
+	return active_skills
+	
+#### Store ####
+
+# Checks if the player can afford a piece
+func can_afford(amount: int) -> bool:
+	return current_money >= amount
+	
+# Subtracts a specified amount of coins from the player
+func subtract_coins(amount: int) -> void:
+	if current_money >= amount:
+		current_money -= amount
+		money_changed.emit()
+
+func buy_unit(unit_name: String) -> void:
+	var base_cells = GameManager.board.get_base_cells()
+	for base_cell in base_cells:
+		var live_unit = get_live_unit_by_cell(base_cell)
+		if live_unit == null:
+			var unit_position = GameManager.board.get_cell_center(base_cell)
+			spawn_unit.rpc(unit_name, unit_position)
+			break
+		
+@rpc("call_local", "reliable")
+func spawn_unit(unit_name: String, target_position: Vector2) -> void:
+	add_unit(unit_name, target_position)
+

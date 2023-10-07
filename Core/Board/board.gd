@@ -2,7 +2,13 @@ class_name Board
 extends TileMap
 
 enum Layer { BOARD_LAYER, HOLE_LAYER, MOVEMENT_LAYER, BASE_LAYER }
-enum Tile { BOARD_TILE, ALT_BOARD_TILE, HOLE_TILE, MOVEMENT_TILE, BASE_TILE }
+
+const TILES: Dictionary = {
+	"board": Vector2i(1, 1),
+	"board_alt": Vector2i(1, 2),
+	"movement": Vector2i(10, 0),
+	"base": Vector2i(10, 1),
+}
 
 var units: Array[Unit] = []
 
@@ -39,7 +45,7 @@ func _on_match_ended() -> void:
 func _init_board_layer() -> void:
 	for cell in get_used_cells(Layer.BOARD_LAYER):
 		if ((cell[0] + cell[1]) % 2 != 0):
-			set_cell(Layer.BOARD_LAYER, cell, Tile.ALT_BOARD_TILE, Vector2i(0, 0))
+			set_cell(Layer.BOARD_LAYER, cell, 0, TILES.board_alt)
 
 # Returns an array with the cells in the discrete line from (x0, y0) to (x1, y1)
 # Low part of modified Dofus' line algorithm
@@ -218,7 +224,7 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 # Shows the movement cells
 func show_movement_cells(cells: Array) -> void:
 	for cell in cells:
-		set_cell(Layer.MOVEMENT_LAYER, cell, Tile.MOVEMENT_TILE, Vector2i(0, 0))
+		set_cell(Layer.MOVEMENT_LAYER, cell, 0, TILES.movement)
 
 # Hides the movement cells
 func hide_movement_cells() -> void:
@@ -255,3 +261,18 @@ func readd_unit(unit: Unit) -> void:
 # Removes a unit from the unit list
 func remove_unit(unit: Unit) -> void:
 	units.erase(unit)
+	
+# Checks if a unit can be placed in a specific cell in the board
+func can_place_unit(unit: Unit, target_cell: Vector2i) -> bool:
+	var board_cells := get_used_cells(Layer.BOARD_LAYER)
+	var hole_cells := get_used_cells(Layer.HOLE_LAYER)
+	
+	# check if the target cell is in the board and not a hole
+	if target_cell in board_cells and not target_cell in hole_cells:
+		for other_unit in units:
+			if other_unit != unit:
+				var unit_cell := get_cell(other_unit.global_position)
+				if unit_cell == target_cell:
+					return false # cell taken
+		return true
+	return false
