@@ -22,6 +22,10 @@ func _on_player_health_changed() -> void:
 # Called when a match turn ends
 func _on_turn_ended() -> void:
 	_update_turn_indicator()
+	
+# Called when a match ends
+func _on_match_ended() -> void:
+	_update_turn_indicator()
 
 # Updates the life interface
 func _update_life_interface() -> void:
@@ -46,6 +50,7 @@ func set_player(player: Player) -> void:
 	_update_turn_indicator()
 	
 	GameManager.map.turn_ended.connect(_on_turn_ended)
+	GameManager.map.match_ended.connect(_on_match_ended)
 	
 	life_bar.max_value = player.role.initial_health
 	_update_life_interface()
