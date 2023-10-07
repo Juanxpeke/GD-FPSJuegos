@@ -1,6 +1,7 @@
 extends Node
 
 # Load the custom images for the mouse cursor
+var default = load("res://Global/Config/default.png")
 var pointer = load("res://Global/Config/pointer.png")
 var grab = load("res://Global/Config/grab.png")
 var grabbing = load("res://Global/Config/grabbing.png")
@@ -9,7 +10,7 @@ var grabbing = load("res://Global/Config/grabbing.png")
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	Input.set_custom_mouse_cursor(grab, Input.CURSOR_ARROW)
+	Input.set_custom_mouse_cursor(default, Input.CURSOR_ARROW)
 	Input.set_custom_mouse_cursor(pointer, Input.CURSOR_POINTING_HAND)
 	Input.set_custom_mouse_cursor(grab, Input.CURSOR_DRAG)
 	Input.set_custom_mouse_cursor(grabbing, Input.CURSOR_CROSS)
