@@ -195,10 +195,8 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 
 # Fuses two units
 func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
-	match_live_units.erase(other_unit) # REVIEW: Possible bug, when erasing element in for
 	unit.dissapear_forever.rpc()
-	
-	other_unit.level_up.rpc(GameManager.board.get_cell_center(target_cell))
+	other_unit.level_up.rpc()
 
 # Loses the match
 func lose_match() -> void:
@@ -225,6 +223,7 @@ func subtract_coins(amount: int) -> void:
 		current_money -= amount
 		money_changed.emit()
 
+# Buys a unit
 func buy_unit(unit_name: String) -> void:
 	var base_cells = GameManager.board.get_base_cells()
 	for base_cell in base_cells:

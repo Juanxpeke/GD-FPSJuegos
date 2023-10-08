@@ -9,7 +9,7 @@ func _ready() -> void:
 	role_a = Role.new(
 		"Role A", # Name
 		24, # Health
-		10, # Money
+		210, # Money
 		[ # Units names
 			"king",
 			"bishop",
@@ -24,7 +24,7 @@ func _ready() -> void:
 	role_b = Role.new(
 		"Role B", # Name
 		20, # Health
-		5, # Money
+		25, # Money
 		[ # Units names
 			"king",
 			"bishop",
