@@ -195,8 +195,10 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 
 # Fuses two units
 func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
+	var max_level = max(unit.level, other_unit.level)
+	
 	unit.dissapear_forever.rpc()
-	other_unit.level_up.rpc()
+	other_unit.change_level.rpc(max_level + 1)
 
 # Loses the match
 func lose_match() -> void:

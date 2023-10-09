@@ -116,6 +116,7 @@ func _on_match_ended() -> void:
 	
 # Updates the unit data by its level
 func _update_level_data() -> void:
+	print(unit_name, " level up to: ", level)
 	match level:
 		1: 
 			level_cell_descriptors = level_1_descriptors
@@ -189,17 +190,17 @@ func revive() -> void:
 	area.input_pickable = true
 	has_revived.emit()
 	
-# Dissapears forever
+# Dissapears forever on each peer, including current
 @rpc("call_local", "reliable")
 func dissapear_forever() -> void:
 	print("dissapear forever ", name)
 	get_player().match_live_units.erase(self) # REVIEW: Possible bug, when erasing element in for
 	queue_free()
 	
-# Level ups the unit
+# Changes the unit level on each peer, including current
 @rpc("call_local", "reliable")
-func level_up() -> void:
-	level += 1
+func change_level(target_level: int) -> void:
+	level = target_level
 	_update_level_data()
 	
 	if GameManager.map.match_phase == GameManager.map.MatchPhase.BATTLE:

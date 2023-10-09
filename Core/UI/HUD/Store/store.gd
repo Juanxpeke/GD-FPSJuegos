@@ -14,8 +14,13 @@ func _ready():
 	rng.randomize()
 	
 	GameManager.set_store(self)
+	GameManager.map_initialized.connect(_on_map_initialized)
 	GameManager.player_initialized.connect(_on_player_initialized)
 	update_store()
+	
+# Called when the map is initialized
+func _on_map_initialized() -> void:
+	GameManager.map.match_ended.connect(_on_match_ended)
 	
 # Called when the player is initialized
 func _on_player_initialized() -> void:
