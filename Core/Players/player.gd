@@ -73,7 +73,7 @@ func _on_match_ended() -> void:
 func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	self.peer_player = peer_player
 	name = "Player" + str(peer_player.id)
-	role = GameManager.get_role(peer_player.role_enum)
+	role = RolesManager.get_role(peer_player.role_enum)
 	
 	current_health = role.initial_health
 	current_money = role.initial_money
@@ -122,7 +122,7 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 	add_child(unit)
 	set_multiplayer_authority(peer_player.id) # Necessary for units added after setup
 
-	unit.name = unit.unit_name + str(get_child_count()) + str(peer_player.id)
+	unit.name = unit.unit_class + str(get_child_count()) + str(peer_player.id)
 	
 	if multiplayer.get_unique_id() == peer_player.id:
 		unit.position = target_position
@@ -225,17 +225,17 @@ func subtract_coins(amount: int) -> void:
 		money_changed.emit()
 
 # Buys a unit
-func buy_unit(unit_name: String) -> void:
+func buy_unit(unit_class: String) -> void:
 	var base_cells = GameManager.board.get_base_cells()
 	for base_cell in base_cells:
 		var live_unit = get_live_unit_by_cell(base_cell)
 		if live_unit == null:
 			var unit_position = GameManager.board.get_cell_center(base_cell)
-			spawn_unit.rpc(unit_name, unit_position)
-			subtract_coins(GameManager.units_data[unit_name].cost)
+			spawn_unit.rpc(unit_class, unit_position)
+			subtract_coins(GameManager.units_data[unit_class].cost)
 			break
 		
 @rpc("call_local", "reliable")
-func spawn_unit(unit_name: String, target_position: Vector2) -> void:
-	add_unit(unit_name, target_position)
+func spawn_unit(unit_class: String, target_position: Vector2) -> void:
+	add_unit(unit_class, target_position)
 

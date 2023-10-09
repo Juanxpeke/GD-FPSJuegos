@@ -18,3 +18,14 @@ func get_role(role_enum: GameManager.RoleEnum) -> Role:
 		GameManager.RoleEnum.ROLE_B:
 			return role_b
 	return role_a
+
+# Gets the given unit offset in the role texture atlas
+func get_texture_atlas_unit_offset(unit_class: String) -> Vector2:
+	match unit_class:
+		"king":
+			return Vector2(16 * 2, 0)
+		"bishop":
+			return Vector2(16 * 3, 0)
+		"knight":
+			return Vector2(16 * 4, 0)
+	return Vector2()

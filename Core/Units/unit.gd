@@ -7,7 +7,7 @@ signal has_revived
 static var level_2_material: ShaderMaterial = load("res://Core/Units/level_2_material.tres")
 static var level_3_material: ShaderMaterial = load("res://Core/Units/level_3_material.tres")
 
-@export var unit_name: String
+@export var unit_class: String
 
 @export var level_1_descriptors: Array[CellDescriptor]
 @export var level_2_descriptors: Array[CellDescriptor]
@@ -37,6 +37,10 @@ var grab_cell: Vector2
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	GameManager.board.add_unit(self)
+	
+	_update_role_data()
+	_update_level_data()
+	
 	GameManager.map.store_ended.connect(_on_store_ended)
 	GameManager.map.turn_ended.connect(_on_turn_ended)
 	GameManager.map.match_ended.connect(_on_match_ended)
@@ -44,7 +48,6 @@ func _ready() -> void:
 	area.mouse_exited.connect(_on_mouse_exited)
 	area.input_event.connect(_on_input_event)
 		
-	_update_level_data()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
@@ -114,9 +117,17 @@ func _on_match_ended() -> void:
 		revive()
 	position = match_initial_position
 	
+# Updates the unit data by its player role
+func _update_role_data() -> void:
+	var unit_offset = RolesManager.get_texture_atlas_unit_offset(get_unit_class())
+	
+	sprite.texture = AtlasTexture.new() 
+	sprite.texture.atlas = get_player().role.units_texture_atlas
+	sprite.texture.region = Rect2(unit_offset.x, unit_offset.y, 16, 18)
+	
 # Updates the unit data by its level
 func _update_level_data() -> void:
-	print(unit_name, " level up to: ", level)
+	print(unit_class, " level up to: ", level)
 	match level:
 		1: 
 			level_cell_descriptors = level_1_descriptors
@@ -152,7 +163,7 @@ func _update_movement_cells() -> void:
 
 # Gets the unit class
 func get_unit_class() -> String:
-	return unit_name.to_lower()
+	return unit_class.to_lower()
 
 # Gets the unit player
 func get_player() -> Player:
