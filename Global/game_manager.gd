@@ -62,10 +62,6 @@ func set_store(store: Store) -> void:
 func set_player(player: Player) -> void:
 	self.player = player
 	player_initialized.emit()
-	
-# Called to get the role parameters
-func get_role(role_enum: RoleEnum) -> Role:
-	return RolesManager.get_role(role_enum)
 
 # Gets the current game phase
 func get_phase() -> String:
