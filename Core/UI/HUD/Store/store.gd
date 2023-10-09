@@ -56,8 +56,10 @@ func get_random_unit_set(unit_count: int) -> Array:
 	var total_units_weight = GameManager.units_data.keys().reduce(
 		func(accum, key): return accum + GameManager.units_data[key].weights[game_phase], 0)
 	
+	assert(total_units_weight > 0, "total units weight is equal to 0")
+	
 	for i in range(unit_count):
-		var random_unit_weigth = rng.randi_range(0, total_units_weight)
+		var random_unit_weigth = rng.randi_range(1, total_units_weight)
 		var cumulative_weight = 0
 
 		for unit_class in GameManager.units_data:
