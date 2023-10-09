@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Role" load_steps=2 format=3 uid="uid://cn6865nmhc3n0"]
+
+[ext_resource type="Script" path="res://Global/Roles/role.gd" id="1_mgaxx"]
+
+[resource]
+script = ExtResource("1_mgaxx")
+name = "Medieval Knight"
+initial_health = 25
+initial_money = 15
+initial_units_names = Array[String](["king", "knight"])
+initial_units_offsets = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
+initial_passives = Array[Resource("res://Core/Players/States/skill.gd")]([])

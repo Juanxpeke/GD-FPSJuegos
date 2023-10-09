@@ -7,7 +7,7 @@ signal money_changed()
 var peer_player: MultiplayerManager.PeerPlayer
 var enemy_player: Player
 
-var role: RolesManager.Role
+var role: Role
 
 var current_health: int
 var current_money: int 
@@ -123,8 +123,7 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 	set_multiplayer_authority(peer_player.id) # Necessary for units added after setup
 
 	unit.name = unit.unit_name + str(get_child_count()) + str(peer_player.id)
-	unit.sprite.modulate = role.color
-
+	
 	if multiplayer.get_unique_id() == peer_player.id:
 		unit.position = target_position
 		unit.match_initial_position = target_position
