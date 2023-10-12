@@ -14,8 +14,13 @@ func _ready():
 	rng.randomize()
 	
 	GameManager.set_store(self)
+	GameManager.map_initialized.connect(_on_map_initialized)
 	GameManager.player_initialized.connect(_on_player_initialized)
 	update_store()
+	
+# Called when the map is initialized
+func _on_map_initialized() -> void:
+	GameManager.map.match_ended.connect(_on_match_ended)
 	
 # Called when the player is initialized
 func _on_player_initialized() -> void:
@@ -51,8 +56,10 @@ func get_random_unit_set(unit_count: int) -> Array:
 	var total_units_weight = GameManager.units_data.keys().reduce(
 		func(accum, key): return accum + GameManager.units_data[key].weights[game_phase], 0)
 	
+	assert(total_units_weight > 0, "total units weight is equal to 0")
+	
 	for i in range(unit_count):
-		var random_unit_weigth = rng.randi_range(0, total_units_weight)
+		var random_unit_weigth = rng.randi_range(1, total_units_weight)
 		var cumulative_weight = 0
 
 		for unit_class in GameManager.units_data:

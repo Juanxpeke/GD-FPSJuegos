@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0iyqftixhvet"
-path="res://.godot/imported/black_pieces.png-07ae0725499938f4510f7e8500c7a5a7.ctex"
+uid="uid://b3vt06bhot8rm"
+path="res://.godot/imported/default.png-b3477e90809f20973227a86c79ef2d0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/Units/black_pieces.png"
-dest_files=["res://.godot/imported/black_pieces.png-07ae0725499938f4510f7e8500c7a5a7.ctex"]
+source_file="res://Global/Config/default.png"
+dest_files=["res://.godot/imported/default.png-b3477e90809f20973227a86c79ef2d0c.ctex"]
 
 [params]
 

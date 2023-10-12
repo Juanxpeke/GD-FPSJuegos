@@ -4,7 +4,10 @@ extends Node2D
 signal has_dead
 signal has_revived
 
-@export var unit_name: String
+static var level_2_material: ShaderMaterial = load("res://Core/Units/level_2_material.tres")
+static var level_3_material: ShaderMaterial = load("res://Core/Units/level_3_material.tres")
+
+@export var unit_class: String
 
 @export var level_1_descriptors: Array[CellDescriptor]
 @export var level_2_descriptors: Array[CellDescriptor]
@@ -26,9 +29,6 @@ static var is_grabbing: bool = false
 var grabbed: bool = false
 var grab_cell: Vector2
 
-# Store logic
-@export var in_store: bool = false
-
 @onready var sprite := %Sprite
 @onready var area := %Area
 
@@ -36,20 +36,18 @@ var grab_cell: Vector2
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	if not in_store:
-		GameManager.board.add_unit(self)
-		GameManager.map.store_ended.connect(_on_store_ended)
-		GameManager.map.turn_ended.connect(_on_turn_ended)
-		GameManager.map.match_ended.connect(_on_match_ended)
+	GameManager.board.add_unit(self)
+	
+	_update_role_data()
+	_update_level_data()
+	
+	GameManager.map.store_ended.connect(_on_store_ended)
+	GameManager.map.turn_ended.connect(_on_turn_ended)
+	GameManager.map.match_ended.connect(_on_match_ended)
 	area.mouse_entered.connect(_on_mouse_entered)
 	area.mouse_exited.connect(_on_mouse_exited)
 	area.input_event.connect(_on_input_event)
-	GameManager.map.store_ended.connect(_on_store_ended)
-	GameManager.map.turn_ended.connect(_on_turn_ended)
-	GameManager.map.game_changed.connect(_on_turn_ended)
-	GameManager.map.match_ended.connect(_on_match_ended)
-	
-	_update_level_data()
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
@@ -79,7 +77,7 @@ func _on_mouse_exited() -> void:
 	
 # Called when an input event occurs inside the unit
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if not is_multiplayer_authority() and not in_store:
+	if not is_multiplayer_authority():
 		return
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -119,12 +117,27 @@ func _on_match_ended() -> void:
 		revive()
 	position = match_initial_position
 	
+# Updates the unit data by its player role
+func _update_role_data() -> void:
+	var unit_offset = RolesManager.get_texture_atlas_unit_offset(get_unit_class())
+	var unit_dimensions = RolesManager.get_texture_atlas_unit_dimensions()
+	
+	sprite.texture = AtlasTexture.new() 
+	sprite.texture.atlas = get_player().role.units_texture_atlas
+	sprite.texture.region = Rect2(unit_offset.x, unit_offset.y, unit_dimensions.x, unit_dimensions.y)
+	
 # Updates the unit data by its level
 func _update_level_data() -> void:
+	print(unit_class, " level up to: ", level)
 	match level:
-		1: level_cell_descriptors = level_1_descriptors
-		2: level_cell_descriptors = level_2_descriptors
-		3: level_cell_descriptors = level_3_descriptors
+		1: 
+			level_cell_descriptors = level_1_descriptors
+		2:
+			level_cell_descriptors = level_2_descriptors
+			sprite.set_material(level_2_material)
+		3:
+			level_cell_descriptors = level_3_descriptors
+			sprite.set_material(level_3_material)
 		
 # Updates the movement cells 
 func _update_movement_cells() -> void:
@@ -151,12 +164,10 @@ func _update_movement_cells() -> void:
 
 # Gets the unit class
 func get_unit_class() -> String:
-	return unit_name.to_lower()
+	return unit_class.to_lower()
 
 # Gets the unit player
 func get_player() -> Player:
-	if in_store:
-		return GameManager.player
 	return get_parent()
 
 # Gets the unit current cell
@@ -191,16 +202,17 @@ func revive() -> void:
 	area.input_pickable = true
 	has_revived.emit()
 	
-# Dissapears forever
+# Dissapears forever on each peer, including current
 @rpc("call_local", "reliable")
 func dissapear_forever() -> void:
 	print("dissapear forever ", name)
+	get_player().match_live_units.erase(self) # REVIEW: Possible bug, when erasing element in for
 	queue_free()
 	
-# Level ups the unit
+# Changes the unit level on each peer, including current
 @rpc("call_local", "reliable")
-func level_up() -> void:
-	level += 1
+func change_level(target_level: int) -> void:
+	level = target_level
 	_update_level_data()
 	
 	if GameManager.map.match_phase == GameManager.map.MatchPhase.BATTLE:

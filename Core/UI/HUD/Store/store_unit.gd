@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # Called when the store unit button is pressed
 func _on_pressed() -> void:
-	if GameManager.player.can_afford(0):
+	if GameManager.player.can_afford(GameManager.units_data[unit_class].cost):
 		_hide()
 		GameManager.player.buy_unit(unit_class)
 	else:
@@ -20,6 +20,7 @@ func _on_pressed() -> void:
 
 # Shows the current store unit
 func _show() -> void:
+	print("xd")
 	disabled = false
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	unit_cost_label.show()

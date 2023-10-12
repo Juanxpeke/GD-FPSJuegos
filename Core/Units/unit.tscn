@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://deu52wnh547lv"]
+[gd_scene load_steps=4 format=3 uid="uid://deu52wnh547lv"]
 
 [ext_resource type="Script" path="res://Core/Units/unit.gd" id="1_eqqdm"]
-[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="1_w3vpn"]
 [ext_resource type="Resource" uid="uid://cqg7lhubm2k6u" path="res://Core/Board/CellDescriptors/ClassicDescriptors/queen_descriptor.tres" id="2_ng4ak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oce3x"]
@@ -9,7 +8,6 @@ size = Vector2(25, 25)
 
 [node name="Unit" type="Node2D"]
 script = ExtResource("1_eqqdm")
-unit_name = "Unit"
 level_1_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_ng4ak")])
 level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_ng4ak")])
 level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_ng4ak")])
@@ -18,7 +16,6 @@ level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_desc
 unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_w3vpn")
 
 [node name="Area" type="Area2D" parent="."]
 unique_name_in_owner = true

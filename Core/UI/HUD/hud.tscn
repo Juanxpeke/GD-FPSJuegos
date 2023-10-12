@@ -10,17 +10,25 @@ script = ExtResource("1_ku5ab")
 
 [node name="PlayerInterface" parent="." instance=ExtResource("2_lccxb")]
 unique_name_in_owner = true
-offset_left = 67.0
-offset_top = 545.0
-offset_right = 67.0
-offset_bottom = 545.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -125.0
+offset_right = 226.0
+offset_bottom = -25.0
+grow_vertical = 0
 
 [node name="EnemyInterface" parent="." instance=ExtResource("2_lccxb")]
 unique_name_in_owner = true
-offset_left = 1019.0
-offset_top = 60.0
-offset_right = 1019.0
-offset_bottom = 60.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -233.0
+offset_top = 27.0
+offset_right = -33.0
+offset_bottom = 127.0
+grow_horizontal = 0
 
 [node name="Store" parent="." instance=ExtResource("1_xp5ni")]
 unique_name_in_owner = true

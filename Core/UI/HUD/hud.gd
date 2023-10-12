@@ -20,7 +20,7 @@ func _ready() -> void:
 			timer_on = true
 			preparation_timer.start()
 			
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.2).timeout
 			
 			player_interface.set_player(GameManager.player)
 			enemy_interface.set_player(GameManager.player.enemy_player)

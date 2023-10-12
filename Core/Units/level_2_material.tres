@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c3e6gg2wdc203"]
+
+[ext_resource type="Shader" path="res://Core/Units/unit.gdshader" id="1_le4cr"]
+
+[resource]
+shader = ExtResource("1_le4cr")
+shader_parameter/outline_color = Color(0.407843, 0.615686, 0.262745, 1)

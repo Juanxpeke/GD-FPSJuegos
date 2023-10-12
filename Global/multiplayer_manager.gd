@@ -74,8 +74,8 @@ func get_current_peer_player() -> PeerPlayer:
 # Sets the given role to the player with the given multiplayer ID
 @rpc("any_peer", "reliable", "call_local")
 func set_peer_player_role(id: int, role_enum: GameManager.RoleEnum) -> void:
-	var player = get_peer_player(id)
-	player.role = role_enum
+	var peer_player = get_peer_player(id)
+	peer_player.role_enum = role_enum
 	peer_player_updated.emit(id)
 
 # Sets the given role to the current player
@@ -92,18 +92,18 @@ func is_online() -> bool:
 class PeerPlayer:
 	var id: int
 	var name: String
-	var role: GameManager.RoleEnum
+	var role_enum: GameManager.RoleEnum
 	
 	# Constructor
-	func _init(new_id: int, new_name: String, new_role := GameManager.RoleEnum.NONE) -> void:
+	func _init(new_id: int, new_name: String, new_role_enum := GameManager.RoleEnum.NONE) -> void:
 		id = new_id
 		name = new_name
-		role = new_role
+		role_enum = new_role_enum
 	
 	# Returns a dictionary with the data
 	func to_dict() -> Dictionary:
 		return {
 			"id": id,
 			"name": name,
-			"role": role
+			"role": role_enum
 		}

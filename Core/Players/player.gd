@@ -7,7 +7,7 @@ signal money_changed()
 var peer_player: MultiplayerManager.PeerPlayer
 var enemy_player: Player
 
-var role: RolesManager.Role
+var role: Role
 
 var current_health: int
 var current_money: int 
@@ -85,7 +85,7 @@ func _on_match_ended() -> void:
 func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	self.peer_player = peer_player
 	name = "Player" + str(peer_player.id)
-	role = GameManager.get_role(peer_player.role)
+	role = RolesManager.get_role(peer_player.role_enum)
 	
 	current_health = role.initial_health
 	current_money = role.initial_money
@@ -137,9 +137,8 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 	add_child(unit)
 	set_multiplayer_authority(peer_player.id) # Necessary for units added after setup
 
-	unit.name = unit.unit_name + str(get_child_count()) + str(peer_player.id)
-	unit.sprite.modulate = role.color
-
+	unit.name = unit.unit_class + str(get_child_count()) + str(peer_player.id)
+	
 	if multiplayer.get_unique_id() == peer_player.id:
 		unit.position = target_position
 		unit.match_initial_position = target_position
@@ -210,10 +209,10 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 
 # Fuses two units
 func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
-	match_live_units.erase(other_unit) # REVIEW: Possible bug, when erasing element in for
-	unit.dissapear_forever.rpc()
+	var max_level = max(unit.level, other_unit.level)
 	
-	other_unit.level_up.rpc(GameManager.board.get_cell_center(target_cell))
+	unit.dissapear_forever.rpc()
+	other_unit.change_level.rpc(max_level + 1)
 
 # Loses the match
 func lose_match() -> void:
@@ -240,16 +239,18 @@ func subtract_coins(amount: int) -> void:
 		current_money -= amount
 		money_changed.emit()
 
-func buy_unit(unit_name: String) -> void:
+# Buys a unit
+func buy_unit(unit_class: String) -> void:
 	var base_cells = GameManager.board.get_base_cells()
 	for base_cell in base_cells:
 		var live_unit = get_live_unit_by_cell(base_cell)
 		if live_unit == null:
 			var unit_position = GameManager.board.get_cell_center(base_cell)
-			spawn_unit.rpc(unit_name, unit_position)
+			spawn_unit.rpc(unit_class, unit_position)
+			subtract_coins(GameManager.units_data[unit_class].cost)
 			break
 		
 @rpc("call_local", "reliable")
-func spawn_unit(unit_name: String, target_position: Vector2) -> void:
-	add_unit(unit_name, target_position)
+func spawn_unit(unit_class: String, target_position: Vector2) -> void:
+	add_unit(unit_class, target_position)
 
