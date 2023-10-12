@@ -6,7 +6,6 @@ extends Resource
 @export var initial_money: int
 @export var initial_units_names: Array[String]
 @export var initial_units_offsets: Array[Vector2i]
-@export var initial_passives: Array[Skill]
 @export var units_texture_atlas: Texture2D
 
 # Called when the node enters the scene tree for the first time

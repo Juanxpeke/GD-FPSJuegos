@@ -10,5 +10,4 @@ initial_health = 25
 initial_money = 15
 initial_units_names = Array[String](["king", "knight"])
 initial_units_offsets = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
-initial_passives = Array[Resource("res://Core/Players/States/skill.gd")]([])
 units_texture_atlas = ExtResource("2_p20pf")

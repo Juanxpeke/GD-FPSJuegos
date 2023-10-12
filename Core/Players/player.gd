@@ -103,9 +103,6 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 
 #### Match ####
 
-	if multiplayer.get_unique_id() == peer_player.id:
-		GameManager.set_player(self)
-
 # Gets all the dead units
 func get_dead_units() -> Array:
 	return match_dead_units

@@ -6,8 +6,7 @@ func _init() -> void:
 	description = "inmediatily level up all bishop units you posess"
 
 func _activate_effect(player: Player):
-	print("efectoactivado")
+	print("spell effect activated")
 	for unit in (player.match_dead_units + player.match_live_units):
-		print(unit.unit_name)
-		if unit.unit_name == "Bishop":
+		if unit.get_unit_class() == "bishop":
 			unit.level_up()
