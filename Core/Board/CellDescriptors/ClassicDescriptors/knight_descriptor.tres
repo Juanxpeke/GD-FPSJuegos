@@ -6,4 +6,4 @@
 script = ExtResource("1_p3gmy")
 is_blockable = false
 is_filled = false
-cell_range = 2
+cell_range = 1

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LDescriptor" load_steps=2 format=3 uid="uid://b8mmya6p50gex"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/L_descriptor_v2.gd" id="1_s1xjj"]
+
+[resource]
+script = ExtResource("1_s1xjj")
+is_blockable = true
+is_filled = false
+cell_range = 1
