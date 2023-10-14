@@ -35,6 +35,10 @@ func get_texture_atlas_unit_offset_coords(unit_class: String) -> Vector2:
 			return Vector2(3, 0)
 		"knight":
 			return Vector2(1, 0)
+		"mage":
+			return Vector2(0, 0)
+		"jumper":
+			return Vector2(0, 0)
 	return Vector2()
 
 # Gets the given unit offset in the roles texture atlases
