@@ -8,6 +8,7 @@ extends Resource
 @export var is_filled: bool = true
 @export var cell_range: int = -1
 
+var wrap_around: bool = false # se usa solamente para 1 skill lol
 # Private
 
 var _directions: Array[Array] = [] 

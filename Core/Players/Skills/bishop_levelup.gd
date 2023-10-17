@@ -9,4 +9,4 @@ func _activate_effect(player: Player):
 	print("spell effect activated")
 	for unit in (player.match_dead_units + player.match_live_units):
 		if unit.get_unit_class() == "bishop":
-			unit.level_up()
+			unit.change_level(unit.level+1)
