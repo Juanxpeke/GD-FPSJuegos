@@ -29,8 +29,8 @@ var phase_matchi_changes: Dictionary = {
 }
 
 var phase_damages: Dictionary = {
-	"early": 2,
-	"middle": 2,
+	"early": 10,
+	"middle": 10,
 	"late": 2,
 }
 

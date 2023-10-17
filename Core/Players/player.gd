@@ -16,7 +16,6 @@ var current_money: int
 var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
 
-
 ### Skills ####
 var activable_skills : Array[Active] = []
 
@@ -215,8 +214,17 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 func lose_match() -> void:
 	print("lose match, ", name)
 	current_health -= GameManager.phase_damages[GameManager.get_phase()]
-	health_changed.emit()
-	GameManager.map.end_match()
+	if current_health > 0:
+		health_changed.emit()
+		GameManager.map.end_match()
+	else:
+		current_health = 0
+		health_changed.emit()
+		game_over.rpc()
+		
+@rpc("call_local", "reliable")
+func game_over() -> void:
+	get_tree().change_scene_to_packed(load("res://Core/UI/Lobby/lobby.tscn"))
 
 #### Skills #### 
 
