@@ -12,6 +12,7 @@ script = ExtResource("1_ad0t1")
 unit_class = "Bishop"
 level_1_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_veb2p")])
 level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("3_lhat3")])
+level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("3_lhat3")])
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true

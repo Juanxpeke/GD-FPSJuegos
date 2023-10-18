@@ -10,6 +10,8 @@ size = Vector2(25, 25)
 script = ExtResource("1_gtgck")
 unit_class = "Knight"
 level_1_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_nx3ol")])
+level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_nx3ol")])
+level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_nx3ol")])
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
