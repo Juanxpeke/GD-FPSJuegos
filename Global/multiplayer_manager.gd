@@ -3,12 +3,6 @@ extends Node
 signal peer_players_updated
 signal peer_player_updated(id: int)
 
-enum Role {
-	NONE,
-	ROLE_A,
-	ROLE_B
-}
-
 const SERVER_PORT: int = 5049
 
 var thread: Thread
@@ -79,14 +73,14 @@ func get_current_peer_player() -> PeerPlayer:
 
 # Sets the given role to the player with the given multiplayer ID
 @rpc("any_peer", "reliable", "call_local")
-func set_peer_player_role(id: int, role: Role) -> void:
-	var player = get_peer_player(id)
-	player.role = role
+func set_peer_player_role(id: int, role_enum: GameManager.RoleEnum) -> void:
+	var peer_player = get_peer_player(id)
+	peer_player.role_enum = role_enum
 	peer_player_updated.emit(id)
 
 # Sets the given role to the current player
-func set_current_peer_player_role(role: Role) -> void:
-	set_peer_player_role.rpc(multiplayer.get_unique_id(), role)
+func set_current_peer_player_role(role_enum: GameManager.RoleEnum) -> void:
+	set_peer_player_role.rpc(multiplayer.get_unique_id(), role_enum)
 
 # Returns true if the current player is online, false otherwise
 func is_online() -> bool:
@@ -98,18 +92,18 @@ func is_online() -> bool:
 class PeerPlayer:
 	var id: int
 	var name: String
-	var role: Role
+	var role_enum: GameManager.RoleEnum
 	
 	# Constructor
-	func _init(new_id: int, new_name: String, new_role: Role = Role.NONE) -> void:
+	func _init(new_id: int, new_name: String, new_role_enum := GameManager.RoleEnum.NONE) -> void:
 		id = new_id
 		name = new_name
-		role = new_role
+		role_enum = new_role_enum
 	
 	# Returns a dictionary with the data
 	func to_dict() -> Dictionary:
 		return {
 			"id": id,
 			"name": name,
-			"role": role
+			"role": role_enum
 		}

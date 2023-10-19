@@ -19,7 +19,16 @@ config/icon="res://icon.svg"
 
 GameManager="*res://Global/game_manager.gd"
 MultiplayerManager="*res://Global/multiplayer_manager.gd"
-ConfigManager="*res://Global/config_manager.gd"
+ConfigManager="*res://Global/Config/config_manager.gd"
+RolesManager="*res://Global/Roles/roles_manager.gd"
+
+[display]
+
+window/size/resizable=false
+
+[gui]
+
+theme/custom="res://Themes/main_theme.tres"
 
 [input]
 
@@ -32,3 +41,4 @@ dummy={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.00392157, 0, 0.0117647, 1)

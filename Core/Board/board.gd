@@ -1,8 +1,14 @@
 class_name Board
 extends TileMap
 
-enum Layer { BOARD_LAYER, HOLE_LAYER, MOVEMENT_LAYER }
-enum Tile { BOARD_TILE, ALT_BOARD_TILE, HOLE_TILE, MOVEMENT_TILE }
+enum Layer { BOARD_LAYER, HOLE_LAYER, MOVEMENT_LAYER, BASE_LAYER }
+
+const TILES: Dictionary = {
+	"board": Vector2i(1, 1),
+	"board_alt": Vector2i(1, 2),
+	"movement": Vector2i(10, 0),
+	"base": Vector2i(10, 1),
+}
 
 var units: Array[Unit] = []
 
@@ -11,23 +17,35 @@ var units: Array[Unit] = []
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	GameManager.set_board(self)
-	GameManager.connect("game_changed", _on_game_changed)
+	GameManager.map_initialized.connect(_on_map_initialized)
 	
 	_init_board_layer()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame
-func _process(_delta: float) -> void:
-	pass
-	
-# Called when the game changes
-func _on_game_changed() -> void:
+# Called when map is initialized
+func _on_map_initialized() -> void:
+	GameManager.map.store_ended.connect(_on_store_ended)
+	GameManager.map.turn_ended.connect(_on_turn_ended)
+	GameManager.map.game_changed.connect(_on_turn_ended)
+	GameManager.map.match_ended.connect(_on_match_ended)
+
+# Called when the store ends
+func _on_store_ended() -> void:
+	hide_base_cells()
+
+# Called when the turn advances
+func _on_turn_ended() -> void:
 	hide_movement_cells()
+	
+# Called when the match ends
+func _on_match_ended() -> void:
+	hide_movement_cells()
+	show_base_cells()
 
 # Initializes the board layer (just aesthetically) 
 func _init_board_layer() -> void:
 	for cell in get_used_cells(Layer.BOARD_LAYER):
 		if ((cell[0] + cell[1]) % 2 != 0):
-			set_cell(Layer.BOARD_LAYER, cell, Tile.ALT_BOARD_TILE, Vector2i(0, 0))
+			set_cell(Layer.BOARD_LAYER, cell, 0, TILES.board_alt)
 
 # Returns an array with the cells in the discrete line from (x0, y0) to (x1, y1)
 # Low part of modified Dofus' line algorithm
@@ -107,12 +125,49 @@ func _get_cells_line(start_cell: Vector2i, end_cell: Vector2i) -> Array:
 		else:
 			return _get_cells_line_high(x0, y0, x1, y1)
 
+func _get_lines_from_cell_descriptor(cell_descriptor: CellDescriptor, origin_cell: Vector2i) -> Array[Array]:
+	var result: Array[Array] = []
+	var directions: Array[Array] = cell_descriptor.get_directions()
+	var initial_cell_index = 0 if cell_descriptor.is_filled else cell_descriptor.cell_range - 1
+	var base_movements: Array[Vector2i] = cell_descriptor.get_base_movement()
+	
+	for i in range(0, directions.size()):
+		var line = []
+		var direction = directions[i]
+		var dir_size = direction.size()
+		var last_cell: Vector2i = origin_cell + base_movements[i] if (base_movements.size() > i) else origin_cell
+		
+		for index in range(0, cell_descriptor.cell_range):
+			last_cell += direction[index % dir_size]
+			if index >= initial_cell_index:
+				line.append(last_cell)
+			
+		result.append(line)
+	return result
+
+
 # Public
+
+# Gets the cell size
+func get_cell_size() -> Vector2:
+	return tile_set.tile_size
 
 # Gets the cell from a given position
 func get_cell(cell_position: Vector2) -> Vector2i:
 	return local_to_map(to_local(cell_position))
+	
+# Gets the cell origin in global coordinates
+func get_cell_origin(cell: Vector2i) -> Vector2:
+	return to_global(map_to_local(cell)) - get_cell_size() / 2
+	
+# Gets the cell origin in global coordinates, given a position
+func get_cell_originp(cell_position: Vector2) -> Vector2:
+	return get_cell_origin(get_cell(cell_position))
 
+# Gets the cell origin in local coordinates
+func get_cell_local_origin(cell: Vector2i) -> Vector2:
+	return map_to_local(cell) - get_cell_size() / 2
+	
 # Gets the cell center in global coordinates
 func get_cell_center(cell: Vector2i) -> Vector2:
 	return to_global(map_to_local(cell))
@@ -127,49 +182,77 @@ func get_max_cell_range() -> int:
 	return max(board_cells_size.x, board_cells_size.y)
 	
 # Filter the given cells by free cells
-func get_free_cells(cells: Array, origin_cell := Vector2i(0, 0), is_blockable := true) -> Array:
+func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 0)) -> Array:
 	var free_cells := []
 	var board_cells := get_used_cells(Layer.BOARD_LAYER)
 	var hole_cells := get_used_cells(Layer.HOLE_LAYER)
+	var is_blockable = cell_descriptor.is_blockable
+	var lines = _get_lines_from_cell_descriptor(cell_descriptor, origin_cell)
 	
-	for cell in cells:
-		var is_cell_blocked := false
-		
-		if not cell in board_cells:
-			continue
-		
-		if not is_blockable:
+	var board_sizex = get_used_rect().size.x - 2
+	
+	for line in lines:
+		var is_line_blocked := false
+		for cell in line:
+			
+			if not cell in board_cells:
+				if cell in hole_cells:
+					if is_blockable:
+						break
+					else:
+						continue
+						
+				if cell_descriptor.wrap_around:
+					#print(cell, board_sizex)
+					if Vector2i(cell.x - board_sizex, cell.y) in board_cells:
+						cell = Vector2i(cell.x - board_sizex, cell.y)
+					elif Vector2i(cell.x + board_sizex, cell.y) in board_cells:
+						cell = Vector2i(cell.x + board_sizex, cell.y)
+					else:
+						break
+				else:
+					break
+					
+			
+			if not is_blockable:
+				free_cells.append(cell)
+				continue
+			
+			
+			for unit in units:
+				var unit_cell := get_cell(unit.global_position)
+					
+				if unit_cell == cell:
+					is_line_blocked = true
+					break
+			
 			free_cells.append(cell)
-			continue
-		
-		var cells_line := _get_cells_line(origin_cell, cell)
-		
-		for unit in units:
-			var unit_cell := get_cell(unit.global_position)
-				
-			if unit_cell in cells_line and unit_cell != origin_cell and unit_cell != cell:
-				is_cell_blocked = true
-				break
-				
-		for hole_cell in hole_cells:
-			if hole_cell in cells_line:
-				is_cell_blocked = true
-				break
 
-		if not is_cell_blocked:
-			free_cells.append(cell)
+			if is_line_blocked:
+				break
 	
 	return free_cells
 
 # Shows the movement cells
 func show_movement_cells(cells: Array) -> void:
-	# TODO caso peon con distinto ataque y movimiento se ignora
 	for cell in cells:
-		set_cell(Layer.MOVEMENT_LAYER, cell, Tile.MOVEMENT_TILE, Vector2i(0, 0))
+		set_cell(Layer.MOVEMENT_LAYER, cell, 0, TILES.movement)
 
 # Hides the movement cells
 func hide_movement_cells() -> void:
 	clear_layer(Layer.MOVEMENT_LAYER)
+	
+# Gets the base cells
+func get_base_cells() -> Array[Vector2i]:
+	return get_used_cells(Layer.BASE_LAYER)
+	
+# Shows the base cells
+func show_base_cells() -> void:
+	set_layer_enabled(Layer.BASE_LAYER, true)
+
+# Hides the base cells
+func hide_base_cells() -> void:
+	set_layer_enabled(Layer.BASE_LAYER, false)
 	
 # Gets the vertical mirrored position of the given position
 func get_mirror_position(cell_position: Vector2) -> Vector2:
@@ -179,8 +262,29 @@ func get_mirror_position(cell_position: Vector2) -> Vector2:
 # Adds a unit to the unit list
 func add_unit(unit: Unit) -> void:
 	units.append(unit)
-	unit.connect("tree_exiting", func(): remove_unit(unit))
+	unit.tree_exited.connect(func(): remove_unit(unit))
+	unit.has_dead.connect(func(): remove_unit(unit))
+	unit.has_revived.connect(func(): readd_unit(unit))
 
+# Readds a unit
+func readd_unit(unit: Unit) -> void:
+	units.append(unit)
+	
 # Removes a unit from the unit list
 func remove_unit(unit: Unit) -> void:
 	units.erase(unit)
+	
+# Checks if a unit can be placed in a specific cell in the board
+func can_place_unit(unit: Unit, target_cell: Vector2i) -> bool:
+	var board_cells := get_used_cells(Layer.BOARD_LAYER)
+	var hole_cells := get_used_cells(Layer.HOLE_LAYER)
+	
+	# check if the target cell is in the board and not a hole
+	if target_cell in board_cells and not target_cell in hole_cells:
+		for other_unit in units:
+			if other_unit != unit:
+				var unit_cell := get_cell(other_unit.global_position)
+				if unit_cell == target_cell:
+					return false # cell taken
+		return true
+	return false

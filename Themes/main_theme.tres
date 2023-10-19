@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://lg4bolku7exk"]
+
+[ext_resource type="FontFile" uid="uid://b1xj8ytxk0wds" path="res://Fonts/Abaddon Bold.ttf" id="1_lb8bi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulij4"]
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[resource]
+default_font = ExtResource("1_lb8bi")
+default_font_size = 16
+Panel/styles/panel = SubResource("StyleBoxFlat_ulij4")
+VBoxContainer/constants/separation = 12

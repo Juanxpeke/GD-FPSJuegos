@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://db36f8ux7a06p"]
+[gd_scene load_steps=6 format=3 uid="uid://db36f8ux7a06p"]
 
 [ext_resource type="Script" path="res://Core/Maps/map.gd" id="1_uo3n2"]
 [ext_resource type="PackedScene" uid="uid://8n47mb14jmmk" path="res://Core/Board/board.tscn" id="1_uphg7"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://Core/Players/player.tscn" id="2_x0elb"]
+[ext_resource type="PackedScene" uid="uid://dy17jaermquaa" path="res://Core/UI/HUD/hud.tscn" id="4_xdrfe"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m7wy4"]
 properties/0/path = NodePath(".:first_turn_player_index")
@@ -14,15 +15,31 @@ properties/0/watch = true
 script = ExtResource("1_uo3n2")
 player_scene = ExtResource("2_x0elb")
 
+[node name="HUD" parent="." instance=ExtResource("4_xdrfe")]
+
 [node name="Board" parent="." instance=ExtResource("1_uphg7")]
-position = Vector2(562, 354)
+position = Vector2(562, 322)
+layer_0/tile_data = PackedInt32Array(-65538, 65536, 1, -2, 65536, 1, 65534, 65536, 1, 131070, 65536, 1, 131071, 65536, 1, 65536, 65536, 1, 65537, 65536, 1, 1, 65536, 1, -65535, 65536, 1, -131071, 65536, 1, -131072, 65536, 1, -65537, 65536, 1, 65533, 65536, 1, 131069, 65536, 1, 131068, 65536, 1, 65532, 65536, 1, -4, 65536, 1, -65540, 65536, 1, -65539, 65536, 1, -3, 65536, 1, -131075, 65536, 1, -196610, 65536, 1, -131074, 65536, 1, -131069, 65536, 1, -65534, 65536, 1, 2, 65536, 1, 65538, 65536, 1, 131072, 65536, 1, 196607, 65536, 1, 262142, 65536, 1, 196605, 65536, 1, 196606, 65536, 1, 262143, 65536, 1, 196608, 65536, 1, 196609, 65536, 1, 131073, 65536, 1, 131074, 65536, 1, 65539, 65536, 1, 3, 65536, 1, -65533, 65536, 1, -131070, 65536, 1, -196606, 65536, 1, -196607, 65536, 1, -196608, 65536, 1, -262143, 65536, 1, -262144, 65536, 1, -196609, 65536, 1, -131073, 65536, 1, 262140, 65536, 1, 196604, 65536, 1, 262141, 65536, 1, -131076, 65536, 1, -196612, 65536, 1, -196611, 65536, 1, -262142, 65536, 1, -262141, 65536, 1, -196605, 65536, 1, 131075, 65536, 1, 196611, 65536, 1, 196610, 65536, 1)
+layer_1/tile_data = PackedInt32Array(-65536, 655360, 4, 65535, 655360, 6, -1, 655360, 7, 0, 655360, 5)
+layer_3/tile_data = PackedInt32Array(262141, 655360, 1, 262140, 655360, 1, 196604, 655360, 1, 131068, 655360, 1, 196605, 655360, 1, 262142, 655360, 1)
+layer_4/name = "Background Layer"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array(-196613, 0, 1, -262149, 0, 0, -131077, 0, 2, -65541, 0, 3, -5, 0, 4, 65531, 0, 5, 131067, 0, 6, 196603, 0, 7, 262139, 0, 8, 327675, 0, 9, 327676, 65536, 9, 327677, 131072, 9, 327678, 196608, 9, 327679, 262144, 9, 262144, 327680, 9, 262145, 393216, 9, 262146, 458752, 9, 262147, 524288, 9, 262148, 589824, 9, 196612, 589824, 8, 131076, 589824, 8, 65540, 589824, 8, 4, 589824, 8, -65532, 589824, 8, -131068, 589824, 8, -196604, 589824, 8, -327676, 589824, 0, -262140, 589824, 8, -327677, 524288, 0, -327678, 524288, 0, -327679, 524288, 0, -327680, 524288, 0, -262145, 524288, 0, -262146, 524288, 0, -262147, 524288, 0, -262148, 524288, 0)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(562, 321)
+zoom = Vector2(1.6, 1.6)
 
 [node name="Players" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="KingMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(383, 532)
+position = Vector2(449, 434)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true
