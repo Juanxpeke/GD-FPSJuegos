@@ -151,8 +151,8 @@ func _update_movement_cells() -> void:
 	for cell_descriptor in level_cell_descriptors:
 		current_cell_descriptors.append(cell_descriptor.duplicate())
 		
-	#for skill in get_player().get_active_skills():
-		#skill.modify_current_cell_descriptor(self)
+	for skill in get_player().get_active_skills():
+		skill.modify_current_cell_descriptor(self)
 	
 	for cell_descriptor in current_cell_descriptors:
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)

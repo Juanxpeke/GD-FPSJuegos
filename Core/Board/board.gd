@@ -189,7 +189,7 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 	var is_blockable = cell_descriptor.is_blockable
 	var lines = _get_lines_from_cell_descriptor(cell_descriptor, origin_cell)
 	
-	var board_sizex = get_used_rect().size.x
+	var board_sizex = get_used_rect().size.x - 2
 	
 	for line in lines:
 		var is_line_blocked := false
