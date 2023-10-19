@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://bs52fo0n3twnx"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://4lj8h63sc4hl"]
 
 [ext_resource type="PackedScene" uid="uid://cv30vkwusvsv0" path="res://Core/Units/Jumper/jumper.tscn" id="1_pg25w"]
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_x7ovp"]

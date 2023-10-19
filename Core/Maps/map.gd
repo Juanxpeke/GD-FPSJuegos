@@ -10,12 +10,13 @@ enum MatchPhase { STORE, BATTLE }
 
 @export var player_scene: PackedScene
 @export var preparation_time: float = 10.0
-@export var first_turn_player_index: int = 0 # TODO: Remove @export
 
 var skill_picker_scene : PackedScene = preload("res://Core/Players/Skills/skill_picker.tscn")
 
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
+var first_turn_player_index: int = 0
+var inner_first_turn_player_index: int = 0
 var turn: int = 0
 var matchi: int = 0
 
@@ -47,7 +48,8 @@ func _ready() -> void:
 	if multiplayer.is_server():
 		var preparation_timer = get_tree().create_timer(preparation_time)
 		preparation_timer.timeout.connect(_on_preparation_timeout)
-		first_turn_player_index = map_rng.randi_range(0, players.get_child_count() - 1)
+		# first_turn_player_index = map_rng.randi_range(0, players.get_child_count() - 1)
+		# inner_first_turn_player_index = first_turn_player_index
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(delta: float) -> void:
@@ -57,6 +59,7 @@ func _process(delta: float) -> void:
 func _on_delta_synchronized() -> void:
 	print("delta_synchronized")
 	print("\tFTPI: ", first_turn_player_index)
+	inner_first_turn_player_index = first_turn_player_index
 	
 # Called when the store timer timeouts
 func _on_preparation_timeout() -> void:
@@ -70,7 +73,7 @@ func get_initial_king_position() -> Vector2:
 	
 # Gets the player by the given index
 func get_player_by_turn(turn: int) -> Player:
-	var player_index = (turn + first_turn_player_index) % players.get_children().size()
+	var player_index = (turn + inner_first_turn_player_index) % players.get_children().size()
 	return players.get_child(player_index)
 
 # Gets the current turn player
@@ -99,8 +102,8 @@ func end_match() -> void:
 	if multiplayer.is_server():
 		var preparation_timer = get_tree().create_timer(preparation_time)
 		preparation_timer.timeout.connect(_on_preparation_timeout)
-		first_turn_player_index = (first_turn_player_index + 1) % players.get_children().size()
-	
+		
+	inner_first_turn_player_index = (inner_first_turn_player_index + 1) % players.get_children().size()
 	turn = 0
 	matchi += 1
 	

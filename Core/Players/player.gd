@@ -216,14 +216,11 @@ func lose_match() -> void:
 	print("lose match, ", name)
 	current_health -= GameManager.phase_damages[GameManager.get_phase()]
 	health_changed.emit()
-	GameManager.map.end_match()
-	if current_health < 1:
-		game_over.rpc()
 	
-@rpc("call_local", "reliable")
-func game_over() -> void:
-	get_tree().change_scene_to_packed(load("res://Core/UI/HUD/GameOver/game_over.tscn"))
-	#get_tree().quit()
+	if current_health < 1:
+		GameManager.end_game()
+	
+	GameManager.map.end_match()
 
 #### Skills #### 
 

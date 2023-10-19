@@ -25,12 +25,12 @@ var units_data: Dictionary
 var phase_matchi_changes: Dictionary = {
 	"early": 0,
 	"middle": 1,
-	"late": 2,
+	"late": 99,
 }
 
 var phase_damages: Dictionary = {
 	"early": 2,
-	"middle": 7,
+	"middle": 9,
 	"late": 10,
 }
 
@@ -81,3 +81,7 @@ func get_phase() -> String:
 	
 	print("game phase is ", game_phase, " ", multiplayer.get_unique_id())
 	return game_phase
+
+# Ends the game
+func end_game() -> void:
+	get_tree().change_scene_to_packed(load("res://Core/UI/HUD/GameOver/game_over.tscn"))
