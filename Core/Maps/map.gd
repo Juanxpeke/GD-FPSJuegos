@@ -65,6 +65,10 @@ func _on_delta_synchronized() -> void:
 func _on_preparation_timeout() -> void:
 	end_store.rpc()
 
+func _add_skill_chooser_to_scene() -> void:
+	var skill_picker = skill_picker_scene.instantiate()
+	add_child(skill_picker)
+
 # Public
 
 # Gets the initial king position
@@ -107,8 +111,8 @@ func end_match() -> void:
 	turn = 0
 	matchi += 1
 	
-	var skill_picker = skill_picker_scene.instantiate()
-	add_child(skill_picker)
+	if matchi in GameManager.skill_choosing_match_turns:
+		_add_skill_chooser_to_scene()
 	
 	match_ended.emit()
 	
