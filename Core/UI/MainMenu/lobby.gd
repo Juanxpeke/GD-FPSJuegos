@@ -18,9 +18,11 @@ var status = { 1 : false }
 # Private
 
 # Called when the node enters the scene tree for the first time
-func _ready() -> void:
-	ready_button.disabled = true
+func _ready() -> void:	
+	enemy_username.hide()
+	enemy_role_portrait.hide()
 	time_label.hide()
+	ready_button.disabled = true
 	
 	ready_button.pressed.connect(_on_ready_button_toggled)
 	back_button.pressed.connect(_on_back_button_pressed)
@@ -30,6 +32,7 @@ func _ready() -> void:
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 
 	MultiplayerManager.peer_player_added.connect(_on_peer_player_added)
+	MultiplayerManager.peer_player_removed.connect(_on_peer_player_removed)
 	MultiplayerManager.peer_player_updated.connect(_on_peer_player_updated)
 
 # Called on each frame
@@ -41,7 +44,8 @@ func _process(delta: float) -> void:
 func _on_peer_connected(id: int) -> void:
 	print("peer_connected ", id)
 	
-	# send_info.rpc_id(id, MultiplayerManager.get_current_peer_player().to_dict())
+	send_peer_player.rpc_id(id, MultiplayerManager.get_current_peer_player().to_dict())
+	
 	var local_id = multiplayer.get_unique_id()
 	if multiplayer.is_server():
 		for player_id in status:
@@ -67,12 +71,18 @@ func _on_peer_player_added(id: int) -> void:
 	if id == multiplayer.get_unique_id():
 		_update_player_interface()
 	else:
+		enemy_username.show()
+		enemy_role_portrait.show()
+		
 		_update_enemy_interface(id)
 	
 	_check_ready()
 
 # Called when a peer player is removed from the MultiplayerManager
 func _on_peer_player_removed(id: int) -> void:
+	enemy_username.hide()
+	enemy_role_portrait.hide()
+	
 	_check_ready()
 
 # Called when the given peer player is updated
@@ -101,7 +111,10 @@ func _on_start_timer_timeout() -> void:
 func _disconnect():
 	multiplayer.multiplayer_peer.close()
 	
+	enemy_username.hide()
+	enemy_role_portrait.hide()
 	ready_button.disabled = true
+	
 	status = { 1 : false }
 	MultiplayerManager.peer_players = []
 	
@@ -138,6 +151,12 @@ func _check_ready() -> void:
 	ready_button.disabled = roles.size() != 2
 
 # Public
+
+# Adds a peer player to the MultiplayerManager
+@rpc("any_peer", "reliable")
+func send_peer_player(info_dict: Dictionary) -> void:
+	var player = MultiplayerManager.PeerPlayer.new(info_dict.id, info_dict.name, info_dict.role_id)
+	MultiplayerManager.add_peer_player(player)
 
 # Toggles the player ready status
 @rpc("any_peer", "call_local", "reliable")

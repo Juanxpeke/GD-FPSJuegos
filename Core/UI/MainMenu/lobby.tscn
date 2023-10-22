@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cadmavfijp0an"]
+[gd_scene load_steps=6 format=3 uid="uid://cadmavfijp0an"]
 
 [ext_resource type="PackedScene" uid="uid://b5k1rm5ewfkg6" path="res://Core/UI/MainMenu/lobby_role.tscn" id="1_571sh"]
 [ext_resource type="Script" path="res://Core/UI/MainMenu/lobby.gd" id="1_ypgdp"]
+[ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="3_61070"]
 [ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="3_h5oqf"]
 [ext_resource type="PackedScene" uid="uid://bj0xbbn36k8r6" path="res://Core/UI/MainMenu/lobby_roles_container.tscn" id="4_n2w65"]
 
@@ -14,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ypgdp")
 lobby_role_scene = ExtResource("1_571sh")
+game_map_scene = ExtResource("3_61070")
 
 [node name="TimeLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -138,3 +140,4 @@ grow_vertical = 0
 
 [node name="StartTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 3.0
