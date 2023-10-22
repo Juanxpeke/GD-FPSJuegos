@@ -4,7 +4,6 @@ const MAX_PLAYERS = 2
 const PORT = 5409
 
 @export var game_map_scene: PackedScene
-@export var lobby_player_scene: PackedScene
 
 var _menu_stack: Array[Control] = []
 

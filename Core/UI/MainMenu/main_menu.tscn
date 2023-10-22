@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=5 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
 [ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_f7g8e"]
-[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://Core/UI/MainMenu/lobby_player_i.tscn" id="3_jsloc"]
 [ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
 [ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/lobby.tscn" id="4_xnx4q"]
 
@@ -14,7 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yp1u4")
 game_map_scene = ExtResource("2_f7g8e")
-lobby_player_scene = ExtResource("3_jsloc")
 
 [node name="Menus" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -92,7 +90,8 @@ layout_mode = 2
 
 [node name="StartTimer" type="Timer" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
 show_behind_parent = true
 texture_filter = 2
 position = Vector2(576, 324)
