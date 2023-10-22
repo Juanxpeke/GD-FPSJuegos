@@ -105,5 +105,5 @@ class PeerPlayer:
 		return {
 			"id": id,
 			"name": name,
-			"role": role_id
+			"role_id": role_id
 		}
