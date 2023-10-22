@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
 [ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_f7g8e"]
 [ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
-[ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/lobby.tscn" id="4_xnx4q"]
+[ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/Lobby/lobby.tscn" id="4_xnx4q"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15

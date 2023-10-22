@@ -46,7 +46,6 @@ func _ready():
 
 # Called when UPNP is completed
 func _on_upnp_completed(status) -> void:
-	print(status, "lalala")
 	if status == OK:
 		print("Port Opened", 5)
 	else:

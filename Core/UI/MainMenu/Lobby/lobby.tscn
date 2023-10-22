@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cadmavfijp0an"]
 
 [ext_resource type="PackedScene" uid="uid://b5k1rm5ewfkg6" path="res://Core/UI/MainMenu/Lobby/lobby_role.tscn" id="1_571sh"]
-[ext_resource type="Script" path="res://Core/UI/MainMenu/lobby.gd" id="1_ypgdp"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/Lobby/lobby.gd" id="1_ypgdp"]
 [ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="3_61070"]
 [ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="3_h5oqf"]
 [ext_resource type="PackedScene" uid="uid://bj0xbbn36k8r6" path="res://Core/UI/MainMenu/Lobby/lobby_roles_container.tscn" id="4_n2w65"]
