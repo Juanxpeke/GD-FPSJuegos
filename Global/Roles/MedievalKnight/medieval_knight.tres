@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Role" load_steps=4 format=3 uid="uid://cn6865nmhc3n0"]
+
+[ext_resource type="Script" path="res://Global/Roles/role.gd" id="1_mgaxx"]
+[ext_resource type="Texture2D" uid="uid://ee4utovljcxb" path="res://Global/Roles/MedievalKnight/medieval_knight_portrait.png" id="1_t34yk"]
+[ext_resource type="Texture2D" uid="uid://ggrq2yrddq14" path="res://Global/Roles/MedievalKnight/medieval_knight_units.png" id="2_p20pf"]
+
+[resource]
+script = ExtResource("1_mgaxx")
+name = "Medieval Knight"
+icon = ExtResource("1_t34yk")
+portrait = ExtResource("1_t34yk")
+initial_health = 25
+initial_money = 15
+initial_units_names = Array[String](["king", "knight"])
+initial_units_offsets = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
+units_texture_atlas = ExtResource("2_p20pf")

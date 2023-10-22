@@ -1,0 +1,140 @@
+[gd_scene load_steps=5 format=3 uid="uid://cadmavfijp0an"]
+
+[ext_resource type="PackedScene" uid="uid://b5k1rm5ewfkg6" path="res://Core/UI/MainMenu/lobby_role.tscn" id="1_571sh"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/lobby.gd" id="1_ypgdp"]
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="3_h5oqf"]
+[ext_resource type="PackedScene" uid="uid://bj0xbbn36k8r6" path="res://Core/UI/MainMenu/lobby_roles_container.tscn" id="4_n2w65"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ypgdp")
+lobby_role_scene = ExtResource("1_571sh")
+
+[node name="TimeLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 104.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 0)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="PlayerUsername" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 42.0
+offset_top = 24.0
+offset_right = 282.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 24
+text = "Player Username"
+
+[node name="EnemyUsername" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -282.0
+offset_top = 24.0
+offset_right = -42.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "Enemy Username"
+horizontal_alignment = 2
+
+[node name="PlayerRolePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -120.0
+offset_right = 288.0
+offset_bottom = 120.0
+grow_vertical = 2
+pivot_offset = Vector2(0, 120)
+texture = ExtResource("3_h5oqf")
+stretch_mode = 4
+
+[node name="EnemyRolePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -120.0
+offset_right = -48.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(240, 120)
+texture = ExtResource("3_h5oqf")
+stretch_mode = 4
+flip_h = true
+
+[node name="ReadyButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -173.0
+offset_right = 45.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(45, 36)
+toggle_mode = true
+text = "READY"
+
+[node name="BackButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -60.0
+offset_right = 114.0
+offset_bottom = -24.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 36)
+text = "BACK"
+
+[node name="RolesContainer" parent="." instance=ExtResource("4_n2w65")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StartTimer" type="Timer" parent="."]
+unique_name_in_owner = true

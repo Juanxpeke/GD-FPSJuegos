@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5k1rm5ewfkg6"]
+
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="1_ub7gt"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/lobby_role.gd" id="2_vqixd"]
+
+[node name="LobbyRole" type="TextureButton"]
+offset_right = 75.0
+offset_bottom = 75.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+texture_normal = ExtResource("1_ub7gt")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_vqixd")

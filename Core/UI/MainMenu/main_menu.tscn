@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bslhrv3eo36wd"]
 
-[ext_resource type="Script" path="res://Core/UI/Lobby/lobby.gd" id="1_kkwo8"]
-[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://Core/UI/Lobby/lobby_player.tscn" id="2_2atg2"]
-[ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_d24t2"]
-[ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/Lobby/lobby_background.png" id="4_5girf"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
+[ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_f7g8e"]
+[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://Core/UI/MainMenu/lobby_player_i.tscn" id="3_jsloc"]
+[ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
 
 [node name="Lobby" type="MarginContainer"]
 anchors_preset = 15
@@ -11,9 +11,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_kkwo8")
-game_map_scene = ExtResource("2_d24t2")
-lobby_player_scene = ExtResource("2_2atg2")
+script = ExtResource("1_yp1u4")
+game_map_scene = ExtResource("2_f7g8e")
+lobby_player_scene = ExtResource("3_jsloc")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -89,69 +89,6 @@ text = "Join"
 visible = false
 layout_mode = 2
 
-[node name="ReadyMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
-layout_mode = 2
-text = "Players:
-"
-
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Menus/ReadyMenu"]
-layout_mode = 2
-
-[node name="Players" type="VBoxContainer" parent="PanelContainer/Menus/ReadyMenu/PanelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
-layout_mode = 2
-
-[node name="RoleA" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Role A"
-
-[node name="RoleB" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Role B"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
-layout_mode = 2
-
-[node name="BackReady" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Back
-"
-
-[node name="Ready" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Ready"
-
-[node name="TimeContainer" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
-unique_name_in_owner = true
-layout_mode = 2
-alignment = 1
-
-[node name="Label2" type="Label" parent="PanelContainer/Menus/ReadyMenu/TimeContainer"]
-layout_mode = 2
-text = "Starting in:"
-
-[node name="Time" type="Label" parent="PanelContainer/Menus/ReadyMenu/TimeContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "5"
-
 [node name="StartTimer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -159,4 +96,4 @@ show_behind_parent = true
 texture_filter = 2
 position = Vector2(576, 324)
 scale = Vector2(0.75, 0.5625)
-texture = ExtResource("4_5girf")
+texture = ExtResource("4_vxpdd")

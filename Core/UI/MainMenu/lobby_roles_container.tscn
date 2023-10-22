@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj0xbbn36k8r6"]
+
+[ext_resource type="Script" path="res://Core/UI/MainMenu/lobby_roles_container.gd" id="1_fj02r"]
+[ext_resource type="PackedScene" uid="uid://b5k1rm5ewfkg6" path="res://Core/UI/MainMenu/lobby_role.tscn" id="1_okdna"]
+
+[node name="LobbyRolesContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fj02r")
+
+[node name="LobbyRole" parent="." instance=ExtResource("1_okdna")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -180.0
+offset_top = -37.0
+offset_right = -105.0
+offset_bottom = 38.0
+
+[node name="LobbyRole2" parent="." instance=ExtResource("1_okdna")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = -85.0
+offset_top = -38.0
+offset_right = -10.0
+offset_bottom = 37.0
+
+[node name="LobbyRole3" parent="." instance=ExtResource("1_okdna")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = -38.0
+offset_right = 85.0
+offset_bottom = 37.0
+
+[node name="LobbyRole4" parent="." instance=ExtResource("1_okdna")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 105.0
+offset_top = -38.0
+offset_right = 180.0
+offset_bottom = 37.0

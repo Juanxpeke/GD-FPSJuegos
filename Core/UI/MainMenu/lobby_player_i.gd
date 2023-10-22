@@ -27,16 +27,17 @@ func _on_player_updated(id: int) -> void:
 
 func _update(peer_player: MultiplayerManager.PeerPlayer):
 	_set_player_name(peer_player.name)
-	_set_player_role(peer_player.role_enum)
+	_set_player_role(peer_player.role_id)
 
 
 func _set_player_name(value: String) -> void:
 	player_name.text = value
 
 
-func _set_player_role(value: GameManager.RoleEnum) -> void:
-	player_role.visible = value != GameManager.RoleEnum.NONE
-	player_role.text = RolesManager.get_role(value).name
+func _set_player_role(value: int) -> void:
+	player_role.visible = value != -1
+	if value != -1:
+		player_role.text = RolesManager.get_role(value).name
 
 func set_ready(value: bool) -> void:
 	ready_texture.visible = value

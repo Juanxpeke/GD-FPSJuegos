@@ -1,8 +1,10 @@
 extends Node
 
 # All roles in game
-var role_a: Role = load("res://Global/Roles/pirate.tres")
-var role_b: Role = load("res://Global/Roles/medieval_knight.tres")
+var roles = [
+	load("res://Global/Roles/MedievalKnight/medieval_knight.tres"),
+	load("res://Global/Roles/Pirate/pirate.tres"),
+]
 
 # Unit dimensions on all texture atlases
 var texture_atlas_unit_dimensions: Vector2 = Vector2(16, 18)
@@ -14,13 +16,9 @@ func _ready() -> void:
 # Public
 
 # Gets the role parameters given a role enum
-func get_role(role_enum: GameManager.RoleEnum) -> Role:
-	match role_enum:
-		GameManager.RoleEnum.ROLE_A:
-			return role_a
-		GameManager.RoleEnum.ROLE_B:
-			return role_b
-	return role_a
+func get_role(role_id: int) -> Role:
+	assert(role_id > -1 and role_id < roles.size(), "invalid role id")
+	return roles[role_id]
 	
 # Gets the unit dimensions in the roles texture atlases
 func get_texture_atlas_unit_dimensions() -> Vector2:
