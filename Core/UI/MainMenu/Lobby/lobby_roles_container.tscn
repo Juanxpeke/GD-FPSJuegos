@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bj0xbbn36k8r6"]
 
-[ext_resource type="Script" path="res://Core/UI/MainMenu/lobby_roles_container.gd" id="1_fj02r"]
-[ext_resource type="PackedScene" uid="uid://b5k1rm5ewfkg6" path="res://Core/UI/MainMenu/lobby_role.tscn" id="1_okdna"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/Lobby/lobby_roles_container.gd" id="1_fj02r"]
+[ext_resource type="PackedScene" uid="uid://b5k1rm5ewfkg6" path="res://Core/UI/MainMenu/Lobby/lobby_role.tscn" id="1_okdna"]
 
 [node name="LobbyRolesContainer" type="Control"]
 layout_mode = 3
