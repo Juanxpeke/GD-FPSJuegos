@@ -4,7 +4,7 @@ class_name SkillPicker
 @export var skill_option_scene : PackedScene = preload("res://Core/Players/Skills/skill_option_container.tscn")
 @export var options_n : int
 
-var choices : Array = []
+var choices : Array[skillOption] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,11 +24,17 @@ func _ready() -> void:
 		container.set_skill(skill)
 		add_child(container)
 		
-		choices.append(skill)
+		choices.append(container)
 
 # elimina el nodo de la escene y elije una skill aleatoria 
 func force_close() -> void:
 	print("FORCE CLOSE")
-	var skill_id = choices[randi() % choices.size()][1]
-	GameManager.player.add_skill.rpc(skill_id)
-	self.queue_free()
+	choices.shuffle()
+	var container = choices[0]
+	container.select()
+
+# corre la animacion de choices que no fueron elegidas
+func option_selected(option : skillOption) -> void:
+	for choice in choices:
+		if !(choice == option):
+			choice.play_unselected()
