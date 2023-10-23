@@ -3,6 +3,7 @@ extends VBoxContainer
 @onready var image : TextureRect = $TextureRect
 @onready var description : Label = $Label
 var skill_attached : Skill
+var skill_index : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,13 +25,14 @@ func _on_mouse_exited():
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		GameManager.player.add_skill.rpc(skill_attached)
+		GameManager.player.add_skill.rpc(skill_index)
 		print("skill elegida, ", skill_attached)
 		get_parent().queue_free()
 
 # when panel is created, each container should be setted a skill
-func set_skill(skill: Skill) -> void:
-	skill_attached = skill
+func set_skill(skill_and_index: Array) -> void:
+	skill_attached = skill_and_index[0]
+	skill_index = skill_and_index[1]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
