@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
 [ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_f7g8e"]
 [ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
 [ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/Lobby/lobby.tscn" id="4_xnx4q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qqv7k"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -18,70 +20,120 @@ game_map_scene = ExtResource("2_f7g8e")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="StartMenu" type="VBoxContainer" parent="Menus"]
+[node name="StartMenu" type="Control" parent="Menus"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Menus/StartMenu"]
+[node name="GameTitle" type="Label" parent="Menus/StartMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -476.0
+offset_top = -204.5
+offset_right = 476.0
+offset_bottom = -57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "Pawns & Legends"
+horizontal_alignment = 1
+
+[node name="GameSubtitle" type="Label" parent="Menus/StartMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -476.0
+offset_top = -73.5
+offset_right = 476.0
+offset_bottom = 73.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Gambit's Destiny"
+horizontal_alignment = 1
+
+[node name="PlayMenu" type="PanelContainer" parent="Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayMenuContainer" type="VBoxContainer" parent="Menus/PlayMenu"]
+layout_mode = 2
+
+[node name="UsernameLabel" type="Label" parent="Menus/PlayMenu/PlayMenuContainer"]
 layout_mode = 2
 text = "Name:
 "
 
-[node name="User" type="LineEdit" parent="Menus/StartMenu"]
+[node name="UsernameInput" type="LineEdit" parent="Menus/PlayMenu/PlayMenuContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Player"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menus/StartMenu"]
+[node name="Separator" type="HSeparator" parent="Menus/PlayMenu/PlayMenuContainer"]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_qqv7k")
 
-[node name="Host" type="Button" parent="Menus/StartMenu/HBoxContainer"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="Menus/PlayMenu/PlayMenuContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="HostButton" type="Button" parent="Menus/PlayMenu/PlayMenuContainer/ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Host"
 
-[node name="Join" type="Button" parent="Menus/StartMenu/HBoxContainer"]
+[node name="JoinButton" type="Button" parent="Menus/PlayMenu/PlayMenuContainer/ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Join"
 
-[node name="JoinMenu" type="VBoxContainer" parent="Menus"]
+[node name="JoinMenu" type="PanelContainer" parent="Menus"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Label2" type="Label" parent="Menus/JoinMenu"]
+[node name="JoinMenuContainer" type="VBoxContainer" parent="Menus/JoinMenu"]
+layout_mode = 2
+
+[node name="IPLabel" type="Label" parent="Menus/JoinMenu/JoinMenuContainer"]
 layout_mode = 2
 text = "IP:
 "
 
-[node name="IP" type="LineEdit" parent="Menus/JoinMenu"]
+[node name="IPInput" type="LineEdit" parent="Menus/JoinMenu/JoinMenuContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "127.0.0.1"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menus/JoinMenu"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="Menus/JoinMenu/JoinMenuContainer"]
 layout_mode = 2
 
-[node name="BackJoin" type="Button" parent="Menus/JoinMenu/HBoxContainer"]
+[node name="BackJoinButton" type="Button" parent="Menus/JoinMenu/JoinMenuContainer/ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Back"
 
-[node name="ConfirmJoin" type="Button" parent="Menus/JoinMenu/HBoxContainer"]
+[node name="ConfirmJoinButton" type="Button" parent="Menus/JoinMenu/JoinMenuContainer/ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Join"
-
-[node name="Info" type="Label" parent="Menus/JoinMenu"]
-visible = false
-layout_mode = 2
 
 [node name="LobbyMenu" parent="Menus" instance=ExtResource("4_xnx4q")]
 unique_name_in_owner = true

@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc5jp4i14v558"]
+
+[ext_resource type="Script" path="res://Core/UI/MainMenu/Lobby/lobby_role_details.gd" id="1_e1ehg"]
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="2_si1in"]
+
+[node name="LobbyRoleDetails" type="PanelContainer"]
+offset_right = 360.0
+offset_bottom = 320.0
+script = ExtResource("1_e1ehg")
+
+[node name="LobbyRoleDetailsContainer" type="Control" parent="."]
+layout_mode = 2
+
+[node name="RoleName" type="Label" parent="LobbyRoleDetailsContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Role"
+vertical_alignment = 2
+
+[node name="RoleInfoContainer" type="Control" parent="LobbyRoleDetailsContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 48.0
+offset_bottom = 112.0
+grow_horizontal = 2
+
+[node name="RoleDescription" type="Label" parent="LobbyRoleDetailsContainer/RoleInfoContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_right = 270.0
+offset_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "This is a very long placeholder description for a role, that indicates its principal advantages."
+horizontal_alignment = 3
+autowrap_mode = 3
+max_lines_visible = 3
+
+[node name="RoleIcon" type="TextureRect" parent="LobbyRoleDetailsContainer/RoleInfoContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(80, 40)
+size_flags_horizontal = 8
+texture = ExtResource("2_si1in")
+expand_mode = 1
+
+[node name="RolePiecesTitle" type="Label" parent="LobbyRoleDetailsContainer"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 136.0
+offset_bottom = 162.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "Pieces"
+vertical_alignment = 2
+
+[node name="RolePiecesContainer" type="Control" parent="LobbyRoleDetailsContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 170.0
+offset_bottom = 210.0
+grow_horizontal = 2
+
+[node name="RolePiece" type="TextureRect" parent="LobbyRoleDetailsContainer/RolePiecesContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_right = 40.0
+grow_vertical = 2
+texture = ExtResource("2_si1in")
+expand_mode = 1
+
+[node name="RolePiece2" type="TextureRect" parent="LobbyRoleDetailsContainer/RolePiecesContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_right = 90.0
+grow_vertical = 2
+texture = ExtResource("2_si1in")
+expand_mode = 1
+
+[node name="RolePiece3" type="TextureRect" parent="LobbyRoleDetailsContainer/RolePiecesContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_right = 140.0
+grow_vertical = 2
+texture = ExtResource("2_si1in")
+expand_mode = 1
+
+[node name="RolePiece4" type="TextureRect" parent="LobbyRoleDetailsContainer/RolePiecesContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_right = 190.0
+grow_vertical = 2
+texture = ExtResource("2_si1in")
+expand_mode = 1
+
+[node name="RolePiece5" type="TextureRect" parent="LobbyRoleDetailsContainer/RolePiecesContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_right = 240.0
+grow_vertical = 2
+texture = ExtResource("2_si1in")
+expand_mode = 1

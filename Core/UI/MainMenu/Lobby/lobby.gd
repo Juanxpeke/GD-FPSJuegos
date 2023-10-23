@@ -1,4 +1,5 @@
-extends Control
+class_name Lobby
+extends Control 
 
 @export var lobby_role_scene: PackedScene
 @export var game_map_scene: PackedScene
@@ -13,20 +14,22 @@ var status = { 1 : false }
 @onready var ready_button := %ReadyButton
 @onready var back_button := %BackButton
 @onready var roles_container := %RolesContainer
+@onready var role_details := %RoleDetails
 @onready var start_timer := %StartTimer
 
 # Private
 
 # Called when the node enters the scene tree for the first time
-func _ready() -> void:	
+func _ready() -> void:
+	time_label.hide()
 	enemy_username.hide()
 	enemy_role_portrait.hide()
-	time_label.hide()
+	role_details.hide()
 	ready_button.disabled = true
 	
 	ready_button.pressed.connect(_on_ready_button_toggled)
 	back_button.pressed.connect(_on_back_button_pressed)
-	start_timer.timeout.connect(_on_start_timer_timeout)	
+	start_timer.timeout.connect(_on_start_timer_timeout)
 	
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)

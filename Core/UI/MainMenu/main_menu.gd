@@ -7,17 +7,18 @@ const PORT = 5409
 
 var _menu_stack: Array[Control] = []
 
-@onready var user = %User
-@onready var host = %Host
-@onready var join = %Join
+@onready var username_input = %UsernameInput
+@onready var host_button = %HostButton
+@onready var join_button = %JoinButton
 
-@onready var ip = %IP
-@onready var back_join: Button = %BackJoin
-@onready var confirm_join: Button = %ConfirmJoin
+@onready var ip_input = %IPInput
+@onready var back_join_button: Button = %BackJoinButton
+@onready var confirm_join_button: Button = %ConfirmJoinButton
 
 @onready var menus: MarginContainer = %Menus
 
 @onready var start_menu = %StartMenu
+@onready var play_menu = %PlayMenu
 @onready var join_menu = %JoinMenu
 @onready var lobby_menu = %LobbyMenu
 
@@ -30,16 +31,16 @@ func _ready():
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
-	host.pressed.connect(_on_host_pressed)
-	join.pressed.connect(_on_join_pressed)
+	host_button.pressed.connect(_on_host_button_pressed)
+	join_button.pressed.connect(_on_join_button_pressed)
 	
-	confirm_join.pressed.connect(_on_confirm_join_pressed)
+	back_join_button.pressed.connect(back_menu)
+	confirm_join_button.pressed.connect(_on_confirm_join_button_pressed)
 	
-	back_join.pressed.connect(back_menu)
 
-	_go_to_menu(start_menu)
+	_go_to_menu(play_menu)
 	
-	user.text = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
+	username_input.text = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
  else "")
 	
 	# MultiplayerManager.upnp_completed.connect(_on_upnp_completed)
@@ -52,7 +53,7 @@ func _on_upnp_completed(status) -> void:
 		print("Port Error", 5)
 
 # Called when host button is pressed
-func _on_host_pressed() -> void:
+func _on_host_button_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	
 	var err = peer.create_server(PORT, MAX_PLAYERS)
@@ -62,26 +63,26 @@ func _on_host_pressed() -> void:
 	
 	multiplayer.multiplayer_peer = peer
 	
-	var player = MultiplayerManager.PeerPlayer.new(multiplayer.get_unique_id(), user.text)
+	var player = MultiplayerManager.PeerPlayer.new(multiplayer.get_unique_id(), username_input.text)
 	MultiplayerManager.add_peer_player(player)
 	
 	_go_to_menu(lobby_menu)
 
 # Called when join button is pressed
-func _on_join_pressed() -> void:
+func _on_join_button_pressed() -> void:
 	_go_to_menu(join_menu)
 
 # Called when confirm join button is pressed
-func _on_confirm_join_pressed() -> void:
+func _on_confirm_join_button_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
-	var err = peer.create_client(ip.text, PORT)
+	var err = peer.create_client(ip_input.text, PORT)
 	if err:
 		print("Host Error: %d" %err)
 		return
 	
 	multiplayer.multiplayer_peer = peer
 	
-	var player = MultiplayerManager.PeerPlayer.new(multiplayer.get_unique_id(), user.text)
+	var player = MultiplayerManager.PeerPlayer.new(multiplayer.get_unique_id(), username_input.text)
 	MultiplayerManager.add_peer_player(player)
 	
 	_go_to_menu(lobby_menu)

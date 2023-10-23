@@ -1,3 +1,4 @@
+class_name LobbyRolesContainer
 extends Control
 
 @onready var lobby_role := %LobbyRole
