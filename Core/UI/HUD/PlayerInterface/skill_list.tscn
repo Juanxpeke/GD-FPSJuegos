@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://briej2bofn8aj"]
+
+[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_list.gd" id="1_xwjme"]
+
+[node name="SkillList" type="ItemList"]
+offset_left = 4.0
+offset_top = 162.0
+offset_right = 271.0
+offset_bottom = 572.0
+auto_height = true
+max_columns = 2
+same_column_width = true
+fixed_column_width = 100
+icon_mode = 0
+fixed_icon_size = Vector2i(70, 70)
+script = ExtResource("1_xwjme")
