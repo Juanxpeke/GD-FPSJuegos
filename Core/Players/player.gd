@@ -37,13 +37,6 @@ func _ready() -> void:
 		Skill.new(), #test claramente
 	]
 
-# When player obtains a new usable skill
-@rpc("call_local", "reliable")
-func add_skill(skill_id : int) -> void:
-	var skill = skill_pool[skill_id]
-	skill.add_to_player(self)
-	skills_changed.emit()
-
 #### Skills ####
 
 # Activates the given skill
@@ -94,6 +87,13 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	self.peer_player = peer_player
 	name = "Player" + str(peer_player.id)
 	role = RolesManager.get_role(peer_player.role_enum)
+	
+	# set initial skill
+	print(role.initial_skill_script)
+	var skill = role.initial_skill_script.new()
+		
+	skill.add_to_player(self)
+	skills_changed.emit()
 	
 	current_health = role.initial_health
 	current_money = role.initial_money
@@ -231,6 +231,13 @@ func lose_match() -> void:
 	GameManager.map.end_match()
 
 #### Skills #### 
+
+# When player obtains a new usable skill
+@rpc("call_local", "reliable")
+func add_skill(skill_id : int) -> void:
+	var skill = skill_pool[skill_id]
+	skill.add_to_player(self)
+	skills_changed.emit()
 
 @rpc("call_local", "reliable")
 func activate_skill(skill_id: int) -> void:
