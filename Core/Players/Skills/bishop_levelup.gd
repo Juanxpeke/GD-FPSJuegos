@@ -1,7 +1,7 @@
 extends Consumable
 class_name BishopLevelUp
 
-func _init() -> void:
+func _initialize_attributes() -> void:
 	texture_path = "res://assets/skill icons/bishopup.png"
 	description = "inmediatily level up all bishop units you posess"
 

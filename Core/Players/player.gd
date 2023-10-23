@@ -3,6 +3,7 @@ extends Node2D
 
 signal health_changed()
 signal money_changed()
+signal skills_changed()
 
 var peer_player: MultiplayerManager.PeerPlayer
 var enemy_player: Player
@@ -18,23 +19,23 @@ var match_dead_units: Array[Unit] = []
 
 
 ### Skills ####
-var activable_skills : Array[Active] = []
+var activable_skills : Array[Active] = [] # skills that can be activated
 
-var active_skills : Array[Skill] = []
+var active_skills : Array[Skill] = [] # skills that are taking effect right now
+
+var skill_pool : Array[Skill] # All aquirable skills by this player
 
 # Private
 
 # Called when the node enters the tree for the first time
 func _ready() -> void:
 	GameManager.map.match_ended.connect(_on_match_ended)
-	Ghost.new().add_to_player(self) # test #
-	
-
-# When player obtains a new usable skill
-@rpc("call_local", "reliable")
-func add_skill(skill : Skill) -> void:
-	skill.add_to_player(self)
-	print(activable_skills, active_skills)
+	skill_pool = [
+		Ghost.new(), 
+		DimensionalJump.new(),
+		BishopLevelUp.new(),
+		Skill.new(), #test claramente
+	]
 
 #### Skills ####
 
@@ -86,6 +87,13 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	self.peer_player = peer_player
 	name = "Player" + str(peer_player.id)
 	role = RolesManager.get_role(peer_player.role_enum)
+	
+	# set initial skill
+	print(role.initial_skill_script)
+	var skill = role.initial_skill_script.new()
+		
+	skill.add_to_player(self)
+	skills_changed.emit()
 	
 	current_health = role.initial_health
 	current_money = role.initial_money
@@ -224,10 +232,37 @@ func lose_match() -> void:
 
 #### Skills #### 
 
+# When player obtains a new usable skill
+@rpc("call_local", "reliable")
+func add_skill(skill_id : int) -> void:
+	var skill = skill_pool[skill_id]
+	skill.add_to_player(self)
+	skills_changed.emit()
+
+@rpc("call_local", "reliable")
+func activate_skill(skill_id: int) -> void:
+	var skill = activable_skills[skill_id]
+	if skill.activate():
+		var active_index = active_skills.size()
+		active_skills.append(skill)
+		skill.set_index(active_index)
+		GameManager.map.game_changed.emit()
+
 # Returns the player active skills
 func get_active_skills() -> Array:
 	return active_skills
 	
+# Return array of "gettable" skills plus the corresponding index in skill_pool
+func get_skill_pool() -> Array: #returns Array[(Skill, int)]
+	var result : Array = [] 
+	var aquired_skills : Array = activable_skills + active_skills
+	for i in range(0, skill_pool.size()):
+		var skill = skill_pool[i]
+		if !(skill in aquired_skills):
+			result.append([skill, i])
+	return result
+
+
 #### Store ####
 
 # Checks if the player can afford a piece

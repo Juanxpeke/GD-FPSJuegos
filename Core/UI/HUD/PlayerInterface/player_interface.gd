@@ -8,12 +8,13 @@ var player: Player
 @onready var peer_name_label: Label = %PeerNameLabel
 @onready var life_bar: TextureProgressBar = %LifeBar
 @onready var life_label: Label = %LifeLabel
+@onready var skill_list: SkillList
 
 # Private
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	skill_list = get_child(-1, false)
 
 # Called when the related player health changes
 func _on_player_health_changed() -> void:
@@ -57,3 +58,6 @@ func set_player(player: Player) -> void:
 	_update_life_interface()
 
 	player.health_changed.connect(_on_player_health_changed)
+	
+	skill_list.set_player(player)
+	

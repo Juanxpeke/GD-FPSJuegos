@@ -6,12 +6,14 @@ signal turn_ended
 signal match_ended
 signal game_changed
 
-enum MatchPhase { STORE, BATTLE }
+enum MatchPhase { STORE, BATTLE, SKILL_PICK }
 
 @export var player_scene: PackedScene
 @export var preparation_time: float = 10.0
+@export var skill_picking_time: float = 10.0
 
 var skill_picker_scene : PackedScene = preload("res://Core/Players/Skills/skill_picker.tscn")
+var skill_picker : SkillPicker = null
 
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -65,6 +67,25 @@ func _on_delta_synchronized() -> void:
 func _on_preparation_timeout() -> void:
 	end_store.rpc()
 
+func _on_skill_picking_timeout() -> void:
+	end_skill_picking.rpc()
+
+
+func _add_skill_chooser_to_scene() -> void:
+	match_phase = MatchPhase.SKILL_PICK
+	skill_picker = skill_picker_scene.instantiate()
+	add_child(skill_picker)
+	if multiplayer.is_server():
+		var preparation_timer = get_tree().create_timer(skill_picking_time)
+		preparation_timer.timeout.connect(_on_skill_picking_timeout)
+
+func _start_store() -> void:
+	print("start_store")
+	match_phase = MatchPhase.STORE
+	if multiplayer.is_server():
+		var preparation_timer = get_tree().create_timer(preparation_time)
+		preparation_timer.timeout.connect(_on_preparation_timeout)
+
 # Public
 
 # Gets the initial king position
@@ -87,6 +108,13 @@ func end_store() -> void:
 	match_phase = MatchPhase.BATTLE
 	store_ended.emit()
 
+# Ends the Skill picking phase nad close the window
+@rpc("call_local", "reliable")
+func end_skill_picking() -> void:
+	if (is_instance_valid(skill_picker)):
+		skill_picker.force_close()
+	_start_store()
+
 # Ends the turn
 func end_turn() -> void:
 	if (match_phase != MatchPhase.BATTLE): return
@@ -97,18 +125,15 @@ func end_turn() -> void:
 # Ends the current match
 func end_match() -> void:
 	print("end_match ", multiplayer.get_unique_id())
-	match_phase = MatchPhase.STORE
 	
-	if multiplayer.is_server():
-		var preparation_timer = get_tree().create_timer(preparation_time)
-		preparation_timer.timeout.connect(_on_preparation_timeout)
-		
+	if matchi in GameManager.skill_choosing_match_turns:
+		_add_skill_chooser_to_scene()
+	else:
+		_start_store()
+	
 	inner_first_turn_player_index = (inner_first_turn_player_index + 1) % players.get_children().size()
 	turn = 0
 	matchi += 1
-	
-	var skill_picker = skill_picker_scene.instantiate()
-	add_child(skill_picker)
 	
 	match_ended.emit()
 	

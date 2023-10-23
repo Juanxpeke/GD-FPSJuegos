@@ -34,6 +34,8 @@ var phase_damages: Dictionary = {
 	"late": 10,
 }
 
+var skill_choosing_match_turns : Array[int] = [0, 2, 5, 8]
+
 # Private
 
 # Called when the node enters the scene tree for the first time

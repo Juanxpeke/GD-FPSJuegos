@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy17jaermquaa"]
+[gd_scene load_steps=6 format=3 uid="uid://dy17jaermquaa"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/hud.gd" id="1_ku5ab"]
 [ext_resource type="PackedScene" uid="uid://b3lux4srfnsh4" path="res://Core/UI/HUD/Store/store.tscn" id="1_xp5ni"]
 [ext_resource type="PackedScene" uid="uid://cfbchqiowblyh" path="res://Core/UI/HUD/PlayerInterface/player_interface.tscn" id="2_lccxb"]
+[ext_resource type="PackedScene" uid="uid://briej2bofn8aj" path="res://Core/UI/HUD/PlayerInterface/skill_list.tscn" id="3_07nbi"]
 [ext_resource type="Texture2D" uid="uid://dx7t4omxenkpt" path="res://Core/UI/HUD/preparation_time_bar_progress.png" id="4_0j1r6"]
 
 [node name="HUD" type="CanvasLayer"]
@@ -13,11 +14,16 @@ unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 26.0
-offset_top = -125.0
-offset_right = 226.0
-offset_bottom = -25.0
+offset_top = -100.0
+offset_bottom = 0.0
 grow_vertical = 0
+
+[node name="SkillList" parent="PlayerInterface" instance=ExtResource("3_07nbi")]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -450.0
+offset_right = 225.0
+offset_bottom = -40.0
 
 [node name="EnemyInterface" parent="." instance=ExtResource("2_lccxb")]
 unique_name_in_owner = true
@@ -29,6 +35,13 @@ offset_top = 27.0
 offset_right = -33.0
 offset_bottom = 127.0
 grow_horizontal = 0
+
+[node name="SkillList" parent="EnemyInterface" instance=ExtResource("3_07nbi")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 128.0
+offset_right = 232.0
+offset_bottom = 538.0
 
 [node name="Store" parent="." instance=ExtResource("1_xp5ni")]
 unique_name_in_owner = true

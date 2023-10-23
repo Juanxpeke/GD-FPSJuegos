@@ -13,15 +13,12 @@ var uses_remaining : int = 9999
 var active : bool
 
 func _init() -> void:
-	self._initialize_attributes()
+	super._init()
 	active = false
 	GameManager.map.turn_ended.connect(end_turn)
 	GameManager.map.match_ended.connect(reset)
 	uses_remaining = INITIAL_USES
-	
-# override this as init
-func _initialize_attributes() -> void:
-	pass
+
 
 func activate() -> bool:
 	if cooldown_remaining <= 0 and uses_remaining > 0 and not active:
