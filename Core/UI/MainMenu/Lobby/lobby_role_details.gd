@@ -2,6 +2,8 @@ class_name LobbyRoleDetails
 extends PanelContainer
 
 @onready var role_name := %RoleName
+@onready var role_health := %RoleHealth
+@onready var role_money := %RoleMoney
 @onready var role_description := %RoleDescription
 @onready var role_icon := %RoleIcon
 @onready var role_pieces_container := %RolePiecesContainer
@@ -17,6 +19,8 @@ func change_role_display(role_id: int) -> void:
 	var role = RolesManager.get_role(role_id)
 	
 	role_name.text = role.name
+	role_health.text = str(role.initial_health)
+	role_money.text = str(role.initial_money)
 	role_description.text = role.description
 	role_icon.texture = role.icon
 	

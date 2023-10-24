@@ -1,9 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=9 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
 [ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_f7g8e"]
 [ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
 [ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/Lobby/lobby.tscn" id="4_xnx4q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7728v"]
+bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcjo1"]
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3k48"]
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.898039, 0.729412, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qqv7k"]
 
@@ -24,39 +48,136 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="GameTitle" type="Label" parent="Menus/StartMenu"]
+[node name="StartMenuContainer" type="Panel" parent="Menus/StartMenu"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -476.0
-offset_top = -204.5
-offset_right = 476.0
-offset_bottom = -57.5
-grow_horizontal = 2
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_right = 340.0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 128
+theme_override_styles/panel = SubResource("StyleBoxFlat_7728v")
+
+[node name="GameTitle" type="Label" parent="Menus/StartMenu/StartMenuContainer"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -60.0
+offset_top = 120.0
+offset_right = 60.0
+offset_bottom = 164.0
+grow_horizontal = 2
+pivot_offset = Vector2(160, 0)
+theme_override_font_sizes/font_size = 36
 text = "Pawns & Legends"
 horizontal_alignment = 1
 
-[node name="GameSubtitle" type="Label" parent="Menus/StartMenu"]
+[node name="GameSubtitle" type="Label" parent="Menus/StartMenu/StartMenuContainer"]
+texture_filter = 2
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -476.0
-offset_top = -73.5
-offset_right = 476.0
-offset_bottom = 73.5
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 160.0
+offset_bottom = 200.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
+pivot_offset = Vector2(100, 0)
+theme_override_font_sizes/font_size = 24
 text = "Gambit's Destiny"
 horizontal_alignment = 1
+
+[node name="StartMenuButtons" type="VBoxContainer" parent="Menus/StartMenu/StartMenuContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 260.0
+offset_bottom = 640.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+
+[node name="CampaignButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_focus_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_disabled_color = Color(0.594901, 0.556064, 0.299022, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s3k48")
+text = "Campaign"
+
+[node name="MatchmakingButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_focus_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_disabled_color = Color(0.594901, 0.556064, 0.299022, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s3k48")
+text = "Matchmaking"
+
+[node name="TutorialButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_focus_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_disabled_color = Color(0.594901, 0.556064, 0.299022, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s3k48")
+text = "Tutorial"
+
+[node name="CreditsButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_focus_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_disabled_color = Color(0.594901, 0.556064, 0.299022, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s3k48")
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_focus_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_colors/font_disabled_color = Color(0.594901, 0.556064, 0.299022, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s3k48")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rcjo1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s3k48")
+text = "Exit"
 
 [node name="PlayMenu" type="PanelContainer" parent="Menus"]
 unique_name_in_owner = true

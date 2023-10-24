@@ -38,7 +38,7 @@ func _ready():
 	confirm_join_button.pressed.connect(_on_confirm_join_button_pressed)
 	
 
-	_go_to_menu(play_menu)
+	_go_to_menu(start_menu)
 	
 	username_input.text = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
  else "")

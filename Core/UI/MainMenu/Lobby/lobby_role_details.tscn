@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dc5jp4i14v558"]
+[gd_scene load_steps=5 format=3 uid="uid://dc5jp4i14v558"]
 
 [ext_resource type="Script" path="res://Core/UI/MainMenu/Lobby/lobby_role_details.gd" id="1_e1ehg"]
+[ext_resource type="Texture2D" uid="uid://ru211mekc33y" path="res://Core/UI/MainMenu/Lobby/heart_icon.png" id="2_b685s"]
 [ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="2_si1in"]
+[ext_resource type="Texture2D" uid="uid://ddrdk7ohfatwf" path="res://Core/UI/MainMenu/Lobby/money_icon.png" id="3_5jowr"]
 
 [node name="LobbyRoleDetails" type="PanelContainer"]
 offset_right = 360.0
@@ -23,12 +25,79 @@ theme_override_font_sizes/font_size = 24
 text = "Role"
 vertical_alignment = 2
 
-[node name="RoleInfoContainer" type="Control" parent="LobbyRoleDetailsContainer"]
+[node name="RoleStatsContainer" type="Control" parent="LobbyRoleDetailsContainer"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 48.0
-offset_bottom = 112.0
+offset_bottom = 72.0
+grow_horizontal = 2
+
+[node name="HealthIcon" type="TextureRect" parent="LobbyRoleDetailsContainer/RoleStatsContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_right = 24.0
+grow_vertical = 2
+pivot_offset = Vector2(0, 12)
+texture = ExtResource("2_b685s")
+stretch_mode = 5
+
+[node name="RoleHealth" type="Label" parent="LobbyRoleDetailsContainer/RoleStatsContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -1.0
+offset_right = 100.0
+offset_bottom = 1.0
+grow_vertical = 2
+pivot_offset = Vector2(0, 12)
+theme_override_font_sizes/font_size = 20
+text = "0"
+vertical_alignment = 2
+max_lines_visible = 1
+visible_characters = 2
+visible_ratio = 2.0
+
+[node name="MoneyIcon" type="TextureRect" parent="LobbyRoleDetailsContainer/RoleStatsContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_right = 124.0
+grow_vertical = 2
+pivot_offset = Vector2(0, 12)
+texture = ExtResource("3_5jowr")
+stretch_mode = 5
+
+[node name="RoleMoney" type="Label" parent="LobbyRoleDetailsContainer/RoleStatsContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 136.0
+offset_top = -1.0
+offset_right = 200.0
+offset_bottom = 1.0
+grow_vertical = 2
+pivot_offset = Vector2(0, 12)
+theme_override_font_sizes/font_size = 20
+text = "0"
+vertical_alignment = 2
+max_lines_visible = 1
+visible_characters = 2
+visible_ratio = 2.0
+
+[node name="RoleInfoContainer" type="Control" parent="LobbyRoleDetailsContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 92.0
+offset_bottom = 156.0
 grow_horizontal = 2
 
 [node name="RoleDescription" type="Label" parent="LobbyRoleDetailsContainer/RoleInfoContainer"]
@@ -64,8 +133,8 @@ texture_filter = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 136.0
-offset_bottom = 162.0
+offset_top = 172.0
+offset_bottom = 198.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 20
 text = "Pieces"
@@ -76,8 +145,8 @@ unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 170.0
-offset_bottom = 210.0
+offset_top = 206.0
+offset_bottom = 246.0
 grow_horizontal = 2
 
 [node name="RolePiece" type="TextureRect" parent="LobbyRoleDetailsContainer/RolePiecesContainer"]
