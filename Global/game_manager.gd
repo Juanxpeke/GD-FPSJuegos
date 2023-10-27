@@ -81,4 +81,4 @@ func get_phase() -> String:
 
 # Ends the game
 func end_game() -> void:
-	get_tree().change_scene_to_packed(load("res://Core/UI/HUD/GameOver/game_over.tscn"))
+	get_tree().change_scene_to_packed(load("res://Core/UI/GameOver/game_over.tscn"))
