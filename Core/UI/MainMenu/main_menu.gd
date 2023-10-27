@@ -7,18 +7,22 @@ const PORT = 5409
 
 var _menu_stack: Array[Control] = []
 
+@onready var matchmaking_button = %MatchmakingButton
+@onready var exit_button = %ExitButton
+
 @onready var username_input = %UsernameInput
 @onready var host_button = %HostButton
 @onready var join_button = %JoinButton
+@onready var back_matchmaking_button: Button = %BackMatchmakingButton
 
 @onready var ip_input = %IPInput
-@onready var back_join_button: Button = %BackJoinButton
 @onready var confirm_join_button: Button = %ConfirmJoinButton
+@onready var back_join_button: Button = %BackJoinButton
 
-@onready var menus: MarginContainer = %Menus
+@onready var menus: Control = %Menus
 
 @onready var start_menu = %StartMenu
-@onready var play_menu = %PlayMenu
+@onready var matchmaking_menu = %MatchmakingMenu
 @onready var join_menu = %JoinMenu
 @onready var lobby_menu = %LobbyMenu
 
@@ -31,11 +35,15 @@ func _ready():
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
+	matchmaking_button.pressed.connect(_on_matchmaking_button_pressed)
+	exit_button.pressed.connect(_on_exit_button_pressed)
+	
 	host_button.pressed.connect(_on_host_button_pressed)
 	join_button.pressed.connect(_on_join_button_pressed)
+	back_matchmaking_button.pressed.connect(back_menu)
 	
-	back_join_button.pressed.connect(back_menu)
 	confirm_join_button.pressed.connect(_on_confirm_join_button_pressed)
+	back_join_button.pressed.connect(back_menu)
 	
 
 	_go_to_menu(start_menu)
@@ -51,6 +59,14 @@ func _on_upnp_completed(status) -> void:
 		print("Port Opened", 5)
 	else:
 		print("Port Error", 5)
+		
+# Called when matchmaking button is pressed
+func _on_matchmaking_button_pressed() -> void:
+	_go_to_menu(matchmaking_menu)
+	
+# Called when exit button is pressed
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
 
 # Called when host button is pressed
 func _on_host_button_pressed() -> void:
