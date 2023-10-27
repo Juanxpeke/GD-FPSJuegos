@@ -88,12 +88,11 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	name = "Player" + str(peer_player.id)
 	role = RolesManager.get_role(peer_player.role_id)
 	
-	# set initial skill
-	print(role.initial_skill_script)
-	var skill = role.initial_skill_script.new()
-		
-	skill.add_to_player(self)
-	skills_changed.emit()
+	# Set initial skill
+	if role.initial_skill_script:
+		var skill = role.initial_skill_script.new() # REVIEW: Pass skills to resource
+		skill.add_to_player(self)
+		skills_changed.emit()
 	
 	current_health = role.initial_health
 	current_money = role.initial_money
