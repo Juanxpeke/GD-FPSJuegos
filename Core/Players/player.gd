@@ -86,7 +86,7 @@ func _on_match_ended() -> void:
 func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	self.peer_player = peer_player
 	name = "Player" + str(peer_player.id)
-	role = RolesManager.get_role(peer_player.role_enum)
+	role = RolesManager.get_role(peer_player.role_id)
 	
 	# set initial skill
 	print(role.initial_skill_script)

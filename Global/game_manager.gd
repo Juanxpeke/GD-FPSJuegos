@@ -8,17 +8,12 @@ signal activate_skill
 signal player_initialized
 signal player_destroyed
 
-enum RoleEnum {
-	NONE,
-	ROLE_A,
-	ROLE_B
-}
-
 var board: Board
 var map: Map
-var turn: int = 0
 var store: Store
 var player: Player # Myself
+
+var turn: int = 0
 
 var units_data: Dictionary
 

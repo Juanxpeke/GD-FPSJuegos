@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0iyqftixhvet"
-path="res://.godot/imported/dark_knight_units.png-57179504e4912ee8b5f36ac362c1d432.ctex"
+uid="uid://ru211mekc33y"
+path="res://.godot/imported/heart_icon.png-176a5ea499c44cd7e5a7709601a62d9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Global/Roles/dark_knight_units.png"
-dest_files=["res://.godot/imported/dark_knight_units.png-57179504e4912ee8b5f36ac362c1d432.ctex"]
+source_file="res://Core/UI/MainMenu/Lobby/heart_icon.png"
+dest_files=["res://.godot/imported/heart_icon.png-176a5ea499c44cd7e5a7709601a62d9b.ctex"]
 
 [params]
 

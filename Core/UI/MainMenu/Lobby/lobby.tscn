@@ -1,0 +1,155 @@
+[gd_scene load_steps=7 format=3 uid="uid://cadmavfijp0an"]
+
+[ext_resource type="PackedScene" uid="uid://b5k1rm5ewfkg6" path="res://Core/UI/MainMenu/Lobby/lobby_role.tscn" id="1_571sh"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/Lobby/lobby.gd" id="1_ypgdp"]
+[ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="3_61070"]
+[ext_resource type="PackedScene" uid="uid://bj0xbbn36k8r6" path="res://Core/UI/MainMenu/Lobby/lobby_roles_container.tscn" id="4_n2w65"]
+[ext_resource type="Texture2D" uid="uid://yyq081fgi6fn" path="res://Global/Roles/no_role_portrait.png" id="4_w5rum"]
+[ext_resource type="PackedScene" uid="uid://dc5jp4i14v558" path="res://Core/UI/MainMenu/Lobby/lobby_role_details.tscn" id="6_bvh25"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -6.0
+offset_right = 5.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ypgdp")
+lobby_role_scene = ExtResource("1_571sh")
+game_map_scene = ExtResource("3_61070")
+
+[node name="TimeLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 104.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 0)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="PlayerUsername" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 16
+text = "Player Username"
+
+[node name="EnemyUsername" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -264.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 66.0
+grow_horizontal = 0
+text = "Enemy Username"
+horizontal_alignment = 2
+
+[node name="PlayerRolePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 60.0
+offset_top = -200.0
+offset_right = 420.0
+offset_bottom = 160.0
+grow_vertical = 2
+pivot_offset = Vector2(0, 180)
+texture = ExtResource("4_w5rum")
+stretch_mode = 4
+
+[node name="EnemyRolePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -200.0
+offset_right = -60.0
+offset_bottom = 160.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(360, 180)
+texture = ExtResource("4_w5rum")
+stretch_mode = 4
+flip_h = true
+
+[node name="ReadyButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -173.0
+offset_right = 45.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(45, 36)
+toggle_mode = true
+text = "READY"
+
+[node name="BackButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -60.0
+offset_right = 114.0
+offset_bottom = -24.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 36)
+text = "BACK"
+
+[node name="RolesContainer" parent="." instance=ExtResource("4_n2w65")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RoleDetails" parent="." instance=ExtResource("6_bvh25")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 391.0
+offset_top = 192.0
+offset_right = 751.0
+offset_bottom = 512.0
+
+[node name="StartTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0

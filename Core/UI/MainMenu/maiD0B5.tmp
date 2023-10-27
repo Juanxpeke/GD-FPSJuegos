@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
+
+[ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
+[ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_f7g8e"]
+[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://Core/UI/MainMenu/lobby_player_i.tscn" id="3_jsloc"]
+[ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
+[ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/lobby.tscn" id="4_xnx4q"]
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yp1u4")
+game_map_scene = ExtResource("2_f7g8e")
+lobby_player_scene = ExtResource("3_jsloc")
+
+[node name="Menus" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StartMenu" type="VBoxContainer" parent="Menus"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menus/StartMenu"]
+layout_mode = 2
+text = "Name:
+"
+
+[node name="User" type="LineEdit" parent="Menus/StartMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menus/StartMenu"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="Menus/StartMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="Join" type="Button" parent="Menus/StartMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="JoinMenu" type="VBoxContainer" parent="Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Menus/JoinMenu"]
+layout_mode = 2
+text = "IP:
+"
+
+[node name="IP" type="LineEdit" parent="Menus/JoinMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menus/JoinMenu"]
+layout_mode = 2
+
+[node name="BackJoin" type="Button" parent="Menus/JoinMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="ConfirmJoin" type="Button" parent="Menus/JoinMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="Info" type="Label" parent="Menus/JoinMenu"]
+visible = false
+layout_mode = 2
+
+[node name="LobbyMenu" parent="Menus" instance=ExtResource("4_xnx4q")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="StartTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture_filter = 2
+position = Vector2(576, 324)
+scale = Vector2(0.75, 0.5625)
+texture = ExtResource("4_vxpdd")

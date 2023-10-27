@@ -1,13 +1,13 @@
 extends Node
 
-signal peer_players_updated
+signal peer_player_added(id: int)
+signal peer_player_removed(id: int)
 signal peer_player_updated(id: int)
 
 const SERVER_PORT: int = 5049
 
 var thread: Thread
 
-# [ { id: int, name: string, rol: Role } ]
 var peer_players: Array[PeerPlayer] = []
 
 # Private
@@ -50,7 +50,7 @@ func sort_peer_players() -> void:
 # Adds a peer player to the peer players data
 func add_peer_player(peer_player: PeerPlayer) -> void:
 	peer_players.append(peer_player)
-	peer_players_updated.emit()
+	peer_player_added.emit(peer_player.id)
 
 # Removes a peer player from the peer players data
 func remove_peer_player(id: int) -> void:
@@ -58,7 +58,7 @@ func remove_peer_player(id: int) -> void:
 		if peer_players[i].id == id:
 			peer_players.remove_at(i)
 			break
-	peer_players_updated.emit()
+	peer_player_removed.emit(id)
 
 # Gets a peer player given the peer player multiplayer ID
 func get_peer_player(id: int) -> PeerPlayer:
@@ -73,14 +73,14 @@ func get_current_peer_player() -> PeerPlayer:
 
 # Sets the given role to the player with the given multiplayer ID
 @rpc("any_peer", "reliable", "call_local")
-func set_peer_player_role(id: int, role_enum: GameManager.RoleEnum) -> void:
+func set_peer_player_role(id: int, role_id: int) -> void:
 	var peer_player = get_peer_player(id)
-	peer_player.role_enum = role_enum
+	peer_player.role_id = role_id
 	peer_player_updated.emit(id)
 
 # Sets the given role to the current player
-func set_current_peer_player_role(role_enum: GameManager.RoleEnum) -> void:
-	set_peer_player_role.rpc(multiplayer.get_unique_id(), role_enum)
+func set_current_peer_player_role(role_id: int) -> void:
+	set_peer_player_role.rpc(multiplayer.get_unique_id(), role_id)
 
 # Returns true if the current player is online, false otherwise
 func is_online() -> bool:
@@ -92,18 +92,18 @@ func is_online() -> bool:
 class PeerPlayer:
 	var id: int
 	var name: String
-	var role_enum: GameManager.RoleEnum
+	var role_id: int
 	
 	# Constructor
-	func _init(new_id: int, new_name: String, new_role_enum := GameManager.RoleEnum.NONE) -> void:
+	func _init(new_id: int, new_name: String, new_role_id := -1) -> void:
 		id = new_id
 		name = new_name
-		role_enum = new_role_enum
+		role_id = new_role_id
 	
 	# Returns a dictionary with the data
 	func to_dict() -> Dictionary:
 		return {
 			"id": id,
 			"name": name,
-			"role": role_enum
+			"role_id": role_id
 		}

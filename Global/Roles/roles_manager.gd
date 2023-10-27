@@ -1,8 +1,10 @@
 extends Node
 
 # All roles in game
-var role_a: Role = load("res://Global/Roles/pirate.tres")
-var role_b: Role = load("res://Global/Roles/medieval_knight.tres")
+var roles = [
+	load("res://Global/Roles/MedievalKnight/medieval_knight.tres"),
+	load("res://Global/Roles/Pirate/pirate.tres"),
+]
 
 # Unit dimensions on all texture atlases
 var texture_atlas_unit_dimensions: Vector2 = Vector2(16, 18)
@@ -14,13 +16,9 @@ func _ready() -> void:
 # Public
 
 # Gets the role parameters given a role enum
-func get_role(role_enum: GameManager.RoleEnum) -> Role:
-	match role_enum:
-		GameManager.RoleEnum.ROLE_A:
-			return role_a
-		GameManager.RoleEnum.ROLE_B:
-			return role_b
-	return role_a
+func get_role(role_id: int) -> Role:
+	assert(role_id > -1 and role_id < roles.size(), "invalid role id")
+	return roles[role_id]
 	
 # Gets the unit dimensions in the roles texture atlases
 func get_texture_atlas_unit_dimensions() -> Vector2:
@@ -44,3 +42,14 @@ func get_texture_atlas_unit_offset_coords(unit_class: String) -> Vector2:
 # Gets the given unit offset in the roles texture atlases
 func get_texture_atlas_unit_offset(unit_class: String) -> Vector2:
 	return get_texture_atlas_unit_offset_coords(unit_class) * texture_atlas_unit_dimensions
+
+# Gets the given unit texture by the given role
+func get_unit_texture(unit_class: String, role_id: int) -> AtlasTexture:
+	var unit_offset = get_texture_atlas_unit_offset(unit_class)
+	var unit_dimensions = get_texture_atlas_unit_dimensions()
+	
+	var texture = AtlasTexture.new() 
+	texture.atlas = get_role(role_id).units_texture_atlas
+	texture.region = Rect2(unit_offset.x, unit_offset.y, unit_dimensions.x, unit_dimensions.y)
+	
+	return texture

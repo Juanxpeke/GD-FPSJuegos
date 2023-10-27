@@ -2,6 +2,9 @@ class_name Role
 extends Resource
 
 @export var name: String
+@export var description: String
+@export var icon: Texture2D # Lobby icon
+@export var portrait: Texture2D  # Lobby portrait
 @export var initial_health: int
 @export var initial_money: int
 @export var initial_units_names: Array[String]

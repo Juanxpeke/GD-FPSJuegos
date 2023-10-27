@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GD-FPSJuegos"
-run/main_scene="res://Core/UI/Lobby/lobby.tscn"
+run/main_scene="res://Core/UI/MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -41,4 +41,4 @@ dummy={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.00392157, 0, 0.0117647, 1)
+environment/defaults/default_clear_color=Color(0.054902, 0.00392157, 0.0862745, 1)
