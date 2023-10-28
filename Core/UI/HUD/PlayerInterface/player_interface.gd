@@ -35,7 +35,6 @@ func _update_life_interface() -> void:
 
 # Updates the turn indicator
 func _update_turn_indicator() -> void:
-	print(multiplayer.get_unique_id(), "---> update turn indicator with turn: ", GameManager.map.turn, " FTPI: ", GameManager.map.inner_first_turn_player_index)
 	if GameManager.map.get_current_turn_player() == player:
 		peer_name_label.add_theme_color_override("font_color", turn_indicator_color)
 	else:

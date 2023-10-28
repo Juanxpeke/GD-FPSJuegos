@@ -59,8 +59,8 @@ func _process(delta: float) -> void:
 
 # Called when a multiplayer synchronization occurs
 func _on_delta_synchronized() -> void:
-	print("delta_synchronized")
-	print("\tFTPI: ", first_turn_player_index)
+	MultiplayerManager.log_msg("delta synchronized
+		FTPI: %d" % first_turn_player_index)
 	inner_first_turn_player_index = first_turn_player_index
 	
 # Called when the store timer timeouts
@@ -101,13 +101,6 @@ func get_player_by_turn(turn: int) -> Player:
 func get_current_turn_player() -> Player:
 	return get_player_by_turn(turn)
 
-# Ends the store phase
-@rpc("call_local", "reliable")
-func end_store() -> void:
-	print("end_store ", multiplayer.get_unique_id())
-	match_phase = MatchPhase.BATTLE
-	store_ended.emit()
-
 # Ends the Skill picking phase nad close the window
 @rpc("call_local", "reliable")
 func end_skill_picking() -> void:
@@ -115,16 +108,23 @@ func end_skill_picking() -> void:
 		skill_picker.force_close()
 	_start_store()
 
+# Ends the store phase
+@rpc("call_local", "reliable")
+func end_store() -> void:
+	MultiplayerManager.log_msg("end store")
+	match_phase = MatchPhase.BATTLE
+	store_ended.emit()
+
 # Ends the turn
 func end_turn() -> void:
 	if (match_phase != MatchPhase.BATTLE): return
-	print("end_turn ", multiplayer.get_unique_id())
+	MultiplayerManager.log_msg("end turn")
 	turn += 1
 	turn_ended.emit()
 	
 # Ends the current match
 func end_match() -> void:
-	print("end_match ", multiplayer.get_unique_id())
+	MultiplayerManager.log_msg("end match")
 	
 	if matchi in GameManager.skill_choosing_match_turns:
 		_add_skill_chooser_to_scene()

@@ -4,4 +4,4 @@
 
 [resource]
 shader = ExtResource("1_le4cr")
-shader_parameter/outline_color = Color(0.407843, 0.615686, 0.262745, 1)
+shader_parameter/outline_color = Color(0.374067, 0.62, 0.1984, 1)

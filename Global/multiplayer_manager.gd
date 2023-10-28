@@ -90,10 +90,9 @@ func is_online() -> bool:
 
 # Prints the given message
 func log_msg(message: String) -> void:
-	if not is_online(): return
-	
-	var format_string = "[color=green][b]%d:[/b][/color] %s"
-	var actual_string = format_string % [multiplayer.get_unique_id(), message]
+	var log_owner = "?" if not is_online() else str(multiplayer.get_unique_id())
+	var format_string = "[color=green][b]%s:[/b][/color] %s"
+	var actual_string = format_string % [log_owner, message]
 	print_rich(actual_string)
 
 # Class for representing the online shared player data

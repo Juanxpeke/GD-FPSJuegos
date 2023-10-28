@@ -124,19 +124,6 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 
 	match_live_units.append(unit)
 
-# Tries to kill the unit in the given cell
-func receive_attack_in_cell(cell: Vector2i) -> void:
-	var target_unit = get_live_unit_by_cell(cell)
-	
-	if target_unit == null: return
-	
-	if target_unit.get_unit_class() == "king":
-		lose_match()
-	else:
-		match_live_units.erase(target_unit)
-		match_dead_units.append(target_unit)
-		target_unit.die()
-
 # Handles the movement of one of its units
 func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
 	match GameManager.map.match_phase:
@@ -208,9 +195,22 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 
 #### Match ####
 
+# Tries to kill the unit in the given cell
+func receive_attack_in_cell(cell: Vector2i) -> void:
+	var target_unit = get_live_unit_by_cell(cell)
+	
+	if target_unit == null: return
+	
+	if target_unit.get_unit_class() == "king":
+		lose_match()
+	else:
+		match_live_units.erase(target_unit)
+		match_dead_units.append(target_unit)
+		target_unit.die()
+
 # Loses the match
 func lose_match() -> void:
-	print("lose match, ", name)
+	MultiplayerManager.log_msg("lose match %s" % name)
 	current_health -= GameManager.phase_damages[GameManager.get_phase()]
 	health_changed.emit()
 	

@@ -69,14 +69,14 @@ func get_phase() -> String:
 	var game_phase = "early"
 	
 	if not map:
-		print("game phase is ", game_phase, " ", multiplayer.get_unique_id())
+		MultiplayerManager.log_msg("game phase is %s" % game_phase)
 		return game_phase
 	
 	for phase in phase_matchi_changes.keys():
 		if phase_matchi_changes[phase] <= map.matchi:
 			game_phase = phase
 	
-	print("game phase is ", game_phase, " ", multiplayer.get_unique_id())
+	MultiplayerManager.log_msg("game phase is %s" % game_phase)
 	return game_phase
 
 # Ends the game

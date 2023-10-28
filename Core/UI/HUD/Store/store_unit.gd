@@ -20,7 +20,6 @@ func _on_pressed() -> void:
 
 # Shows the current store unit
 func _show() -> void:
-	print("xd")
 	disabled = false
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	unit_cost_label.show()

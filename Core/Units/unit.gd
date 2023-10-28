@@ -129,7 +129,6 @@ func _update_role_data() -> void:
 	
 # Updates the unit data by its level
 func _update_level_data() -> void:
-	print(unit_class, " level up to: ", level)
 	match level:
 		1: 
 			level_cell_descriptors = level_1_descriptors
@@ -182,12 +181,12 @@ func get_movement_cells() -> Array:
 
 # Resets the unit position
 func reset_position() -> void:
-	print("reset unit position: ", name)
+	MultiplayerManager.log_msg("reset unit position %s" % name)
 	position = GameManager.board.get_cell_center(grab_cell)
 
 # Dies
 func die() -> void:
-	print("die ", name)
+	MultiplayerManager.log_msg("die %s" % name)
 	is_dead = true
 	sprite.hide()
 	area.monitoring = false
@@ -196,7 +195,7 @@ func die() -> void:
 	
 # Revives
 func revive() -> void:
-	print("revive ", name)
+	MultiplayerManager.log_msg("revive %s" % name)
 	is_dead = false
 	sprite.show()
 	area.monitoring = true
@@ -206,7 +205,7 @@ func revive() -> void:
 # Dissapears forever on each peer, including current
 @rpc("call_local", "reliable")
 func dissapear_forever() -> void:
-	print("dissapear forever ", name)
+	MultiplayerManager.log_msg("dissapear forever %s" % name)
 	get_player().match_live_units.erase(self) # REVIEW: Possible bug, when erasing element in for
 	queue_free()
 	
@@ -222,7 +221,7 @@ func change_level(target_level: int) -> void:
 # Changes the unit position on each peer, including current
 @rpc("call_local", "reliable")
 func change_position(target_position: Vector2) -> void:
-	print("change unit position: ", name)
+	MultiplayerManager.log_msg("change unit position %s" % name)
 	var final_position = target_position
 	
 	if not is_multiplayer_authority():

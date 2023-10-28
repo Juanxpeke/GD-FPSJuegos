@@ -54,9 +54,9 @@ func _ready():
 # Called when UPNP is completed
 func _on_upnp_completed(status) -> void:
 	if status == OK:
-		print("Port Opened", 5)
+		pass
 	else:
-		print("Port Error", 5)
+		pass
 		
 # Called when matchmaking button is pressed
 func _on_matchmaking_button_pressed() -> void:
@@ -72,7 +72,6 @@ func _on_host_button_pressed() -> void:
 	
 	var err = peer.create_server(PORT, MAX_PLAYERS)
 	if err:
-		print("Host Error: %d" %err)
 		return
 	
 	multiplayer.multiplayer_peer = peer
@@ -91,7 +90,6 @@ func _on_confirm_join_button_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	var err = peer.create_client(ip_input.text, PORT)
 	if err:
-		print("Host Error: %d" %err)
 		return
 	
 	multiplayer.multiplayer_peer = peer
