@@ -173,7 +173,7 @@ func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
 		GameManager.map.MatchPhase.BATTLE:
 			handle_unit_movement_battle(unit, target_cell)
 	
-# Handles the movement of one of its units, in store
+# Handles the movement of one of its units, in preparation
 func handle_unit_movement_store(unit: Unit, target_cell: Vector2i) -> void:
 	# Is not a valid base cell
 	if not (target_cell in GameManager.board.get_base_cells()):
@@ -210,6 +210,22 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 				return
 			
 	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
+
+# Handles the right click button on a unit
+func handle_unit_right_click(unit: Unit) -> void:
+	match GameManager.map.match_phase:
+		GameManager.map.MatchPhase.STORE:
+			handle_unit_right_click_preparation(unit)
+			
+# Handles the right click button on a unit, in preparation
+func handle_unit_right_click_preparation(unit: Unit) -> void:
+	if unit.get_unit_class() == "king": return
+	
+	var unit_cost = GameManager.units_data[unit.get_unit_class()].cost
+	add_coins(unit_cost)
+	
+	unit.dissapear_forever.rpc()
+	ConfigManager.set_cursor_shape("default")
 
 # Fuses two units
 func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
@@ -267,7 +283,12 @@ func get_skill_pool() -> Array: #returns Array[(Skill, int)]
 # Checks if the player can afford a piece
 func can_afford(amount: int) -> bool:
 	return current_money >= amount
-	
+
+# Adds a specified amount of coins to the player
+func add_coins(amount: int) -> void:
+	current_money += amount
+	money_changed.emit()
+
 # Subtracts a specified amount of coins from the player
 func subtract_coins(amount: int) -> void:
 	if current_money >= amount:
@@ -284,7 +305,8 @@ func buy_unit(unit_class: String) -> void:
 			spawn_unit.rpc(unit_class, unit_position)
 			subtract_coins(GameManager.units_data[unit_class].cost)
 			break
-		
+
+# Spawns a unit
 @rpc("call_local", "reliable")
 func spawn_unit(unit_class: String, target_position: Vector2) -> void:
 	add_unit(unit_class, target_position)

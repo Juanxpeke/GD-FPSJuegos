@@ -17,13 +17,11 @@ func _ready() -> void:
 
 # Called when the mouse enters
 func _on_mouse_entered() -> void:
-	print("lobby role mouse entered, role id: ", role_id)
 	get_parent().get_parent().role_details.change_role_display(role_id)
 	get_parent().get_parent().role_details.show()
 
 # Called when the mouse exits
 func _on_mouse_exited() -> void:
-	print("lobby role mouse exited, role id: ", role_id)
 	get_parent().get_parent().role_details.hide()
 
 # Called on pressed

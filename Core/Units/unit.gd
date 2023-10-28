@@ -100,6 +100,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			grabbed = false
 			is_grabbing = false # Caution: This has to be called by one unit
 			ConfigManager.set_cursor_shape("grab")
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		get_player().handle_unit_right_click(self)
 
 # Called when the store ends
 func _on_store_ended() -> void:

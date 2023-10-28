@@ -1,11 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://cadmavfijp0an"]
+[gd_scene load_steps=9 format=3 uid="uid://cadmavfijp0an"]
 
-[ext_resource type="PackedScene" uid="uid://b5k1rm5ewfkg6" path="res://Core/UI/MainMenu/Lobby/lobby_role.tscn" id="1_571sh"]
 [ext_resource type="Script" path="res://Core/UI/MainMenu/Lobby/lobby.gd" id="1_ypgdp"]
 [ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="3_61070"]
 [ext_resource type="PackedScene" uid="uid://bj0xbbn36k8r6" path="res://Core/UI/MainMenu/Lobby/lobby_roles_container.tscn" id="4_n2w65"]
 [ext_resource type="Texture2D" uid="uid://yyq081fgi6fn" path="res://Global/Roles/no_role_portrait.png" id="4_w5rum"]
 [ext_resource type="PackedScene" uid="uid://dc5jp4i14v558" path="res://Core/UI/MainMenu/Lobby/lobby_role_details.tscn" id="6_bvh25"]
+
+[sub_resource type="Animation" id="Animation_5qg4k"]
+resource_name = "message_label_idle"
+length = 4.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%MessagesLabel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 2.5, 4.4, 4.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_coen0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%MessagesLabel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sgbkx"]
+_data = {
+"RESET": SubResource("Animation_coen0"),
+"message_label_idle": SubResource("Animation_5qg4k")
+}
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -19,8 +56,8 @@ offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ypgdp")
-lobby_role_scene = ExtResource("1_571sh")
 game_map_scene = ExtResource("3_61070")
+no_role_portrait = ExtResource("4_w5rum")
 
 [node name="TimeLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -95,7 +132,6 @@ grow_vertical = 2
 pivot_offset = Vector2(360, 180)
 texture = ExtResource("4_w5rum")
 stretch_mode = 4
-flip_h = true
 
 [node name="ReadyButton" type="Button" parent="."]
 unique_name_in_owner = true
@@ -113,7 +149,28 @@ grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(45, 36)
 toggle_mode = true
-text = "READY"
+text = "Ready"
+
+[node name="MessagesLabel" type="Label" parent="ReadyButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = -56.0
+offset_right = 128.0
+offset_bottom = -24.0
+grow_horizontal = 2
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ReadyButton"]
+autoplay = "message_label_idle"
+libraries = {
+"": SubResource("AnimationLibrary_sgbkx")
+}
 
 [node name="BackButton" type="Button" parent="."]
 unique_name_in_owner = true
@@ -127,7 +184,7 @@ offset_right = 114.0
 offset_bottom = -24.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 36)
-text = "BACK"
+text = "Back"
 
 [node name="RolesContainer" parent="." instance=ExtResource("4_n2w65")]
 unique_name_in_owner = true
@@ -144,6 +201,7 @@ grow_vertical = 0
 
 [node name="RoleDetails" parent="." instance=ExtResource("6_bvh25")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 391.0
 offset_top = 192.0

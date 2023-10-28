@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_mgaxx")
-name = "Medieval Knight"
+name = "King Arthur"
 description = "Knight from the medieval age. A balanced option for classic players."
 icon = ExtResource("1_vcegi")
 portrait = ExtResource("1_t34yk")

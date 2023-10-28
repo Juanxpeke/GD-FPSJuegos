@@ -1,8 +1,8 @@
 class_name Lobby
 extends Control 
 
-@export var lobby_role_scene: PackedScene
 @export var game_map_scene: PackedScene
+@export var no_role_portrait: Texture2D
 
 var status = { 1 : false }
 
@@ -11,6 +11,7 @@ var status = { 1 : false }
 @onready var enemy_username := %EnemyUsername
 @onready var player_role_portrait := %PlayerRolePortrait
 @onready var enemy_role_portrait := %EnemyRolePortrait
+@onready var messages_label := %MessagesLabel
 @onready var ready_button := %ReadyButton
 @onready var back_button := %BackButton
 @onready var roles_container := %RolesContainer
@@ -25,6 +26,8 @@ func _ready() -> void:
 	enemy_username.hide()
 	enemy_role_portrait.hide()
 	role_details.hide()
+	messages_label.hide()
+	ready_button.button_pressed = false
 	ready_button.disabled = true
 	
 	ready_button.pressed.connect(_on_ready_button_toggled)
@@ -45,7 +48,7 @@ func _process(delta: float) -> void:
 
 # Called when a peer connects
 func _on_peer_connected(id: int) -> void:
-	print("peer_connected ", id)
+	MultiplayerManager.log_msg("peer connected %d" % id)
 	
 	send_peer_player.rpc_id(id, MultiplayerManager.get_current_peer_player().to_dict())
 	
@@ -57,7 +60,7 @@ func _on_peer_connected(id: int) -> void:
 
 # Called when a peer disconnects
 func _on_peer_disconnected(id: int) -> void:
-	print("peer_disconnected ", id)
+	MultiplayerManager.log_msg("peer disconnected %d" % id)
 
 	status.erase(id)
 	MultiplayerManager.remove_peer_player(id)
@@ -116,6 +119,7 @@ func _disconnect():
 	
 	enemy_username.hide()
 	enemy_role_portrait.hide()
+	ready_button.button_pressed = false
 	ready_button.disabled = true
 	
 	status = { 1 : false }
@@ -129,10 +133,10 @@ func _update_player_interface() -> void:
 			MultiplayerManager.get_current_peer_player().name
 	
 	if MultiplayerManager.get_current_peer_player().role_id == -1:
-		return
-	
-	player_role_portrait.texture = \
-			RolesManager.get_role(MultiplayerManager.get_current_peer_player().role_id).portrait
+		player_role_portrait.texture = no_role_portrait
+	else:
+		player_role_portrait.texture = \
+				RolesManager.get_role(MultiplayerManager.get_current_peer_player().role_id).portrait
 	
 # Updates the enemy interface
 func _update_enemy_interface(id: int) -> void:
@@ -140,18 +144,42 @@ func _update_enemy_interface(id: int) -> void:
 			MultiplayerManager.get_peer_player(id).name
 	
 	if MultiplayerManager.get_peer_player(id).role_id == -1:
-		return
-			
-	enemy_role_portrait.texture = \
-			RolesManager.get_role(MultiplayerManager.get_peer_player(id).role_id).portrait
+		enemy_role_portrait.texture = no_role_portrait
+		enemy_role_portrait.flip_h = false
+	else:
+		enemy_role_portrait.texture = \
+				RolesManager.get_role(MultiplayerManager.get_peer_player(id).role_id).portrait
+		enemy_role_portrait.flip_h = true
 	
 # Checks if the ready button can be enabled
 func _check_ready() -> void:
+	if MultiplayerManager.peer_players.size() != 2:
+		messages_label.text = "Waiting for an opponent..."
+		messages_label.show()
+		ready_button.disabled = true
+		return
+		
+	if MultiplayerManager.get_current_peer_player().role_id == -1:
+		messages_label.text = "Select a role"
+		messages_label.show()
+		ready_button.disabled = true
+		return
+	
 	var roles = []
 	for peer_player in MultiplayerManager.peer_players:
 		if not peer_player.role_id in roles and peer_player.role_id != -1:
 			roles.push_back(peer_player.role_id)
-	ready_button.disabled = roles.size() != 2
+	
+	if roles.size() != 2:
+		messages_label.text = "Your roles must be different"
+		messages_label.show()
+		ready_button.disabled = true
+		return
+		
+	messages_label.hide()
+	ready_button.disabled = false
+	
+	MultiplayerManager.log_msg("check ready, roles size %d" % roles.size())
 
 # Public
 

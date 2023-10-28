@@ -49,6 +49,7 @@ func sort_peer_players() -> void:
 
 # Adds a peer player to the peer players data
 func add_peer_player(peer_player: PeerPlayer) -> void:
+	MultiplayerManager.log_msg("peer player added %d" % peer_player.id)
 	peer_players.append(peer_player)
 	peer_player_added.emit(peer_player.id)
 
@@ -87,6 +88,13 @@ func is_online() -> bool:
 	return not multiplayer.multiplayer_peer is OfflineMultiplayerPeer and \
 		multiplayer.multiplayer_peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED
 
+# Prints the given message
+func log_msg(message: String) -> void:
+	if not is_online(): return
+	
+	var format_string = "[color=green][b]%d:[/b][/color] %s"
+	var actual_string = format_string % [multiplayer.get_unique_id(), message]
+	print_rich(actual_string)
 
 # Class for representing the online shared player data
 class PeerPlayer:

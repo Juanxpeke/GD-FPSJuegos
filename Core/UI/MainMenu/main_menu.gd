@@ -50,8 +50,6 @@ func _ready():
 	
 	username_input.text = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
  else "")
-	
-	# MultiplayerManager.upnp_completed.connect(_on_upnp_completed)
 
 # Called when UPNP is completed
 func _on_upnp_completed(status) -> void:
@@ -105,15 +103,15 @@ func _on_confirm_join_button_pressed() -> void:
 
 # Called when connected to server
 func _on_connected_to_server() -> void:
-	print("connected_to_server")
+	MultiplayerManager.log_msg("connected to server")
 
 # Called when connection failed
 func _on_connection_failed() -> void:
-	print("connection_failed")
+	MultiplayerManager.log_msg("connection failed")
 
 # Called when server disconnects
 func _on_server_disconnected() -> void:
-	print("server_disconnected")
+	MultiplayerManager.log_msg("server disconnected")
 
 # Hides all the menus
 func _hide_menus():

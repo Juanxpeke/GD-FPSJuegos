@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("1_aqnrl")
-name = "Pirate"
+name = "Blackbeard"
 description = "A pirate from the strongest seas. Ideal for players who know how to spend money."
 icon = ExtResource("1_wys0x")
 portrait = ExtResource("1_3vp8p")
