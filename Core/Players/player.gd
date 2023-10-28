@@ -17,8 +17,7 @@ var current_money: int
 var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
 
-
-### Skills ####
+#### Skills ####
 var activable_skills : Array[Active] = [] # skills that can be activated
 
 var active_skills : Array[Skill] = [] # skills that are taking effect right now
@@ -36,33 +35,6 @@ func _ready() -> void:
 		BishopLevelUp.new(),
 		Skill.new(), #test claramente
 	]
-
-#### Skills ####
-
-# Activates the given skill
-@rpc("call_local", "reliable")
-func _activate_skill(index : int) -> void:
-	var skill: Active = activable_skills[index]
-	if skill.activate():
-		var active_index = active_skills.size()
-		active_skills.append(skill)
-		skill.set_index(active_index)
-		GameManager.map.game_changed.emit()
-		
-
-func deactivate_skill(index : int) -> void:
-	print(str(active_skills[index]) + " dettached")
-	active_skills.remove_at(index)
-
-# Temp function to test active skills (TODO: Remove this)
-func _unhandled_input(event: InputEvent) -> void:
-	if not (event is InputEventKey and event.pressed): return
-	if not is_multiplayer_authority(): return
-	if not GameManager.map.get_current_turn_player() == self: return
-	
-	match event.keycode:
-		KEY_1:
-			_activate_skill.rpc(0)
 
 #### Match ####
 
@@ -108,7 +80,7 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	if multiplayer.get_unique_id() == peer_player.id:
 		GameManager.set_player(self)
 
-#### Match ####
+#### Units ####
 
 # Gets all the dead units
 func get_dead_units() -> Array:
@@ -234,6 +206,8 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 	unit.dissapear_forever.rpc()
 	other_unit.change_level.rpc(max_level + 1)
 
+#### Match ####
+
 # Loses the match
 func lose_match() -> void:
 	print("lose match, ", name)
@@ -246,6 +220,20 @@ func lose_match() -> void:
 	GameManager.map.end_match()
 
 #### Skills #### 
+
+# Returns the player active skills
+func get_active_skills() -> Array:
+	return active_skills
+	
+# Return array of "gettable" skills plus the corresponding index in skill_pool
+func get_skill_pool() -> Array: #returns Array[(Skill, int)]
+	var result : Array = [] 
+	var aquired_skills : Array = activable_skills + active_skills
+	for i in range(0, skill_pool.size()):
+		var skill = skill_pool[i]
+		if !(skill in aquired_skills):
+			result.append([skill, i])
+	return result
 
 # When player obtains a new usable skill
 @rpc("call_local", "reliable")
@@ -263,20 +251,9 @@ func activate_skill(skill_id: int) -> void:
 		skill.set_index(active_index)
 		GameManager.map.game_changed.emit()
 
-# Returns the player active skills
-func get_active_skills() -> Array:
-	return active_skills
-	
-# Return array of "gettable" skills plus the corresponding index in skill_pool
-func get_skill_pool() -> Array: #returns Array[(Skill, int)]
-	var result : Array = [] 
-	var aquired_skills : Array = activable_skills + active_skills
-	for i in range(0, skill_pool.size()):
-		var skill = skill_pool[i]
-		if !(skill in aquired_skills):
-			result.append([skill, i])
-	return result
-
+func deactivate_skill(index : int) -> void:
+	print(str(active_skills[index]) + " dettached")
+	active_skills.remove_at(index)
 
 #### Store ####
 
