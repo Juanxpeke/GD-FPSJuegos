@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://vxj7xu2ggwkx"]
+
+[ext_resource type="Script" path="res://Core/Units/unit.gd" id="1_slexl"]
+[ext_resource type="Resource" uid="uid://c88fcayb3wyao" path="res://Core/Board/CellDescriptors/ClassicDescriptors/Ninja/ninja_descriptor_lvl_1.tres" id="2_e5q0g"]
+[ext_resource type="Resource" uid="uid://cycr04cr0xsur" path="res://Core/Board/CellDescriptors/ClassicDescriptors/Ninja/ninja_descriptor_lvl_2.tres" id="4_ogkni"]
+[ext_resource type="Resource" uid="uid://b3mpxxjpbrbog" path="res://Core/Board/CellDescriptors/ClassicDescriptors/Ninja/ninja_descriptor_lvl_3.tres" id="5_fycoj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1ng6"]
+size = Vector2(25, 25)
+
+[node name="Ninja" type="Node2D"]
+script = ExtResource("1_slexl")
+unit_class = "Ninja"
+level_1_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_e5q0g")])
+level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("4_ogkni")])
+level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("5_fycoj")])
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+scale = Vector2(1.8, 1.8)
+
+[node name="Area" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="BoxShape" type="CollisionShape2D" parent="Area"]
+visible = false
+shape = SubResource("RectangleShape2D_r1ng6")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brhdpt1l1b4h3"
-path="res://.godot/imported/store_mage.png-5e4caafd461f1ac6c1abcb47e28b9f58.ctex"
+uid="uid://3fk7dra78bd0"
+path="res://.godot/imported/store_sniper.png-ad6326c78621d527f252af5c97e7ed0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/Units/Mage/store_mage.png"
-dest_files=["res://.godot/imported/store_mage.png-5e4caafd461f1ac6c1abcb47e28b9f58.ctex"]
+source_file="res://Core/Units/Sniper/store_sniper.png"
+dest_files=["res://.godot/imported/store_sniper.png-ad6326c78621d527f252af5c97e7ed0b.ctex"]
 
 [params]
 

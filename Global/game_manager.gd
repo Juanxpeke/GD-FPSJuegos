@@ -39,8 +39,10 @@ func _ready() -> void:
 		"king": load("res://Global/UnitData/king.tres"),
 		"bishop": load("res://Global/UnitData/bishop.tres"),
 		"knight": load("res://Global/UnitData/knight.tres"),
-		"mage": load("res://Global/UnitData/mage.tres"),
 		"jumper": load("res://Global/UnitData/jumper.tres"),
+		"ninja": load("res://Global/UnitData/ninja.tres"),
+		"mace": load("res://Global/UnitData/mace.tres"),
+		"sniper": load("res://Global/UnitData/sniper.tres")
 	}
 
 # Public
