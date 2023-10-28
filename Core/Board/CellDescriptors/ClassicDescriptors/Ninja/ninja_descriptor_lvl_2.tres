@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HelixDescriptor2" load_steps=2 format=3 uid="uid://cycr04cr0xsur"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/helix_descriptor_2.gd" id="1_teton"]
+
+[resource]
+script = ExtResource("1_teton")
+is_blockable = true
+is_filled = true
+cell_range = 1

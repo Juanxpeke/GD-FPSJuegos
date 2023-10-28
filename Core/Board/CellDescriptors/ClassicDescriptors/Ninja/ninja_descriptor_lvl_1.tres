@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HelixDescriptor" load_steps=2 format=3 uid="uid://c88fcayb3wyao"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/helix_descriptor_1.gd" id="1_5k3vm"]
+
+[resource]
+script = ExtResource("1_5k3vm")
+is_blockable = true
+is_filled = true
+cell_range = 1

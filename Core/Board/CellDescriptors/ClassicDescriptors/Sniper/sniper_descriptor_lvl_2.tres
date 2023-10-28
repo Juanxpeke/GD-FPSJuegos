@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RightLineDescriptor" load_steps=2 format=3 uid="uid://sgapklm8f34d"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/right_line_descriptor.gd" id="1_1pwno"]
+
+[resource]
+script = ExtResource("1_1pwno")
+is_blockable = true
+is_filled = true
+cell_range = 5
