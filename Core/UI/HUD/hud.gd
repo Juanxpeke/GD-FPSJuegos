@@ -25,7 +25,7 @@ func _ready() -> void:
 			player_interface.set_player(GameManager.player)
 			enemy_interface.set_player(GameManager.player.enemy_player)
 			
-			GameManager.map.store_ended.connect(_on_store_ended)
+			GameManager.map.preparation_ended.connect(_on_preparation_ended)
 			GameManager.map.match_ended.connect(_on_match_ended)
 	)
 
@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		preparation_time_bar.value = preparation_timer.time_left
 
 # Called when the preparation phase ends
-func _on_store_ended() -> void:
+func _on_preparation_ended() -> void:
 	timer_on = false
 	preparation_timer.stop()
 	preparation_time_bar.hide()

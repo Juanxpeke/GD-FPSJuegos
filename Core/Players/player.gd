@@ -127,13 +127,13 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 # Handles the movement of one of its units
 func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
 	match GameManager.map.match_phase:
-		GameManager.map.MatchPhase.STORE:
-			handle_unit_movement_store(unit, target_cell)
+		GameManager.map.MatchPhase.PREPARATION:
+			handle_unit_movement_preparation(unit, target_cell)
 		GameManager.map.MatchPhase.BATTLE:
 			handle_unit_movement_battle(unit, target_cell)
 	
 # Handles the movement of one of its units, in preparation
-func handle_unit_movement_store(unit: Unit, target_cell: Vector2i) -> void:
+func handle_unit_movement_preparation(unit: Unit, target_cell: Vector2i) -> void:
 	# Is not a valid base cell
 	if not (target_cell in GameManager.board.get_base_cells()):
 		unit.reset_position()
@@ -173,7 +173,7 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 # Handles the right click button on a unit
 func handle_unit_right_click(unit: Unit) -> void:
 	match GameManager.map.match_phase:
-		GameManager.map.MatchPhase.STORE:
+		GameManager.map.MatchPhase.PREPARATION:
 			handle_unit_right_click_preparation(unit)
 			
 # Handles the right click button on a unit, in preparation

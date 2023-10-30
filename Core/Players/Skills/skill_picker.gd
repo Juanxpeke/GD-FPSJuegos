@@ -1,5 +1,5 @@
-extends CanvasLayer
 class_name SkillPicker
+extends CanvasLayer
 
 @export var skill_option_scene : PackedScene = preload("res://Core/Players/Skills/skill_option_container.tscn")
 @export var options_n : int

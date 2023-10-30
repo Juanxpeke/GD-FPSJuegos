@@ -41,7 +41,7 @@ func _ready() -> void:
 	_update_role_data()
 	_update_level_data()
 	
-	GameManager.map.store_ended.connect(_on_store_ended)
+	GameManager.map.preparation_ended.connect(_on_preparation_ended)
 	GameManager.map.turn_ended.connect(_on_turn_ended)
 	GameManager.map.match_ended.connect(_on_match_ended)
 	area.mouse_entered.connect(_on_mouse_entered)
@@ -59,7 +59,7 @@ func _on_mouse_entered() -> void:
 	
 	ConfigManager.set_cursor_shape("grab")
 	
-	if GameManager.map.match_phase == GameManager.map.MatchPhase.STORE: return
+	if GameManager.map.match_phase == GameManager.map.MatchPhase.PREPARATION: return
 	
 	_update_movement_cells()
 	GameManager.board.show_movement_cells(movement_cells)
@@ -70,7 +70,7 @@ func _on_mouse_exited() -> void:
 	
 	ConfigManager.set_cursor_shape("default")
 	
-	if GameManager.map.match_phase == GameManager.map.MatchPhase.STORE: return
+	if GameManager.map.match_phase == GameManager.map.MatchPhase.PREPARATION: return
 	
 	GameManager.board.hide_movement_cells()
 	
@@ -83,7 +83,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		var mouse_left_button_pressed = event.pressed
 		# Mouse left button pressed
 		if mouse_left_button_pressed:
-			if GameManager.map.match_phase != GameManager.map.MatchPhase.STORE:
+			if GameManager.map.match_phase != GameManager.map.MatchPhase.PREPARATION:
 				_update_movement_cells()
 				GameManager.board.show_movement_cells(movement_cells)
 			grab_cell = get_current_cell()
@@ -103,8 +103,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		get_player().handle_unit_right_click(self)
 
-# Called when the store ends
-func _on_store_ended() -> void:
+# Called when the preparation ends
+func _on_preparation_ended() -> void:
 	pass
 
 # Called when the turn ends
@@ -230,7 +230,7 @@ func change_position(target_position: Vector2) -> void:
 	position = final_position
 	
 	match GameManager.map.match_phase:
-		GameManager.map.MatchPhase.STORE:
+		GameManager.map.MatchPhase.PREPARATION:
 			match_initial_position = final_position
 		GameManager.map.MatchPhase.BATTLE:
 			var final_cell = GameManager.board.get_cell(final_position)
