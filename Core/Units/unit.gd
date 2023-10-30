@@ -59,7 +59,7 @@ func _on_mouse_entered() -> void:
 	
 	ConfigManager.set_cursor_shape("grab")
 	
-	if GameManager.map.match_phase == GameManager.map.MatchPhase.PREPARATION: return
+	if GameManager.map.match_phase != GameManager.map.MatchPhase.BATTLE: return
 	
 	_update_movement_cells()
 	GameManager.board.show_movement_cells(movement_cells)
@@ -69,8 +69,6 @@ func _on_mouse_exited() -> void:
 	if is_grabbing: return
 	
 	ConfigManager.set_cursor_shape("default")
-	
-	if GameManager.map.match_phase == GameManager.map.MatchPhase.PREPARATION: return
 	
 	GameManager.board.hide_movement_cells()
 	
@@ -83,7 +81,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		var mouse_left_button_pressed = event.pressed
 		# Mouse left button pressed
 		if mouse_left_button_pressed:
-			if GameManager.map.match_phase != GameManager.map.MatchPhase.PREPARATION:
+			if GameManager.map.match_phase == GameManager.map.MatchPhase.BATTLE:
 				_update_movement_cells()
 				GameManager.board.show_movement_cells(movement_cells)
 			grab_cell = get_current_cell()
@@ -144,7 +142,7 @@ func _update_movement_cells() -> void:
 	
 	if not movement_cells.is_empty():
 		return
-		
+
 	var origin_cell := get_current_cell()
 	
 	# new array needs to contain copies of cell_descriptors
@@ -209,9 +207,12 @@ func dissapear_forever() -> void:
 	get_player().match_live_units.erase(self) # REVIEW: Possible bug, when erasing element in for
 	queue_free()
 	
-# Changes the unit level on each peer, including current
-@rpc("call_local", "reliable")
+# Changes the unit level on each peer, including current, it has to have the any_peer
+# tag so it can be called by the spells, that have not authority set
+@rpc("any_peer", "call_local", "reliable")
 func change_level(target_level: int) -> void:
+	MultiplayerManager.log_msg("change unit level %s" % name)
+	
 	level = target_level
 	_update_level_data()
 	
@@ -222,6 +223,7 @@ func change_level(target_level: int) -> void:
 @rpc("call_local", "reliable")
 func change_position(target_position: Vector2) -> void:
 	MultiplayerManager.log_msg("change unit position %s" % name)
+	
 	var final_position = target_position
 	
 	if not is_multiplayer_authority():

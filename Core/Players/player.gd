@@ -31,9 +31,9 @@ func _ready() -> void:
 	GameManager.map.match_ended.connect(_on_match_ended)
 	skill_pool = [
 		Ghost.new(), 
-		DimensionalJump.new(),
+		# DimensionalJump.new(),
 		BishopLevelUp.new(),
-		Skill.new(), #test claramente
+		# Skill.new(), #test claramente
 	]
 
 #### Match ####
@@ -131,6 +131,8 @@ func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
 			handle_unit_movement_preparation(unit, target_cell)
 		GameManager.map.MatchPhase.BATTLE:
 			handle_unit_movement_battle(unit, target_cell)
+		_:
+			unit.reset_position()
 	
 # Handles the movement of one of its units, in preparation
 func handle_unit_movement_preparation(unit: Unit, target_cell: Vector2i) -> void:
