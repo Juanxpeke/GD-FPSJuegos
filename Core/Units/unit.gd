@@ -4,6 +4,8 @@ extends Node2D
 signal has_dead
 signal has_revived
 
+const MAX_LEVEL: int = 4
+
 static var level_2_material: ShaderMaterial = load("res://Core/Units/level_2_material.tres")
 static var level_3_material: ShaderMaterial = load("res://Core/Units/level_3_material.tres")
 
@@ -211,6 +213,8 @@ func dissapear_forever() -> void:
 # tag so it can be called by the spells, that have not authority set
 @rpc("any_peer", "call_local", "reliable")
 func change_level(target_level: int) -> void:
+	if target_level > MAX_LEVEL: return
+	
 	MultiplayerManager.log_msg("change unit level %s" % name)
 	
 	level = target_level

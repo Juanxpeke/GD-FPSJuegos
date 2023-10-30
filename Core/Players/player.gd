@@ -192,6 +192,11 @@ func handle_unit_right_click_preparation(unit: Unit) -> void:
 func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 	var max_level = max(unit.level, other_unit.level)
 	
+	if max_level >= Unit.MAX_LEVEL:
+		unit.reset_position()
+		# TODO: Show HUD message
+		return
+	
 	unit.dissapear_forever.rpc()
 	other_unit.change_level.rpc(max_level + 1)
 
