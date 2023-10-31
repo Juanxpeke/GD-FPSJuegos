@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cvlvkujq8qul2"]
 
-[ext_resource type="Script" path="res://Core/UI/HUD/SkillPicker/skill_chooser_option_c.gd" id="1_nabf8"]
-[ext_resource type="Texture2D" uid="uid://bu261a6gb08kx" path="res://assets/skill icons/skill issue.png" id="2_vqrti"]
+[ext_resource type="Script" path="res://Core/UI/HUD/SkillPicker/skill_option.gd" id="1_vpre0"]
+[ext_resource type="Texture2D" uid="uid://bu261a6gb08kx" path="res://assets/skill icons/skill issue.png" id="2_3nd01"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7ldh"]
 content_margin_left = 12.0
@@ -43,7 +43,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(0.882353, 0.882353, 0.882353, 0.882353)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -72,6 +72,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkillInfoPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_h8r1x"]
@@ -115,16 +127,16 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 232.0
 offset_bottom = 356.0
-script = ExtResource("1_nabf8")
+script = ExtResource("1_vpre0")
 
 [node name="SkillInfoPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
+modulate = Color(0.882353, 0.882353, 0.882353, 0.882353)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -116.0
-offset_right = 108.0
+offset_right = 224.0
 offset_bottom = 340.0
 grow_horizontal = 2
 pivot_offset = Vector2(100, 170)
@@ -142,7 +154,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture = ExtResource("2_vqrti")
+texture = ExtResource("2_3nd01")
 expand_mode = 1
 
 [node name="SkillDescription" type="Label" parent="SkillInfoPanel/SkillInfoContainer"]

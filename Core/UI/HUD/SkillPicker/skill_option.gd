@@ -18,19 +18,17 @@ func _ready() -> void:
 	skill_info_panel.gui_input.connect(_on_gui_input)
 	animation_player.animation_finished.connect(_on_animation_finished)
 	
-	self.modulate = self.modulate / 1.2;
-	
 	_update_layout()
 	
 # Called when the mouse enters the skill option
 func _on_mouse_entered():
 	if !selectable: return
-	self.modulate = self.modulate * 1.2;
+	self.modulate = self.modulate * (255.0 / 225.0);
 
 # Called when the mouse exits the skill option
 func _on_mouse_exited():
 	if !selectable: return
-	self.modulate = self.modulate / 1.2;
+	self.modulate = self.modulate * (225.0 / 255.0);
 
 # Called on animation finished
 func _on_animation_finished(anim_name: String) -> void:

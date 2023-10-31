@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b22w43jwcyyxw"]
 
-[ext_resource type="Script" path="res://Core/UI/HUD/SkillPicker/skill_picker_c.gd" id="1_m5qac"]
-[ext_resource type="PackedScene" uid="uid://cvlvkujq8qul2" path="res://Core/UI/HUD/SkillPicker/skill_option_container_c.tscn" id="2_1caqc"]
+[ext_resource type="Script" path="res://Core/UI/HUD/SkillPicker/skill_picker.gd" id="1_pdisj"]
+[ext_resource type="PackedScene" uid="uid://cvlvkujq8qul2" path="res://Core/UI/HUD/SkillPicker/skill_option.tscn" id="2_1caqc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnrvx"]
 bg_color = Color(0, 0, 0, 0.501961)
@@ -14,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tnrvx")
-script = ExtResource("1_m5qac")
+script = ExtResource("1_pdisj")
 
 [node name="SkillsOptionsContainer" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
