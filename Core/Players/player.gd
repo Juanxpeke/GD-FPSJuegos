@@ -273,6 +273,7 @@ func get_skill_id_pool() -> Array[int]:
 # Adds a skill to the player, called on each peer
 @rpc("call_local", "reliable")
 func add_skill(skill_id: int) -> void:
+	MultiplayerManager.log_msg("add skill %d to %s" % [skill_id, name])
 	var skill = SkillsManager.skills[skill_id]
 	skill.add_to_player(self)
 	skills_changed.emit()

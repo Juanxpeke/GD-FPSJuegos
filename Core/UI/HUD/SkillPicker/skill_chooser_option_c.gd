@@ -1,9 +1,10 @@
 class_name SkillOption
-extends VBoxContainer
+extends Control
 
 var skill_id: int
 var selectable: bool = true
 
+@onready var skill_info_panel: PanelContainer = %SkillInfoPanel
 @onready var skill_icon: TextureRect = %SkillIcon
 @onready var skill_description: Label = %SkillDescription
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -12,10 +13,12 @@ var selectable: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
+	skill_info_panel.mouse_entered.connect(_on_mouse_entered)
+	skill_info_panel.mouse_exited.connect(_on_mouse_exited)
+	skill_info_panel.gui_input.connect(_on_gui_input)
+	animation_player.animation_finished.connect(_on_animation_finished)
 	
-	self.modulate.a = 140.0 / 255.0;
+	self.modulate = self.modulate / 1.2;
 	
 	_update_layout()
 	
@@ -23,16 +26,19 @@ func _ready() -> void:
 func _on_mouse_entered():
 	if !selectable: return
 	self.modulate = self.modulate * 1.2;
-	self.modulate.a = 1;
 
 # Called when the mouse exits the skill option
 func _on_mouse_exited():
 	if !selectable: return
 	self.modulate = self.modulate / 1.2;
-	self.modulate.a = 140.0 / 255;
+
+# Called on animation finished
+func _on_animation_finished(anim_name: String) -> void:
+	if anim_name == "selected":
+		get_parent().get_parent().hide()
 
 # Called on GUI input
-func _gui_input(event: InputEvent) -> void:
+func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		select()
 		
@@ -49,24 +55,25 @@ func set_skill_id(skill_id: int) -> void:
 	self.skill_id = skill_id
 	_update_layout()
 
+# Resets the skill option
+func reset() -> void:
+	selectable = true
+	animation_player.play("RESET")
+	show()
+
 # Selects the skill
 func select():
 	if !selectable: return
 
+	MultiplayerManager.log_msg("skill option selected %d" % skill_id)
+	
 	selectable = false
 	get_parent().get_parent().spread_selection(self)
 	
 	animation_player.play("selected")
-	animation_player.animation_finished.connect(
-		func(_anim_name):
-			get_parent().get_parent().skill_selected = true 
-			get_parent().get_parent().hide()
-	)
 	
 	GameManager.player.add_skill.rpc(skill_id)
-	
-	MultiplayerManager.log_msg("skill option selected %d" % skill_id)
-	
+
 # Unselects the skill
 func unselect():
 	selectable = false
