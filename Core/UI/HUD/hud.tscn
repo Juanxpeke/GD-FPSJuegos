@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy17jaermquaa"]
+[gd_scene load_steps=7 format=3 uid="uid://dy17jaermquaa"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/hud.gd" id="1_ku5ab"]
 [ext_resource type="PackedScene" uid="uid://b3lux4srfnsh4" path="res://Core/UI/HUD/Store/store.tscn" id="1_xp5ni"]
 [ext_resource type="PackedScene" uid="uid://cfbchqiowblyh" path="res://Core/UI/HUD/PlayerInterface/player_interface.tscn" id="2_lccxb"]
 [ext_resource type="PackedScene" uid="uid://briej2bofn8aj" path="res://Core/UI/HUD/PlayerInterface/skill_list.tscn" id="3_07nbi"]
 [ext_resource type="Texture2D" uid="uid://dx7t4omxenkpt" path="res://Core/UI/HUD/preparation_time_bar_progress.png" id="4_0j1r6"]
+[ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker_c.tscn" id="5_wpddp"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ku5ab")
@@ -50,6 +51,10 @@ offset_top = 429.0
 offset_right = 1123.0
 offset_bottom = 619.0
 
+[node name="SkillPicker" parent="." instance=ExtResource("5_wpddp")]
+unique_name_in_owner = true
+visible = false
+
 [node name="PreparationTimeBar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 anchors_preset = 7
@@ -70,3 +75,4 @@ texture_progress = ExtResource("4_0j1r6")
 
 [node name="PreparationTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+one_shot = true

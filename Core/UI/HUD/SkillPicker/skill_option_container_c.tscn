@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvlvkujq8qul2"]
+
+[ext_resource type="Script" path="res://Core/UI/HUD/SkillPicker/skill_chooser_option_c.gd" id="1_nabf8"]
+[ext_resource type="Texture2D" uid="uid://bu261a6gb08kx" path="res://assets/skill icons/skill issue.png" id="2_vqrti"]
+
+[sub_resource type="Animation" id="Animation_msx6b"]
+resource_name = "selected"
+length = 1.9
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.27934, 0.220456, 1.09016, -0.441623, -0.0939299, 0.25, 0),
+"times": PackedFloat32Array(0, 1.42596)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.27934, 0.220456, 1.08654, -0.41768, -0.119219, 0.25, 0),
+"times": PackedFloat32Array(0, 1.42596)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.54902, -0.25, 0, 0.25, 0, 0.95, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.69466)
+}
+
+[sub_resource type="Animation" id="Animation_h8r1x"]
+resource_name = "unselected"
+length = 1.9
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.54902, -0.25, 0, 0.25, 0, 0.05, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.00266038, 1.81172)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SkillInfoContainer:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.280883, -11.5389, 98.364, -0.36497, -3.1046, 0.291618, 2.48368, 103.952, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.0004, 1.81621)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tcswr"]
+_data = {
+"selected": SubResource("Animation_msx6b"),
+"unselected": SubResource("Animation_h8r1x")
+}
+
+[node name="SkillOption" type="VBoxContainer"]
+modulate = Color(0.752941, 0.752941, 0.752941, 0.54902)
+clip_contents = true
+offset_right = 216.0
+offset_bottom = 340.0
+pivot_offset = Vector2(108, 170)
+script = ExtResource("1_nabf8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+speed_scale = 1.5
+libraries = {
+"": SubResource("AnimationLibrary_tcswr")
+}
+
+[node name="SkillInfoContainer" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0.549083)
+layout_mode = 2
+
+[node name="SkillIcon" type="TextureRect" parent="SkillInfoContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("2_vqrti")
+expand_mode = 1
+
+[node name="SkillDescription" type="Label" parent="SkillInfoContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "descripcion de skill 1"
+horizontal_alignment = 1
+autowrap_mode = 3

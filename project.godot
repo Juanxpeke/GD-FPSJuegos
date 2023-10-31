@@ -21,6 +21,7 @@ GameManager="*res://Global/game_manager.gd"
 MultiplayerManager="*res://Global/multiplayer_manager.gd"
 ConfigManager="*res://Global/Config/config_manager.gd"
 RolesManager="*res://Global/Roles/roles_manager.gd"
+SkillsManager="*res://Global/Skills/skills_manager.gd"
 
 [display]
 

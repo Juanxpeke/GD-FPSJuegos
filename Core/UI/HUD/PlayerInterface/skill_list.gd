@@ -1,7 +1,7 @@
 extends ItemList
 class_name SkillList
 
-var displayed_skills: Array[Skill] = []
+var displayed_skills: Array[ResSkill] = []
 var player: Player
 
 # Called when the node enters the scene tree for the first time.
@@ -24,13 +24,10 @@ func _on_skill_selected(item_id : int) -> void:
 func _set_player_skills() -> void:
 	clear() # vacia lista
 	var count: int= 0
-	for skill in player.get_active_skills() + player.activable_skills:
-		var texture = load(skill.texture_path)
-		add_item(skill.name, texture)
-		print("SKILLLLLL: ", skill.name)
+	for skill in player.get_skills(): # REVIEW: + player.activable_skills:
+		add_item(skill.name, skill.icon)
 		set_item_tooltip(count, skill.description)
 		displayed_skills.append(skill)
-		
 		count+=1
 
 func set_player(player: Player) -> void:

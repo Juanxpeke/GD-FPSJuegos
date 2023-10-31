@@ -5,7 +5,11 @@ extends Resource
 @export var description: String
 @export var icon: Texture2D
 
-# Modifies the player
+# Public
+
+# Adds itself to the player
+func add_to_player(player: Player) -> void:
+	player.skills.append(self)
 
 # Modifies the unit current cell descriptor
 func modify_current_cell_descriptor(unit: Unit) -> void:

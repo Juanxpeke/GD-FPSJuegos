@@ -6,6 +6,7 @@ var timer_on: bool = false
 @onready var player_interface: PlayerInterface = %PlayerInterface
 @onready var enemy_interface: PlayerInterface = %EnemyInterface
 @onready var store: Store = %Store
+@onready var skill_picker: SkillPickerC = %SkillPicker
 @onready var preparation_time_bar: TextureProgressBar = %PreparationTimeBar
 @onready var preparation_timer: Timer = %PreparationTimer
 
@@ -39,21 +40,13 @@ func _on_preparation_ended() -> void:
 	timer_on = false
 	preparation_timer.stop()
 	preparation_time_bar.hide()
-	_hide_store()
+	store.hide()
 	
 # Called when the battle phase ends
 func _on_match_ended() -> void:
 	timer_on = true
 	preparation_timer.start()
 	preparation_time_bar.show()
-	_show_store()
-
-# Hides the store
-func _hide_store() -> void:
-	store.hide()
-
-# Shows the store
-func _show_store() -> void:
 	store.show()
 
 # Public
@@ -63,3 +56,8 @@ func set_preparation_time(time: float) -> void:
 	preparation_time_bar.max_value = time
 	preparation_time_bar.value = time
 	preparation_timer.wait_time = time
+	skill_picker.set_skill_picking_time(time / 2)
+	
+# Shows the selectable skills
+func show_skills() -> void:
+	skill_picker.show_skills()

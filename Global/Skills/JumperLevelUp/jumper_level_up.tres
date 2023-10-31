@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="JumperLevelUp" load_steps=3 format=3 uid="uid://f1rjubkg51r4"]
+
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="1_oebpq"]
+[ext_resource type="Script" path="res://Global/Skills/JumperLevelUp/jumper_level_up.gd" id="1_s0jj8"]
+
+[resource]
+script = ExtResource("1_s0jj8")
+name = "Jumper Level Up"
+description = "Levels up all the Jumper units in your possesion."
+icon = ExtResource("1_oebpq")

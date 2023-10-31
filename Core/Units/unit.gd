@@ -120,12 +120,7 @@ func _on_match_ended() -> void:
 	
 # Updates the unit data by its player role
 func _update_role_data() -> void:
-	var unit_offset = RolesManager.get_texture_atlas_unit_offset(get_unit_class())
-	var unit_dimensions = RolesManager.get_texture_atlas_unit_dimensions()
-	
-	sprite.texture = AtlasTexture.new() 
-	sprite.texture.atlas = get_player().role.units_texture_atlas
-	sprite.texture.region = Rect2(unit_offset.x, unit_offset.y, unit_dimensions.x, unit_dimensions.y)
+	sprite.texture = RolesManager.get_unit_texture(get_unit_class(), get_player().role)
 	
 # Updates the unit data by its level
 func _update_level_data() -> void:
@@ -152,7 +147,7 @@ func _update_movement_cells() -> void:
 	for cell_descriptor in level_cell_descriptors:
 		current_cell_descriptors.append(cell_descriptor.duplicate())
 		
-	for skill in get_player().get_active_skills():
+	for skill in get_player().get_skills():
 		skill.modify_current_cell_descriptor(self)
 	
 	for cell_descriptor in current_cell_descriptors:

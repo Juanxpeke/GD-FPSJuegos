@@ -14,7 +14,7 @@ func _ready() -> void:
 
 # Public
 
-# Changes the display to the given role id
+# Changes the display by the given role id
 func change_role_display(role_id: int) -> void:
 	var role = RolesManager.get_role(role_id)
 	
@@ -30,7 +30,7 @@ func change_role_display(role_id: int) -> void:
 		var role_piece = role_pieces_container.get_child(i)
 		
 		if i < role_units_classes.size():
-			role_piece.texture = RolesManager.get_unit_texture(role_units_classes[i], role_id)
+			role_piece.texture = RolesManager.get_unit_texture(role_units_classes[i], role)
 			role_piece.show()
 		else:
 			role_piece.hide()

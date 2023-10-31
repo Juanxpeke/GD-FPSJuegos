@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://b22w43jwcyyxw"]
+
+[ext_resource type="Script" path="res://Core/UI/HUD/SkillPicker/skill_picker_c.gd" id="1_m5qac"]
+[ext_resource type="PackedScene" uid="uid://cvlvkujq8qul2" path="res://Core/UI/HUD/SkillPicker/skill_option_container_c.tscn" id="2_1caqc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnrvx"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[node name="SkillPicker" type="Panel"]
+z_index = 99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tnrvx")
+script = ExtResource("1_m5qac")
+
+[node name="SkillsOptionsContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="SkillOption" parent="SkillsOptionsContainer" instance=ExtResource("2_1caqc")]
+layout_mode = 2
+
+[node name="SkillOption2" parent="SkillsOptionsContainer" instance=ExtResource("2_1caqc")]
+layout_mode = 2
+
+[node name="SkillOption3" parent="SkillsOptionsContainer" instance=ExtResource("2_1caqc")]
+layout_mode = 2
+
+[node name="SkillPickingTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

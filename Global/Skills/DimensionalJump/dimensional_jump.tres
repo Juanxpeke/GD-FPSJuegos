@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DimensionalJump" load_steps=3 format=3 uid="uid://bfwv5flkpdg32"]
+
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="1_peqbl"]
+[ext_resource type="Script" path="res://Global/Skills/DimensionalJump/dimensional_jump.gd" id="1_x4s7y"]
+
+[resource]
+script = ExtResource("1_x4s7y")
+name = "Dimensional Jump"
+description = "Dimensional Jump"
+icon = ExtResource("1_peqbl")

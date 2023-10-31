@@ -16,6 +16,7 @@ script = ExtResource("1_uo3n2")
 player_scene = ExtResource("2_x0elb")
 
 [node name="HUD" parent="." instance=ExtResource("4_xdrfe")]
+unique_name_in_owner = true
 
 [node name="Board" parent="." instance=ExtResource("1_uphg7")]
 position = Vector2(562, 322)

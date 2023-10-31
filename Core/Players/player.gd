@@ -18,23 +18,15 @@ var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
 
 #### Skills ####
-var activable_skills : Array[Active] = [] # skills that can be activated
+var activable_skills: Array[Active] = [] # skills that can be activated
 
-var active_skills : Array[Skill] = [] # skills that are taking effect right now
-
-var skill_pool : Array[Skill] # All aquirable skills by this player
+var skills: Array[ResSkill] = [] # skills that are taking effect right now
 
 # Private
 
 # Called when the node enters the tree for the first time
 func _ready() -> void:
 	GameManager.map.match_ended.connect(_on_match_ended)
-	skill_pool = [
-		Ghost.new(), 
-		# DimensionalJump.new(),
-		BishopLevelUp.new(),
-		# Skill.new(), #test claramente
-	]
 
 #### Match ####
 
@@ -123,6 +115,11 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 		unit.match_initial_position = GameManager.board.get_mirror_position(target_position)
 
 	match_live_units.append(unit)
+
+# Spawns a unit, called on each peer
+@rpc("call_local", "reliable")
+func spawn_unit(unit_class: String, target_position: Vector2) -> void:
+	add_unit(unit_class, target_position)
 
 # Handles the movement of one of its units
 func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:
@@ -225,46 +222,10 @@ func lose_match() -> void:
 		GameManager.end_game()
 	
 	GameManager.map.end_match()
-
-#### Skills #### 
-
-# Returns the player active skills
-func get_active_skills() -> Array:
-	return active_skills
 	
-# Return array of "gettable" skills plus the corresponding index in skill_pool
-func get_skill_pool() -> Array: #returns Array[(Skill, int)]
-	var result : Array = [] 
-	var aquired_skills : Array = activable_skills + active_skills
-	for i in range(0, skill_pool.size()):
-		var skill = skill_pool[i]
-		if !(skill in aquired_skills):
-			result.append([skill, i])
-	return result
-
-# When player obtains a new usable skill
-@rpc("call_local", "reliable")
-func add_skill(skill_id : int) -> void:
-	var skill = skill_pool[skill_id]
-	skill.add_to_player(self)
-	skills_changed.emit()
-
-@rpc("call_local", "reliable")
-func activate_skill(skill_id: int) -> void:
-	var skill = activable_skills[skill_id]
-	if skill.activate():
-		var active_index = active_skills.size()
-		active_skills.append(skill)
-		skill.set_index(active_index)
-		GameManager.map.game_changed.emit()
-
-func deactivate_skill(index : int) -> void:
-	print(str(active_skills[index]) + " dettached")
-	active_skills.remove_at(index)
-
 #### Store ####
 
-# Checks if the player can afford a piece
+# Returns true if the player can afford the given amount of coins
 func can_afford(amount: int) -> bool:
 	return current_money >= amount
 
@@ -279,19 +240,57 @@ func subtract_coins(amount: int) -> void:
 		current_money -= amount
 		money_changed.emit()
 
-# Buys a unit
+# Buys the given unit
 func buy_unit(unit_class: String) -> void:
 	var base_cells = GameManager.board.get_base_cells()
+	
 	for base_cell in base_cells:
 		var live_unit = get_live_unit_by_cell(base_cell)
+		
 		if live_unit == null:
 			var unit_position = GameManager.board.get_cell_center(base_cell)
 			spawn_unit.rpc(unit_class, unit_position)
 			subtract_coins(GameManager.units_data[unit_class].cost)
-			break
+			return
 
-# Spawns a unit
+#### Skills #### 
+
+# Returns the player skills
+func get_skills() -> Array:
+	return skills
+	
+# Return array of "gettable" skills ids
+func get_skill_id_pool() -> Array[int]: 
+	var skill_id_pool: Array[int] = []
+
+	for i in range(SkillsManager.skills.size()):
+		var skill = SkillsManager.skills[i]
+		if not skill in skills:
+			skill_id_pool.append(i)
+			
+	return skill_id_pool
+
+# Adds a skill to the player, called on each peer
 @rpc("call_local", "reliable")
-func spawn_unit(unit_class: String, target_position: Vector2) -> void:
-	add_unit(unit_class, target_position)
+func add_skill(skill_id: int) -> void:
+	var skill = SkillsManager.skills[skill_id]
+	skill.add_to_player(self)
+	skills_changed.emit()
+
+# REVIEW
+
+@rpc("call_local", "reliable")
+func activate_skill(skill_id: int) -> void:
+	var skill = activable_skills[skill_id]
+	if skill.activate():
+		var active_index = skills.size()
+		skills.append(skill)
+		skill.set_index(active_index)
+		GameManager.map.game_changed.emit()
+
+func deactivate_skill(index : int) -> void:
+	print(str(skills[index]) + " dettached")
+	skills.remove_at(index)
+
+# CLOSE REVIEW
 
