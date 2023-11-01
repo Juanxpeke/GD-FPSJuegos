@@ -19,12 +19,12 @@ func _on_ItemList_gui_input(event: InputEvent) -> void:
 func _on_skill_selected(item_id : int) -> void:
 	deselect_all()
 	if player == GameManager.player:
-		player.activate_skill(item_id)
+		player.activate_skill.rpc(item_id)
 
 func _set_player_skills() -> void:
 	clear() # vacia lista
 	var count: int= 0
-	for skill in player.get_skills(): # REVIEW: + player.activable_skills:
+	for skill in player.get_skills() + player.activable_skills: # REVIEW: + player.activable_skills:
 		add_item(skill.name, skill.icon)
 		set_item_tooltip(count, skill.description)
 		displayed_skills.append(skill)
