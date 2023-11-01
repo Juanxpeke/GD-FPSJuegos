@@ -89,7 +89,7 @@ func is_online() -> bool:
 		multiplayer.multiplayer_peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED
 
 # Prints the given message
-func log_msg(message: String) -> void:
+func log_msg(message) -> void:
 	var log_owner = "?" if not is_online() else str(multiplayer.get_unique_id())
 	var format_string = "[color=green][b]%s:[/b][/color] %s"
 	var actual_string = format_string % [log_owner, message]
