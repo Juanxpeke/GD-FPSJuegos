@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Ghost2" load_steps=3 format=3 uid="uid://075187gcs0pd"]
+
+[ext_resource type="Texture2D" uid="uid://8q21d7imf14" path="res://assets/skill icons/Ghost.webp" id="1_07ooc"]
+[ext_resource type="Script" path="res://Global/Skills/Ghost/ghost.gd" id="1_lcqpw"]
+
+[resource]
+script = ExtResource("1_lcqpw")
+name = "Ghost"
+description = "When activated units can trespass units and other obstacles this turn"
+icon = ExtResource("1_07ooc")
