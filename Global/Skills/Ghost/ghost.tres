@@ -5,6 +5,9 @@
 
 [resource]
 script = ExtResource("1_lcqpw")
+COOLDOWN = 0
+TURNS_ACTIVE = 1
+INITIAL_USES = 3
 name = "Ghost"
 description = "When activated units can trespass units and other obstacles this turn"
 icon = ExtResource("1_07ooc")

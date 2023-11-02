@@ -4,16 +4,19 @@ class_name ResActive
 var player : Player
 var index_in_skill_array : int
 
-var COOLDOWN : int = 0
-var TURNS_ACTIVE : int = 1
-var INITIAL_USES : int = 9999
+## number of turns that have to pass between skill activation
+@export var COOLDOWN : int = 0 
+## number of turns the skill take effect after activation
+@export var TURNS_ACTIVE : int = 1
+## how many times the skill can be used each round
+@export var INITIAL_USES : int = 9999
+
 var cooldown_remaining : int = 0
 var active_turns_count : int = 0
 var uses_remaining : int = 9999
 var active : bool
 
 func _init() -> void:
-	super._init()
 	active = false
 	GameManager.map.turn_ended.connect(end_turn)
 	GameManager.map.match_ended.connect(reset)
