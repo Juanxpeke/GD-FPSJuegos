@@ -118,4 +118,6 @@ func end_match() -> void:
 	matchi += 1
 	
 	match_ended.emit()
-	
+
+func get_players() -> Array[Node]:
+	return players.get_children()

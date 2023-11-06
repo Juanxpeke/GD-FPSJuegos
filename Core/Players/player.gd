@@ -36,6 +36,8 @@ func _reset_units() -> void:
 	for dead_unit in dead_units:
 		match_live_units.append(dead_unit)
 	match_dead_units.clear()
+	match_live_units = match_live_units.filter(func(unit): not unit.is_temporal)
+			
 
 # Called when the match ends
 func _on_match_ended() -> void:

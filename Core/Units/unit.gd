@@ -25,6 +25,8 @@ var level_cell_descriptors: Array[CellDescriptor]
 var current_cell_descriptors: Array[CellDescriptor]
 # Cached cells the unit can move in current game state
 var movement_cells: Array = []
+# When checked as temporal units will be discarded at the start of next match
+var is_temporal : bool = false
 
 # Grab logic
 static var is_grabbing: bool = false
