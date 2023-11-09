@@ -6,7 +6,7 @@ var timer_on: bool = false
 @onready var player_interface: PlayerInterface = %PlayerInterface
 @onready var enemy_interface: PlayerInterface = %EnemyInterface
 @onready var store: Store = %Store
-@onready var skill_picker: SkillPickerC = %SkillPicker
+@onready var skill_picker: SkillPicker = %SkillPicker
 @onready var preparation_time_bar: TextureProgressBar = %PreparationTimeBar
 @onready var preparation_timer: Timer = %PreparationTimer
 

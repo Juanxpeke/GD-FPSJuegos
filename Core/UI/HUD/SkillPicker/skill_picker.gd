@@ -1,4 +1,4 @@
-class_name SkillPickerC
+class_name SkillPicker
 extends Panel
 
 var skill_selected: bool = false

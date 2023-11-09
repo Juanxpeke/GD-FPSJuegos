@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cfbchqiowblyh" path="res://Core/UI/HUD/PlayerInterface/player_interface.tscn" id="2_lccxb"]
 [ext_resource type="PackedScene" uid="uid://briej2bofn8aj" path="res://Core/UI/HUD/PlayerInterface/skill_list.tscn" id="3_07nbi"]
 [ext_resource type="Texture2D" uid="uid://dx7t4omxenkpt" path="res://Core/UI/HUD/preparation_time_bar_progress.png" id="4_0j1r6"]
-[ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker_c.tscn" id="5_wpddp"]
+[ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker.tscn" id="5_wpddp"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ku5ab")
