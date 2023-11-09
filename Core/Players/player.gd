@@ -44,7 +44,7 @@ func _on_match_ended() -> void:
 		phase_reward += skill.phase_reward_addition
 	
 	add_coins(phase_reward)
-	
+			
 	_reset_units()
 	
 

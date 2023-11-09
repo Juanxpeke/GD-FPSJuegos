@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://dvamcwenii1fy"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://4q7dtibqkeeq"]
 
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_o53fd"]
 [ext_resource type="PackedScene" uid="uid://db3mlnybjcrra" path="res://Core/Units/Sniper/sniper.tscn" id="1_vmajq"]
@@ -7,9 +7,9 @@
 [resource]
 script = ExtResource("1_o53fd")
 scene = ExtResource("1_vmajq")
-cost = 4
+cost = 1
 weights = {
-"early": 7,
+"early": 999,
 "late": 12,
 "middle": 10
 }

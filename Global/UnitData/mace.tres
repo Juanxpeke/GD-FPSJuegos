@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://cjhmidl60swds"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://dwec5tpahugk3"]
 
 [ext_resource type="PackedScene" uid="uid://bp7vkgfbqcvpk" path="res://Core/Units/Mace/mace.tscn" id="1_bfmqg"]
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_ijstp"]
@@ -9,7 +9,7 @@ script = ExtResource("1_ijstp")
 scene = ExtResource("1_bfmqg")
 cost = 1
 weights = {
-"early": 10000,
+"early": 10,
 "late": 12,
 "middle": 10
 }

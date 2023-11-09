@@ -6,18 +6,14 @@ extends Resource
 # board size changes we must implement a signal logic for infinite range units
 @export var is_blockable: bool = true
 @export var is_filled: bool = true
+@export var wrap_around: bool = false # Se usa solamente para 1 skill lol
 @export var cell_range: int = -1
 
-var wrap_around: bool = false # se usa solamente para 1 skill lol
 # Private
-
-var _directions: Array[Array] = [] 
-
-var _base_movement: Array[Vector2i] = []
 
 # Constructor
 func _init() -> void:
-	GameManager.connect("board_initialized", _on_board_initialized)
+	GameManager.board_initialized.connect(_on_board_initialized)
 
 # Called when the game board is initialized
 func _on_board_initialized() -> void:
@@ -26,12 +22,16 @@ func _on_board_initialized() -> void:
 
 # Public
 
+# Gets the unit directions
 func get_directions() -> Array[Array]:
-	return _directions
+	return []
 
+# Gets the unit base movements
 func get_base_movement() -> Array[Vector2i]:
-	return _base_movement
-	
+	return []
+
+# DEPRECATED
+
 # Returns the set of cells only by a certain index
 func _get_cells_by_index(origin_cell: Vector2i, index: int) -> Array[Vector2i]:
 	return []
@@ -46,3 +46,4 @@ func get_cells(origin_cell: Vector2i) -> Array:
 	
 	return cells
 
+# END DEPRECATED
