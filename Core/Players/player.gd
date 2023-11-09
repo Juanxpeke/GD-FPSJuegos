@@ -39,6 +39,12 @@ func _reset_units() -> void:
 
 # Called when the match ends
 func _on_match_ended() -> void:
+	var phase_reward = GameManager.phase_rewards[GameManager.get_phase()]
+	for skill in skills:
+		phase_reward += skill.phase_reward_addition
+	
+	add_coins(phase_reward)
+	
 	_reset_units()
 	
 
@@ -180,6 +186,12 @@ func handle_unit_right_click_preparation(unit: Unit) -> void:
 	if unit.get_unit_class() == "king": return
 	
 	var unit_cost = GameManager.units_data[unit.get_unit_class()].cost
+	
+	var remove_unit_sale_discount = false
+	for skill in skills:
+		remove_unit_sale_discount = remove_unit_sale_discount or skill.remove_unit_sale_discount
+	
+	unit_cost = unit_cost if remove_unit_sale_discount else (unit_cost / 2)
 	add_coins(unit_cost)
 	
 	unit.dissapear_forever.rpc()
@@ -215,7 +227,12 @@ func receive_attack_in_cell(cell: Vector2i) -> void:
 # Loses the match
 func lose_match() -> void:
 	MultiplayerManager.log_msg("lose match %s" % name)
-	current_health -= GameManager.phase_damages[GameManager.get_phase()]
+	
+	var phase_damage = GameManager.phase_damages[GameManager.get_phase()]
+	for enemy_skill in enemy_player.skills:
+		phase_damage += enemy_skill.phase_damage_addition
+	
+	current_health -= phase_damage
 	health_changed.emit()
 	
 	if current_health < 1:
