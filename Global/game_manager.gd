@@ -29,6 +29,12 @@ var phase_damages: Dictionary = {
 	"late": 10,
 }
 
+var phase_rewards: Dictionary = {
+	"early": 4,
+	"middle": 7,
+	"late": 12,
+}
+
 var skill_choosing_match_turns : Array[int] = [0, 2, 5, 8]
 
 # Private

@@ -47,6 +47,8 @@ func _init_board_layer() -> void:
 		if ((cell[0] + cell[1]) % 2 != 0):
 			set_cell(Layer.BOARD_LAYER, cell, 0, TILES.board_alt)
 
+# DEPRECATED
+
 # Returns an array with the cells in the discrete line from (x0, y0) to (x1, y1)
 # Low part of modified Dofus' line algorithm
 func _get_cells_line_low(x0: int, y0: int, x1: int, y1: int) -> Array:
@@ -125,6 +127,9 @@ func _get_cells_line(start_cell: Vector2i, end_cell: Vector2i) -> Array:
 		else:
 			return _get_cells_line_high(x0, y0, x1, y1)
 
+# END DEPRECATED
+
+# Gets the lines related to the given cell descriptor
 func _get_lines_from_cell_descriptor(cell_descriptor: CellDescriptor, origin_cell: Vector2i) -> Array[Array]:
 	var result: Array[Array] = []
 	var directions: Array[Array] = cell_descriptor.get_directions()
@@ -182,7 +187,7 @@ func get_max_cell_range() -> int:
 	return max(board_cells_size.x, board_cells_size.y)
 	
 # Filter the given cells by free cells
-func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 0)) -> Array:
+func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 0), mirrored := false) -> Array:
 	var free_cells := []
 	var board_cells := get_used_cells(Layer.BOARD_LAYER)
 	var hole_cells := get_used_cells(Layer.HOLE_LAYER)
@@ -194,6 +199,10 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 	for line in lines:
 		var is_line_blocked := false
 		for cell in line:
+			
+			if mirrored:
+				cell.x = 2 * origin_cell.x - cell.x
+				cell.y = 2 * origin_cell.y - cell.y
 			
 			if not cell in board_cells:
 				if cell in hole_cells:
@@ -273,18 +282,3 @@ func readd_unit(unit: Unit) -> void:
 # Removes a unit from the unit list
 func remove_unit(unit: Unit) -> void:
 	units.erase(unit)
-	
-# Checks if a unit can be placed in a specific cell in the board
-func can_place_unit(unit: Unit, target_cell: Vector2i) -> bool:
-	var board_cells := get_used_cells(Layer.BOARD_LAYER)
-	var hole_cells := get_used_cells(Layer.HOLE_LAYER)
-	
-	# check if the target cell is in the board and not a hole
-	if target_cell in board_cells and not target_cell in hole_cells:
-		for other_unit in units:
-			if other_unit != unit:
-				var unit_cell := get_cell(other_unit.global_position)
-				if unit_cell == target_cell:
-					return false # cell taken
-		return true
-	return false

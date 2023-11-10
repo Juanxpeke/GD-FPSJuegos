@@ -1,9 +1,9 @@
 class_name HelixDescriptor1
 extends CellDescriptor
 
-func _init() -> void:
-	super._init()
-	_directions = [
+# Gets the unit directions
+func get_directions() -> Array[Array]:
+	return [
 		# We want the piece to be blockable
 		# These directions dont allow it
 		[Vector2i(0, 1)],
@@ -21,6 +21,3 @@ func _init() -> void:
 		[Vector2i(-1, -2)],
 		[Vector2i(2, -1)],
 	]
-	
-	_base_movement = []
-

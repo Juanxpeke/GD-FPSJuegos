@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RightLineDescriptor" load_steps=2 format=3 uid="uid://cxu3qsg3uxpkx"]
 
-[ext_resource type="Script" path="res://Core/Board/CellDescriptors/right_line_descriptor.gd" id="1_gi1eq"]
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/turn_line_descriptor.gd" id="1_gi1eq"]
 
 [resource]
 script = ExtResource("1_gi1eq")

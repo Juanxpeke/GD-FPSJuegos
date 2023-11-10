@@ -137,7 +137,7 @@ func _update_level_data() -> void:
 			level_cell_descriptors = level_3_descriptors
 			sprite.set_material(level_3_material)
 		
-# Updates the movement cells 
+# Updates the unit movement cells 
 func _update_movement_cells() -> void:
 	
 	if not movement_cells.is_empty():
@@ -156,7 +156,8 @@ func _update_movement_cells() -> void:
 	for cell_descriptor in current_cell_descriptors:
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
 		movement_cells += GameManager.board.get_free_cells(
-				cell_descriptor, origin_cell)
+				cell_descriptor, origin_cell, not is_multiplayer_authority())
+
 
 # Public
 
