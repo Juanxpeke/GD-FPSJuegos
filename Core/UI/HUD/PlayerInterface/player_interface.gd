@@ -8,7 +8,7 @@ var player: Player
 @onready var peer_name_label: Label = %PeerNameLabel
 @onready var life_bar: TextureProgressBar = %LifeBar
 @onready var life_label: Label = %LifeLabel
-@onready var skill_list: SkillList
+@onready var skill_list
 
 # Private
 

@@ -1,16 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://briej2bofn8aj"]
+[gd_scene load_steps=4 format=3 uid="uid://m5pxvi7avooy"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_list.gd" id="1_xwjme"]
+[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_active_list.gd" id="2_v8vk0"]
 
-[node name="SkillList" type="ItemList"]
+[sub_resource type="GDScript" id="GDScript_omhc4"]
+script/source = "extends Panel
+
+func set_player(player : Player) -> void:
+	for node in get_children():
+		node.set_player(player)
+"
+
+[node name="SkillList" type="Panel"]
+anchors_preset = -1
+anchor_top = 0.25
+anchor_right = 0.235
+anchor_bottom = 0.883
 offset_left = 4.0
-offset_top = 162.0
-offset_right = 271.0
-offset_bottom = 572.0
-auto_height = true
-max_columns = 2
-same_column_width = true
-fixed_column_width = 100
+offset_right = 0.279968
+offset_bottom = -0.184021
+script = SubResource("GDScript_omhc4")
+
+[node name="General" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.72
+offset_bottom = -0.200012
+grow_horizontal = 2
 icon_mode = 0
 fixed_icon_size = Vector2i(70, 70)
 script = ExtResource("1_xwjme")
+
+[node name="Activables" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.722
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0200195
+grow_horizontal = 2
+grow_vertical = 2
+icon_mode = 0
+fixed_icon_size = Vector2i(50, 50)
+script = ExtResource("2_v8vk0")
