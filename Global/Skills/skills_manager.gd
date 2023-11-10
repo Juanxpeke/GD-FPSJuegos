@@ -4,7 +4,8 @@ extends Node
 var skills = [
 	"res://Global/Skills/JumperLevelUp/jumper_level_up.tres",
 	"res://Global/Skills/DimensionalJump/dimensional_jump.tres",
-	"res://Global/Skills/Ghost/ghost.tres"
+	"res://Global/Skills/Ghost/ghost.tres",
+	"res://Global/Skills/Reinforcements/reinforcements.tres"
 ]
 
 # Public
