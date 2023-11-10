@@ -24,5 +24,4 @@ scale = Vector2(1.8, 1.8)
 unique_name_in_owner = true
 
 [node name="BoxShape" type="CollisionShape2D" parent="Area"]
-visible = false
 shape = SubResource("RectangleShape2D_r1ng6")

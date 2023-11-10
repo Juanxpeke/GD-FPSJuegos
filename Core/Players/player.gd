@@ -108,8 +108,9 @@ func get_live_unit_by_cell(cell: Vector2i) -> Unit:
 func add_unit(unit_class: String, target_position: Vector2) -> void:
 	var unit = GameManager.units_data[unit_class].scene.instantiate() # REVIEW: Preload, as cell_descriptors get added before GameManager
 
+	unit.set_multiplayer_authority(peer_player.id) # Necessary for units added after setup
 	add_child(unit)
-	set_multiplayer_authority(peer_player.id) # Necessary for units added after setup
+	# REVIEW: set_multiplayer_authority(peer_player.id)
 
 	unit.name = unit.unit_class + str(get_child_count()) + str(peer_player.id)
 	
