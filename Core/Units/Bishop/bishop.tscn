@@ -17,7 +17,7 @@ level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_desc
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-scale = Vector2(1.8, 1.8)
+scale = Vector2(2, 2)
 
 [node name="Area" type="Area2D" parent="."]
 unique_name_in_owner = true

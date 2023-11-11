@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m4e7b84fww4u"
-path="res://.godot/imported/medieval_knight_icon.png-d78ae4ca0eb656a8bc4c5b188424e4e5.ctex"
+uid="uid://cmf8hqr8if44u"
+path="res://.godot/imported/king_arthur_icon_img.png-30d19254c50297e6269e1aa198dd394a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Global/Roles/MedievalKnight/medieval_knight_icon.png"
-dest_files=["res://.godot/imported/medieval_knight_icon.png-d78ae4ca0eb656a8bc4c5b188424e4e5.ctex"]
+source_file="res://Global/Roles/KingArthur/king_arthur_icon_img.png"
+dest_files=["res://.godot/imported/king_arthur_icon_img.png-30d19254c50297e6269e1aa198dd394a.ctex"]
 
 [params]
 

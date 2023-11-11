@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ggrq2yrddq14"
-path="res://.godot/imported/medieval_knight_units.png-71c22480e72637b77c1665ee65103ccb.ctex"
+uid="uid://bofkanyhcmyao"
+path="res://.godot/imported/square_dark.png-c589053c0af325cc57e8fe09c74ece3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Global/Roles/MedievalKnight/medieval_knight_units.png"
-dest_files=["res://.godot/imported/medieval_knight_units.png-71c22480e72637b77c1665ee65103ccb.ctex"]
+source_file="res://Extra/SplashScreen/square_dark.png"
+dest_files=["res://.godot/imported/square_dark.png-c589053c0af325cc57e8fe09c74ece3e.ctex"]
 
 [params]
 

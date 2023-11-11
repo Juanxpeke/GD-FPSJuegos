@@ -33,7 +33,7 @@ layer_4/tile_data = PackedInt32Array(-196613, 0, 1, -262149, 0, 0, -131077, 0, 2
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(562, 321)
-zoom = Vector2(1.6, 1.6)
+zoom = Vector2(1.75, 1.75)
 
 [node name="Players" type="Node2D" parent="."]
 unique_name_in_owner = true

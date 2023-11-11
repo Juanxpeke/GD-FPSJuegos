@@ -22,15 +22,16 @@ level_1_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_desc
 level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_4dic7"), ExtResource("4_444s1")])
 level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_4dic7"), ExtResource("6_f7ymr")])
 
-[node name="TurnIndicator" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-scale = Vector2(3, 3)
-texture = SubResource("AtlasTexture_k7324")
-
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
 scale = Vector2(1.8, 1.8)
+
+[node name="TurnIndicator" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -6)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_k7324")
 
 [node name="Area" type="Area2D" parent="."]
 unique_name_in_owner = true

@@ -17,7 +17,6 @@ func _on_turn_ended() -> void:
 
 # Updates the turn indicator
 func _update_turn_indicator() -> void:
-	print("xdaKDSAJKADJKAJD")
 	if is_multiplayer_authority():
 		turn_indicator.texture.region.position.x = 16 * (GameManager.map.turn % 4)
 	else:

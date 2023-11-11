@@ -42,13 +42,15 @@ var skill_choosing_match_turns : Array[int] = [0, 2, 5, 8]
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	units_data = {
-		"king": load("res://Global/UnitData/king.tres"),
-		"bishop": load("res://Global/UnitData/bishop.tres"),
+		# Test units
 		"knight": load("res://Global/UnitData/knight.tres"),
+		"bishop": load("res://Global/UnitData/bishop.tres"),
+		# Real units
+		"king": load("res://Global/UnitData/king.tres"),
 		"jumper": load("res://Global/UnitData/jumper.tres"),
-		"ninja": load("res://Global/UnitData/ninja.tres"),
 		"mace": load("res://Global/UnitData/mace.tres"),
-		"sniper": load("res://Global/UnitData/sniper.tres")
+		"sniper": load("res://Global/UnitData/sniper.tres"),
+		"ninja": load("res://Global/UnitData/ninja.tres"),
 	}
 
 # Public

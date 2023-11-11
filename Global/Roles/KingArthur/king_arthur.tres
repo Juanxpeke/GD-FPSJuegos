@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="Role" load_steps=5 format=3 uid="uid://cn6865nmhc3n0"]
 
 [ext_resource type="Script" path="res://Global/Roles/role.gd" id="1_mgaxx"]
-[ext_resource type="Texture2D" uid="uid://ee4utovljcxb" path="res://Global/Roles/MedievalKnight/medieval_knight_portrait.png" id="1_t34yk"]
-[ext_resource type="Texture2D" uid="uid://m4e7b84fww4u" path="res://Global/Roles/MedievalKnight/medieval_knight_icon.png" id="1_vcegi"]
-[ext_resource type="Texture2D" uid="uid://ggrq2yrddq14" path="res://Global/Roles/MedievalKnight/medieval_knight_units.png" id="2_p20pf"]
+[ext_resource type="Texture2D" uid="uid://ee4utovljcxb" path="res://Global/Roles/KingArthur/king_arthur_portrait.png" id="1_t34yk"]
+[ext_resource type="Texture2D" uid="uid://m4e7b84fww4u" path="res://Global/Roles/KingArthur/king_arthur_icon.png" id="1_vcegi"]
+[ext_resource type="Texture2D" uid="uid://ggrq2yrddq14" path="res://Global/Roles/KingArthur/king_arthur_units.png" id="2_p20pf"]
 
 [resource]
 script = ExtResource("1_mgaxx")
 name = "King Arthur"
-description = "Knight from the medieval age. A balanced option for classic players."
+description = "Led Camelot with Excalibur, a legendary king who forged a realm of greatness."
 icon = ExtResource("1_vcegi")
 portrait = ExtResource("1_t34yk")
 initial_health = 25

@@ -2,8 +2,8 @@ extends Node
 
 # All roles in game
 var roles = [
-	load("res://Global/Roles/MedievalKnight/medieval_knight.tres"),
-	load("res://Global/Roles/Pirate/pirate.tres"),
+	load("res://Global/Roles/KingArthur/king_arthur.tres"),
+	load("res://Global/Roles/Blackbeard/blackbeard.tres"),
 ]
 
 # Unit dimensions on all texture atlases
@@ -23,18 +23,22 @@ func get_texture_atlas_unit_dimensions() -> Vector2:
 # Gets the given unit offset in the roles texture atlases, using coordinates
 func get_texture_atlas_unit_offset_coords(unit_class: String) -> Vector2:
 	match unit_class:
-		"king":
-			return Vector2(4, 0)
-		"bishop":
-			return Vector2(3, 0)
+		# Test units
+		"pawn":
+			return Vector2(0, 0)
 		"knight":
 			return Vector2(1, 0)
+		"bishop":
+			return Vector2(3, 0)
+		# Real units
+		"king":
+			return Vector2(4, 0)
 		"jumper":
-			return Vector2(0, 0)
-		"sniper":
-			return Vector2(0, 0)
+			return Vector2(6, 0)
 		"mace":
-			return Vector2(0, 0)
+			return Vector2(7, 0)
+		"sniper":
+			return Vector2(8, 0)
 		"ninja":
 			return Vector2(0, 0)
 	return Vector2()

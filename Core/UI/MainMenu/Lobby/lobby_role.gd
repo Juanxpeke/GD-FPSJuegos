@@ -1,7 +1,9 @@
 class_name LobbyRole
-extends TextureButton
+extends PanelContainer
 
 var role_id: int
+
+@onready var lobby_role_button := %LobbyRoleButton
 
 # Private
 
@@ -11,9 +13,9 @@ func _ready() -> void:
 	
 	_update_layout()
 	
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
-	pressed.connect(_on_pressed)
+	lobby_role_button.mouse_entered.connect(_on_mouse_entered)
+	lobby_role_button.mouse_exited.connect(_on_mouse_exited)
+	lobby_role_button.pressed.connect(_on_pressed)
 
 # Called when the mouse enters
 func _on_mouse_entered() -> void:
@@ -30,7 +32,7 @@ func _on_pressed() -> void:
 
 # Updates the layout
 func _update_layout() -> void:
-	texture_normal = RolesManager.get_role(role_id).icon
+	lobby_role_button.texture_normal = RolesManager.get_role(role_id).icon
 
 # Public
 

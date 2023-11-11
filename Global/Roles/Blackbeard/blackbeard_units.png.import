@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ee4utovljcxb"
-path="res://.godot/imported/medieval_knight_portrait.png-bf9d6f6ed7230d59b7a7ecfca140f623.ctex"
+uid="uid://wf1vmil4iygk"
+path="res://.godot/imported/blackbeard_units.png-65c79aebb5cdfb3821270469d6c787c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Global/Roles/MedievalKnight/medieval_knight_portrait.png"
-dest_files=["res://.godot/imported/medieval_knight_portrait.png-bf9d6f6ed7230d59b7a7ecfca140f623.ctex"]
+source_file="res://Global/Roles/Blackbeard/blackbeard_units.png"
+dest_files=["res://.godot/imported/blackbeard_units.png-65c79aebb5cdfb3821270469d6c787c7.ctex"]
 
 [params]
 

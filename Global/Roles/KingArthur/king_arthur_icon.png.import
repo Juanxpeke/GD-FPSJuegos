@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1s13vwgiaorb"
-path="res://.godot/imported/pirate_icon.png-5b0f258c86f400748491dad022a00565.ctex"
+uid="uid://m4e7b84fww4u"
+path="res://.godot/imported/king_arthur_icon.png-609d556979c95f16bfb00be874f6ff3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Global/Roles/Pirate/pirate_icon.png"
-dest_files=["res://.godot/imported/pirate_icon.png-5b0f258c86f400748491dad022a00565.ctex"]
+source_file="res://Global/Roles/KingArthur/king_arthur_icon.png"
+dest_files=["res://.godot/imported/king_arthur_icon.png-609d556979c95f16bfb00be874f6ff3d.ctex"]
 
 [params]
 
