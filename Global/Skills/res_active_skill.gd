@@ -18,8 +18,13 @@ var active : bool
 
 func _init() -> void:
 	active = false
-	GameManager.map.turn_ended.connect(end_turn)
-	GameManager.map.match_ended.connect(reset)
+	GameManager.map_initialized.connect(
+		func():
+			print("xd")
+			#GameManager.map.turn_ended.connect(end_turn)
+			#GameManager.map.match_ended.connect(reset)
+	)
+
 	uses_remaining = INITIAL_USES
 
 
