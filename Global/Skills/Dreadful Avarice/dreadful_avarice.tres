@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResSkill" load_steps=3 format=3 uid="uid://bsaxfc4xbhwia"]
+
+[ext_resource type="Texture2D" uid="uid://b82ju75s8288f" path="res://Global/Skills/Dreadful Avarice/dreadful_avarice.png" id="1_5i3qn"]
+[ext_resource type="Script" path="res://Global/Skills/res_skill.gd" id="1_c5wv3"]
+
+[resource]
+script = ExtResource("1_c5wv3")
+name = "Dreadful Avarice"
+description = "Obtains +2 gold when a match ends."
+icon = ExtResource("1_5i3qn")
+phase_damage_addition = 0
+phase_reward_addition = 2
+remove_unit_sale_discount = false

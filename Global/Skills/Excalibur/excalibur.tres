@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ResSkill" load_steps=3 format=3 uid="uid://dt7nkss5cckhp"]
+
+[ext_resource type="Script" path="res://Global/Skills/res_skill.gd" id="1_i7ybi"]
+[ext_resource type="Texture2D" uid="uid://dvrjscsmbkv37" path="res://Global/Skills/Excalibur/excalibur.png" id="1_n1i1n"]
+
+[resource]
+script = ExtResource("1_i7ybi")
+name = "Excalibur"
+description = "Deal +2 damage when winning a match."
+icon = ExtResource("1_n1i1n")
+phase_damage_addition = 2
+phase_reward_addition = 0
+remove_unit_sale_discount = false

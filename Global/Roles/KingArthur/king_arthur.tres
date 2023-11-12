@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Global/Roles/role.gd" id="1_mgaxx"]
 [ext_resource type="Texture2D" uid="uid://ee4utovljcxb" path="res://Global/Roles/KingArthur/king_arthur_portrait.png" id="1_t34yk"]
 [ext_resource type="Texture2D" uid="uid://m4e7b84fww4u" path="res://Global/Roles/KingArthur/king_arthur_icon.png" id="1_vcegi"]
+[ext_resource type="Resource" uid="uid://dt7nkss5cckhp" path="res://Global/Skills/Excalibur/excalibur.tres" id="2_c5tjx"]
 [ext_resource type="Texture2D" uid="uid://ggrq2yrddq14" path="res://Global/Roles/KingArthur/king_arthur_units.png" id="2_p20pf"]
-[ext_resource type="Resource" uid="uid://075187gcs0pd" path="res://Global/Skills/Ghost/ghost.tres" id="2_wju8d"]
 
 [resource]
 script = ExtResource("1_mgaxx")
@@ -16,5 +16,5 @@ initial_health = 25
 initial_money = 15
 initial_units_names = Array[String](["king", "knight"])
 initial_units_offsets = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
-initial_skill = ExtResource("2_wju8d")
+initial_skill = ExtResource("2_c5tjx")
 units_texture_atlas = ExtResource("2_p20pf")

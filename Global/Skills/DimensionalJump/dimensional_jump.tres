@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_x4s7y")
 name = "Dimensional Jump"
-description = "Dimensional Jump. Placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder."
+description = "A dimensional jump."
 icon = ExtResource("1_peqbl")
 phase_damage_addition = 0
 phase_reward_addition = 0

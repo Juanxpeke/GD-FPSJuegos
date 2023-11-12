@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Role" load_steps=6 format=3 uid="uid://vxvkuymvy4v1"]
 
 [ext_resource type="Texture2D" uid="uid://d1s13vwgiaorb" path="res://Global/Roles/Blackbeard/blackbeard_icon.png" id="1_fylgn"]
+[ext_resource type="Resource" uid="uid://bsaxfc4xbhwia" path="res://Global/Skills/Dreadful Avarice/dreadful_avarice.tres" id="2_e5j7c"]
 [ext_resource type="Texture2D" uid="uid://cl1245lqidy4w" path="res://Global/Roles/DarkKnight/dark_knight_portrait.png" id="2_ixvji"]
-[ext_resource type="Resource" uid="uid://bfwv5flkpdg32" path="res://Global/Skills/DimensionalJump/dimensional_jump.tres" id="2_qx5wq"]
 [ext_resource type="Script" path="res://Global/Roles/role.gd" id="3_k8wq8"]
 [ext_resource type="Texture2D" uid="uid://wf1vmil4iygk" path="res://Global/Roles/Blackbeard/blackbeard_units.png" id="4_q2i6x"]
 
@@ -16,5 +16,5 @@ initial_health = 20
 initial_money = 10
 initial_units_names = Array[String](["king", "bishop"])
 initial_units_offsets = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
-initial_skill = ExtResource("2_qx5wq")
+initial_skill = ExtResource("2_e5j7c")
 units_texture_atlas = ExtResource("4_q2i6x")

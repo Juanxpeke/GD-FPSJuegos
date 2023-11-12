@@ -80,8 +80,6 @@ func show_role_display(role_id: int) -> void:
 			role_piece.hide()
 	
 	role_skill_icon.texture = role.initial_skill.icon
-	role_skill_description.text = "[fill][outline_color=#dad0b0][outline_size=1]%s:[/outline_size][/outline_color] %s[/fill]" \
-			% [role.initial_skill.name, role.initial_skill.description]
 			
 	role_skill_description.text = "[fill][color=#e3b738]%s:[/color] %s[/fill]" \
 		% [role.initial_skill.name, role.initial_skill.description]

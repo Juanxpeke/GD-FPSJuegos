@@ -23,10 +23,11 @@ expand_margin_bottom = 16.0
 
 [node name="LobbyRoleDetails" type="PanelContainer"]
 offset_right = 360.0
-offset_bottom = 380.0
+offset_bottom = 370.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vj5le")
 script = ExtResource("1_e1ehg")
 metadata/_edit_horizontal_guides_ = [287.0, 303.0, 191.0, 207.0]
+metadata/_edit_vertical_guides_ = [293.0, 273.0, 53.0, 73.0]
 
 [node name="LobbyRoleDetailsContainer" type="Control" parent="."]
 layout_mode = 2
@@ -233,15 +234,16 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 302.0
-offset_bottom = 366.0
+offset_bottom = 358.0
 grow_horizontal = 2
 
 [node name="RoleSkillIcon" type="TextureRect" parent="LobbyRoleDetailsContainer/RoleSkillsContainer"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_bottom = 1.0
-offset_right = 64.0
+offset_top = 2.0
+offset_right = 52.0
+offset_bottom = 54.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(80, 40)
@@ -253,11 +255,13 @@ expand_mode = 1
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-offset_left = 88.0
+offset_left = 72.0
 offset_right = 358.0
-offset_bottom = 64.0
+offset_bottom = 56.0
 size_flags_horizontal = 3
 theme_override_constants/line_separation = 3
+theme_override_font_sizes/normal_font_size = 0
+theme_override_font_sizes/bold_font_size = 0
 bbcode_enabled = true
-text = "[fill][outline_color=#e0e0b0][outline_size=2]This[/outline_size][/outline_color] is a very long placeholder description for a role skill, that indicates what it does. This is text for checking the scroll stuff[/fill]"
+text = "[fill]This is a very long placeholder description for a role skill, that indicates what it does. This is text for checking the scroll stuff[/fill]"
 scroll_active = false
