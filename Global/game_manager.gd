@@ -44,13 +44,16 @@ func _ready() -> void:
 	units_data = {
 		# Test units
 		"knight": load("res://Global/UnitData/knight.tres"),
-		"bishop": load("res://Global/UnitData/bishop.tres"),
 		# Real units
 		"king": load("res://Global/UnitData/king.tres"),
+		"queen": load("res://Global/UnitData/queen.tres"),
+		"bishop": load("res://Global/UnitData/bishop.tres"),
+		"rook": load("res://Global/UnitData/rook.tres"),
 		"jumper": load("res://Global/UnitData/jumper.tres"),
 		"mace": load("res://Global/UnitData/mace.tres"),
 		"sniper": load("res://Global/UnitData/sniper.tres"),
 		"ninja": load("res://Global/UnitData/ninja.tres"),
+		"swordman": load("res://Global/UnitData/swordman.tres")
 	}
 
 # Public

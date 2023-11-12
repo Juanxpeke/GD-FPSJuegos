@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://blagqjo8tdefl"]
+
+[ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_d5bpo"]
+
+[resource]
+script = ExtResource("1_d5bpo")
+cost = 0
+weights = {
+"early": 1,
+"late": 5,
+"middle": 2
+}
