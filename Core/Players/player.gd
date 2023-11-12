@@ -18,9 +18,9 @@ var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
 
 #### Skills ####
-var activable_skills: Array[ResActive] = [] # skills that can be activated
+var activable_skills: Array[ResActive] = [] # Skills that can be activated
 
-var skills: Array[ResSkill] = [] # skills that are taking effect right now
+var skills: Array[ResSkill] = [] # Skills that are taking effect right now
 
 # Private
 
@@ -42,8 +42,12 @@ func _reset_units() -> void:
 # Called when the match ends
 func _on_match_ended() -> void:
 	var phase_reward = GameManager.phase_rewards[GameManager.get_phase()]
+	MultiplayerManager.log_msg("phase reward before skills is %d" % phase_reward)
+	
 	for skill in skills:
 		phase_reward += skill.phase_reward_addition
+		
+	MultiplayerManager.log_msg("phase reward after skills is %d" % phase_reward)
 	
 	add_coins(phase_reward)
 			
@@ -62,6 +66,8 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 		
 	current_health = role.initial_health
 	current_money = role.initial_money
+	
+	skills.append(role.initial_skill)
 	
 	for i in range(role.initial_units_names.size()):
 		add_unit(
