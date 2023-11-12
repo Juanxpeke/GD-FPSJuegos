@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://blagqjo8tdefl"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://blagqjo8tdefl"]
 
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_d5bpo"]
+[ext_resource type="PackedScene" uid="uid://dgcub3bmm8qdr" path="res://Core/Units/Queen/queen.tscn" id="1_kvbnc"]
+[ext_resource type="Texture2D" uid="uid://tgn603f8gbj7" path="res://Core/Units/Queen/store_queen.png" id="3_l83hl"]
 
 [resource]
 script = ExtResource("1_d5bpo")
+scene = ExtResource("1_kvbnc")
 cost = 0
 weights = {
 "early": 1,
 "late": 5,
 "middle": 2
 }
+store_sprite = ExtResource("3_l83hl")
