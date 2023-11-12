@@ -31,11 +31,6 @@ func _process(delta: float) -> void:
 			skill_description_scroll_bar.value += 1
 		else:
 			skill_description_scroll_bar.value -= 1
-
-		MultiplayerManager.log_msg("Value: %f" % skill_description_scroll_bar.value)
-		MultiplayerManager.log_msg("Prev value: %f" % skill_description_scroll_prev_value)
-		MultiplayerManager.log_msg("Min value: %s" % skill_description_scroll_bar.min_value)
-		MultiplayerManager.log_msg("Max value: %s" % skill_description_scroll_bar.max_value)
 		
 		if skill_description_scroll_bar.value == skill_description_scroll_prev_value:
 			skill_description_scroll_down = not skill_description_scroll_down

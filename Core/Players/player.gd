@@ -233,7 +233,7 @@ func lose_match() -> void:
 	health_changed.emit()
 	
 	if current_health < 1:
-		GameManager.end_game()
+		GameManager.end_game(enemy_player.peer_player)
 	
 	GameManager.map.end_match()
 	

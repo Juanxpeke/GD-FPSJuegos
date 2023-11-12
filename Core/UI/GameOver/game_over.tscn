@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkbq2q35io31r"]
+[gd_scene load_steps=3 format=3 uid="uid://dkbq2q35io31r"]
 
 [ext_resource type="Script" path="res://Core/UI/GameOver/game_over.gd" id="1_ya17u"]
+[ext_resource type="PackedScene" uid="uid://bslhrv3eo36wd" path="res://Core/UI/MainMenu/main_menu.tscn" id="2_fji0f"]
 
-[node name="game_over" type="CanvasLayer"]
+[node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_ya17u")
+main_menu_scene = ExtResource("2_fji0f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Container" type="VBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -18,11 +20,13 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="WinLabel" type="Label" parent="Container"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
-text = "GAME OVER!"
+text = "USERNAME WINS!"
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="Container"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "EXIT GAME"
+text = "GO TO MAIN MENU"

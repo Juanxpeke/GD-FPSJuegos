@@ -12,6 +12,7 @@ var board: Board
 var map: Map
 var store: Store
 var player: Player # Myself
+var last_winner: MultiplayerManager.PeerPlayer
 
 var turn: int = 0
 
@@ -36,6 +37,8 @@ var phase_rewards: Dictionary = {
 }
 
 var skill_choosing_match_turns : Array[int] = [0, 2, 5, 8]
+
+var game_over_scene: PackedScene = load("res://Core/UI/GameOver/game_over.tscn")
 
 # Private
 
@@ -93,5 +96,9 @@ func get_phase() -> String:
 	return game_phase
 
 # Ends the game
-func end_game() -> void:
-	get_tree().change_scene_to_packed(load("res://Core/UI/GameOver/game_over.tscn"))
+func end_game(winner: MultiplayerManager.PeerPlayer) -> void:
+	last_winner = winner
+	
+	MultiplayerManager.peer_players = []
+	
+	get_tree().change_scene_to_packed(game_over_scene)

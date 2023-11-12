@@ -20,6 +20,8 @@ var matchi: int = 0
 
 var match_phase: MatchPhase = MatchPhase.PREPARATION
 
+var main_menu_scene: PackedScene = load("res://Core/UI/MainMenu/main_menu.tscn")
+
 @onready var hud: HUD = %HUD
 @onready var players: Node2D = %Players
 @onready var king_marker: Marker2D = %KingMarker
@@ -42,7 +44,8 @@ func _ready() -> void:
 		players.get_child(0).enemy_player = players.get_child(1)
 		players.get_child(1).enemy_player = players.get_child(0)
 
-	multiplayer_synchronizer.connect("delta_synchronized", _on_delta_synchronized)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	multiplayer_synchronizer.delta_synchronized.connect(_on_delta_synchronized)
 	
 	if multiplayer.is_server():
 		var preparation_timer = get_tree().create_timer(preparation_time)
@@ -50,9 +53,11 @@ func _ready() -> void:
 		# first_turn_player_index = map_rng.randi_range(0, players.get_child_count() - 1)
 		# inner_first_turn_player_index = first_turn_player_index
 
-# Called every frame. 'delta' is the elapsed time since the previous frame
-func _process(delta: float) -> void:
-	pass
+# Called when a peer disconnects
+func _on_peer_disconnected(_id: int) -> void:
+	multiplayer.multiplayer_peer.close()
+	MultiplayerManager.peer_players = []
+	get_tree().change_scene_to_packed(main_menu_scene)
 
 # Called when a multiplayer synchronization occurs
 func _on_delta_synchronized() -> void:

@@ -1,15 +1,19 @@
 extends CanvasLayer
 
-@onready var button = $VBoxContainer/Button
+@export var main_menu_scene: PackedScene
+
+@onready var win_label := %WinLabel
+@onready var button := %Button
+
+# Private
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	button.pressed.connect(self._button_pressed)
+	win_label.text = "%s WINS!" % GameManager.last_winner.name.to_upper()
+	
+	button.pressed.connect(_button_pressed)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+# Called when the menu button is pressed
 func _button_pressed():
-	get_tree().quit()
+	multiplayer.multiplayer_peer.close()
+	get_tree().change_scene_to_packed(main_menu_scene)
