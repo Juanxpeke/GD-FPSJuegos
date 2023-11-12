@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DiagonalDescriptor" load_steps=2 format=3 uid="uid://ba5qkdeu3kdgr"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/diagonal_descriptor.gd" id="1_37w7v"]
+
+[resource]
+script = ExtResource("1_37w7v")
+is_blockable = true
+is_filled = true
+wrap_around = false
+cell_range = 4

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarDescriptor" load_steps=2 format=3 uid="uid://b2ppeuogn076x"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/star_descriptor.gd" id="1_nnsee"]
+
+[resource]
+script = ExtResource("1_nnsee")
+is_blockable = true
+is_filled = true
+wrap_around = false
+cell_range = 3

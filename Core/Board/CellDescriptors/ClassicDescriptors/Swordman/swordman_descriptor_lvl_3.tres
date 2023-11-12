@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HorizontalLineDescriptor" load_steps=2 format=3 uid="uid://nfn0sj0ryjsm"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/horizontal_line_descriptor.gd" id="1_p5fqc"]
+
+[resource]
+script = ExtResource("1_p5fqc")
+is_blockable = true
+is_filled = true
+wrap_around = false
+cell_range = 4

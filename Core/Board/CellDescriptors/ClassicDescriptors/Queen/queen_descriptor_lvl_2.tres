@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarDescriptor" load_steps=2 format=3 uid="uid://moxbw8sgwxvn"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/star_descriptor.gd" id="1_gp6gq"]
+
+[resource]
+script = ExtResource("1_gp6gq")
+is_blockable = true
+is_filled = true
+wrap_around = false
+cell_range = 5
