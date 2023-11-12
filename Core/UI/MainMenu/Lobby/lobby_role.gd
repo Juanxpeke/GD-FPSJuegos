@@ -19,12 +19,11 @@ func _ready() -> void:
 
 # Called when the mouse enters
 func _on_mouse_entered() -> void:
-	get_parent().get_parent().role_details.change_role_display(role_id)
-	get_parent().get_parent().role_details.show()
+	get_parent().get_parent().role_details.show_role_display(role_id)
 
 # Called when the mouse exits
 func _on_mouse_exited() -> void:
-	get_parent().get_parent().role_details.hide()
+	get_parent().get_parent().role_details.stop_role_display()
 
 # Called on pressed
 func _on_pressed() -> void:

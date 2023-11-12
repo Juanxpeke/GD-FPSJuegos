@@ -176,6 +176,7 @@ LineEdit/styles/focus = SubResource("StyleBoxFlat_a5666")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_ndaa5")
 Panel/styles/panel = SubResource("StyleBoxFlat_ijs0b")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_jgsxf")
+RichTextLabel/colors/default_color = Color(0.921569, 0.898039, 0.729412, 1)
 TextEdit/styles/focus = SubResource("StyleBoxFlat_sf2u7")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_xf4l8")
 VBoxContainer/constants/separation = 8

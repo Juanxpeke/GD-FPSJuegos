@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GD-FPSJuegos"
+config/name="Pawns & Legends"
 run/main_scene="res://Core/UI/MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/image="res://Extra/SplashScreen/square_dark.png"
