@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkbq2q35io31r"]
+[gd_scene load_steps=4 format=3 uid="uid://dkbq2q35io31r"]
 
 [ext_resource type="Script" path="res://Core/UI/GameOver/game_over.gd" id="1_ya17u"]
 [ext_resource type="PackedScene" uid="uid://bslhrv3eo36wd" path="res://Core/UI/MainMenu/main_menu.tscn" id="2_fji0f"]
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="3_203jn"]
 
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_ya17u")
@@ -13,20 +14,42 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -187.0
+offset_top = -33.0
+offset_right = 187.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="WinIcon" type="TextureRect" parent="Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_203jn")
+expand_mode = 1
 
 [node name="WinLabel" type="Label" parent="Container"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "USERNAME WINS!"
+horizontal_alignment = 1
+vertical_alignment = 2
 
-[node name="Button" type="Button" parent="Container"]
+[node name="GoMainMenuButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -62.0
+offset_right = 100.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "GO TO MAIN MENU"

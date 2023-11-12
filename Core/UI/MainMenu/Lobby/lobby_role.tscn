@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Core/UI/MainMenu/Lobby/lobby_role.gd" id="2_vqixd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xbln"]
+bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
