@@ -27,6 +27,18 @@ func _ready() -> void:
 func _on_skill_picking_timeout() -> void:
 	if not skill_selected:
 		select_random_skill()
+		
+# Adjuts the skill options separation
+func _adjust_skill_options_separation() -> void:
+	var visible_skill_options = 0
+	for i in range(skills_options_container.get_child_count()):
+		if skills_options_container.get_child(i).visible:
+			visible_skill_options += 1
+			
+	var visible_extra_skill_options = max(visible_skill_options - 3, 0)
+			
+	skills_options_container.add_theme_constant_override("separation", max(64 - visible_extra_skill_options * 32, 8))
+
 	
 # Public
 
@@ -55,6 +67,8 @@ func show_skills() -> void:
 		else:
 			skills_options_container.get_child(i).hide()
 	
+	_adjust_skill_options_separation()
+
 	skill_selected = false
 	skill_picking_timer.start()
 	show()
@@ -88,12 +102,8 @@ func add_extra_skill_options() -> void:
 		var skill_option = skill_option_scene.instantiate()
 		skills_options_container.add_child(skill_option)
 	
-	skills_options_container.add_theme_constant_override("separation", max(64 - extra_skill_options * 32, 8))
-	
 # Clears all the extra skill options
 func clear_extra_skill_options() -> void:
 	for i in range(skills_options_container.get_child_count()):
 		if i >= initial_skill_options:
 			skills_options_container.get_child(i).queue_free()
-	
-	skills_options_container.add_theme_constant_override("separation", 64)
