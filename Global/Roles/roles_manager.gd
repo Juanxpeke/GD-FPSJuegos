@@ -4,6 +4,7 @@ extends Node
 var roles = [
 	load("res://Global/Roles/KingArthur/king_arthur.tres"),
 	load("res://Global/Roles/Blackbeard/blackbeard.tres"),
+	load("res://Global/Roles/SherlockHolmes/sherlock_holmes.tres"),
 ]
 
 # Unit dimensions on all texture atlases

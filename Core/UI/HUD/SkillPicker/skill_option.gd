@@ -34,6 +34,7 @@ func _on_mouse_exited():
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "selected":
 		get_parent().get_parent().hide()
+		get_parent().get_parent().clear_extra_skill_options()
 
 # Called on GUI input
 func _on_gui_input(event: InputEvent) -> void:

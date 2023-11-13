@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ResSkill" load_steps=3 format=3 uid="uid://fsjeacls6q1e"]
+
+[ext_resource type="Script" path="res://Global/Skills/res_skill.gd" id="1_ler40"]
+[ext_resource type="Texture2D" uid="uid://bj7n3ujmppt02" path="res://Global/Skills/SixthSense/sixth_sense.png" id="1_n4hk1"]
+
+[resource]
+script = ExtResource("1_ler40")
+name = "Sixth Sense"
+description = "Adds +1 skill option to the skill selection screen."
+icon = ExtResource("1_n4hk1")
+phase_damage_addition = 0
+phase_reward_addition = 0
+remove_unit_sale_discount = false
+extra_skill_options = 1

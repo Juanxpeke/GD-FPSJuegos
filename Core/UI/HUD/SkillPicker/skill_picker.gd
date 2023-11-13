@@ -1,7 +1,11 @@
 class_name SkillPicker
 extends Panel
 
+@export var skill_option_scene: PackedScene
+
+var initial_skill_options: int
 var skill_selected: bool = false
+
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 @onready var skills_options_container := %SkillsOptionsContainer
@@ -13,7 +17,10 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready() -> void:
 	rng.randomize()
 	
+	initial_skill_options = skills_options_container.get_child_count()
+	
 	skill_picking_timer.timeout.connect(_on_skill_picking_timeout)
+	
 	hide()
 	
 # Called when the skill picking timer timeouts
@@ -37,6 +44,8 @@ func show_skills() -> void:
 		return
 	
 	MultiplayerManager.log_msg("show skills (skill id pool %s)" % str(skill_id_pool))
+	
+	add_extra_skill_options()
 	
 	for i in range(skills_options_container.get_child_count()):
 		if i < skill_id_pool.size():
@@ -68,3 +77,23 @@ func spread_selection(skill_option : SkillOption) -> void:
 	for option in skills_options_container.get_children():
 		if option != skill_option:
 			option.unselect()
+
+# Adds the given amount of extra skill options
+func add_extra_skill_options() -> void:
+	var extra_skill_options = 0
+	for skill in GameManager.player.skills:
+		extra_skill_options += skill.extra_skill_options
+		
+	for i in range(extra_skill_options):
+		var skill_option = skill_option_scene.instantiate()
+		skills_options_container.add_child(skill_option)
+	
+	skills_options_container.add_theme_constant_override("separation", max(64 - extra_skill_options * 32, 8))
+	
+# Clears all the extra skill options
+func clear_extra_skill_options() -> void:
+	for i in range(skills_options_container.get_child_count()):
+		if i >= initial_skill_options:
+			skills_options_container.get_child(i).queue_free()
+	
+	skills_options_container.add_theme_constant_override("separation", 64)

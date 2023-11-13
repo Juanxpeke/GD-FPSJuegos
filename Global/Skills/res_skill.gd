@@ -8,6 +8,7 @@ extends Resource
 @export var phase_damage_addition: int = 0
 @export var phase_reward_addition: int = 0
 @export var remove_unit_sale_discount: bool = false
+@export var extra_skill_options: int = 0
 
 # Public
 

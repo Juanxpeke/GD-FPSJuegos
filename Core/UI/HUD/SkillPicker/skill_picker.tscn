@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cvlvkujq8qul2" path="res://Core/UI/HUD/SkillPicker/skill_option.tscn" id="2_1caqc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnrvx"]
-bg_color = Color(0, 0, 0, 0.501961)
+bg_color = Color(0, 0, 0, 0.92549)
 
 [node name="SkillPicker" type="Panel"]
 z_index = 99
@@ -15,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tnrvx")
 script = ExtResource("1_pdisj")
+skill_option_scene = ExtResource("2_1caqc")
 
 [node name="SkillsOptionsContainer" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
