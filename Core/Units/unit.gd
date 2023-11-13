@@ -239,6 +239,8 @@ func change_position(target_position: Vector2) -> void:
 			match_initial_position = final_position
 		GameManager.map.MatchPhase.BATTLE:
 			var final_cell = GameManager.board.get_cell(final_position)
-			get_player().enemy_player.receive_attack_in_cell(final_cell)
+			
+			get_player().enemy_player.receive_attack_in_cell(final_cell, self)
+			
 			GameManager.map.end_turn()
 

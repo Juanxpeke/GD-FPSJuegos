@@ -215,7 +215,14 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 #### Match ####
 
 # Tries to kill the unit in the given cell
-func receive_attack_in_cell(cell: Vector2i) -> void:
+func receive_attack_in_cell(cell: Vector2i, enemy_unit: Unit) -> void:
+	# Cell if it was in the current peer player board so it can be compared to current peer player base
+	var peer_base_cell = cell if is_multiplayer_authority() else GameManager.board.get_mirror_cell(cell)
+	
+	if enemy_unit.get_unit_class() == "king" and peer_base_cell in GameManager.board.get_base_cells():
+		lose_match()
+		return
+	
 	var target_unit = get_live_unit_by_cell(cell)
 	
 	if target_unit == null: return

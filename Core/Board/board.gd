@@ -263,7 +263,11 @@ func show_base_cells() -> void:
 func hide_base_cells() -> void:
 	set_layer_enabled(Layer.BASE_LAYER, false)
 	
-# Gets the vertical mirrored position of the given position
+# Gets the mirrored cell of the given cell
+func get_mirror_cell(cell: Vector2i) -> Vector2i:
+	return get_cell(get_mirror_position(get_cell_center(cell)))
+	
+# Gets the mirrored position of the given position
 func get_mirror_position(cell_position: Vector2) -> Vector2:
 	var mirror_position = to_global(to_local(cell_position) * -1)
 	return mirror_position
