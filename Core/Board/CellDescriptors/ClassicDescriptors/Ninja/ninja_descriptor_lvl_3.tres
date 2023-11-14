@@ -6,4 +6,5 @@
 script = ExtResource("1_6tn8l")
 is_blockable = true
 is_filled = true
-cell_range = 1
+wrap_around = false
+cell_range = 7
