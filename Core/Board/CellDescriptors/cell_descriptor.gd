@@ -10,6 +10,7 @@ extends Resource
 @export var cell_range: int = -1
 
 # Private
+var direction_index : int
 
 # Constructor
 func _init() -> void:

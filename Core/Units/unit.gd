@@ -148,12 +148,15 @@ func _update_movement_cells() -> void:
 	# new array needs to contain copies of cell_descriptors
 	current_cell_descriptors = []
 	for cell_descriptor in level_cell_descriptors:
-		current_cell_descriptors.append(cell_descriptor.duplicate())
+		var copy = cell_descriptor.duplicate(false) # duplicate dont copy non-exported variables
+		copy.direction_index = cell_descriptor.direction_index
+		current_cell_descriptors.append(copy)
 		
 	for skill in get_player().get_skills():
 		skill.modify_current_cell_descriptor(self)
 	
 	for cell_descriptor in current_cell_descriptors:
+		MultiplayerManager.log_msg(cell_descriptor.direction_index)
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
 		movement_cells += GameManager.board.get_free_cells(
 				cell_descriptor, origin_cell, not is_multiplayer_authority())

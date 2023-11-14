@@ -113,7 +113,7 @@ func end_turn(player: Player) -> void:
 	
 # Ends the current match
 func end_match() -> void:
-	MultiplayerManager.log_msg("end match")
+	MultiplayerManager.log_msg("end match %d" % matchi)
 	
 	if matchi in GameManager.skill_choosing_match_turns:
 		hud.show_skills()
