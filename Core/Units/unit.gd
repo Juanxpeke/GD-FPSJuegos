@@ -156,7 +156,6 @@ func _update_movement_cells() -> void:
 		skill.modify_current_cell_descriptor(self)
 	
 	for cell_descriptor in current_cell_descriptors:
-		MultiplayerManager.log_msg(cell_descriptor.direction_index)
 		var descriptor_cells = cell_descriptor.get_cells(origin_cell)
 		movement_cells += GameManager.board.get_free_cells(
 				cell_descriptor, origin_cell, not is_multiplayer_authority())

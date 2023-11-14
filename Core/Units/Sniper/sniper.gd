@@ -24,6 +24,10 @@ func _reset_turn_indicator() -> void:
 	_direction_index = 0
 	_update_turn_indicator()
 
+func die() -> void:
+	super.die()
+	turn_indicator.hide()
+
 # Updates the turn indicator
 func _update_turn_indicator() -> void:
 	for descriptor in level_cell_descriptors:
