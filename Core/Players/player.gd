@@ -111,6 +111,11 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 	var unit = GameManager.units_data[unit_class].scene.instantiate() # REVIEW: Preload, as cell_descriptors get added before GameManager
 
 	unit.set_multiplayer_authority(peer_player.id) # Necessary for units added after setup
+	
+	for skill in skills:
+		if unit_class in skill.permanent_leveled_up_units:
+			unit.level += 1
+	
 	add_child(unit)
 	# REVIEW: set_multiplayer_authority(peer_player.id)
 
