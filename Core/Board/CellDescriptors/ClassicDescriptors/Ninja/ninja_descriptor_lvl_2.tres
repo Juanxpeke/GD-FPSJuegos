@@ -7,4 +7,4 @@ script = ExtResource("1_teton")
 is_blockable = true
 is_filled = true
 wrap_around = false
-cell_range = 5
+cell_range = 4
