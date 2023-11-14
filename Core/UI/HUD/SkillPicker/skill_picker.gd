@@ -3,10 +3,10 @@ extends Panel
 
 @export var skill_option_scene: PackedScene
 
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 var initial_skill_options: int
 var skill_selected: bool = false
-
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 @onready var skills_options_container := %SkillsOptionsContainer
 @onready var skill_picking_timer := %SkillPickingTimer
@@ -42,9 +42,9 @@ func _adjust_skill_options_separation() -> void:
 	
 # Public
 
-# Sets the skill picking time
-func set_skill_picking_time(time: float) -> void:
-	skill_picking_timer.wait_time = time
+# Updates the skill picking time
+func update_time() -> void:
+	skill_picking_timer.wait_time = GameManager.map.skill_picking_time
 
 # Shows random skills for the player to select
 func show_skills() -> void:

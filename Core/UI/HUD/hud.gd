@@ -16,7 +16,7 @@ var timer_on: bool = false
 func _ready() -> void:
 	GameManager.map_initialized.connect(
 		func():
-			set_preparation_time(GameManager.map.preparation_time)
+			update_times()
 			
 			timer_on = true
 			preparation_timer.start()
@@ -51,12 +51,12 @@ func _on_match_ended() -> void:
 
 # Public
 
-# Sets the preparation time
-func set_preparation_time(time: float) -> void:
-	preparation_time_bar.max_value = time
-	preparation_time_bar.value = time
-	preparation_timer.wait_time = time
-	skill_picker.set_skill_picking_time(time / 2)
+# Updaets the preparation and skill picking time
+func update_times() -> void:
+	preparation_time_bar.max_value = GameManager.map.preparation_time
+	preparation_time_bar.value = GameManager.map.preparation_time
+	preparation_timer.wait_time = GameManager.map.preparation_time
+	skill_picker.update_time()
 	
 # Shows the selectable skills
 func show_skills() -> void:

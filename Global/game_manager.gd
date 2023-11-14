@@ -36,7 +36,7 @@ var phase_rewards: Dictionary = {
 	"late": 12,
 }
 
-var skill_choosing_match_turns : Array[int] = [0, 2, 5, 8]
+var skill_choosing_matchis: Array[int] = [0, 2, 5, 8]
 
 var game_over_scene: PackedScene = load("res://Core/UI/GameOver/game_over.tscn")
 

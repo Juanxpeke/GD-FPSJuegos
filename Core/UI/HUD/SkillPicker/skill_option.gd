@@ -48,10 +48,14 @@ func _update_layout() -> void:
 	var skill = SkillsManager.get_skill(skill_id)
 	skill_icon.texture = skill.icon
 	skill_name.text = skill.name
+	
 	if skill is ResActive:
 		skill_type.text = "Active"
+		skill_type.get_theme_stylebox("normal").bg_color = Color("#d51be2")
 	else:
 		skill_type.text = "Passive"
+		skill_type.get_theme_stylebox("normal").bg_color = Color("#e3b738")
+		
 	skill_description.text = skill.description
 
 # Public

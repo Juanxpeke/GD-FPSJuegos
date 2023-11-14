@@ -10,9 +10,12 @@ signal game_changed
 enum MatchPhase { PREPARATION, BATTLE }
 
 @export var player_scene: PackedScene
-@export var preparation_time: float = 10.0
+@export var store_time: float = 7.0
+@export var skill_picking_time: float = 6.0
 
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+var preparation_time: float = store_time
 
 var first_turn_player_index: int = 0
 var inner_first_turn_player_index: int = 0
@@ -115,8 +118,13 @@ func end_turn(player: Player) -> void:
 func end_match() -> void:
 	MultiplayerManager.log_msg("end match %d" % matchi)
 	
-	if matchi in GameManager.skill_choosing_match_turns:
+	if matchi in GameManager.skill_choosing_matchis:
+		preparation_time = store_time + skill_picking_time
+		hud.update_times()
 		hud.show_skills()
+	else:
+		preparation_time = store_time
+		hud.update_times()
 			
 	_start_preparation_phase()
 	
