@@ -21,8 +21,8 @@ func _init() -> void:
 	GameManager.map_initialized.connect(
 		func():
 			print("xd")
-			GameManager.map.player_turn_ended.connect(end_turn)
-			GameManager.map.match_ended.connect(reset)
+			GameManager.map.player_turn_ended.connect(self.end_turn)
+			GameManager.map.match_ended.connect(self.reset)
 	)
 
 	uses_remaining = INITIAL_USES
