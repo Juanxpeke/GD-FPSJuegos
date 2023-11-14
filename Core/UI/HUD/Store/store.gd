@@ -37,7 +37,7 @@ func _on_match_ended() -> void:
 
 # Updates the store with the player information
 func _update_player_information() -> void:
-	money_label.text = "Monedas: " + str(GameManager.player.current_money)
+	money_label.text = str(GameManager.player.current_money)
 	
 # Public
 	

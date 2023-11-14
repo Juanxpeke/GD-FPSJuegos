@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://Core/UI/HUD/hud.gd" id="1_ku5ab"]
 [ext_resource type="PackedScene" uid="uid://b3lux4srfnsh4" path="res://Core/UI/HUD/Store/store.tscn" id="1_xp5ni"]
 [ext_resource type="PackedScene" uid="uid://cfbchqiowblyh" path="res://Core/UI/HUD/PlayerInterface/player_interface.tscn" id="2_lccxb"]
-[ext_resource type="PackedScene" uid="uid://briej2bofn8aj" path="res://Core/UI/HUD/PlayerInterface/skill_list.tscn" id="3_07nbi"]
+[ext_resource type="PackedScene" uid="uid://m5pxvi7avooy" path="res://Core/UI/HUD/PlayerInterface/skill_list.tscn" id="3_07nbi"]
 [ext_resource type="Texture2D" uid="uid://dx7t4omxenkpt" path="res://Core/UI/HUD/preparation_time_bar_progress.png" id="4_0j1r6"]
 [ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker.tscn" id="5_wpddp"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ku5ab")
+metadata/_edit_horizontal_guides_ = [624.0, 648.0]
 
 [node name="PlayerInterface" parent="." instance=ExtResource("2_lccxb")]
 unique_name_in_owner = true
@@ -21,6 +22,10 @@ grow_vertical = 0
 
 [node name="SkillList" parent="PlayerInterface" instance=ExtResource("3_07nbi")]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = -5.0
 offset_top = -450.0
 offset_right = 225.0
@@ -39,6 +44,10 @@ grow_horizontal = 0
 
 [node name="SkillList" parent="EnemyInterface" instance=ExtResource("3_07nbi")]
 layout_mode = 0
+anchors_preset = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 2.0
 offset_top = 128.0
 offset_right = 232.0
@@ -46,10 +55,17 @@ offset_bottom = 538.0
 
 [node name="Store" parent="." instance=ExtResource("1_xp5ni")]
 unique_name_in_owner = true
-offset_left = 963.0
-offset_top = 429.0
-offset_right = 1123.0
-offset_bottom = 619.0
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -240.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="SkillPicker" parent="." instance=ExtResource("5_wpddp")]
 unique_name_in_owner = true
