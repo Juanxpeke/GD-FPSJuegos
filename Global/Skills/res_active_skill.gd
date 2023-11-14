@@ -21,8 +21,8 @@ func _init() -> void:
 	GameManager.map_initialized.connect(
 		func():
 			print("xd")
-			#GameManager.map.turn_ended.connect(end_turn)
-			#GameManager.map.match_ended.connect(reset)
+			GameManager.map.player_turn_ended.connect(end_turn)
+			GameManager.map.match_ended.connect(reset)
 	)
 
 	uses_remaining = INITIAL_USES
@@ -39,7 +39,9 @@ func activate() -> bool:
 func set_index(index : int):
 	index_in_skill_array = index
 
-func end_turn() -> void:
+func end_turn(player: Player) -> void:
+	if player != GameManager.player:
+		return
 	cooldown_remaining -= 1;
 	if active:
 		active_turns_count += 1;

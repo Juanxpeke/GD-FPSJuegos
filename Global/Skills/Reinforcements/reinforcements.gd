@@ -6,12 +6,14 @@ var player : Player
 var _turns_passed : int = 0
 
 func _init() -> void:
-	GameManager.map.turn_ended.connect(end_turn)
+	GameManager.map.player_turn_ended.connect(end_turn)
 	GameManager.map.match_ended.connect(reset)
 	
-func end_turn() -> void:
+func end_turn(turnplayer: Player) -> void:
+	if turnplayer != player:
+		return
 	_turns_passed+=1
-	#	MultiplayerManager.log_msg(_turns_passed % TURNS_BETWEEN_EFFECT)
+	#MultiplayerManager.log_msg("turn passed: %d" % _turns_passed)
 	if (_turns_passed % TURNS_BETWEEN_EFFECT == 0):
 		activate()
 	
