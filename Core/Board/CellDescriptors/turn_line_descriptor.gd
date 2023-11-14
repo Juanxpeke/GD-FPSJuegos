@@ -12,4 +12,4 @@ var turn_directions = [
 func get_directions() -> Array[Array]:
 	if not GameManager.map: return [turn_directions[0]]
 	
-	return [turn_directions[GameManager.map.turn % turn_directions.size()]]
+	return [turn_directions[(GameManager.map.turn / 2) % turn_directions.size()]]

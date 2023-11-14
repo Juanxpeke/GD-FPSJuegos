@@ -220,7 +220,7 @@ func change_level(target_level: int) -> void:
 	_update_level_data()
 	
 	if GameManager.map.match_phase == GameManager.map.MatchPhase.BATTLE:
-		GameManager.map.end_turn()
+		GameManager.map.end_turn(get_player())
 
 # Changes the unit position on each peer, including current
 @rpc("call_local", "reliable")
@@ -242,5 +242,5 @@ func change_position(target_position: Vector2) -> void:
 			
 			get_player().enemy_player.receive_attack_in_cell(final_cell, self)
 			
-			GameManager.map.end_turn()
+			GameManager.map.end_turn(get_player())
 

@@ -3,6 +3,7 @@ extends Node2D
 
 signal preparation_ended
 signal turn_ended
+signal player_turn_ended(player: Player)
 signal match_ended
 signal game_changed
 
@@ -103,11 +104,12 @@ func end_preparation() -> void:
 	preparation_ended.emit()
 
 # Ends the turn
-func end_turn() -> void:
+func end_turn(player: Player) -> void:
 	if (match_phase != MatchPhase.BATTLE): return
 	MultiplayerManager.log_msg("end turn")
 	turn += 1
 	turn_ended.emit()
+	player_turn_ended.emit(player)
 	
 # Ends the current match
 func end_match() -> void:
