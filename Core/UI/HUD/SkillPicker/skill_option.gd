@@ -6,6 +6,8 @@ var selectable: bool = true
 
 @onready var skill_info_panel: PanelContainer = %SkillInfoPanel
 @onready var skill_icon: TextureRect = %SkillIcon
+@onready var skill_name: Label = %SkillName
+@onready var skill_type: Label = %SkillType
 @onready var skill_description: Label = %SkillDescription
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
@@ -45,6 +47,11 @@ func _on_gui_input(event: InputEvent) -> void:
 func _update_layout() -> void:
 	var skill = SkillsManager.get_skill(skill_id)
 	skill_icon.texture = skill.icon
+	skill_name.text = skill.name
+	if skill is ResActive:
+		skill_type.text = "Active"
+	else:
+		skill_type.text = "Passive"
 	skill_description.text = skill.description
 
 # Public
