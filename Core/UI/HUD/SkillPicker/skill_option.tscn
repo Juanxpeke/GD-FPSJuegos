@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cvlvkujq8qul2"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/SkillPicker/skill_option.gd" id="1_vpre0"]
-[ext_resource type="Texture2D" uid="uid://bu261a6gb08kx" path="res://assets/skill icons/skill issue.png" id="2_3nd01"]
+[ext_resource type="Texture2D" uid="uid://c2s34f4bppq8e" path="res://Global/Skills/Ghost/ghost.png" id="2_dq1tb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7ldh"]
 content_margin_left = 16.0
@@ -13,7 +13,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.921569, 0.898039, 0.729412, 0.501961)
+border_color = Color(0.921569, 0.898039, 0.729412, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -21,13 +21,13 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q77pa"]
 resource_local_to_scene = true
-content_margin_left = 4.0
-content_margin_right = 4.0
+content_margin_left = 2.0
+content_margin_right = 2.0
 bg_color = Color(0.921569, 0.898039, 0.729412, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="Animation" id="Animation_25yk3"]
 resource_name = "RESET"
@@ -132,7 +132,7 @@ _data = {
 }
 
 [node name="SkillOption" type="Control"]
-custom_minimum_size = Vector2(220, 385)
+custom_minimum_size = Vector2(210, 360)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 205.0
@@ -146,9 +146,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -110.0
-offset_right = 110.0
-offset_bottom = 385.0
+offset_left = -105.0
+offset_right = 105.0
+offset_bottom = 360.0
 grow_horizontal = 2
 pivot_offset = Vector2(110, 180)
 mouse_filter = 1
@@ -159,13 +159,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_v7ldh")
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="SkillIcon" type="TextureRect" parent="SkillInfoPanel/SkillInfoContainer"]
+[node name="SkillIconContainer" type="VBoxContainer" parent="SkillInfoPanel/SkillInfoContainer"]
+layout_mode = 2
+
+[node name="Separator" type="HSeparator" parent="SkillInfoPanel/SkillInfoContainer/SkillIconContainer"]
+layout_mode = 2
+
+[node name="SkillIcon" type="TextureRect" parent="SkillInfoPanel/SkillInfoContainer/SkillIconContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(182, 182)
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture = ExtResource("2_3nd01")
+texture = ExtResource("2_dq1tb")
 expand_mode = 1
 
 [node name="SkillInfoContainer" type="VBoxContainer" parent="SkillInfoPanel/SkillInfoContainer"]
@@ -174,7 +180,10 @@ theme_override_constants/separation = 4
 
 [node name="SkillName" type="Label" parent="SkillInfoPanel/SkillInfoContainer/SkillInfoContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
 text = "Skill Name"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -195,6 +204,8 @@ vertical_alignment = 2
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 14
 text = "Skill description that is very long in order to see how it behaves in the container layout"
 horizontal_alignment = 1

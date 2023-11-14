@@ -1,5 +1,5 @@
+class_name ResActiveSkill
 extends ResSkill
-class_name ResActive
 
 var player : Player
 var index_in_skill_array : int

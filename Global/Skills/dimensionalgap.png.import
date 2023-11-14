@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://polonpd3vevd"
-path="res://.godot/imported/dimensionalgap.png-7a60e12e24af77a43cdf0e7d0d227ef0.ctex"
+path="res://.godot/imported/dimensionalgap.png-0d4e4d1d367c9a316f47b34c3f826fcd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/skill icons/dimensionalgap.png"
-dest_files=["res://.godot/imported/dimensionalgap.png-7a60e12e24af77a43cdf0e7d0d227ef0.ctex"]
+source_file="res://Global/Skills/dimensionalgap.png"
+dest_files=["res://.godot/imported/dimensionalgap.png-0d4e4d1d367c9a316f47b34c3f826fcd.ctex"]
 
 [params]
 

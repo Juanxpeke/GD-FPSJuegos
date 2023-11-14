@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://dufcw4a80mdfs"]
 
-[ext_resource type="Texture2D" uid="uid://bu261a6gb08kx" path="res://assets/skill icons/skill issue.png" id="1_id3ym"]
+[ext_resource type="Texture2D" uid="uid://dvrjscsmbkv37" path="res://Global/Skills/Excalibur/excalibur.png" id="1_2u1ap"]
 [ext_resource type="Script" path="res://Global/Skills/Reinforcements/reinforcements.gd" id="2_65uuf"]
 
 [resource]
@@ -9,4 +9,8 @@ unit_class = "mace"
 TURNS_BETWEEN_EFFECT = 10
 name = "reinforcements"
 description = "every 10 turn a mace unit will spawn in your base"
-icon = ExtResource("1_id3ym")
+icon = ExtResource("1_2u1ap")
+phase_damage_addition = 0
+phase_reward_addition = 0
+remove_unit_sale_discount = false
+extra_skill_options = 0

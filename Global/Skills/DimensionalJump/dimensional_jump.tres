@@ -1,13 +1,14 @@
 [gd_resource type="Resource" script_class="DimensionalJump" load_steps=3 format=3 uid="uid://bfwv5flkpdg32"]
 
-[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="1_peqbl"]
+[ext_resource type="Texture2D" uid="uid://btgokcdtikd7c" path="res://Global/Skills/DimensionalJump/dimensional_jump.png" id="1_luopu"]
 [ext_resource type="Script" path="res://Global/Skills/DimensionalJump/dimensional_jump.gd" id="1_x4s7y"]
 
 [resource]
 script = ExtResource("1_x4s7y")
 name = "Dimensional Jump"
 description = "A dimensional jump."
-icon = ExtResource("1_peqbl")
+icon = ExtResource("1_luopu")
 phase_damage_addition = 0
 phase_reward_addition = 0
 remove_unit_sale_discount = false
+extra_skill_options = 0

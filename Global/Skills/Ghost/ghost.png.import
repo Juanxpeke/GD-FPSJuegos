@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8q21d7imf14"
-path="res://.godot/imported/Ghost.webp-de05c5712d5ec0fad5b60b90fd337c68.ctex"
+uid="uid://c2s34f4bppq8e"
+path="res://.godot/imported/ghost.png-cb6c51a03d2e195a01581314a8a49860.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/skill icons/Ghost.webp"
-dest_files=["res://.godot/imported/Ghost.webp-de05c5712d5ec0fad5b60b90fd337c68.ctex"]
+source_file="res://Global/Skills/Ghost/ghost.png"
+dest_files=["res://.godot/imported/ghost.png-cb6c51a03d2e195a01581314a8a49860.ctex"]
 
 [params]
 

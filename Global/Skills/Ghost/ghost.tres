@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Ghost2" load_steps=3 format=3 uid="uid://075187gcs0pd"]
 
-[ext_resource type="Texture2D" uid="uid://8q21d7imf14" path="res://assets/skill icons/Ghost.webp" id="1_07ooc"]
 [ext_resource type="Script" path="res://Global/Skills/Ghost/ghost.gd" id="1_lcqpw"]
+[ext_resource type="Texture2D" uid="uid://c2s34f4bppq8e" path="res://Global/Skills/Ghost/ghost.png" id="1_r5qtw"]
 
 [resource]
 script = ExtResource("1_lcqpw")
@@ -10,7 +10,8 @@ TURNS_ACTIVE = 1
 INITIAL_USES = 3
 name = "Ghost"
 description = "When activated units can trespass units and other obstacles this turn."
-icon = ExtResource("1_07ooc")
+icon = ExtResource("1_r5qtw")
 phase_damage_addition = 0
 phase_reward_addition = 0
 remove_unit_sale_discount = false
+extra_skill_options = 0

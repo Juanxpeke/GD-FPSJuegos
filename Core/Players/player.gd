@@ -18,7 +18,7 @@ var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
 
 #### Skills ####
-var activable_skills: Array[ResActive] = [] # Skills that can be activated
+var activable_skills: Array[ResActiveSkill] = [] # Skills that can be activated
 
 var skills: Array[ResSkill] = [] # Skills that are taking effect right now
 
