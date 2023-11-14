@@ -126,7 +126,7 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 	match_live_units.append(unit)
 
 # Spawns a unit, called on each peer
-@rpc("call_local", "reliable")
+@rpc("call_local", "reliable", "any_peer")
 func spawn_unit(unit_class: String, target_position: Vector2) -> void:
 	add_unit(unit_class, target_position)
 
@@ -292,7 +292,7 @@ func get_skill_id_pool() -> Array[int]:
 
 	for i in range(SkillsManager.skills.size()):
 		var skill = SkillsManager.get_skill(i)
-		if not skill in skills:
+		if skills.all(func (s): return s.name != skill.name):
 			skill_id_pool.append(i)
 			
 	return skill_id_pool
