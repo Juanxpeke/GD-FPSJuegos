@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://cvlvkujq8qul2"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/SkillPicker/skill_option.gd" id="1_vpre0"]
-[ext_resource type="Texture2D" uid="uid://c2s34f4bppq8e" path="res://Global/Skills/Ghost/ghost.png" id="2_dq1tb"]
+[ext_resource type="Texture2D" uid="uid://c2s34f4bppq8e" path="res://Global/Skills/Actives/Ghost/ghost.png" id="2_v0p1y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7ldh"]
-content_margin_left = 16.0
+content_margin_left = 12.0
 content_margin_top = 16.0
-content_margin_right = 16.0
+content_margin_right = 12.0
 content_margin_bottom = 16.0
 bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
 border_width_left = 1
@@ -53,7 +53,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.882353, 0.882353, 0.882353, 0.882353)]
+"values": [Color(0.921569, 0.921569, 0.921569, 0.921569)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -132,11 +132,11 @@ _data = {
 }
 
 [node name="SkillOption" type="Control"]
-custom_minimum_size = Vector2(210, 360)
+custom_minimum_size = Vector2(200, 345)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 205.0
-offset_bottom = 365.0
+offset_bottom = 345.0
 script = ExtResource("1_vpre0")
 
 [node name="SkillInfoPanel" type="PanelContainer" parent="."]
@@ -146,9 +146,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -105.0
-offset_right = 105.0
-offset_bottom = 360.0
+offset_left = -102.5
+offset_right = 97.5
+offset_bottom = 340.0
 grow_horizontal = 2
 pivot_offset = Vector2(110, 180)
 mouse_filter = 1
@@ -167,11 +167,11 @@ layout_mode = 2
 
 [node name="SkillIcon" type="TextureRect" parent="SkillInfoPanel/SkillInfoContainer/SkillIconContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture = ExtResource("2_dq1tb")
+texture = ExtResource("2_v0p1y")
 expand_mode = 1
 
 [node name="SkillInfoContainer" type="VBoxContainer" parent="SkillInfoPanel/SkillInfoContainer"]

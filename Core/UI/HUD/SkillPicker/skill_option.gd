@@ -25,12 +25,12 @@ func _ready() -> void:
 # Called when the mouse enters the skill option
 func _on_mouse_entered():
 	if !selectable: return
-	self.modulate = self.modulate * (255.0 / 225.0);
+	self.modulate = self.modulate * (255.0 / 235.0);
 
 # Called when the mouse exits the skill option
 func _on_mouse_exited():
 	if !selectable: return
-	self.modulate = self.modulate * (225.0 / 255.0);
+	self.modulate = self.modulate * (235.0 / 255.0);
 
 # Called on animation finished
 func _on_animation_finished(anim_name: String) -> void:
@@ -51,10 +51,10 @@ func _update_layout() -> void:
 	
 	if skill is ResActiveSkill:
 		skill_type.text = "Active"
-		skill_type.get_theme_stylebox("normal").bg_color = Color("#d51be2")
+		skill_type.get_theme_stylebox("normal").bg_color = Color("#b838c9")
 	elif skill is ResConsumableSkill:
 		skill_type.text = "Consumable"
-		skill_type.get_theme_stylebox("normal").bg_color = Color("#d5ff02")
+		skill_type.get_theme_stylebox("normal").bg_color = Color("#d0f002")
 	else:
 		skill_type.text = "Passive"
 		skill_type.get_theme_stylebox("normal").bg_color = Color("#e3b738")

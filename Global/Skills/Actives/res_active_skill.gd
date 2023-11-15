@@ -20,7 +20,6 @@ func _init() -> void:
 	active = false
 	GameManager.map_initialized.connect(
 		func():
-			print("xd")
 			GameManager.map.player_turn_ended.connect(self.end_turn)
 			GameManager.map.match_ended.connect(self.reset)
 	)

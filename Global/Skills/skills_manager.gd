@@ -2,11 +2,14 @@ extends Node
 
 # All skills in game
 var skills = [
-	"res://Global/Skills/JumperLevelUp/jumper_level_up.tres",
+	# Passives
 	"res://Global/Skills/DimensionalJump/dimensional_jump.tres",
-	"res://Global/Skills/Ghost/ghost.tres",
+	"res://Global/Skills/JumperAscension/jumper_ascension.tres",
 	"res://Global/Skills/Reinforcements/reinforcements.tres",
-	"res://Global/Skills/JumperAscension/jumper_ascension.tres"
+	# Consumables
+	"res://Global/Skills/Consumables/JumperLevelUp/jumper_level_up.tres",
+	# Actives
+	"res://Global/Skills/Actives/Ghost/ghost.tres",
 ]
 
 # Public

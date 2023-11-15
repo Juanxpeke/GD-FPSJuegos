@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_0wq4s")
 name = "Jumper Ascension"
-description = "Level ups perm..."
+description = "Levels up all the current Jumper units and the future ones."
 icon = ExtResource("1_efnvi")
 phase_damage_addition = 0
 phase_reward_addition = 0

@@ -133,6 +133,7 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 # Spawns a unit, called on each peer
 @rpc("call_local", "reliable", "any_peer")
 func spawn_unit(unit_class: String, target_position: Vector2) -> void:
+	MultiplayerManager.log_msg("spawned unit %s" % unit_class)
 	add_unit(unit_class, target_position)
 
 # Handles the movement of one of its units

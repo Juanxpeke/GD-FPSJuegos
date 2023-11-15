@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitLevelUp" load_steps=2 format=3 uid="uid://v2ilqirjhhwk"]
+
+[ext_resource type="Script" path="res://Global/Skills/Consumables/unit_level_up.gd" id="1_2a33p"]
+
+[resource]
+script = ExtResource("1_2a33p")
+leveled_up_units = Array[String](["jumper"])
+name = "Jumper Level Up"
+description = "Levels up once all the Jumpers in possession."
+phase_damage_addition = 0
+phase_reward_addition = 0
+remove_unit_sale_discount = false
+extra_skill_options = 0
+permanent_leveled_up_units = Array[String]([])

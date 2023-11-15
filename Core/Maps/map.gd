@@ -11,7 +11,7 @@ enum MatchPhase { PREPARATION, BATTLE }
 
 @export var player_scene: PackedScene
 @export var store_time: float = 7.0
-@export var skill_picking_time: float = 6.0
+@export var skill_picking_time: float = 26.0
 
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Ghost2" load_steps=3 format=3 uid="uid://075187gcs0pd"]
 
-[ext_resource type="Script" path="res://Global/Skills/Ghost/ghost.gd" id="1_lcqpw"]
-[ext_resource type="Texture2D" uid="uid://c2s34f4bppq8e" path="res://Global/Skills/Ghost/ghost.png" id="1_r5qtw"]
+[ext_resource type="Script" path="res://Global/Skills/Actives/Ghost/ghost.gd" id="1_lcqpw"]
+[ext_resource type="Texture2D" uid="uid://c2s34f4bppq8e" path="res://Global/Skills/Actives/Ghost/ghost.png" id="1_r5qtw"]
 
 [resource]
 script = ExtResource("1_lcqpw")
