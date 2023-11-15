@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_2a33p")
 leveled_up_units = Array[String](["jumper"])
+health_given = 0
+money_given = 0
 name = "Jumper Level Up"
 description = "Levels up once all the Jumpers in possession."
 phase_damage_addition = 0

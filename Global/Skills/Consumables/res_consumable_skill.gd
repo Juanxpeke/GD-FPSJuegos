@@ -1,11 +1,15 @@
 class_name ResConsumableSkill
 extends ResSkill
 
+@export var health_given: int = 0
+@export var money_given: int = 0
+
 # Private
 
 # Consumes the skill
 func _consume(player: Player) -> void:
-	pass
+	player.add_health(health_given)
+	player.add_money(money_given)
 
 # Public
 

@@ -7,6 +7,7 @@ var skills = [
 	"res://Global/Skills/JumperAscension/jumper_ascension.tres",
 	"res://Global/Skills/Reinforcements/reinforcements.tres",
 	# Consumables
+	"res://Global/Skills/Consumables/PirateFortune/pirate_fortune.tres",
 	"res://Global/Skills/Consumables/JumperLevelUp/jumper_level_up.tres",
 	# Actives
 	"res://Global/Skills/Actives/Ghost/ghost.tres",

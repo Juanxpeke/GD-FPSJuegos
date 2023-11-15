@@ -49,7 +49,7 @@ func _on_match_ended() -> void:
 		
 	MultiplayerManager.log_msg("phase reward after skills is %d" % phase_reward)
 	
-	add_coins(phase_reward)
+	add_money(phase_reward)
 			
 	_reset_units()
 	
@@ -201,7 +201,7 @@ func handle_unit_right_click_preparation(unit: Unit) -> void:
 		remove_unit_sale_discount = remove_unit_sale_discount or skill.remove_unit_sale_discount
 	
 	unit_cost = unit_cost if remove_unit_sale_discount else (unit_cost / 2)
-	add_coins(unit_cost)
+	add_money(unit_cost)
 	
 	unit.dissapear_forever.rpc()
 	ConfigManager.set_cursor_shape("default")
@@ -219,6 +219,16 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 	other_unit.change_level.rpc(max_level + 1)
 
 #### Match ####
+
+# Adds a specified amount of health to the player
+func add_health(amount: int) -> void:
+	current_health += amount
+	health_changed.emit()
+
+# Subtracts a specified amount of health from the player
+func subtract_health(amount: int) -> void:
+	current_health -= amount
+	health_changed.emit()
 
 # Tries to kill the unit in the given cell
 func receive_attack_in_cell(cell: Vector2i, enemy_unit: Unit) -> void:
@@ -248,8 +258,7 @@ func lose_match() -> void:
 	for enemy_skill in enemy_player.skills:
 		phase_damage += enemy_skill.phase_damage_addition
 	
-	current_health -= phase_damage
-	health_changed.emit()
+	subtract_health(phase_damage)
 	
 	if current_health < 1:
 		GameManager.end_game(enemy_player.peer_player)
@@ -258,17 +267,17 @@ func lose_match() -> void:
 	
 #### Store ####
 
-# Returns true if the player can afford the given amount of coins
+# Returns true if the player can afford the given amount of money
 func can_afford(amount: int) -> bool:
 	return current_money >= amount
 
-# Adds a specified amount of coins to the player
-func add_coins(amount: int) -> void:
+# Adds a specified amount of money to the player
+func add_money(amount: int) -> void:
 	current_money += amount
 	money_changed.emit()
 
-# Subtracts a specified amount of coins from the player
-func subtract_coins(amount: int) -> void:
+# Subtracts a specified amount of money from the player
+func subtract_money(amount: int) -> void:
 	if current_money >= amount:
 		current_money -= amount
 		money_changed.emit()
@@ -283,7 +292,7 @@ func buy_unit(unit_class: String) -> void:
 		if live_unit == null:
 			var unit_position = GameManager.board.get_cell_center(base_cell)
 			spawn_unit.rpc(unit_class, unit_position)
-			subtract_coins(GameManager.units_data[unit_class].cost)
+			subtract_money(GameManager.units_data[unit_class].cost)
 			return
 
 #### Skills #### 

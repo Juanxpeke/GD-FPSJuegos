@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ResConsumableSkill" load_steps=3 format=3 uid="uid://70r1lb63x3ep"]
+
+[ext_resource type="Texture2D" uid="uid://b2fff5wpxpmkc" path="res://Global/Skills/Consumables/PirateFortune/pirate_fortune.png" id="1_6oki4"]
+[ext_resource type="Script" path="res://Global/Skills/Consumables/res_consumable_skill.gd" id="1_7n1ni"]
+
+[resource]
+script = ExtResource("1_7n1ni")
+health_given = 0
+money_given = 4
+name = "Pirate Fortune"
+description = "Obtains +4 coins."
+icon = ExtResource("1_6oki4")
+phase_damage_addition = 0
+phase_reward_addition = 0
+remove_unit_sale_discount = false
+extra_skill_options = 0
+permanent_leveled_up_units = Array[String]([])
