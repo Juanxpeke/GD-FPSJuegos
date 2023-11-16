@@ -45,9 +45,11 @@ func get_texture_atlas_unit_offset_coords(unit_class: String) -> Vector2:
 		"sniper":
 			return Vector2(8, 0)
 		"ninja":
-			return Vector2(0, 0)
+			return Vector2(9, 0)
 		"swordman":
 			return Vector2(0, 0)
+		"spike":
+			return Vector2(10, 0)
 		
 	return Vector2()
 

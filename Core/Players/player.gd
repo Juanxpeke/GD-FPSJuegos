@@ -245,6 +245,13 @@ func receive_attack_in_cell(cell: Vector2i, enemy_unit: Unit) -> void:
 	
 	if target_unit.get_unit_class() == "king":
 		lose_match()
+	elif target_unit.get_unit_class() == "spike":
+		if enemy_unit.get_unit_class() == "king":
+			enemy_unit.get_player().lose_match()
+		else:
+			enemy_unit.get_player().match_live_units.erase(enemy_unit)
+			enemy_unit.get_player().match_dead_units.append(enemy_unit)
+			enemy_unit.die()
 	else:
 		match_live_units.erase(target_unit)
 		match_dead_units.append(target_unit)

@@ -56,7 +56,8 @@ func _ready() -> void:
 		"mace": load("res://Global/UnitData/mace.tres"),
 		"sniper": load("res://Global/UnitData/sniper.tres"),
 		"ninja": load("res://Global/UnitData/ninja.tres"),
-		"swordman": load("res://Global/UnitData/swordman.tres")
+		"swordman": load("res://Global/UnitData/swordman.tres"),
+		"spike": load("res://Global/UnitData/spike.tres"),
 	}
 
 # Public

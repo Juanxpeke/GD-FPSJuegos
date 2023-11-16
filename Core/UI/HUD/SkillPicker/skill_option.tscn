@@ -141,13 +141,12 @@ script = ExtResource("1_vpre0")
 
 [node name="SkillInfoPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.882353, 0.882353, 0.882353, 0.882353)
+modulate = Color(0.921569, 0.921569, 0.921569, 0.921569)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -102.5
-offset_right = 97.5
+offset_right = 200.0
 offset_bottom = 340.0
 grow_horizontal = 2
 pivot_offset = Vector2(110, 180)
@@ -174,11 +173,11 @@ size_flags_vertical = 0
 texture = ExtResource("2_v0p1y")
 expand_mode = 1
 
-[node name="SkillInfoContainer" type="VBoxContainer" parent="SkillInfoPanel/SkillInfoContainer"]
+[node name="SkillTopInfoContainer" type="VBoxContainer" parent="SkillInfoPanel/SkillInfoContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="SkillName" type="Label" parent="SkillInfoPanel/SkillInfoContainer/SkillInfoContainer"]
+[node name="SkillName" type="Label" parent="SkillInfoPanel/SkillInfoContainer/SkillTopInfoContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
@@ -188,7 +187,7 @@ text = "Skill Name"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="SkillType" type="Label" parent="SkillInfoPanel/SkillInfoContainer/SkillInfoContainer"]
+[node name="SkillType" type="Label" parent="SkillInfoPanel/SkillInfoContainer/SkillTopInfoContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
