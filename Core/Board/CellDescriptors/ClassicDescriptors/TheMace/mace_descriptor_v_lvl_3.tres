@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MaceCustomDescriptorVertical" load_steps=2 format=3 uid="uid://dde45sk0p78mc"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/mace_custom_descriptor_vertical.gd" id="1_6641m"]
+
+[resource]
+script = ExtResource("1_6641m")
+is_blockable = true
+is_filled = true
+wrap_around = false
+cell_range = 4

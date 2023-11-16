@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="LDescriptorRange3" load_steps=2 format=3 uid="uid://bnu3ot230y8sd"]
+[gd_resource type="Resource" script_class="DiagonalDescriptor" load_steps=2 format=3 uid="uid://cmnyd4cgtvbjb"]
 
-[ext_resource type="Script" path="res://Core/Board/CellDescriptors/L_descriptor_range_3.gd" id="1_c48dm"]
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/diagonal_descriptor.gd" id="1_h24sv"]
 
 [resource]
-script = ExtResource("1_c48dm")
+script = ExtResource("1_h24sv")
 is_blockable = true
-is_filled = false
-cell_range = 2
+is_filled = true
+wrap_around = false
+cell_range = 4
