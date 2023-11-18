@@ -4,6 +4,11 @@ class_name SkillList
 var displayed_skills: Array[ResSkill] = []
 var player: Player
 
+func _ready() -> void:
+	item_selected.connect(_on_skill_selected)
+	
+func _on_skill_selected(item_id : int) -> void:
+	deselect_all()
 
 func _set_player_skills() -> void:
 	clear() # vacia lista

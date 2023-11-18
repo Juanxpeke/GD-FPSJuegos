@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://briej2bofn8aj"]
+[gd_scene load_steps=6 format=3 uid="uid://briej2bofn8aj"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_list.gd" id="1_xwjme"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_active_list.gd" id="2_v8vk0"]
@@ -25,6 +25,10 @@ func _make_custom_tooltip(for_text: String) -> Object:
 
 "
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fb75g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lctya"]
+
 [node name="SkillList" type="Panel"]
 anchors_preset = -1
 anchor_top = 0.25
@@ -42,6 +46,9 @@ anchor_right = 1.0
 anchor_bottom = 0.72
 offset_bottom = -0.200012
 grow_horizontal = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fb75g")
+allow_search = false
+text_overrun_behavior = 2
 max_columns = 2
 same_column_width = true
 fixed_column_width = 120
@@ -58,6 +65,9 @@ anchor_bottom = 1.0
 offset_top = -0.0200195
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lctya")
+allow_search = false
+text_overrun_behavior = 2
 max_columns = 3
 same_column_width = true
 fixed_column_width = 83
