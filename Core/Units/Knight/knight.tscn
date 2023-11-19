@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://n28025wl8oj0"]
+[gd_scene load_steps=5 format=3 uid="uid://n28025wl8oj0"]
 
 [ext_resource type="Script" path="res://Core/Units/unit.gd" id="1_gtgck"]
+[ext_resource type="Resource" uid="uid://bgf101j83hua0" path="res://Core/Board/CellDescriptors/ClassicDescriptors/Knight/knight_descriptor_lvl_1.tres" id="2_f1sfc"]
 [ext_resource type="Resource" uid="uid://j1jnunok5hwd" path="res://Core/Board/CellDescriptors/ClassicDescriptors/knight_descriptor.tres" id="2_nx3ol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1ng6"]
@@ -9,9 +10,9 @@ size = Vector2(25, 25)
 [node name="Knight" type="Node2D"]
 script = ExtResource("1_gtgck")
 unit_class = "Knight"
-level_1_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_nx3ol")])
+level_1_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_f1sfc")])
 level_2_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_nx3ol")])
-level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_nx3ol")])
+level_3_descriptors = Array[Resource("res://Core/Board/CellDescriptors/cell_descriptor.gd")]([ExtResource("2_nx3ol"), ExtResource("2_f1sfc")])
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true

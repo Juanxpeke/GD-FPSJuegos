@@ -9,8 +9,8 @@ script = ExtResource("1_o53fd")
 scene = ExtResource("1_vmajq")
 cost = 1
 weights = {
-"early": 500,
-"late": 12,
-"middle": 10
+"early": 3,
+"late": 7,
+"middle": 5
 }
 store_sprite = ExtResource("3_vha10")

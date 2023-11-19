@@ -45,9 +45,8 @@ var game_over_scene: PackedScene = load("res://Core/UI/GameOver/game_over.tscn")
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	units_data = {
-		# Test units
-		"knight": load("res://Global/UnitData/knight.tres"),
 		# Real units
+		"knight": load("res://Global/UnitData/knight.tres"),
 		"king": load("res://Global/UnitData/king.tres"),
 		"queen": load("res://Global/UnitData/queen.tres"),
 		"bishop": load("res://Global/UnitData/bishop.tres"),

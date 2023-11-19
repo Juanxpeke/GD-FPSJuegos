@@ -27,9 +27,9 @@ func get_texture_atlas_unit_offset_coords(unit_class: String) -> Vector2:
 		# Test units
 		"pawn":
 			return Vector2(0, 0)
+		# Real units
 		"knight":
 			return Vector2(1, 0)
-		# Real units
 		"rook":
 			return Vector2(2, 0)
 		"bishop":
