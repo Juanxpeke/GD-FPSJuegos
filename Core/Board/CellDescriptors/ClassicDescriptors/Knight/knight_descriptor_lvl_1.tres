@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LineDescriptor" load_steps=2 format=3 uid="uid://bgf101j83hua0"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/line_descriptor.gd" id="1_oeidm"]
+
+[resource]
+script = ExtResource("1_oeidm")
+is_blockable = false
+is_filled = false
+wrap_around = false
+cell_range = 2

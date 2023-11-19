@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VerticalLineDescriptor" load_steps=2 format=3 uid="uid://d0dmwnn7dh84"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/vertical_line_descriptor.gd" id="1_4gmk3"]
+
+[resource]
+script = ExtResource("1_4gmk3")
+is_blockable = true
+is_filled = true
+wrap_around = false
+cell_range = 2

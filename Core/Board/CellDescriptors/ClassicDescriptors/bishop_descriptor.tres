@@ -6,4 +6,5 @@
 script = ExtResource("1_aluwi")
 is_blockable = true
 is_filled = true
+wrap_around = false
 cell_range = -1
