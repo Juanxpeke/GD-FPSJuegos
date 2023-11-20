@@ -194,7 +194,8 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 	var is_blockable = cell_descriptor.is_blockable
 	var lines = _get_lines_from_cell_descriptor(cell_descriptor, origin_cell)
 	
-	var board_sizex = get_used_rect().size.x - 2
+	var rect = get_used_rect()
+	var board_size = rect.size - Vector2i(2, 2)
 	
 	for line in lines:
 		var is_line_blocked := false
@@ -210,16 +211,13 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 						break
 					else:
 						continue
-						
-				if cell_descriptor.wrap_around:
-					#print(cell, board_sizex)
-					if Vector2i(cell.x - board_sizex, cell.y) in board_cells:
-						cell = Vector2i(cell.x - board_sizex, cell.y)
-					elif Vector2i(cell.x + board_sizex, cell.y) in board_cells:
-						cell = Vector2i(cell.x + board_sizex, cell.y)
-					else:
-						break
-				else:
+				cell = Vector2i(
+					cell.x + (board_size.x if cell.x <= rect.position.x else -board_size.x) * int(cell_descriptor.wrap_around),
+				 	cell.y + (board_size.y if cell.y <= rect.position.y else -board_size.y) * int(cell_descriptor.wrap_around_v)
+				)
+				
+				#print(cell, board_sizex)
+				if cell.y >= rect.end.y - 1 or cell.y <= rect.position.y or cell.x >= rect.end.x - 1 or cell.x <= rect.position.x:
 					break
 					
 			

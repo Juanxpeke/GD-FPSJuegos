@@ -6,8 +6,9 @@ extends Resource
 # board size changes we must implement a signal logic for infinite range units
 @export var is_blockable: bool = true
 @export var is_filled: bool = true
-@export var wrap_around: bool = false # Se usa solamente para 1 skill lol
 @export var cell_range: int = -1
+@export var wrap_around = false # Se usa solamente para 1 skill lol
+@export var wrap_around_v = false # Se usa solamente para 1 skill lol
 
 # Private
 var direction_index : int
