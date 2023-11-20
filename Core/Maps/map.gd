@@ -116,6 +116,7 @@ func end_turn(player: Player) -> void:
 	
 # Ends the current match
 func end_match() -> void:
+	await get_tree().create_timer(3).timeout
 	MultiplayerManager.log_msg("end match %d" % matchi)
 	
 	if matchi in GameManager.skill_choosing_matchis:
