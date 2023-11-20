@@ -86,7 +86,7 @@ func _start_preparation_phase() -> void:
 
 # Gets the initial king position
 func get_initial_king_position() -> Vector2:
-	return GameManager.board.get_cell_centerp(king_marker.position)
+	return GameManager.board.get_cell_centerp(king_marker.global_position)
 	
 # Gets the player by the given index
 func get_player_by_turn(turn: int) -> Player:

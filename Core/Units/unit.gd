@@ -119,7 +119,7 @@ func _on_match_ended() -> void:
 	movement_cells.clear()
 	if is_dead:
 		revive()
-	position = match_initial_position
+	global_position = match_initial_position
 	
 # Updates the unit data by its player role
 func _update_role_data() -> void:
@@ -183,7 +183,7 @@ func get_movement_cells() -> Array:
 # Resets the unit position
 func reset_position() -> void:
 	MultiplayerManager.log_msg("reset unit position %s" % name)
-	position = GameManager.board.get_cell_center(grab_cell)
+	global_position = GameManager.board.get_cell_center(grab_cell)
 
 # Dies
 func die() -> void:
@@ -234,7 +234,7 @@ func change_position(target_position: Vector2) -> void:
 	if not is_multiplayer_authority():
 		final_position = GameManager.board.get_mirror_position(target_position)
 		
-	position = final_position
+	global_position = final_position
 	
 	match GameManager.map.match_phase:
 		GameManager.map.MatchPhase.PREPARATION:
