@@ -1,7 +1,7 @@
 class_name Board
 extends TileMap
 
-enum Layer { BOARD_LAYER, HOLE_LAYER, MOVEMENT_LAYER, BASE_LAYER }
+var Layer : Dictionary = { "BOARD_LAYER":0, "HOLE_LAYER":1, "MOVEMENT_LAYER":2, "BASE_LAYER":3 }
 
 const TILES: Dictionary = {
 	"board": Vector2i(1, 1),
@@ -196,6 +196,7 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 	
 	var rect = get_used_rect()
 	var board_size = rect.size - Vector2i(2, 2)
+	print(rect, rect.size)
 	
 	for line in lines:
 		var is_line_blocked := false
@@ -205,12 +206,13 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 				cell.x = 2 * origin_cell.x - cell.x
 				cell.y = 2 * origin_cell.y - cell.y
 			
+			if cell in hole_cells:
+				if is_blockable:
+					break
+				else:
+					continue
+			
 			if not cell in board_cells:
-				if cell in hole_cells:
-					if is_blockable:
-						break
-					else:
-						continue
 				cell = Vector2i(
 					cell.x + (board_size.x if cell.x <= rect.position.x else -board_size.x) * int(cell_descriptor.wrap_around),
 				 	cell.y + (board_size.y if cell.y <= rect.position.y else -board_size.y) * int(cell_descriptor.wrap_around_v)

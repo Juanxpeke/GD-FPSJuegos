@@ -1,7 +1,7 @@
 class_name Lobby
 extends Control 
 
-@export var game_map_scene: PackedScene
+var game_map_scene: PackedScene # selected when everyone is ready
 @export var no_role_portrait: Texture2D
 
 var status = { 1 : false }
@@ -201,6 +201,8 @@ func toggle_player_ready_status(id: int):
 			all_ok = all_ok and ok
 			
 		if all_ok:
+			var map_path = MapManager.select_map() 
+			set_map_from_path.rpc(map_path)
 			set_start_timer.rpc(true)
 		else:
 			set_start_timer.rpc(false)
@@ -229,3 +231,7 @@ func set_start_timer(value: bool):
 func start_game() -> void:
 	MultiplayerManager.sort_peer_players()
 	get_tree().change_scene_to_packed(game_map_scene)
+	
+@rpc("any_peer", "call_local", "reliable")
+func set_map_from_path(map_path : String) -> void:
+	game_map_scene = load(map_path)

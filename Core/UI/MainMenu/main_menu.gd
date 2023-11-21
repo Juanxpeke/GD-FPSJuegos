@@ -3,8 +3,6 @@ extends MarginContainer
 const MAX_PLAYERS = 2
 const PORT = 5409
 
-@export var game_map_scene: PackedScene
-
 var _menu_stack: Array[Control] = []
 
 @onready var matchmaking_button = %MatchmakingButton
