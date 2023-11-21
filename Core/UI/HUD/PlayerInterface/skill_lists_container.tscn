@@ -1,29 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://m5pxvi7avooy"]
 
+[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_lists_container.gd" id="1_dmsxe"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_list.gd" id="1_xwjme"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_active_list.gd" id="2_v8vk0"]
-
-[sub_resource type="GDScript" id="GDScript_omhc4"]
-script/source = "extends Panel
-
-@onready var general_itemlist : SkillList = $General
-@onready var activable_itemlist : SkillList = $Activables
-var tooltip_scene : PackedScene = preload(\"res://Core/UI/HUD/PlayerInterface/skill_tooltip.tscn\")
-
-func set_player(player : Player) -> void:
-	general_itemlist.set_player(player)
-	activable_itemlist.set_player(player)
-
-func _make_custom_tooltip(for_text: String) -> Object:
-	var new_tooltip : Control = tooltip_scene.instantiate()
-	var parsed_text = for_text.split(\"|||\")
-	new_tooltip.get_child(0).text =	parsed_text[0] # might be a better way
-	new_tooltip.get_child(1).text =	parsed_text[1]
-	#MultiplayerManager.log_msg(new_tooltip.size)
-	return new_tooltip
-
-
-"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fb75g"]
 
@@ -37,9 +16,10 @@ anchor_bottom = 0.883
 offset_left = 4.0
 offset_right = 0.279968
 offset_bottom = -0.184021
-script = SubResource("GDScript_omhc4")
+script = ExtResource("1_dmsxe")
 
-[node name="General" type="ItemList" parent="."]
+[node name="PassiveSkillsList" type="ItemList" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -53,10 +33,11 @@ max_columns = 2
 same_column_width = true
 fixed_column_width = 120
 icon_mode = 0
-fixed_icon_size = Vector2i(70, 70)
+fixed_icon_size = Vector2i(48, 48)
 script = ExtResource("1_xwjme")
 
-[node name="Activables" type="ItemList" parent="."]
+[node name="ActiveSkillsList" type="ItemList" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.722
@@ -72,5 +53,5 @@ max_columns = 3
 same_column_width = true
 fixed_column_width = 83
 icon_mode = 0
-fixed_icon_size = Vector2i(50, 50)
+fixed_icon_size = Vector2i(48, 48)
 script = ExtResource("2_v8vk0")

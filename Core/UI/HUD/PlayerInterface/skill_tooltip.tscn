@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bs1agku18ufwf"]
+[gd_scene load_steps=2 format=3 uid="uid://3vg2uf5qqnci"]
+
+[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_tooltip.gd" id="1_lu4vi"]
 
 [node name="Tooltip" type="Panel"]
 custom_minimum_size = Vector2(300, 120)
@@ -10,6 +12,7 @@ offset_bottom = 0.0240021
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+script = ExtResource("1_lu4vi")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 1
@@ -18,7 +21,7 @@ anchor_right = 1.0
 offset_bottom = 26.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 20
-text = "skill name"
+text = "Skill Name"
 
 [node name="Description" type="Label" parent="."]
 layout_mode = 1
@@ -32,6 +35,5 @@ offset_top = 0.00999832
 offset_right = -0.0240479
 offset_bottom = -0.0240021
 grow_horizontal = 2
-text = "multiline
-skill description"
+text = "Skill description"
 autowrap_mode = 3
