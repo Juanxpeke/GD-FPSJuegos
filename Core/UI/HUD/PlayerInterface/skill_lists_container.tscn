@@ -1,15 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://m5pxvi7avooy"]
+[gd_scene load_steps=10 format=3 uid="uid://m5pxvi7avooy"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_lists_container.gd" id="1_dmsxe"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_list.gd" id="1_xwjme"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_active_list.gd" id="2_v8vk0"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_54gwr"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fb75g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6o71q"]
+bg_color = Color(0.921569, 0.898039, 0.729412, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wfgb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lctya"]
 
-[node name="SkillList" type="Panel"]
-anchors_preset = -1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne4gt"]
+bg_color = Color(0.929412, 0.6, 0.6, 1)
+
+[node name="SkillListsContainer" type="Control"]
+layout_mode = 3
 anchor_top = 0.25
 anchor_right = 0.235
 anchor_bottom = 0.883
@@ -26,12 +36,17 @@ anchor_right = 1.0
 anchor_bottom = 0.72
 offset_bottom = -0.200012
 grow_horizontal = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 0
+theme_override_constants/icon_margin = 0
+theme_override_constants/line_separation = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_54gwr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fb75g")
+theme_override_styles/hovered = SubResource("StyleBoxFlat_6o71q")
 allow_search = false
 text_overrun_behavior = 2
 max_columns = 2
 same_column_width = true
-fixed_column_width = 120
 icon_mode = 0
 fixed_icon_size = Vector2i(48, 48)
 script = ExtResource("1_xwjme")
@@ -46,12 +61,13 @@ anchor_bottom = 1.0
 offset_top = -0.0200195
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8wfgb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lctya")
+theme_override_styles/hovered = SubResource("StyleBoxFlat_ne4gt")
 allow_search = false
 text_overrun_behavior = 2
 max_columns = 3
 same_column_width = true
-fixed_column_width = 83
 icon_mode = 0
 fixed_icon_size = Vector2i(48, 48)
 script = ExtResource("2_v8vk0")

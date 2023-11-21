@@ -1,5 +1,5 @@
 class_name SkillListsContainer
-extends Panel
+extends Control
 
 var tooltip_scene: PackedScene = preload("res://Core/UI/HUD/PlayerInterface/skill_tooltip.tscn")
 

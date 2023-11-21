@@ -1,8 +1,5 @@
 class_name SkillTooltip
-extends Panel
-
-@onready var name_label := %Name
-@onready var description_label := %Description
+extends PanelContainer
 
 # Private
 
@@ -14,5 +11,5 @@ func _ready() -> void:
  
 # Sets the skill data
 func set_skill_data(skill_name: String, skill_description: String) -> void:
-	get_child(0).text = skill_name
-	get_child(1).text = skill_description
+	get_child(0).get_child(0).text = skill_name
+	get_child(0).get_child(1).text = skill_description

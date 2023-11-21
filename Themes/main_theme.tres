@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://lg4bolku7exk"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://lg4bolku7exk"]
 
 [ext_resource type="FontFile" uid="uid://b1xj8ytxk0wds" path="res://Fonts/Abaddon Bold.ttf" id="1_lb8bi"]
 
@@ -148,6 +148,22 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blwxr"]
+bg_color = Color(0.0313726, 0.00392157, 0.0509804, 0.921569)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.898039, 0.729412, 0.882353)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
+
 [resource]
 default_font = ExtResource("1_lb8bi")
 default_font_size = 16
@@ -179,4 +195,5 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_jgsxf")
 RichTextLabel/colors/default_color = Color(0.921569, 0.898039, 0.729412, 1)
 TextEdit/styles/focus = SubResource("StyleBoxFlat_sf2u7")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_xf4l8")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_blwxr")
 VBoxContainer/constants/separation = 8
