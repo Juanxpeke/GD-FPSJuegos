@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://briej2bofn8aj"]
+[gd_scene load_steps=6 format=3 uid="uid://m5pxvi7avooy"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_list.gd" id="1_xwjme"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_active_list.gd" id="2_v8vk0"]

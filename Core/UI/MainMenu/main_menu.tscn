@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=9 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
-[ext_resource type="PackedScene" uid="uid://db36f8ux7a06p" path="res://Core/Maps/Dummy/dummy_map.tscn" id="2_f7g8e"]
 [ext_resource type="Texture2D" uid="uid://b6offli0x0nev" path="res://Core/UI/MainMenu/logo.png" id="3_bfmbd"]
 [ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
 [ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/Lobby/lobby.tscn" id="4_xnx4q"]
@@ -40,7 +39,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yp1u4")
-game_map_scene = ExtResource("2_f7g8e")
 
 [node name="Menus" type="Control" parent="."]
 unique_name_in_owner = true
