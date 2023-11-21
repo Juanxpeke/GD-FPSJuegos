@@ -122,10 +122,10 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 	unit.name = unit.unit_class + str(get_child_count()) + str(peer_player.id)
 	
 	if multiplayer.get_unique_id() == peer_player.id:
-		unit.position = target_position
+		unit.global_position = target_position
 		unit.match_initial_position = target_position
 	else:
-		unit.position = GameManager.board.get_mirror_position(target_position)
+		unit.global_position = GameManager.board.get_mirror_position(target_position)
 		unit.match_initial_position = GameManager.board.get_mirror_position(target_position)
 
 	match_live_units.append(unit)
