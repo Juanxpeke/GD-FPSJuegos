@@ -102,7 +102,7 @@ func get_live_unit(index: int) -> Unit:
 func get_live_unit_by_cell(cell: Vector2i) -> Unit:
 	var live_units = get_live_units()
 	for live_unit in live_units:
-		if GameManager.board.get_cell(live_unit.position) == cell:
+		if GameManager.board.get_cell(live_unit.global_position) == cell:
 			return live_unit
 	return null
 
