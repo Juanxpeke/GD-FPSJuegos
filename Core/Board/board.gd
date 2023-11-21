@@ -196,7 +196,6 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 	
 	var rect = get_used_rect()
 	var board_size = rect.size - Vector2i(2, 2)
-	print(rect, rect.size)
 	
 	for line in lines:
 		var is_line_blocked := false

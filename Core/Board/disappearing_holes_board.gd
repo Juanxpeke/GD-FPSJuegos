@@ -9,8 +9,7 @@ var unused_hole_layer : int = ALT_HOLE_LAYER
 func _on_map_initialized() -> void:
 	super._on_map_initialized()
 	GameManager.map.turn_ended.connect(_switch_hole_layers)
-	print(get_used_cells(unused_hole_layer), "im emu otori")
-	set_layer_enabled(unused_hole_layer, false)
+	set_layer_modulate(unused_hole_layer, Color(1, 1, 1, 0.2))
 
 func _switch_hole_layers() -> void:
 	if (GameManager.map.turn % TURNS_TO_SWITCH):
@@ -18,9 +17,9 @@ func _switch_hole_layers() -> void:
 		return
 	var tmp = unused_hole_layer
 	unused_hole_layer = Layer.HOLE_LAYER
-	set_layer_enabled(unused_hole_layer, false)
+	set_layer_modulate(unused_hole_layer, Color(1, 1, 1, 0.2))
 	Layer.HOLE_LAYER = tmp
-	set_layer_enabled(Layer.HOLE_LAYER, true)
+	set_layer_modulate(Layer.HOLE_LAYER, Color(1, 1, 1, 1))
 	
 	# units fall into the abyss and die
 	for cell in get_used_cells(Layer.HOLE_LAYER):
