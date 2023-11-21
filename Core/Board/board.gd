@@ -264,11 +264,14 @@ func hide_base_cells() -> void:
 	
 # Gets the mirrored cell of the given cell
 func get_mirror_cell(cell: Vector2i) -> Vector2i:
-	return get_cell(get_mirror_position(get_cell_center(cell)))
+	var rect = get_used_rect()
+	var distance_corner = cell - rect.position
+	var mirror_position = rect.end - distance_corner - Vector2i(1, 1)
+	return mirror_position
 	
 # Gets the mirrored position of the given position
 func get_mirror_position(cell_position: Vector2) -> Vector2:
-	var mirror_position = to_global(to_local(cell_position) * -1)
+	var mirror_position = get_cell_center(get_mirror_cell(get_cell(cell_position)))
 	return mirror_position
 
 # Adds a unit to the unit list
