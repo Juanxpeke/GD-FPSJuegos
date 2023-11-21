@@ -25,6 +25,6 @@ func _switch_hole_layers() -> void:
 	for cell in get_used_cells(Layer.HOLE_LAYER):
 		for unit in units:
 			var unit_cell := get_cell(unit.global_position)
-				
+							
 			if unit_cell == cell: 
-				unit.die()
+				pass # Avoid king bugs for the moment
