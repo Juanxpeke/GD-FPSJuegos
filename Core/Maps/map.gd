@@ -12,6 +12,7 @@ enum MatchPhase { PREPARATION, BATTLE }
 @export var player_scene: PackedScene
 @export var store_time: float = 7.0
 @export var skill_picking_time: float = 26.0
+@export var match_ending_time: float = 4.0
 
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -116,7 +117,8 @@ func end_turn(player: Player) -> void:
 	
 # Ends the current match
 func end_match() -> void:
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(match_ending_time).timeout
+	
 	MultiplayerManager.log_msg("end match %d" % matchi)
 	
 	if matchi in GameManager.skill_choosing_matchis:
