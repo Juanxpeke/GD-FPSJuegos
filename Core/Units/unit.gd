@@ -193,7 +193,10 @@ func die() -> void:
 	area.monitoring = false
 	area.input_pickable = false
 	has_dead.emit()
-	
+
+func be_captured_by(enemy_unit: Unit) -> void:
+	die()
+
 # Revives
 func revive() -> void:
 	MultiplayerManager.log_msg("revive %s" % name)
