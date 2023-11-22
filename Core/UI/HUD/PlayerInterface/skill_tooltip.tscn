@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_tooltip.gd" id="1_lu4vi"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blwxr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dijxe"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
 bg_color = Color(0.0313726, 0.00392157, 0.0509804, 0.921569)
 border_width_left = 1
 border_width_top = 1
@@ -13,18 +17,12 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-expand_margin_left = 16.0
-expand_margin_top = 16.0
-expand_margin_right = 16.0
-expand_margin_bottom = 16.0
 
 [node name="Tooltip" type="PanelContainer"]
-custom_minimum_size = Vector2(300, 78)
-offset_right = 502.0
-offset_bottom = 78.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_blwxr")
+custom_minimum_size = Vector2(360, 0)
+offset_right = 360.0
+offset_bottom = 108.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dijxe")
 script = ExtResource("1_lu4vi")
 
 [node name="InfoContainer" type="VBoxContainer" parent="."]
