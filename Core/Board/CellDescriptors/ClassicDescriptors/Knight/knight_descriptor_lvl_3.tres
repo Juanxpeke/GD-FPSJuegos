@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LDescriptorRange4" load_steps=2 format=3 uid="uid://6tqq84281tlo"]
+
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/L_descriptor_range_4.gd" id="1_72dt5"]
+
+[resource]
+script = ExtResource("1_72dt5")
+is_blockable = false
+is_filled = false
+cell_range = 5
+wrap_around = false
+wrap_around_v = false
