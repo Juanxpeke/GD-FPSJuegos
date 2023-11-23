@@ -1,10 +1,13 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://brohu06ujjvj8"]
 
-[ext_resource type="Script" path="res://Global/Skills/DimensionalJump/dimensional_jumpv.gd" id="1_0nx3r"]
-[ext_resource type="Texture2D" uid="uid://btgokcdtikd7c" path="res://Global/Skills/DimensionalJump/dimensional_jump.png" id="1_hljbn"]
+[ext_resource type="Script" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jumpv.gd" id="1_0nx3r"]
+[ext_resource type="Texture2D" uid="uid://btgokcdtikd7c" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jump.png" id="1_hljbn"]
 
 [resource]
 script = ExtResource("1_0nx3r")
+COOLDOWN = 2
+TURNS_ACTIVE = 1
+INITIAL_USES = 3
 name = "Dimensional Jump (vertical)"
 description = "Units can go across the vertical limits of the board."
 icon = ExtResource("1_hljbn")
