@@ -7,7 +7,7 @@ signal player_turn_ended(player: Player)
 signal match_ended
 signal game_changed
 
-enum MatchPhase { PREPARATION, BATTLE }
+enum MatchPhase { PREPARATION, BATTLE, PAUSED }
 
 @export var player_scene: PackedScene
 @export var store_time: float = 7.0
@@ -117,6 +117,7 @@ func end_turn(player: Player) -> void:
 	
 # Ends the current match
 func end_match() -> void:
+	match_phase = MatchPhase.PAUSED
 	await get_tree().create_timer(match_ending_time).timeout
 	
 	MultiplayerManager.log_msg("end match %d" % matchi)

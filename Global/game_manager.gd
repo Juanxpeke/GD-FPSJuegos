@@ -97,6 +97,10 @@ func get_phase() -> String:
 
 # Ends the game
 func end_game(winner: MultiplayerManager.PeerPlayer) -> void:
+	# setting match phase to MatchPhase.PAUSED
+	map.match_phase = 2
+	await get_tree().create_timer(map.match_ending_time).timeout
+	
 	last_winner = winner
 	
 	MultiplayerManager.peer_players = []
