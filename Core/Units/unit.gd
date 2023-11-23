@@ -196,6 +196,8 @@ func die() -> void:
 
 func be_captured_by(enemy_unit: Unit) -> void:
 	die()
+	get_player().match_live_units.erase(self)
+	get_player().match_dead_units.append(self)
 
 # Revives
 func revive() -> void:
