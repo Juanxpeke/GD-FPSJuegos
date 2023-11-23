@@ -1,7 +1,8 @@
-extends ItemList
 class_name SkillList
+extends ItemList
 
-var displayed_skills: Array[ResSkill] = []
+var tooltip_scene: PackedScene = preload("res://Core/UI/HUD/PlayerInterface/skill_tooltip.tscn")
+
 var player: Player
 
 # Private
@@ -16,17 +17,25 @@ func _on_skill_selected(item_id : int) -> void:
 
 # Creates a custom tooltip
 func _make_custom_tooltip(for_text: String) -> Object:
-	return get_parent()._make_custom_tooltip(for_text)
+	var new_tooltip: Control = tooltip_scene.instantiate()
+	
+	var skill_data = get_item_metadata(int(for_text))
+	
+	new_tooltip.set_skill_data(skill_data.name, skill_data.description)
+	
+	return new_tooltip
 
 # Updates the layout
 func _update_layout() -> void:
-	clear() # Empty the list
-	var count: int = 0
-	for skill in player.get_skills():
-		add_item('', skill.icon)
-		set_item_tooltip(count, skill.name + "|||" + skill.description)
-		displayed_skills.append(skill)
-		count += 1
+	for i in range(item_count):
+		if i >= player.get_skills().size():
+			break
+		
+		var skill = player.get_skills()[i]
+		set_item_icon(i, skill.icon)
+		set_item_metadata(i, { "name": skill.name, "description": skill.description })
+		set_item_tooltip(i, str(i))
+
 
 # Public
 

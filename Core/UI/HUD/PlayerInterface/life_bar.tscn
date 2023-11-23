@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfj8bj1xfyfmt"]
+
+[ext_resource type="Texture2D" uid="uid://c1yogl73o575b" path="res://Core/UI/HUD/PlayerInterface/life_bar_under.png" id="1_ephgm"]
+[ext_resource type="Texture2D" uid="uid://c7wmtjxrg3qon" path="res://Core/UI/HUD/PlayerInterface/life_bar_progress.png" id="2_bw5d7"]
+[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/life_bar.gd" id="3_n8vxg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymp8i"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="LifeBar" type="PanelContainer"]
+offset_right = 240.0
+offset_bottom = 21.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ymp8i")
+script = ExtResource("3_n8vxg")
+metadata/_edit_group_ = true
+
+[node name="LifeProgressBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("1_ephgm")
+texture_progress = ExtResource("2_bw5d7")
+
+[node name="LifeLabel" type="Label" parent="LifeProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "0 / 0"
+horizontal_alignment = 1
+vertical_alignment = 1

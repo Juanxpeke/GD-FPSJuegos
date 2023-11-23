@@ -17,5 +17,4 @@ func _update_layout() -> void:
 	for skill in player.activable_skills: # REVIEW: + player.activable_skills:
 		add_item(skill.name, skill.icon)
 		set_item_tooltip(count, skill.description)
-		displayed_skills.append(skill)
 		count += 1

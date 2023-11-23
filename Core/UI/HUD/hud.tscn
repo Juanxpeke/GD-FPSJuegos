@@ -1,57 +1,155 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy17jaermquaa"]
+[gd_scene load_steps=10 format=3 uid="uid://dy17jaermquaa"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/hud.gd" id="1_ku5ab"]
 [ext_resource type="PackedScene" uid="uid://b3lux4srfnsh4" path="res://Core/UI/HUD/Store/store.tscn" id="1_xp5ni"]
-[ext_resource type="PackedScene" uid="uid://cfbchqiowblyh" path="res://Core/UI/HUD/PlayerInterface/player_interface.tscn" id="2_lccxb"]
-[ext_resource type="PackedScene" uid="uid://m5pxvi7avooy" path="res://Core/UI/HUD/PlayerInterface/skill_lists_container.tscn" id="3_07nbi"]
+[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/player_interface.gd" id="2_miedf"]
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="3_m82of"]
+[ext_resource type="PackedScene" uid="uid://dfj8bj1xfyfmt" path="res://Core/UI/HUD/PlayerInterface/life_bar.tscn" id="3_pdxq5"]
 [ext_resource type="Texture2D" uid="uid://dx7t4omxenkpt" path="res://Core/UI/HUD/preparation_time_bar_progress.png" id="4_0j1r6"]
+[ext_resource type="PackedScene" uid="uid://sc70hdt2ucgy" path="res://Core/UI/HUD/PlayerInterface/passive_skills_list.tscn" id="4_1iykr"]
 [ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker.tscn" id="5_wpddp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwhrk"]
+bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ku5ab")
-metadata/_edit_horizontal_guides_ = [624.0, 648.0]
+metadata/_edit_horizontal_guides_ = [624.0, 648.0, 24.0]
+metadata/_edit_vertical_guides_ = [24.0, 1128.0, 1112.0, 40.0]
 
-[node name="PlayerInterface" parent="." instance=ExtResource("2_lccxb")]
+[node name="PlayerInterface" type="Panel" parent="."]
 unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -100.0
+offset_left = 40.0
+offset_top = -160.0
+offset_right = 270.0
+offset_bottom = -40.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 120)
+theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
+script = ExtResource("2_miedf")
+turn_indicator_color = Color(0.109804, 0.65098, 0.576471, 1)
+
+[node name="LifeBar" parent="PlayerInterface" instance=ExtResource("3_pdxq5")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_right = 230.0
 offset_bottom = 0.0
 grow_vertical = 0
+pivot_offset = Vector2(0, 21)
 
-[node name="SkillList" parent="PlayerInterface" instance=ExtResource("3_07nbi")]
-layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -5.0
-offset_top = -450.0
-offset_right = 225.0
-offset_bottom = -40.0
+[node name="PassiveSkillsList" parent="PlayerInterface" instance=ExtResource("4_1iykr")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 98.0
+offset_top = -120.0
+offset_right = 328.0
+offset_bottom = -24.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 96)
 
-[node name="EnemyInterface" parent="." instance=ExtResource("2_lccxb")]
+[node name="RoleIcon" type="TextureRect" parent="PlayerInterface"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_right = 82.0
+offset_bottom = -38.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 82)
+texture = ExtResource("3_m82of")
+expand_mode = 1
+
+[node name="PeerNameLabel" type="Label" parent="PlayerInterface"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -159.0
+offset_right = 153.0
+offset_bottom = -138.0
+grow_vertical = 0
+text = "Username"
+vertical_alignment = 2
+
+[node name="EnemyInterface" type="Panel" parent="."]
 unique_name_in_owner = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -233.0
-offset_top = 27.0
-offset_right = -33.0
-offset_bottom = 127.0
+offset_left = -270.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = 160.0
 grow_horizontal = 0
+pivot_offset = Vector2(0, 120)
+theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
+script = ExtResource("2_miedf")
+turn_indicator_color = Color(0.137255, 0.8, 0.709804, 1)
 
-[node name="SkillList" parent="EnemyInterface" instance=ExtResource("3_07nbi")]
-layout_mode = 0
-anchors_preset = 0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 2.0
-offset_top = 128.0
-offset_right = 232.0
-offset_bottom = 538.0
+[node name="LifeBar" parent="EnemyInterface" instance=ExtResource("3_pdxq5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_right = 230.0
+offset_bottom = -99.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 21)
+
+[node name="PassiveSkillsList" parent="EnemyInterface" instance=ExtResource("4_1iykr")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+offset_right = 230.0
+offset_bottom = 12.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 96)
+
+[node name="RoleIcon" type="TextureRect" parent="EnemyInterface"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 148.0
+offset_top = -82.0
+offset_right = 230.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 82)
+texture = ExtResource("3_m82of")
+expand_mode = 1
+
+[node name="PeerNameLabel" type="Label" parent="EnemyInterface"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 77.0
+offset_top = 22.0
+offset_right = 230.0
+offset_bottom = 43.0
+grow_vertical = 0
+text = "Username"
+horizontal_alignment = 2
 
 [node name="Store" parent="." instance=ExtResource("1_xp5ni")]
 unique_name_in_owner = true

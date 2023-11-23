@@ -1,15 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://m5pxvi7avooy"]
+[gd_scene load_steps=7 format=3 uid="uid://m5pxvi7avooy"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_lists_container.gd" id="1_dmsxe"]
-[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_list.gd" id="1_xwjme"]
+[ext_resource type="PackedScene" uid="uid://sc70hdt2ucgy" path="res://Core/UI/HUD/PlayerInterface/passive_skills_list.tscn" id="2_4sgap"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/skill_active_list.gd" id="2_v8vk0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_54gwr"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fb75g"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6o71q"]
-bg_color = Color(0.921569, 0.898039, 0.729412, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wfgb"]
 
@@ -28,28 +21,9 @@ offset_right = 0.279968
 offset_bottom = -0.184021
 script = ExtResource("1_dmsxe")
 
-[node name="PassiveSkillsList" type="ItemList" parent="."]
+[node name="PassiveSkillsList" parent="." instance=ExtResource("2_4sgap")]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.72
-offset_bottom = -0.200012
-grow_horizontal = 2
-theme_override_constants/h_separation = 2
-theme_override_constants/v_separation = 0
-theme_override_constants/icon_margin = 0
-theme_override_constants/line_separation = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_54gwr")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fb75g")
-theme_override_styles/hovered = SubResource("StyleBoxFlat_6o71q")
-allow_search = false
-text_overrun_behavior = 2
-max_columns = 2
-same_column_width = true
-icon_mode = 0
-fixed_icon_size = Vector2i(48, 48)
-script = ExtResource("1_xwjme")
+layout_mode = 0
 
 [node name="ActiveSkillsList" type="ItemList" parent="."]
 unique_name_in_owner = true

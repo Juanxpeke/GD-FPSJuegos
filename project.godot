@@ -46,4 +46,4 @@ dummy={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0.054902, 0.00392157, 0.0862745, 1)
+environment/defaults/default_clear_color=Color(0.0608333, 0.006, 0.1, 1)

@@ -5,20 +5,16 @@ extends Control
 
 var player: Player
 
-@onready var peer_name_label: Label = %PeerNameLabel
-@onready var life_bar: TextureProgressBar = %LifeBar
-@onready var life_label: Label = %LifeLabel
-@onready var skill_lists_container
+@onready var life_bar: LifeBar = $LifeBar
+@onready var passive_skills_list: SkillList = $PassiveSkillsList
+@onready var role_icon: TextureRect = $RoleIcon
+@onready var peer_name_label: Label = $PeerNameLabel
 
 # Private
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	skill_lists_container = get_child(-1, false)
-
-# Called when the related player health changes
-func _on_player_health_changed() -> void:
-	_update_life_interface()
+	pass
 	
 # Called when a match turn ends
 func _on_turn_ended() -> void:
@@ -27,11 +23,6 @@ func _on_turn_ended() -> void:
 # Called when a match ends
 func _on_match_ended() -> void:
 	_update_turn_indicator()
-
-# Updates the life interface
-func _update_life_interface() -> void:
-	life_bar.value = player.current_health
-	life_label.text = str(player.current_health) + " / "  + str(player.role.initial_health)
 
 # Updates the turn indicator
 func _update_turn_indicator() -> void:
@@ -46,6 +37,7 @@ func _update_turn_indicator() -> void:
 func set_player(player: Player) -> void:
 	self.player = player
 	
+	role_icon.texture = player.role.icon
 	peer_name_label.text = player.peer_player.name
 	
 	_update_turn_indicator()
@@ -53,9 +45,5 @@ func set_player(player: Player) -> void:
 	GameManager.map.turn_ended.connect(_on_turn_ended)
 	GameManager.map.match_ended.connect(_on_match_ended)
 	
-	life_bar.max_value = player.role.initial_health
-	_update_life_interface()
-
-	player.health_changed.connect(_on_player_health_changed)
-	
-	skill_lists_container.set_player(player)
+	life_bar.set_player(player)
+	passive_skills_list.set_player(player)

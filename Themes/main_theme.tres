@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://lg4bolku7exk"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://lg4bolku7exk"]
 
 [ext_resource type="FontFile" uid="uid://b1xj8ytxk0wds" path="res://Fonts/Abaddon Bold.ttf" id="1_lb8bi"]
 
@@ -68,6 +68,12 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8wry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eji5n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bbs0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cj048"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5666"]
 content_margin_left = 6.0
@@ -168,6 +174,9 @@ Button/styles/pressed = SubResource("StyleBoxFlat_xraky")
 HBoxContainer/constants/separation = 12
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource("StyleBoxEmpty_p8wry")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_eji5n")
+ItemList/styles/hovered = SubResource("StyleBoxEmpty_4bbs0")
+ItemList/styles/panel = SubResource("StyleBoxEmpty_cj048")
 Label/colors/font_color = Color(0.921569, 0.898039, 0.729412, 1)
 LineEdit/colors/caret_color = Color(0.0313726, 0.0470588, 0.0784314, 1)
 LineEdit/colors/font_color = Color(0.0313726, 0.0470588, 0.0784314, 1)
