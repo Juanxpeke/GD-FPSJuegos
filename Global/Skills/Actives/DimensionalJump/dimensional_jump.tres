@@ -1,11 +1,14 @@
 [gd_resource type="Resource" script_class="DimensionalJump" load_steps=3 format=3 uid="uid://bfwv5flkpdg32"]
 
-[ext_resource type="Texture2D" uid="uid://btgokcdtikd7c" path="res://Global/Skills/DimensionalJump/dimensional_jump.png" id="1_luopu"]
-[ext_resource type="Script" path="res://Global/Skills/DimensionalJump/dimensional_jump.gd" id="1_x4s7y"]
+[ext_resource type="Texture2D" uid="uid://btgokcdtikd7c" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jump.png" id="1_luopu"]
+[ext_resource type="Script" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jump.gd" id="1_x4s7y"]
 
 [resource]
 script = ExtResource("1_x4s7y")
-name = "Dimensional Jump"
+COOLDOWN = 2
+TURNS_ACTIVE = 1
+INITIAL_USES = 3
+name = "Dimensional Jump (horizontal)"
 description = "Units can go around the limits of the board."
 icon = ExtResource("1_luopu")
 phase_damage_addition = 0
