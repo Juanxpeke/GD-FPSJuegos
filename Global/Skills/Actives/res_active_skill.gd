@@ -4,18 +4,21 @@ extends ResSkill
 var player : Player
 var index_in_skill_array : int
 
-## number of turns that have to pass between skill activation
-@export var COOLDOWN : int = 0 
-## number of turns the skill take effect after activation
-@export var TURNS_ACTIVE : int = 1
-## how many times the skill can be used each round
-@export var INITIAL_USES : int = 9999
+## Number of turns that have to pass between skill activation
+@export var COOLDOWN: int = 0 
+## Number of turns the skill take effect after activation
+@export var TURNS_ACTIVE: int = 1
+## How many times the skill can be used each round
+@export var INITIAL_USES: int = 9999
 
-var cooldown_remaining : int = 0
-var active_turns_count : int = 0
-var uses_remaining : int = 9999
-var active : bool
+var cooldown_remaining: int = 0
+var active_turns_count: int = 0
+var uses_remaining: int = 0
+var active: bool
 
+# Private
+
+# Constructor
 func _init() -> void:
 	active = false
 	GameManager.map_initialized.connect(
@@ -27,13 +30,7 @@ func _init() -> void:
 	uses_remaining = INITIAL_USES
 
 
-func activate() -> bool:
-	if cooldown_remaining <= 0 and uses_remaining > 0 and not active:
-		uses_remaining-=1
-		active = true
-		print("skill activated")
-		return true
-	return false
+# Public
 	
 func set_index(index : int):
 	index_in_skill_array = index
@@ -54,13 +51,29 @@ func reset() -> void:
 	if active:
 		deactivate()
 
+# Activates the skill
+func activate() -> bool:
+	if cooldown_remaining <= 0 and uses_remaining > 0 and not active:
+		uses_remaining -= 1
+		active = true
+		
+		MultiplayerManager.log_msg('activate %s' % self.name)
+		return true
+	
+	MultiplayerManager.log_msg('fail activate %s' % self.name)
+	return false
+
+# Deactives
 func deactivate() -> void:
 	active = false
 	active_turns_count = 0
 	cooldown_remaining = COOLDOWN
-	print("deactivate skill ", self.name)
+	
 	player.deactivate_skill(index_in_skill_array)
+	
+	MultiplayerManager.log_msg("deactivate %s" % self.name)
 
-func add_to_player(p: Player) -> void:
-	p.activable_skills.append(self)
-	player = p
+# Adds itself to the player
+func add_to_player(player: Player) -> void:
+	self.player = player
+	player.active_skills.append(self)

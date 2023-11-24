@@ -47,7 +47,7 @@ func _ready() -> void:
 	
 	GameManager.map.preparation_ended.connect(_on_preparation_ended)
 	GameManager.map.turn_ended.connect(_on_turn_ended)
-	GameManager.map.game_changed.connect(_on_turn_ended)
+	GameManager.map.skill_activated.connect(_on_turn_ended)
 	GameManager.map.match_ended.connect(_on_match_ended)
 	area.mouse_entered.connect(_on_mouse_entered)
 	area.mouse_exited.connect(_on_mouse_exited)

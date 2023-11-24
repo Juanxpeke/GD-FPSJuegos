@@ -6,7 +6,8 @@ extends Control
 var player: Player
 
 @onready var life_bar: LifeBar = $LifeBar
-@onready var passive_skills_list: SkillList = $PassiveSkillsList
+@onready var passive_skills_list: PassiveSkillsList = $PassiveSkillsList
+@onready var active_skills_list: ActiveSkillsList = $ActiveSkillsList
 @onready var role_icon: TextureRect = $RoleIcon
 @onready var peer_name_label: Label = $PeerNameLabel
 
@@ -47,3 +48,4 @@ func set_player(player: Player) -> void:
 	
 	life_bar.set_player(player)
 	passive_skills_list.set_player(player)
+	active_skills_list.set_player(player)

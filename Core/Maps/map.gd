@@ -5,7 +5,7 @@ signal preparation_ended
 signal turn_ended
 signal player_turn_ended(player: Player)
 signal match_ended
-signal game_changed
+signal skill_activated
 
 enum MatchPhase { PREPARATION, BATTLE, PAUSED }
 

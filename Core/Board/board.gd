@@ -26,7 +26,7 @@ func _ready() -> void:
 func _on_map_initialized() -> void:
 	GameManager.map.preparation_ended.connect(_on_preparation_ended)
 	GameManager.map.turn_ended.connect(_on_turn_ended)
-	GameManager.map.game_changed.connect(_on_turn_ended)
+	GameManager.map.skill_activated.connect(_on_turn_ended)
 	GameManager.map.match_ended.connect(_on_match_ended)
 
 # Called when the preparation ends

@@ -8,7 +8,7 @@
 bg_color = Color(0, 0, 0, 0)
 
 [node name="LifeBar" type="PanelContainer"]
-offset_right = 240.0
+offset_right = 160.0
 offset_bottom = 21.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ymp8i")
 script = ExtResource("3_n8vxg")

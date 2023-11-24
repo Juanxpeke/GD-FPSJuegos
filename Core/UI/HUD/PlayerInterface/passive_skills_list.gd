@@ -1,4 +1,4 @@
-class_name SkillList
+class_name PassiveSkillsList
 extends ItemList
 
 var tooltip_scene: PackedScene = preload("res://Core/UI/HUD/PlayerInterface/skill_tooltip.tscn")
@@ -43,4 +43,5 @@ func _update_layout() -> void:
 func set_player(player: Player) -> void:
 	self.player = player
 	player.skills_changed.connect(_update_layout)
+	GameManager.map.skill_activated.connect(_update_layout)
 	_update_layout()

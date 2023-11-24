@@ -2,7 +2,8 @@ shader_type canvas_item;
 
 uniform vec4 outline_color: source_color;
 
-void fragment(){
+void fragment()
+{
 	float size_x = 1.0 / float(textureSize(TEXTURE, 0).x);
 	float size_y = 1.0 / float(textureSize(TEXTURE, 0).y);
 	

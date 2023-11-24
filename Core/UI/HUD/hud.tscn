@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy17jaermquaa"]
+[gd_scene load_steps=11 format=3 uid="uid://dy17jaermquaa"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/hud.gd" id="1_ku5ab"]
 [ext_resource type="PackedScene" uid="uid://b3lux4srfnsh4" path="res://Core/UI/HUD/Store/store.tscn" id="1_xp5ni"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/player_interface.gd" id="2_miedf"]
 [ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="3_m82of"]
-[ext_resource type="PackedScene" path="res://Core/UI/HUD/PlayerInterface/life_bar.tscn" id="3_pdxq5"]
+[ext_resource type="PackedScene" uid="uid://dfj8bj1xfyfmt" path="res://Core/UI/HUD/PlayerInterface/life_bar.tscn" id="3_pdxq5"]
 [ext_resource type="Texture2D" uid="uid://dx7t4omxenkpt" path="res://Core/UI/HUD/preparation_time_bar_progress.png" id="4_0j1r6"]
-[ext_resource type="PackedScene" path="res://Core/UI/HUD/PlayerInterface/passive_skills_list.tscn" id="4_1iykr"]
+[ext_resource type="PackedScene" uid="uid://sc70hdt2ucgy" path="res://Core/UI/HUD/PlayerInterface/passive_skills_list.tscn" id="4_1iykr"]
+[ext_resource type="PackedScene" uid="uid://n5317gueobj5" path="res://Core/UI/HUD/PlayerInterface/active_skills_list.tscn" id="5_q52k7"]
 [ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker.tscn" id="5_wpddp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwhrk"]
@@ -31,12 +32,11 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
-offset_top = -160.0
-offset_right = 270.0
+offset_top = -208.0
+offset_right = 222.0
 offset_bottom = -40.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 120)
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
 script = ExtResource("2_miedf")
 turn_indicator_color = Color(0.109804, 0.65098, 0.576471, 1)
@@ -47,10 +47,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -21.0
-offset_right = 230.0
+offset_right = 182.0
 offset_bottom = 0.0
 grow_vertical = 0
-pivot_offset = Vector2(0, 21)
 
 [node name="PassiveSkillsList" parent="PlayerInterface" instance=ExtResource("4_1iykr")]
 layout_mode = 1
@@ -63,7 +62,13 @@ offset_right = 206.0
 offset_bottom = -24.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 96)
-mouse_filter = 1
+
+[node name="ActiveSkillsList" parent="PlayerInterface" instance=ExtResource("5_q52k7")]
+layout_mode = 1
+offset_left = 20.0
+offset_top = -77.64
+offset_right = 188.0
+offset_bottom = -29.64
 
 [node name="RoleIcon" type="TextureRect" parent="PlayerInterface"]
 layout_mode = 1
@@ -126,6 +131,11 @@ offset_right = 230.0
 offset_bottom = 12.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 96)
+
+[node name="ActiveSkillsList" parent="EnemyInterface" instance=ExtResource("5_q52k7")]
+layout_mode = 0
+offset_top = 157.0
+offset_bottom = 205.0
 
 [node name="RoleIcon" type="TextureRect" parent="EnemyInterface"]
 layout_mode = 1

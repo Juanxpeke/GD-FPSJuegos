@@ -18,7 +18,7 @@ var match_live_units: Array[Unit] = []
 var match_dead_units: Array[Unit] = []
 
 #### Skills ####
-var activable_skills: Array[ResActiveSkill] = [] # Skills that can be activated
+var active_skills: Array[ResActiveSkill] = [] # Skills that can be activated
 
 var skills: Array[ResSkill] = [] # Skills that are taking effect right now
 
@@ -298,6 +298,10 @@ func buy_unit(unit_class: String) -> void:
 func get_skills() -> Array:
 	return skills
 	
+# Returns the player active skills
+func get_active_skills() -> Array:
+	return active_skills
+	
 # Return array of "gettable" skills ids
 func get_skill_id_pool() -> Array[int]: 
 	var skill_id_pool: Array[int] = []
@@ -312,23 +316,23 @@ func get_skill_id_pool() -> Array[int]:
 # Adds a skill to the player, called on each peer
 @rpc("call_local", "reliable")
 func add_skill(skill_id: int) -> void:
-	MultiplayerManager.log_msg("add skill %d to %s" % [skill_id, name])
 	var skill = SkillsManager.get_skill(skill_id)
-	MultiplayerManager.log_msg(skill)
 	skill.add_to_player(self)
 	skills_changed.emit()
+	
+	MultiplayerManager.log_msg("add skill %s to %s" % [skill, name])
 
 # REVIEW
 
 @rpc("call_local", "reliable")
 func activate_skill(skill_id: int) -> void:
-	var skill = activable_skills[skill_id]
-	MultiplayerManager.log_msg(str(skill.active))
+	var skill = active_skills[skill_id]
+	
 	if skill.activate():
 		var active_index = skills.size()
 		skills.append(skill)
 		skill.set_index(active_index)
-		GameManager.map.game_changed.emit()
+		GameManager.map.skill_activated.emit()
 
 func deactivate_skill(index : int) -> void:
 	print(str(skills[index]) + " dettached")

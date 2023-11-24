@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://n5317gueobj5"]
+
+[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/active_skills_list.gd" id="1_wjhc0"]
+[ext_resource type="PackedScene" uid="uid://bcyucbdqol1e1" path="res://Core/UI/HUD/PlayerInterface/active_skill_button.tscn" id="2_4dbug"]
+[ext_resource type="Texture2D" uid="uid://gkfh5d0e7ovy" path="res://Core/UI/HUD/PlayerInterface/empty_skill.png" id="2_4xpd0"]
+
+[node name="ActiveSkillsList" type="HBoxContainer"]
+offset_right = 168.0
+offset_bottom = 48.0
+script = ExtResource("1_wjhc0")
+clear_texture = ExtResource("2_4xpd0")
+
+[node name="ActiveSkillButton" parent="." instance=ExtResource("2_4dbug")]
+layout_mode = 2
+
+[node name="ActiveSkillButton2" parent="." instance=ExtResource("2_4dbug")]
+layout_mode = 2
+
+[node name="ActiveSkillButton3" parent="." instance=ExtResource("2_4dbug")]
+layout_mode = 2
