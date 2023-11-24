@@ -1,13 +1,14 @@
 class_name Board
 extends TileMap
 
-var Layer : Dictionary = { "BOARD_LAYER":0, "HOLE_LAYER":1, "MOVEMENT_LAYER":2, "BASE_LAYER":3 }
+var Layer : Dictionary = { "BOARD_LAYER":0, "HOLE_LAYER":1, "MOVEMENT_LAYER":2, "BASE_LAYER":3 , "BLOOD_LAYER":4 }
 
 const TILES: Dictionary = {
 	"board": Vector2i(1, 1),
 	"board_alt": Vector2i(1, 2),
 	"movement": Vector2i(10, 0),
 	"base": Vector2i(10, 1),
+	"blood": Vector2i(10, 9),
 }
 
 var units: Array[Unit] = []
@@ -40,6 +41,8 @@ func _on_turn_ended() -> void:
 func _on_match_ended() -> void:
 	hide_movement_cells()
 	show_base_cells()
+	clear_layer(Layer.BLOOD_LAYER)
+	
 
 # Initializes the board layer (just aesthetically) 
 func _init_board_layer() -> void:
@@ -288,3 +291,6 @@ func readd_unit(unit: Unit) -> void:
 # Removes a unit from the unit list
 func remove_unit(unit: Unit) -> void:
 	units.erase(unit)
+
+func show_blood_cell(cell: Vector2i) -> void:
+	set_cell(Layer.BLOOD_LAYER, cell, 0, TILES.blood)

@@ -1,6 +1,6 @@
 extends Board
 
-const ALT_HOLE_LAYER := 5
+const ALT_HOLE_LAYER := 6
 const TURNS_TO_SWITCH : int = 5 # should be a odd number
 
 var unused_hole_layer : int = ALT_HOLE_LAYER
