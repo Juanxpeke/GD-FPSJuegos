@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DimensionalJump" load_steps=3 format=3 uid="uid://bfwv5flkpdg32"]
 
-[ext_resource type="Texture2D" uid="uid://btgokcdtikd7c" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jump.png" id="1_luopu"]
+[ext_resource type="Texture2D" uid="uid://cw2r6e427mq2u" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jumph.png" id="1_2d14l"]
 [ext_resource type="Script" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jump.gd" id="1_x4s7y"]
 
 [resource]
@@ -10,7 +10,7 @@ TURNS_ACTIVE = 1
 INITIAL_USES = 3
 name = "Dimensional Jump (horizontal)"
 description = "Units can go around the limits of the board."
-icon = ExtResource("1_luopu")
+icon = ExtResource("1_2d14l")
 phase_damage_addition = 0
 phase_reward_addition = 0
 remove_unit_sale_discount = false
