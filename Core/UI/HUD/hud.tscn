@@ -23,7 +23,7 @@ expand_margin_bottom = 16.0
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ku5ab")
-metadata/_edit_horizontal_guides_ = [624.0, 648.0, 24.0]
+metadata/_edit_horizontal_guides_ = [624.0, 648.0, 24.0, 264.0]
 metadata/_edit_vertical_guides_ = [24.0, 1128.0, 1112.0, 40.0]
 
 [node name="PlayerInterface" type="Panel" parent="."]
@@ -32,11 +32,11 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
-offset_top = -208.0
+offset_top = -264.0
 offset_right = 222.0
 offset_bottom = -40.0
 grow_vertical = 0
-pivot_offset = Vector2(0, 120)
+pivot_offset = Vector2(0, 224)
 theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
 script = ExtResource("2_miedf")
 turn_indicator_color = Color(0.345098, 0.811765, 0.521569, 1)
@@ -46,9 +46,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -21.0
-offset_right = 182.0
-offset_bottom = 0.0
+offset_top = -129.0
+offset_right = 82.0
+offset_bottom = -63.0
 grow_vertical = 0
 
 [node name="PassiveSkillsList" parent="PlayerInterface" instance=ExtResource("4_1iykr")]
@@ -64,22 +64,18 @@ grow_vertical = 0
 pivot_offset = Vector2(0, 96)
 
 [node name="ActiveSkillsList" parent="PlayerInterface" instance=ExtResource("5_q52k7")]
-layout_mode = 1
-offset_left = 20.0
-offset_top = -77.64
-offset_right = 188.0
-offset_bottom = -29.64
+layout_mode = 0
 
 [node name="RoleIcon" type="TextureRect" parent="PlayerInterface"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -120.0
-offset_right = 82.0
-offset_bottom = -38.0
+offset_left = 48.0
+offset_top = -16.0
+offset_right = 64.0
 grow_vertical = 0
-pivot_offset = Vector2(0, 82)
+pivot_offset = Vector2(0, 16)
 texture = ExtResource("3_m82of")
 expand_mode = 1
 
@@ -88,9 +84,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -159.0
-offset_right = 153.0
-offset_bottom = -138.0
+offset_left = 72.0
+offset_top = -19.0
+offset_right = 144.0
+offset_bottom = 2.0
 grow_vertical = 0
 text = "Username"
 vertical_alignment = 2
@@ -100,10 +97,10 @@ unique_name_in_owner = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -270.0
+offset_left = -222.0
 offset_top = 40.0
 offset_right = -40.0
-offset_bottom = 160.0
+offset_bottom = 264.0
 grow_horizontal = 0
 pivot_offset = Vector2(0, 120)
 theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
@@ -115,9 +112,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -120.0
-offset_right = 230.0
-offset_bottom = -99.0
+offset_left = 98.0
+offset_top = -165.0
+offset_right = 181.0
+offset_bottom = -95.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 21)
 
@@ -126,42 +124,53 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -84.0
-offset_right = 230.0
-offset_bottom = 12.0
+offset_top = -187.0
+offset_right = 104.0
+offset_bottom = -43.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 96)
 
 [node name="ActiveSkillsList" parent="EnemyInterface" instance=ExtResource("5_q52k7")]
-layout_mode = 0
-offset_top = 157.0
-offset_bottom = 205.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = 176.0
+offset_right = 88.0
+offset_bottom = 224.0
+grow_horizontal = 2
 
 [node name="RoleIcon" type="TextureRect" parent="EnemyInterface"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 148.0
-offset_top = -82.0
-offset_right = 230.0
-grow_vertical = 0
-pivot_offset = Vector2(0, 82)
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_top = -2.0
+offset_right = -120.0
+offset_bottom = 14.0
+grow_horizontal = 0
+pivot_offset = Vector2(12, 0)
 texture = ExtResource("3_m82of")
 expand_mode = 1
 
 [node name="PeerNameLabel" type="Label" parent="EnemyInterface"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 77.0
-offset_top = 22.0
-offset_right = 230.0
-offset_bottom = 43.0
-grow_vertical = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -108.0
+offset_top = -3.0
+offset_right = -45.0
+offset_bottom = 21.0
+grow_horizontal = 0
 text = "Username"
-horizontal_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EnemyInterface"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Store" parent="." instance=ExtResource("1_xp5ni")]
 unique_name_in_owner = true

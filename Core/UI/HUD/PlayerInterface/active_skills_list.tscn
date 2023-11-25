@@ -5,8 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://gkfh5d0e7ovy" path="res://Core/UI/HUD/PlayerInterface/empty_skill.png" id="2_4xpd0"]
 
 [node name="ActiveSkillsList" type="HBoxContainer"]
-offset_right = 168.0
-offset_bottom = 48.0
+offset_right = 180.0
+offset_bottom = 52.0
+theme_override_constants/separation = 12
+alignment = 1
 script = ExtResource("1_wjhc0")
 clear_texture = ExtResource("2_4xpd0")
 
