@@ -183,6 +183,7 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 				return
 			
 	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
+	GameManager.play_sound("unit_move")
 
 # Handles the right click button on a unit
 func handle_unit_right_click(unit: Unit) -> void:
@@ -246,6 +247,7 @@ func receive_attack_in_cell(cell: Vector2i, enemy_unit: Unit) -> void:
 	MultiplayerManager.log_msg("unit captured: " + target_unit.get_unit_class())
 	
 	target_unit.be_captured_by(enemy_unit)
+	GameManager.play_sound("unit_captured")
 
 # Loses the match
 func lose_match() -> void:

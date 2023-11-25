@@ -52,9 +52,10 @@ func _ready() -> void:
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer_synchronizer.delta_synchronized.connect(_on_delta_synchronized)
 	
-	if multiplayer.is_server():
-		var preparation_timer = get_tree().create_timer(preparation_time)
-		preparation_timer.timeout.connect(_on_preparation_timeout)
+	_start_preparation_phase()
+#	if multiplayer.is_server():
+#		var preparation_timer = get_tree().create_timer(preparation_time)
+#		preparation_timer.timeout.connect(_on_preparation_timeout)
 		# first_turn_player_index = map_rng.randi_range(0, players.get_child_count() - 1)
 		# inner_first_turn_player_index = first_turn_player_index
 
@@ -79,6 +80,7 @@ func _on_preparation_timeout() -> void:
 # Starts the preparation phase
 func _start_preparation_phase() -> void:
 	match_phase = MatchPhase.PREPARATION
+	GameManager.play_sound("start_match")
 	if multiplayer.is_server():
 		var preparation_timer = get_tree().create_timer(preparation_time)
 		preparation_timer.timeout.connect(_on_preparation_timeout)

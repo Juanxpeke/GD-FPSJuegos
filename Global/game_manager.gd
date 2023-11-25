@@ -40,6 +40,8 @@ var skill_choosing_matchis: Array[int] = [0, 2, 5, 8]
 
 var game_over_scene: PackedScene = load("res://Core/UI/GameOver/game_over.tscn")
 
+@onready var audio_player: AudioStreamPlayer = load("res://SFX/audio_player.tscn").instantiate()
+
 # Private
 
 # Called when the node enters the scene tree for the first time
@@ -58,6 +60,8 @@ func _ready() -> void:
 		"swordman": load("res://Global/UnitData/swordman.tres"),
 		"spike": load("res://Global/UnitData/spike.tres"),
 	}
+	
+	add_child(audio_player) # node has to be in scene
 
 # Public
 
@@ -106,3 +110,6 @@ func end_game(winner: MultiplayerManager.PeerPlayer) -> void:
 	MultiplayerManager.peer_players = []
 	
 	get_tree().change_scene_to_packed(game_over_scene)
+
+func play_sound(sound_name):
+	audio_player.play_sound(sound_name)
