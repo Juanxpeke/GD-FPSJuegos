@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitLevelUp" load_steps=3 format=3 uid="uid://bndgrvakp24aj"]
+
+[ext_resource type="Texture2D" uid="uid://d2ti1ip3uw8cy" path="res://Global/Skills/Consumables/KnightLevelUp/knight_level_up.png" id="1_0x0k6"]
+[ext_resource type="Script" path="res://Global/Skills/Consumables/unit_level_up.gd" id="1_uhaic"]
+
+[resource]
+script = ExtResource("1_uhaic")
+leveled_up_units = Array[String](["knight"])
+health_given = 0
+money_given = 0
+name = "Knight Level Up"
+description = "Levels up once all the knights in possession."
+icon = ExtResource("1_0x0k6")
+phase_damage_addition = 0
+phase_reward_addition = 0
+remove_unit_sale_discount = false
+extra_skill_options = 0
+permanent_leveled_up_units = Array[String]([])

@@ -3,15 +3,22 @@ extends Node
 # All skills in game
 var skills = [
 	# Passives
-	"res://Global/Skills/JumperAscension/jumper_ascension.tres",
+	"res://Global/Skills/Stonks/stonks.tres",
+	"res://Global/Skills/BishopAscension/bishop_ascension.tres",
+	"res://Global/Skills/KnightAscension/knight_ascension.tres",
+	"res://Global/Skills/RookAscension/rook_ascension.tres",
+	# "res://Global/Skills/JumperAscension/jumper_ascension.tres",
 	"res://Global/Skills/Reinforcements/reinforcements.tres",
 	# Consumables
-	"res://Global/Skills/Consumables/PirateFortune/pirate_fortune.tres",
-	"res://Global/Skills/Consumables/JumperLevelUp/jumper_level_up.tres",
+	# "res://Global/Skills/Consumables/PirateFortune/pirate_fortune.tres",
+	"res://Global/Skills/Consumables/BishopLevelUp/bishop_level_up.tres",
+	"res://Global/Skills/Consumables/KnightLevelUp/knight_level_up.tres",
+	"res://Global/Skills/Consumables/RookLevelUp/rook_level_up.tres",
+	# "res://Global/Skills/Consumables/JumperLevelUp/jumper_level_up.tres",
 	# Actives
-	"res://Global/Skills/Actives/Ghost/ghost.tres",
-	"res://Global/Skills/Actives/DimensionalJump/dimensional_jump_v.tres",
-	"res://Global/Skills/Actives/DimensionalJump/dimensional_jump.tres",
+	# "res://Global/Skills/Actives/Ghost/ghost.tres",
+	# "res://Global/Skills/Actives/DimensionalJump/dimensional_jump_v.tres",
+	# "res://Global/Skills/Actives/DimensionalJump/dimensional_jump.tres",
 ]
 
 # Public

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ResSkill" load_steps=3 format=3 uid="uid://dehn1p7673jld"]
+
+[ext_resource type="Texture2D" uid="uid://dha8cvqdi4tfg" path="res://Global/Skills/BishopAscension/bishop_ascension.png" id="1_ph2po"]
+[ext_resource type="Script" path="res://Global/Skills/res_skill.gd" id="1_qf775"]
+
+[resource]
+script = ExtResource("1_qf775")
+name = "Bishop Ascension"
+description = "Levels up all the current bishop units and the future ones."
+icon = ExtResource("1_ph2po")
+phase_damage_addition = 0
+phase_reward_addition = 0
+remove_unit_sale_discount = false
+extra_skill_options = 0
+permanent_leveled_up_units = Array[String](["bishop"])

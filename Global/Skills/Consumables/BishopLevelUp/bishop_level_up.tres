@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitLevelUp" load_steps=3 format=3 uid="uid://dnly110x5joap"]
+
+[ext_resource type="Texture2D" uid="uid://dbr1h8pptdw8j" path="res://Global/Skills/Consumables/BishopLevelUp/bishop_level_up.png" id="1_ddux8"]
+[ext_resource type="Script" path="res://Global/Skills/Consumables/unit_level_up.gd" id="1_sqp1j"]
+
+[resource]
+script = ExtResource("1_sqp1j")
+leveled_up_units = Array[String](["bishop"])
+health_given = 0
+money_given = 0
+name = "Bishop Level Up"
+description = "Levels up once all the bishops in possession."
+icon = ExtResource("1_ddux8")
+phase_damage_addition = 0
+phase_reward_addition = 0
+remove_unit_sale_discount = false
+extra_skill_options = 0
+permanent_leveled_up_units = Array[String]([])

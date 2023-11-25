@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitLevelUp" load_steps=3 format=3 uid="uid://dffw15nbl258p"]
+
+[ext_resource type="Texture2D" uid="uid://bvgvjbo7rarf2" path="res://Global/Skills/Consumables/RookLevelUp/rook_level_up.png" id="1_3nw35"]
+[ext_resource type="Script" path="res://Global/Skills/Consumables/unit_level_up.gd" id="1_xt548"]
+
+[resource]
+script = ExtResource("1_xt548")
+leveled_up_units = Array[String](["rook"])
+health_given = 0
+money_given = 0
+name = "Rook Level Up"
+description = "Levels up once all the rooks in possession."
+icon = ExtResource("1_3nw35")
+phase_damage_addition = 0
+phase_reward_addition = 0
+remove_unit_sale_discount = false
+extra_skill_options = 0
+permanent_leveled_up_units = Array[String]([])
