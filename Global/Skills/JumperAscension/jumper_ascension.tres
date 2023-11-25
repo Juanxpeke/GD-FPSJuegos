@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ResSkill" load_steps=3 format=3 uid="uid://b3d5xfkfqnqdi"]
 
 [ext_resource type="Script" path="res://Global/Skills/res_skill.gd" id="1_0wq4s"]
-[ext_resource type="Texture2D" uid="uid://cd7f4rpj3f6h3" path="res://Global/Skills/bishopup.png" id="1_efnvi"]
+[ext_resource type="Texture2D" uid="uid://cb8oblwykfouh" path="res://Global/Skills/RookAscension/rook_ascension.png" id="1_r4ybg"]
 
 [resource]
 script = ExtResource("1_0wq4s")
 name = "Jumper Ascension"
 description = "Levels up all the current Jumper units and the future ones."
-icon = ExtResource("1_efnvi")
+icon = ExtResource("1_r4ybg")
 phase_damage_addition = 0
 phase_reward_addition = 0
 remove_unit_sale_discount = false

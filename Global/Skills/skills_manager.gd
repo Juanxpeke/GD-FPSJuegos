@@ -16,9 +16,9 @@ var skills = [
 	"res://Global/Skills/Consumables/RookLevelUp/rook_level_up.tres",
 	# "res://Global/Skills/Consumables/JumperLevelUp/jumper_level_up.tres",
 	# Actives
-	# "res://Global/Skills/Actives/Ghost/ghost.tres",
-	# "res://Global/Skills/Actives/DimensionalJump/dimensional_jump_v.tres",
-	# "res://Global/Skills/Actives/DimensionalJump/dimensional_jump.tres",
+	"res://Global/Skills/Actives/Ghost/ghost.tres",
+	"res://Global/Skills/Actives/DimensionalJump/dimensional_jump_v.tres",
+	"res://Global/Skills/Actives/DimensionalJump/dimensional_jump.tres",
 ]
 
 # Public

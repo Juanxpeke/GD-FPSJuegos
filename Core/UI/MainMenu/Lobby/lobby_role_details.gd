@@ -76,7 +76,7 @@ func show_role_display(role_id: int) -> void:
 	
 	role_skill_icon.texture = role.initial_skill.icon
 			
-	role_skill_description.text = "[fill][color=#e3b738]%s:[/color] %s[/fill]" \
+	role_skill_description.text = "[fill][color=#FFC509]%s:[/color] %s[/fill]" \
 		% [role.initial_skill.name, role.initial_skill.description]
 
 	skill_description_scroll_bar.value = 0

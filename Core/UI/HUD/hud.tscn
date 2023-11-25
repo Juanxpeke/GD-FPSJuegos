@@ -39,7 +39,7 @@ grow_vertical = 0
 pivot_offset = Vector2(0, 120)
 theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
 script = ExtResource("2_miedf")
-turn_indicator_color = Color(0.109804, 0.65098, 0.576471, 1)
+turn_indicator_color = Color(0.345098, 0.811765, 0.521569, 1)
 
 [node name="LifeBar" parent="PlayerInterface" instance=ExtResource("3_pdxq5")]
 layout_mode = 1
@@ -108,7 +108,7 @@ grow_horizontal = 0
 pivot_offset = Vector2(0, 120)
 theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
 script = ExtResource("2_miedf")
-turn_indicator_color = Color(0.137255, 0.8, 0.709804, 1)
+turn_indicator_color = Color(0.345098, 0.811765, 0.521569, 1)
 
 [node name="LifeBar" parent="EnemyInterface" instance=ExtResource("3_pdxq5")]
 layout_mode = 1

@@ -51,13 +51,13 @@ func _update_layout() -> void:
 	
 	if skill is ResActiveSkill:
 		skill_type.text = "Active"
-		skill_type.get_theme_stylebox("normal").bg_color = Color("#b838c9")
+		skill_type.get_theme_stylebox("normal").bg_color = Color("#B838C9")
 	elif skill is ResConsumableSkill:
 		skill_type.text = "Consumable"
-		skill_type.get_theme_stylebox("normal").bg_color = Color("#d0f002")
+		skill_type.get_theme_stylebox("normal").bg_color = Color("#58CF85")
 	else:
 		skill_type.text = "Passive"
-		skill_type.get_theme_stylebox("normal").bg_color = Color("#e3b738")
+		skill_type.get_theme_stylebox("normal").bg_color = Color("#FFC509")
 		
 	skill_description.text = skill.description
 
