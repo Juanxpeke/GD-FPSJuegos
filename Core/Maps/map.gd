@@ -53,11 +53,6 @@ func _ready() -> void:
 	multiplayer_synchronizer.delta_synchronized.connect(_on_delta_synchronized)
 	
 	_start_preparation_phase()
-#	if multiplayer.is_server():
-#		var preparation_timer = get_tree().create_timer(preparation_time)
-#		preparation_timer.timeout.connect(_on_preparation_timeout)
-		# first_turn_player_index = map_rng.randi_range(0, players.get_child_count() - 1)
-		# inner_first_turn_player_index = first_turn_player_index
 
 # Called when a peer disconnects
 func _on_peer_disconnected(_id: int) -> void:
