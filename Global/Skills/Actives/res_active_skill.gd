@@ -21,12 +21,17 @@ var active: bool
 # Constructor
 func _init() -> void:
 	active = false
-	GameManager.map_initialized.connect(
-		func():
-			GameManager.map.player_turn_ended.connect(self.end_turn)
-			GameManager.map.match_ended.connect(self.reset)
-	)
 
+	if (GameManager.map):
+		GameManager.map.player_turn_ended.connect(self.end_turn)
+		GameManager.map.match_ended.connect(self.reset)
+	else:
+		GameManager.map_initialized.connect(
+			func():
+				GameManager.map.player_turn_ended.connect(self.end_turn)
+				GameManager.map.match_ended.connect(self.reset)
+		)
+	
 	uses_remaining = INITIAL_USES
 
 
@@ -38,9 +43,11 @@ func set_index(index : int):
 func end_turn(player: Player) -> void:
 	if player != GameManager.player:
 		return
-	cooldown_remaining -= 1;
+		
+	cooldown_remaining -= 1
+	
 	if active:
-		active_turns_count += 1;
+		active_turns_count += 1
 		if active_turns_count >= TURNS_ACTIVE:
 			deactivate()
 	
@@ -63,7 +70,7 @@ func activate() -> bool:
 	MultiplayerManager.log_msg('fail activate %s' % self.name)
 	return false
 
-# Deactives
+# Deactivates
 func deactivate() -> void:
 	active = false
 	active_turns_count = 0
