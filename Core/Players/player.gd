@@ -274,6 +274,7 @@ func can_afford(amount: int) -> bool:
 func add_money(amount: int) -> void:
 	current_money += amount
 	money_changed.emit()
+	GameManager.play_sound("coins")
 
 # Subtracts a specified amount of money from the player
 func subtract_money(amount: int) -> void:
@@ -292,6 +293,7 @@ func buy_unit(unit_class: String) -> void:
 			var unit_position = GameManager.board.get_cell_center(base_cell)
 			spawn_unit.rpc(unit_class, unit_position)
 			subtract_money(GameManager.units_data[unit_class].cost)
+			GameManager.play_sound("cha_ching")
 			return
 
 #### Skills #### 
