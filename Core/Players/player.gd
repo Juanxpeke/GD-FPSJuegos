@@ -67,7 +67,7 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	current_health = role.initial_health
 	current_money = role.initial_money
 	
-	skills.append(role.initial_skill)
+	role.initial_skill.add_to_player(self)
 	
 	for i in range(role.initial_units_names.size()):
 		add_unit(
@@ -107,7 +107,7 @@ func get_live_unit_by_cell(cell: Vector2i) -> Unit:
 	return null
 
 # Adds a unit to the player
-func add_unit(unit_class: String, target_position: Vector2) -> void:
+func add_unit(unit_class: String, target_position: Vector2, config := {}) -> void:
 	var unit = GameManager.units_data[unit_class].scene.instantiate() # REVIEW: Preload, as cell_descriptors get added before GameManager
 
 	unit.set_multiplayer_authority(peer_player.id) # Necessary for units added after setup
@@ -129,12 +129,16 @@ func add_unit(unit_class: String, target_position: Vector2) -> void:
 		unit.match_initial_position = GameManager.board.get_mirror_position(target_position)
 
 	match_live_units.append(unit)
+	
+	for key in config:
+		unit[key] = config[key]
+	
 
 # Spawns a unit, called on each peer
 @rpc("call_local", "reliable", "any_peer")
-func spawn_unit(unit_class: String, target_position: Vector2) -> void:
+func spawn_unit(unit_class: String, target_position: Vector2, config := {}) -> void:
 	MultiplayerManager.log_msg("spawned unit %s" % unit_class)
-	add_unit(unit_class, target_position)
+	add_unit(unit_class, target_position, config)
 
 # Handles the movement of one of its units
 func handle_unit_movement(unit: Unit, target_cell: Vector2i) -> void:

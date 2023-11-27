@@ -2,7 +2,8 @@ class_name ResSkill
 extends Resource
 
 @export var name: String
-@export var description: String
+@export_multiline var description: String
+
 @export var icon: Texture2D
 # Attributes
 @export var phase_damage_addition: int = 0

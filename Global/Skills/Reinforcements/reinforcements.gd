@@ -6,10 +6,18 @@ var player : Player
 var _turns_passed : int = 0
 
 func _init() -> void:
-	GameManager.map.player_turn_ended.connect(end_turn)
-	GameManager.map.match_ended.connect(reset)
-	
+	if (GameManager.map):
+		GameManager.map.player_turn_ended.connect(self.end_turn)
+		GameManager.map.match_ended.connect(self.reset)
+	else:
+		GameManager.map_initialized.connect(
+			func():
+				GameManager.map.player_turn_ended.connect(self.end_turn)
+				GameManager.map.match_ended.connect(self.reset)
+		)
+
 func end_turn(turnplayer: Player) -> void:
+	MultiplayerManager.log_msg("end turn: " + str(turnplayer) + ", " + str(player))
 	if turnplayer != player:
 		return
 	_turns_passed+=1
@@ -24,6 +32,9 @@ func add_to_player(p: Player) -> void:
 	p.skills.append(self)
 	player = p
 	
+	# this line on init doesn't work
+	description = description.format({"TURNS_BETWEEN_EFFECT": TURNS_BETWEEN_EFFECT})
+	
 func activate() -> void:
 	var base_cells = GameManager.board.get_base_cells()
 	
@@ -35,6 +46,6 @@ func activate() -> void:
 				break
 		if !clear: continue
 		var unit_position = GameManager.board.get_cell_center(base_cell)
-		player.spawn_unit.rpc(unit_class, unit_position)
+		player.spawn_unit.rpc(unit_class, unit_position, {"is_temporal": true})
 		MultiplayerManager.log_msg("unit spawned")
 		return
