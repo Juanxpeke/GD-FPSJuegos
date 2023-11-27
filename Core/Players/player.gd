@@ -160,7 +160,8 @@ func handle_unit_movement_preparation(unit: Unit, target_cell: Vector2i) -> void
 				fuse_units(unit, other_unit, target_cell)
 				return
 			else:
-				unit.reset_position()
+				other_unit.change_position.rpc(GameManager.board.get_cell_center(unit.get_grab_cell()))
+				unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
 				return
 			
 	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
@@ -183,7 +184,6 @@ func handle_unit_movement_battle(unit: Unit, target_cell: Vector2i) -> void:
 				return
 			
 	unit.change_position.rpc(GameManager.board.get_cell_center(target_cell))
-	GameManager.play_sound("unit_move")
 
 # Handles the right click button on a unit
 func handle_unit_right_click(unit: Unit) -> void:

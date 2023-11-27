@@ -175,6 +175,10 @@ func get_player() -> Player:
 func get_current_cell() -> Vector2i:
 	return GameManager.board.get_cell(global_position)
 
+# Gets the unit grab cell
+func get_grab_cell() -> Vector2i:
+	return grab_cell
+
 # Gets the unit movement cells
 func get_movement_cells() -> Array:
 	_update_movement_cells()
@@ -250,4 +254,6 @@ func change_position(target_position: Vector2) -> void:
 			get_player().enemy_player.receive_attack_in_cell(final_cell, self)
 			
 			GameManager.map.end_turn(get_player())
+			
+	GameManager.play_sound("unit_move")
 
