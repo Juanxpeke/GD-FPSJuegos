@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_d5bpo")
 scene = ExtResource("1_kvbnc")
-cost = 0
+cost = 7
 weights = {
 "early": 1,
 "late": 5,
