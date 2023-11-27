@@ -7,6 +7,7 @@ var _menu_stack: Array[Control] = []
 
 @onready var matchmaking_button = %MatchmakingButton
 @onready var exit_button = %ExitButton
+@onready var credits_button = %CreditsButton
 
 @onready var username_input = %UsernameInput
 @onready var host_button = %HostButton
@@ -34,6 +35,7 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
 	matchmaking_button.pressed.connect(_on_matchmaking_button_pressed)
+	credits_button.pressed.connect(on_credits_button_pressed)
 	exit_button.pressed.connect(_on_exit_button_pressed)
 	
 	host_button.pressed.connect(_on_host_button_pressed)
@@ -59,6 +61,10 @@ func _on_upnp_completed(status) -> void:
 # Called when matchmaking button is pressed
 func _on_matchmaking_button_pressed() -> void:
 	_go_to_menu(matchmaking_menu)
+	
+# Called when credits button is pressed
+func on_credits_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Core/UI/Credits/credits.tscn")
 	
 # Called when exit button is pressed
 func _on_exit_button_pressed() -> void:
