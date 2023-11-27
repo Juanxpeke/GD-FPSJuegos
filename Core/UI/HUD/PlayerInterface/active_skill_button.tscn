@@ -4,11 +4,13 @@
 [ext_resource type="Shader" path="res://Core/UI/HUD/PlayerInterface/active_skill_button.gdshader" id="1_jj5ec"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fa1t6"]
+resource_local_to_scene = true
 shader = ExtResource("1_jj5ec")
+shader_parameter/bordered = null
 shader_parameter/monochrome = false
 
 [node name="ActiveSkillButton" type="Control"]
-custom_minimum_size = Vector2(52, 52)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_04jr1")
@@ -16,7 +18,7 @@ script = ExtResource("1_04jr1")
 [node name="ActiveButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_fa1t6")
-custom_minimum_size = Vector2(52, 52)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,6 +30,7 @@ stretch_mode = 0
 
 [node name="CooldownLabel" type="Label" parent="."]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +40,7 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1

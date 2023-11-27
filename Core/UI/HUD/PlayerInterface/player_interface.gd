@@ -8,8 +8,8 @@ var player: Player
 @onready var life_bar: LifeBar = $LifeBar
 @onready var passive_skills_list: PassiveSkillsList = $PassiveSkillsList
 @onready var active_skills_list: ActiveSkillsList = $ActiveSkillsList
-@onready var role_icon: TextureRect = $RoleIcon
-@onready var peer_name_label: Label = $PeerNameLabel
+@onready var role_icon: TextureRect = $TopContainer/RoleIcon
+@onready var peer_name_label: Label = $TopContainer/PeerNameLabel
 
 # Private
 

@@ -36,4 +36,6 @@ func set_player(player: Player) -> void:
 	self.player = player
 	player.skills_changed.connect(_update_layout)
 	GameManager.map.skill_activated.connect(_update_layout)
+	GameManager.map.turn_ended.connect(_update_layout) # REVIEW: This could be called before active skills are updated
+	GameManager.map.match_ended.connect(_update_layout) # REVIEW: This could be called before active skills are updated
 	_update_layout()

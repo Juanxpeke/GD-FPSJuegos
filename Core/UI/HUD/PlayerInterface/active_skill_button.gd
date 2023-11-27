@@ -18,6 +18,7 @@ func _display_active_layout(active_skill: ResActiveSkill) -> void:
 	active_button.disabled = true
 	active_button.texture_disabled = active_skill.icon
 	active_button.texture_normal = active_skill.icon
+	active_button.material.set_shader_parameter("bordered", true)
 	active_button.material.set_shader_parameter("monochrome", false)
 	active_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	
@@ -31,6 +32,7 @@ func _display_activable_layout(active_skill: ResActiveSkill) -> void:
 	active_button.disabled = false 
 	active_button.texture_disabled = active_skill.icon
 	active_button.texture_normal = active_skill.icon
+	active_button.material.set_shader_parameter("bordered", false)
 	active_button.material.set_shader_parameter("monochrome", false)
 	active_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	
@@ -42,6 +44,7 @@ func _display_cooldown_layout(active_skill: ResActiveSkill) -> void:
 	active_button.disabled = true
 	active_button.texture_disabled = active_skill.icon
 	active_button.texture_normal = active_skill.icon
+	active_button.material.set_shader_parameter("bordered", false)
 	active_button.material.set_shader_parameter("monochrome", true)
 	active_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	
@@ -64,8 +67,11 @@ func clear() -> void:
 # Sets the active skill
 func set_active_skill(active_skill: ResActiveSkill) -> void:
 	if active_skill.active:
+		MultiplayerManager.log_msg('set_active_skill')
 		_display_active_layout(active_skill)
 	elif active_skill.cooldown_remaining > 0:
+		MultiplayerManager.log_msg('set_cooldown_skill')
 		_display_cooldown_layout(active_skill)
 	else:
+		MultiplayerManager.log_msg('set_activable_skill')
 		_display_activable_layout(active_skill)

@@ -27,14 +27,19 @@ func _make_custom_tooltip(for_text: String) -> Object:
 
 # Updates the layout
 func _update_layout() -> void:
-	for i in range(item_count):
-		if i >= player.get_skills().size():
+	var item_idx: int = 0
+	
+	for skill in player.get_skills():
+		if item_idx >= item_count:
 			break
 		
-		var skill = player.get_skills()[i]
-		set_item_icon(i, skill.icon)
-		set_item_metadata(i, { "name": skill.name, "description": skill.description })
-		set_item_tooltip(i, str(i))
+		if skill is ResActiveSkill:
+			continue
+		
+		set_item_icon(item_idx, skill.icon)
+		set_item_metadata(item_idx, { "name": skill.name, "description": skill.description })
+		set_item_tooltip(item_idx, str(item_idx))
+		item_idx += 1
 
 
 # Public
@@ -43,5 +48,4 @@ func _update_layout() -> void:
 func set_player(player: Player) -> void:
 	self.player = player
 	player.skills_changed.connect(_update_layout)
-	GameManager.map.skill_activated.connect(_update_layout)
 	_update_layout()

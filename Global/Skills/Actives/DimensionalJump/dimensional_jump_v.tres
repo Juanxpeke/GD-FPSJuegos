@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_0nx3r")
-COOLDOWN = 2
+COOLDOWN = 3
 TURNS_ACTIVE = 1
 INITIAL_USES = 3
 name = "Dimensional Jump (vertical)"

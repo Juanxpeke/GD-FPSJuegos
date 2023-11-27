@@ -7,7 +7,7 @@
 [node name="ActiveSkillsList" type="HBoxContainer"]
 offset_right = 180.0
 offset_bottom = 52.0
-theme_override_constants/separation = 12
+theme_override_constants/separation = 15
 alignment = 1
 script = ExtResource("1_wjhc0")
 clear_texture = ExtResource("2_4xpd0")

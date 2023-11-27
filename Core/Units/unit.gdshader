@@ -22,8 +22,6 @@ void fragment()
 	alpha += texture(TEXTURE, UV + vec2(-size_x, -size_y)).a;
 	alpha += texture(TEXTURE, UV + vec2(size_x, -size_y)).a;
 	
-	// vec4 anim_outline_color = mix(vec4(1.0), outline_color, abs(sin(TIME * 1.0)));
-	
 	vec4 final_color = mix(sprite_color, outline_color, clamp(alpha, 0.0, 1.0));
 	COLOR = final_color;
 }

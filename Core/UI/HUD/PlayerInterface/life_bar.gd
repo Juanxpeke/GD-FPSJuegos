@@ -15,7 +15,7 @@ func _ready() -> void:
 # Updates the layout
 func _update_layout() -> void:
 	life_progress_bar.value = player.current_health
-	life_label.text = str(player.current_health) + " / "  + str(player.role.initial_health)
+	life_label.text = str(player.current_health) + "/"  + str(player.role.initial_health)
 
 # Public
 
