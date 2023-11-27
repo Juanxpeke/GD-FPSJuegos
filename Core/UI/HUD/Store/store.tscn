@@ -1,8 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3lux4srfnsh4"]
+[gd_scene load_steps=6 format=3 uid="uid://b3lux4srfnsh4"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/Store/store.gd" id="1_7vuov"]
 [ext_resource type="PackedScene" uid="uid://bc4ccqamupi1i" path="res://Core/UI/HUD/Store/store_unit.tscn" id="2_25eae"]
 [ext_resource type="Texture2D" uid="uid://ddrdk7ohfatwf" path="res://Core/UI/MainMenu/Lobby/money_icon.png" id="2_wnu0s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o66gw"]
+bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.898039, 0.729412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_0dqha"]
 color = Color(0.921569, 0.898039, 0.729412, 1)
@@ -11,6 +27,7 @@ color = Color(0.921569, 0.898039, 0.729412, 1)
 offset_right = 160.0
 offset_bottom = 190.0
 pivot_offset = Vector2(160, 180)
+theme_override_styles/panel = SubResource("StyleBoxFlat_o66gw")
 script = ExtResource("1_7vuov")
 metadata/_edit_group_ = true
 

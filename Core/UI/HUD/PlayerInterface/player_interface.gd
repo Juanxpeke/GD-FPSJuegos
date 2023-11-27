@@ -1,5 +1,5 @@
 class_name PlayerInterface
-extends Control
+extends Panel
 
 @export var turn_indicator_color: Color
 
@@ -28,8 +28,10 @@ func _on_match_ended() -> void:
 # Updates the turn indicator
 func _update_turn_indicator() -> void:
 	if GameManager.map.get_current_turn_player() == player:
+		get_theme_stylebox('panel').border_color = Color(turn_indicator_color, 0.8)
 		peer_name_label.add_theme_color_override("font_color", turn_indicator_color)
 	else:
+		get_theme_stylebox('panel').border_color = Color("#ebe5ba", 0.8)
 		peer_name_label.remove_theme_color_override("font_color")
 
 # Public

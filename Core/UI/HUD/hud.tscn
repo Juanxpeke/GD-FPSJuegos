@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy17jaermquaa"]
+[gd_scene load_steps=12 format=3 uid="uid://dy17jaermquaa"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/hud.gd" id="1_ku5ab"]
 [ext_resource type="PackedScene" uid="uid://b3lux4srfnsh4" path="res://Core/UI/HUD/Store/store.tscn" id="1_xp5ni"]
@@ -10,8 +10,29 @@
 [ext_resource type="PackedScene" uid="uid://n5317gueobj5" path="res://Core/UI/HUD/PlayerInterface/active_skills_list.tscn" id="5_q52k7"]
 [ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker.tscn" id="5_wpddp"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwhrk"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fw4en"]
 bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.898039, 0.729412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5aj1p"]
+bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.898039, 0.729412, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -37,7 +58,7 @@ offset_right = 216.0
 offset_bottom = -40.0
 grow_vertical = 0
 pivot_offset = Vector2(0, 224)
-theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_fw4en")
 script = ExtResource("2_miedf")
 turn_indicator_color = Color(0.345098, 0.811765, 0.521569, 1)
 
@@ -117,7 +138,7 @@ offset_right = -40.0
 offset_bottom = 271.0
 grow_horizontal = 0
 pivot_offset = Vector2(0, 112)
-theme_override_styles/panel = SubResource("StyleBoxFlat_bwhrk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5aj1p")
 script = ExtResource("2_miedf")
 turn_indicator_color = Color(0.345098, 0.811765, 0.521569, 1)
 
@@ -189,12 +210,12 @@ pivot_offset = Vector2(88, 48)
 
 [node name="Store" parent="." instance=ExtResource("1_xp5ni")]
 unique_name_in_owner = true
-anchors_preset = 3
+anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -200.0
+offset_left = -216.0
 offset_top = -240.0
 offset_right = -40.0
 offset_bottom = -40.0

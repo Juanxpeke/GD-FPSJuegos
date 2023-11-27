@@ -10,8 +10,8 @@ signal skill_activated
 enum MatchPhase { PREPARATION, BATTLE, PAUSED }
 
 @export var player_scene: PackedScene
-@export var store_time: float = 7.0
-@export var skill_picking_time: float = 26.0
+@export var store_time: float = 20.0
+@export var skill_picking_time: float = 20.0
 @export var match_ending_time: float = 4.0
 
 var map_rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -82,9 +82,11 @@ func _start_preparation_phase() -> void:
 
 # Public
 
-# Gets the initial king position
-func get_initial_king_position() -> Vector2:
-	return GameManager.board.get_cell_centerp(king_marker.global_position)
+#### Getters ####
+
+# Gets the map players
+func get_players() -> Array[Node]:
+	return players.get_children()
 	
 # Gets the player by the given index
 func get_player_by_turn(turn: int) -> Player:
@@ -94,6 +96,10 @@ func get_player_by_turn(turn: int) -> Player:
 # Gets the current turn player
 func get_current_turn_player() -> Player:
 	return get_player_by_turn(turn)
+
+# Gets the initial king position
+func get_initial_king_position() -> Vector2:
+	return GameManager.board.get_cell_centerp(king_marker.global_position)
 
 #### Phases ####
 
@@ -134,6 +140,3 @@ func end_match() -> void:
 	matchi += 1
 	
 	match_ended.emit()
-
-func get_players() -> Array[Node]:
-	return players.get_children()
