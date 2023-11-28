@@ -3,6 +3,10 @@ extends CanvasLayer
 
 var timer_on: bool = false
 
+@onready var turn_label: Label = %TurnLabel
+@onready var matchi_label: Label = %MatchiLabel
+@onready var match_damage_label: Label = %MatchDamageLabel
+@onready var match_reward_label: Label = %MatchRewardLabel
 @onready var player_interface: PlayerInterface = %PlayerInterface
 @onready var enemy_interface: PlayerInterface = %EnemyInterface
 @onready var store: Store = %Store
@@ -23,10 +27,14 @@ func _ready() -> void:
 			
 			await get_tree().create_timer(0.2).timeout
 			
+			match_damage_label.text = str(GameManager.phase_damages[GameManager.get_phase()])
+			match_reward_label.text = str(GameManager.phase_rewards[GameManager.get_phase()])
+			
 			player_interface.set_player(GameManager.player)
 			enemy_interface.set_player(GameManager.player.enemy_player)
 			
 			GameManager.map.preparation_ended.connect(_on_preparation_ended)
+			GameManager.map.turn_ended.connect(_on_turn_ended)
 			GameManager.map.match_ended.connect(_on_match_ended)
 	)
 
@@ -42,8 +50,17 @@ func _on_preparation_ended() -> void:
 	preparation_time_bar.hide()
 	store.hide()
 	
+# Called when a turn ends
+func _on_turn_ended() -> void:
+	turn_label.text = str(GameManager.map.turn)
+	
 # Called when the battle phase ends
 func _on_match_ended() -> void:
+	turn_label.text = str(GameManager.map.turn)
+	matchi_label.text = str(GameManager.map.matchi)
+	match_damage_label.text = str(GameManager.phase_damages[GameManager.get_phase()])
+	match_reward_label.text = str(GameManager.phase_rewards[GameManager.get_phase()])
+	
 	timer_on = true
 	preparation_timer.start()
 	preparation_time_bar.show()

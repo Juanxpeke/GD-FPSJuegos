@@ -42,7 +42,6 @@ func _reset_units() -> void:
 # Called when the match ends
 func _on_match_ended() -> void:
 	var phase_reward = GameManager.phase_rewards[GameManager.get_phase()]
-	MultiplayerManager.log_msg("phase reward before skills is %d" % phase_reward)
 	
 	for skill in skills:
 		phase_reward += skill.phase_reward_addition

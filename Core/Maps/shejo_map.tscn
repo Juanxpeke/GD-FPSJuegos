@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bervfrgierilr"]
+[gd_scene load_steps=7 format=3 uid="uid://bervfrgierilr"]
 
 [ext_resource type="Script" path="res://Core/Maps/map.gd" id="1_56wnv"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://Core/Players/player.tscn" id="2_8vyxe"]
@@ -11,15 +11,6 @@ properties/0/path = NodePath(".:first_turn_player_index")
 properties/0/spawn = true
 properties/0/sync = false
 properties/0/watch = true
-
-[sub_resource type="GDScript" id="GDScript_jr3lx"]
-script/source = "extends Label
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	self.text = \"Turn : {turn}\".format({\"turn\": GameManager.map.turn})
-"
 
 [node name="DummyMap" type="Node2D"]
 script = ExtResource("1_56wnv")
@@ -64,12 +55,3 @@ zoom = Vector2(1.75, 1.75)
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_m7wy4")
-
-[node name="TurnCounter" type="Label" parent="."]
-offset_left = 524.0
-offset_top = 138.0
-offset_right = 600.0
-offset_bottom = 159.0
-text = "asffasdf"
-horizontal_alignment = 1
-script = SubResource("GDScript_jr3lx")

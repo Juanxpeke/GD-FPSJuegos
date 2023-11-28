@@ -1,14 +1,32 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy17jaermquaa"]
+[gd_scene load_steps=15 format=3 uid="uid://dy17jaermquaa"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/hud.gd" id="1_ku5ab"]
 [ext_resource type="PackedScene" uid="uid://b3lux4srfnsh4" path="res://Core/UI/HUD/Store/store.tscn" id="1_xp5ni"]
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/player_interface.gd" id="2_miedf"]
+[ext_resource type="Texture2D" uid="uid://cbvoggv5cgyix" path="res://Core/UI/HUD/sword_icon.png" id="2_us7rq"]
+[ext_resource type="Texture2D" uid="uid://cjol7vosk2pfa" path="res://Core/UI/HUD/chest_icon.png" id="3_asbd1"]
 [ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="3_m82of"]
 [ext_resource type="PackedScene" uid="uid://dfj8bj1xfyfmt" path="res://Core/UI/HUD/PlayerInterface/life_bar.tscn" id="3_pdxq5"]
 [ext_resource type="Texture2D" uid="uid://dx7t4omxenkpt" path="res://Core/UI/HUD/preparation_time_bar_progress.png" id="4_0j1r6"]
 [ext_resource type="PackedScene" uid="uid://sc70hdt2ucgy" path="res://Core/UI/HUD/PlayerInterface/passive_skills_list.tscn" id="4_1iykr"]
 [ext_resource type="PackedScene" uid="uid://n5317gueobj5" path="res://Core/UI/HUD/PlayerInterface/active_skills_list.tscn" id="5_q52k7"]
 [ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker.tscn" id="5_wpddp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyrol"]
+bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.921569, 0.898039, 0.729412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fw4en"]
 bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
@@ -46,6 +64,155 @@ expand_margin_bottom = 16.0
 script = ExtResource("1_ku5ab")
 metadata/_edit_horizontal_guides_ = [624.0, 648.0, 24.0, 59.0, 75.0, 207.0, 223.0, 395.0, 411.0]
 metadata/_edit_vertical_guides_ = [24.0, 1128.0, 1112.0]
+
+[node name="MatchInfoContainer" type="PanelContainer" parent="."]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 78.0
+offset_bottom = 134.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gyrol")
+
+[node name="VerticalContainer" type="VBoxContainer" parent="MatchInfoContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TurnContainer" type="Control" parent="MatchInfoContainer/VerticalContainer"]
+custom_minimum_size = Vector2(36, 20)
+layout_mode = 2
+
+[node name="T" type="Label" parent="MatchInfoContainer/VerticalContainer/TurnContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 11.0
+grow_vertical = 2
+text = "T"
+vertical_alignment = 2
+
+[node name="TurnLabel" type="Label" parent="MatchInfoContainer/VerticalContainer/TurnContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -10.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(7, 10)
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="MatchiContainer" type="Control" parent="MatchInfoContainer/VerticalContainer"]
+custom_minimum_size = Vector2(36, 20)
+layout_mode = 2
+
+[node name="M" type="Label" parent="MatchInfoContainer/VerticalContainer/MatchiContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_right = 9.0
+offset_bottom = 11.0
+grow_vertical = 2
+text = "M"
+vertical_alignment = 2
+
+[node name="MatchiLabel" type="Label" parent="MatchInfoContainer/VerticalContainer/MatchiContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -10.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(7, 10)
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="MatchDamageContainer" type="Control" parent="MatchInfoContainer/VerticalContainer"]
+custom_minimum_size = Vector2(36, 20)
+layout_mode = 2
+
+[node name="MatchDamageIcon" type="TextureRect" parent="MatchInfoContainer/VerticalContainer/MatchDamageContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -10.0
+offset_right = 15.0
+offset_bottom = 11.0
+grow_vertical = 2
+texture = ExtResource("2_us7rq")
+stretch_mode = 5
+
+[node name="MatchDamageLabel" type="Label" parent="MatchInfoContainer/VerticalContainer/MatchDamageContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -10.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(7, 10)
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="MatchRewardContainer" type="Control" parent="MatchInfoContainer/VerticalContainer"]
+custom_minimum_size = Vector2(36, 20)
+layout_mode = 2
+
+[node name="MatchRewardIcon" type="TextureRect" parent="MatchInfoContainer/VerticalContainer/MatchRewardContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -10.0
+offset_right = 15.0
+offset_bottom = 11.0
+grow_vertical = 2
+texture = ExtResource("3_asbd1")
+stretch_mode = 5
+
+[node name="MatchRewardLabel" type="Label" parent="MatchInfoContainer/VerticalContainer/MatchRewardContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -10.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(7, 10)
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="PlayerInterface" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -210,7 +377,7 @@ pivot_offset = Vector2(88, 48)
 
 [node name="Store" parent="." instance=ExtResource("1_xp5ni")]
 unique_name_in_owner = true
-anchors_preset = -1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
