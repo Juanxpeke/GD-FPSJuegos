@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="HorizontalLineDescriptor" load_steps=2 format=3 uid="uid://cnlnw46lspnb6"]
+[gd_resource type="Resource" script_class="MatchLineDescriptor" load_steps=2 format=3 uid="uid://bdy7ah1ojfdvn"]
 
-[ext_resource type="Script" path="res://Core/Board/CellDescriptors/horizontal_line_descriptor.gd" id="1_27xfp"]
+[ext_resource type="Script" path="res://Core/Board/CellDescriptors/match_line_descriptor.gd" id="1_clnsh"]
 
 [resource]
-script = ExtResource("1_27xfp")
+script = ExtResource("1_clnsh")
 is_blockable = true
 is_filled = true
-wrap_around = false
 cell_range = 2
+wrap_around = false
+wrap_around_v = false
