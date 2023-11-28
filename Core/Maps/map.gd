@@ -28,6 +28,8 @@ var match_phase: MatchPhase = MatchPhase.PREPARATION
 var main_menu_scene: PackedScene = load("res://Core/UI/MainMenu/main_menu.tscn")
 
 @onready var hud: HUD = %HUD
+@onready var board: Board = %Board
+@onready var camera: Camera2D = %Camera
 @onready var players: Node2D = %Players
 @onready var king_marker: Marker2D = %KingMarker
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = %MultiplayerSynchronizer
@@ -39,6 +41,9 @@ func _ready() -> void:
 	GameManager.set_map(self) # REVIEW: Skills need this to be here
 	
 	map_rng.randomize()
+	
+	var camera_zoom = 1.6 / (board.get_max_cell_range() / 10.0)
+	camera.zoom = Vector2(camera_zoom, camera_zoom) 
 	
 	for peer_player in MultiplayerManager.peer_players:
 		var player = player_scene.instantiate()

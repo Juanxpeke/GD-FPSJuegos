@@ -12,7 +12,7 @@ class MapDescriptor:
 
 # INGRESAR NUEVOS MAPAS ACÄ
 const MAPS : Array = [
-	["res://Core/Maps/Dummy/dummy_map.tscn", 1],
+	["res://Core/Maps/Dummy/dummy_map.tscn", 50],
 	["res://Core/Maps/shejo_map.tscn", 50],
 ]
 
