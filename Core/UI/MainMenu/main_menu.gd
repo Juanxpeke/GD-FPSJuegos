@@ -45,6 +45,19 @@ func _ready():
 	confirm_join_button.pressed.connect(_on_confirm_join_button_pressed)
 	back_join_button.pressed.connect(back_menu)
 	
+	
+	matchmaking_button.mouse_entered.connect(_on_button_hover)
+	credits_button.mouse_entered.connect(_on_button_hover)
+	exit_button.mouse_entered.connect(_on_button_hover)
+	
+	host_button.mouse_entered.connect(_on_button_hover)
+	join_button.mouse_entered.connect(_on_button_hover)
+	back_matchmaking_button.mouse_entered.connect(_on_button_hover)
+	
+	confirm_join_button.mouse_entered.connect(_on_button_hover)
+	back_join_button.mouse_entered.connect(_on_button_hover)
+	$Menus/StartMenu/StartMenuContainer/StartMenuButtons/TutorialButton.mouse_entered.connect(_on_button_hover)
+	
 
 	_go_to_menu(start_menu)
 	
@@ -64,6 +77,7 @@ func _on_matchmaking_button_pressed() -> void:
 	
 # Called when credits button is pressed
 func on_credits_button_pressed() -> void:
+	_on_button_click()
 	get_tree().change_scene_to_file("res://Core/UI/Credits/credits.tscn")
 	
 # Called when exit button is pressed
@@ -127,6 +141,7 @@ func _go_to_menu(menu: Control) -> void:
 	_menu_stack.push_back(menu)
 	
 	menu.show()
+	_on_button_click()
 
 # Backs the menu queue
 func back_menu() -> void:
@@ -137,3 +152,10 @@ func back_menu() -> void:
 	var menu = _menu_stack.back()
 	if menu:
 		menu.show()
+	_on_button_click()
+
+func _on_button_hover() -> void:
+	GameManager.play_sound("ui_hover")
+
+func _on_button_click() -> void:
+	GameManager.play_sound("ui_click")
