@@ -66,6 +66,7 @@ func multiplayer_setup(peer_player: MultiplayerManager.PeerPlayer):
 	current_health = role.initial_health
 	current_money = role.initial_money
 	
+	role.initial_skill.format_description()
 	role.initial_skill.add_to_player(self)
 	
 	for i in range(role.initial_units_names.size()):

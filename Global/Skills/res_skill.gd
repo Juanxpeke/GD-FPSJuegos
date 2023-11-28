@@ -12,6 +12,9 @@ extends Resource
 @export var extra_skill_options: int = 0
 @export var permanent_leveled_up_units: Array[String] = [] 
 
+# atributes to use to format description
+var attributes_to_format := []
+
 # Public
 
 # Adds itself to the player
@@ -26,3 +29,8 @@ func add_to_player(player: Player) -> void:
 func modify_current_cell_descriptor(unit: Unit) -> void:
 	pass
 
+func format_description() -> void:
+	var __dict__ := {}
+	for name in attributes_to_format:
+		__dict__[name] = self[name]
+	description = description.format(__dict__)
