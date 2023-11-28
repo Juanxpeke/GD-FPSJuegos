@@ -103,6 +103,7 @@ func _on_peer_player_updated(id: int) -> void:
 # Called when the ready button is toggled
 func _on_ready_button_toggled() -> void:
 	toggle_player_ready_status.rpc_id(1, multiplayer.get_unique_id())
+	GameManager.play_sound("ui_click")
 	
 # Called when the back button is pressed
 func _on_back_button_pressed() -> void:

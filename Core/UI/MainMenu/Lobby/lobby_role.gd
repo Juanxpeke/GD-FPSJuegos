@@ -20,6 +20,7 @@ func _ready() -> void:
 # Called when the mouse enters
 func _on_mouse_entered() -> void:
 	get_parent().get_parent().role_details.show_role_display(role_id)
+	GameManager.play_sound("ui_hover")
 
 # Called when the mouse exits
 func _on_mouse_exited() -> void:
@@ -28,6 +29,7 @@ func _on_mouse_exited() -> void:
 # Called on pressed
 func _on_pressed() -> void:
 	MultiplayerManager.set_current_peer_player_role(role_id)
+	GameManager.play_sound("ui_click")
 
 # Updates the layout
 func _update_layout() -> void:
