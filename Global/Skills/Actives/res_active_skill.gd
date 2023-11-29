@@ -33,6 +33,7 @@ func _init() -> void:
 		)
 	
 	uses_remaining = INITIAL_USES
+	attributes_to_format.append_array(["COOLDOWN", "TURNS_ACTIVE", "INITIAL_USES"])
 
 
 # Public
@@ -84,3 +85,10 @@ func deactivate() -> void:
 func add_to_player(player: Player) -> void:
 	self.player = player
 	player.active_skills.append(self)
+	
+
+func format_description() -> void:
+	description += """\n-----------------------
+	skill cooldown: {COOLDOWN}
+	uses per match: {INITIAL_USES}"""
+	super.format_description()

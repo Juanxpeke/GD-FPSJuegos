@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://brohu06ujjvj8"]
 
 [ext_resource type="Script" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jumpv.gd" id="1_0nx3r"]
-[ext_resource type="Texture2D" uid="uid://cw2r6e427mq2u" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jumph.png" id="1_5cm5k"]
+[ext_resource type="Texture2D" uid="uid://cu6b4v3bak4kq" path="res://Global/Skills/Actives/DimensionalJump/dimensional_jumpv.png" id="1_oar5a"]
 
 [resource]
 script = ExtResource("1_0nx3r")
@@ -9,8 +9,8 @@ COOLDOWN = 3
 TURNS_ACTIVE = 1
 INITIAL_USES = 3
 name = "Dimensional Jump (vertical)"
-description = "Units can go across the vertical limits of the board."
-icon = ExtResource("1_5cm5k")
+description = "When activated, this turn, units can go across the vertical limits of the board."
+icon = ExtResource("1_oar5a")
 phase_damage_addition = 0
 phase_reward_addition = 0
 remove_unit_sale_discount = false

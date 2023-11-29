@@ -8,7 +8,9 @@ script = ExtResource("2_65uuf")
 unit_class = "mace"
 TURNS_BETWEEN_EFFECT = 5
 name = "reinforcements"
-description = "every {TURNS_BETWEEN_EFFECT} turn a mace unit will spawn in your base"
+description = "every {TURNS_BETWEEN_EFFECT} turn a mace unit will spawn in your base.
+
+(* spawned maces cannot be fusionated)"
 icon = ExtResource("1_2u1ap")
 phase_damage_addition = 0
 phase_reward_addition = 0

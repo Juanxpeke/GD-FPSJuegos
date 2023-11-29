@@ -211,7 +211,6 @@ theme_override_font_sizes/font_size = 14
 text = "Skill description that is very long in order to see how it behaves in the container layout"
 horizontal_alignment = 1
 autowrap_mode = 3
-max_lines_visible = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
