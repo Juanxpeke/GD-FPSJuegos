@@ -26,7 +26,11 @@ var current_cell_descriptors: Array[CellDescriptor]
 # Cached cells the unit can move in current game state
 var movement_cells: Array = []
 # When checked as temporal units will be discarded at the start of next match
-var is_temporal : bool = false
+var is_temporal : bool = false:
+	set(v):
+		if v:
+			sprite.set_material(load("res://Core/Units/temporal_material.tres"))
+		is_temporal = v
 
 # Grab logic
 static var is_grabbing: bool = false

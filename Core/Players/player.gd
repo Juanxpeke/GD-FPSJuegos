@@ -220,6 +220,11 @@ func fuse_units(unit: Unit, other_unit: Unit, target_cell: Vector2i) -> void:
 		# TODO: Show HUD message
 		return
 	
+	if (unit.is_temporal or other_unit.is_temporal):
+		unit.reset_position()
+		# TODO: Show HUD message
+		return
+	
 	unit.dissapear_forever.rpc()
 	other_unit.change_level.rpc(max_level + 1)
 
