@@ -66,6 +66,7 @@ func clear() -> void:
 
 # Sets the active skill
 func set_active_skill(active_skill: ResActiveSkill) -> void:
+	active_button.tooltip_text = str(get_index())
 	if active_skill.active:
 		MultiplayerManager.log_msg('set_active_skill')
 		_display_active_layout(active_skill)

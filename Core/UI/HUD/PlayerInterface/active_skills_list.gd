@@ -17,6 +17,7 @@ func _ready() -> void:
 func _on_skill_pressed(index: int) -> void:
 	if player == GameManager.player:
 		player.activate_skill.rpc(index)
+		GameManager.play_sound("activate_skill")
 
 # Updates the layout
 func _update_layout() -> void:

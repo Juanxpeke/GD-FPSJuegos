@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcyucbdqol1e1"]
+[gd_scene load_steps=5 format=3 uid="uid://bcyucbdqol1e1"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/active_skill_button.gd" id="1_04jr1"]
 [ext_resource type="Shader" path="res://Core/UI/HUD/PlayerInterface/active_skill_button.gdshader" id="1_jj5ec"]
+[ext_resource type="Script" path="res://Core/UI/HUD/PlayerInterface/ActiveButton.gd" id="3_ajaka"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fa1t6"]
 resource_local_to_scene = true
@@ -27,6 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("3_ajaka")
 
 [node name="CooldownLabel" type="Label" parent="."]
 unique_name_in_owner = true
