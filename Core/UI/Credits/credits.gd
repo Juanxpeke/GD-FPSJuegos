@@ -15,11 +15,11 @@ var credits = [
 		"author": "Juan Flores\nSergio Gálvez\nFelipe Morales",
 	},
 	{
-		"section": "Art: Pixel Chess",
-		"author": "dani-maccari.itch.io"
+		"section": "Assets",
+		"author": "dani-maccari.itch.io\nfree-game-assets.itch.io\nrunninblood.itch.io"
 	},
 	{
-		"section": "Sound Effects: Board & Pieces",
+		"section": "SFX",
 		"author": "freesound.org\nel_boss\nDWOBoyle"
 	}
 ]
