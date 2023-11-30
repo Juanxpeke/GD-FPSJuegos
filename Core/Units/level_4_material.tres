@@ -4,4 +4,4 @@
 
 [resource]
 shader = ExtResource("1_7ublv")
-shader_parameter/outline_color = Color(0.819608, 0.615686, 0.262745, 1)
+shader_parameter/outline_color = Color(1, 0.72549, 0.180392, 1)

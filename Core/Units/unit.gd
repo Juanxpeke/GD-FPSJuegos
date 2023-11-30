@@ -8,6 +8,7 @@ const MAX_LEVEL: int = 4
 
 static var level_2_material: ShaderMaterial = load("res://Core/Units/level_2_material.tres")
 static var level_3_material: ShaderMaterial = load("res://Core/Units/level_3_material.tres")
+static var level_4_material: ShaderMaterial = load("res://Core/Units/level_4_material.tres")
 
 @export var unit_class: String
 
@@ -140,6 +141,9 @@ func _update_level_data() -> void:
 		3:
 			level_cell_descriptors = level_3_descriptors
 			sprite.set_material(level_3_material)
+		4:
+			# TODO: level_4_descriptors
+			sprite.set_material(level_4_material)
 		
 # Updates the unit movement cells 
 func _update_movement_cells() -> void:
