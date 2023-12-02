@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8ty4ifufg48j"
-path="res://.godot/imported/store_sniper.png-ad6326c78621d527f252af5c97e7ed0b.ctex"
+uid="uid://dtf34tj4stx3k"
+path="res://.godot/imported/store_knight_icon.png-2d28fae0aa38ec4bb521513bc13c90ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/Units/Sniper/store_sniper.png"
-dest_files=["res://.godot/imported/store_sniper.png-ad6326c78621d527f252af5c97e7ed0b.ctex"]
+source_file="res://Core/Units/Knight/store_knight_icon.png"
+dest_files=["res://.godot/imported/store_knight_icon.png-2d28fae0aa38ec4bb521513bc13c90ce.ctex"]
 
 [params]
 

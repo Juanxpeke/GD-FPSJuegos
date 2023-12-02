@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8ty4ifufg48j"
-path="res://.godot/imported/store_sniper.png-ad6326c78621d527f252af5c97e7ed0b.ctex"
+uid="uid://tx7s3u2mdc3t"
+path="res://.godot/imported/store_bishop_icon.png-27f5c0f70f91a1fdb1fbdbf5626d140a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/Units/Sniper/store_sniper.png"
-dest_files=["res://.godot/imported/store_sniper.png-ad6326c78621d527f252af5c97e7ed0b.ctex"]
+source_file="res://Core/Units/Bishop/store_bishop_icon.png"
+dest_files=["res://.godot/imported/store_bishop_icon.png-27f5c0f70f91a1fdb1fbdbf5626d140a.ctex"]
 
 [params]
 

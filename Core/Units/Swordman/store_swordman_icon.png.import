@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8ty4ifufg48j"
-path="res://.godot/imported/store_sniper.png-ad6326c78621d527f252af5c97e7ed0b.ctex"
+uid="uid://cn7fxvxm4rpiq"
+path="res://.godot/imported/store_swordman_icon.png-80c70edb737cab4e1ec8218368345325.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Core/Units/Sniper/store_sniper.png"
-dest_files=["res://.godot/imported/store_sniper.png-ad6326c78621d527f252af5c97e7ed0b.ctex"]
+source_file="res://Core/Units/Swordman/store_swordman_icon.png"
+dest_files=["res://.godot/imported/store_swordman_icon.png-80c70edb737cab4e1ec8218368345325.ctex"]
 
 [params]
 
