@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpq8fyrgjcwbv" path="res://Core/Units/Rook/rook.tscn" id="1_lktww"]
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_pe3a1"]
-[ext_resource type="Texture2D" uid="uid://c8dd1n2u6lw7g" path="res://Core/Units/Rook/store_rook.png" id="3_5bib6"]
+[ext_resource type="Texture2D" uid="uid://bbwre44he17ed" path="res://Core/Units/Rook/store_rook_icon.png" id="3_tk0ld"]
 
 [resource]
 script = ExtResource("1_pe3a1")
@@ -13,4 +13,4 @@ weights = {
 "late": 7,
 "middle": 5
 }
-store_sprite = ExtResource("3_5bib6")
+store_sprite = ExtResource("3_tk0ld")

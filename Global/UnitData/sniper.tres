@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_o53fd"]
 [ext_resource type="PackedScene" uid="uid://db3mlnybjcrra" path="res://Core/Units/Sniper/sniper.tscn" id="1_vmajq"]
-[ext_resource type="Texture2D" uid="uid://b8ty4ifufg48j" path="res://Core/Units/Sniper/store_sniper.png" id="3_vha10"]
+[ext_resource type="Texture2D" uid="uid://cf0pixpyo4sbr" path="res://Core/Units/Sniper/store_sniper_icon.png" id="3_8x4sa"]
 
 [resource]
 script = ExtResource("1_o53fd")
@@ -13,4 +13,4 @@ weights = {
 "late": 7,
 "middle": 5
 }
-store_sprite = ExtResource("3_vha10")
+store_sprite = ExtResource("3_8x4sa")

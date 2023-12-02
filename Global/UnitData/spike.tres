@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_8qx06"]
 [ext_resource type="PackedScene" uid="uid://c1abx6i847qr5" path="res://Core/Units/Spike/spike.tscn" id="1_vluh3"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nhocc"]
-load_path = "res://.godot/imported/store_spike.png-9c9c7a24b0f516fdccb9d1e072a9abc9.ctex"
+[ext_resource type="Texture2D" uid="uid://cefx2wm6j65cc" path="res://Core/Units/Spike/store_spike_icon.png" id="3_0hff8"]
 
 [resource]
 script = ExtResource("1_8qx06")
@@ -15,4 +13,4 @@ weights = {
 "late": 1,
 "middle": 3
 }
-store_sprite = SubResource("CompressedTexture2D_nhocc")
+store_sprite = ExtResource("3_0hff8")

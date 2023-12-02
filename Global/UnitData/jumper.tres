@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cv30vkwusvsv0" path="res://Core/Units/Jumper/jumper.tscn" id="1_pg25w"]
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_x7ovp"]
-[ext_resource type="Texture2D" uid="uid://c3ng51r4rmhcq" path="res://Core/Units/Jumper/store_jumper.png" id="3_sn5sv"]
+[ext_resource type="Texture2D" uid="uid://1lmu0j3tyxhe" path="res://Core/Units/Jumper/store_jumper_icon.png" id="3_nfqtw"]
 
 [resource]
 script = ExtResource("1_x7ovp")
@@ -13,4 +13,4 @@ weights = {
 "late": 7,
 "middle": 5
 }
-store_sprite = ExtResource("3_sn5sv")
+store_sprite = ExtResource("3_nfqtw")
