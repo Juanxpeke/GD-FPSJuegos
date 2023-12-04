@@ -11,6 +11,7 @@ func _ready() -> void:
 	super._ready()
 	GameManager.map.preparation_ended.connect(_reset_turn_indicator)
 	GameManager.map.player_turn_ended.connect(_on_player_turn_ended)
+	GameManager.map.match_ended.connect(func () : turn_indicator.show())
 	_update_turn_indicator()
 
 # Called when the turn ends
