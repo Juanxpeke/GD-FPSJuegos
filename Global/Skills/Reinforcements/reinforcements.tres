@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://dufcw4a80mdfs"]
 
-[ext_resource type="Texture2D" uid="uid://dvrjscsmbkv37" path="res://Global/Skills/Excalibur/excalibur.png" id="1_2u1ap"]
+[ext_resource type="Texture2D" uid="uid://c1oo1b02umwpr" path="res://Global/Skills/Reinforcements/reinforcements.png" id="1_bswih"]
 [ext_resource type="Script" path="res://Global/Skills/Reinforcements/reinforcements.gd" id="2_65uuf"]
 
 [resource]
@@ -11,7 +11,7 @@ name = "reinforcements"
 description = "every {TURNS_BETWEEN_EFFECT} turn a mace unit will spawn in your base.
 
 (* spawned maces cannot be fusionated)"
-icon = ExtResource("1_2u1ap")
+icon = ExtResource("1_bswih")
 phase_damage_addition = 0
 phase_reward_addition = 0
 remove_unit_sale_discount = false
