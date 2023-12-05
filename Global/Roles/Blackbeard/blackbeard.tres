@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d1s13vwgiaorb" path="res://Global/Roles/Blackbeard/blackbeard_icon.png" id="1_fylgn"]
 [ext_resource type="Resource" uid="uid://bsaxfc4xbhwia" path="res://Global/Skills/Dreadful Avarice/dreadful_avarice.tres" id="2_e5j7c"]
-[ext_resource type="Texture2D" uid="uid://cl1245lqidy4w" path="res://Global/Roles/DarkKnight/dark_knight_portrait.png" id="2_ixvji"]
+[ext_resource type="Texture2D" uid="uid://d1t3ju3g7j418" path="res://Global/Roles/DarkKnight/dark_knight_portrait.png" id="3_2vsjc"]
 [ext_resource type="Script" path="res://Global/Roles/role.gd" id="3_k8wq8"]
 [ext_resource type="Texture2D" uid="uid://wf1vmil4iygk" path="res://Global/Roles/Blackbeard/blackbeard_units.png" id="4_q2i6x"]
 
@@ -11,7 +11,7 @@ script = ExtResource("3_k8wq8")
 name = "Blackbeard"
 description = "Dreaded pirate captain with a blackened beard, that commanded the seas with a dark, imposing presence."
 icon = ExtResource("1_fylgn")
-portrait = ExtResource("2_ixvji")
+portrait = ExtResource("3_2vsjc")
 initial_health = 18
 initial_money = 5
 initial_units_names = Array[String](["king", "bishop"])
