@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Global/Roles/role.gd" id="1_6pl32"]
 [ext_resource type="Texture2D" uid="uid://orkpbd5jqumv" path="res://Global/Roles/SherlockHolmes/sherlock_holmes_icon.png" id="1_b58sr"]
 [ext_resource type="Resource" uid="uid://fsjeacls6q1e" path="res://Global/Skills/SixthSense/sixth_sense.tres" id="2_g40mg"]
-[ext_resource type="Texture2D" uid="uid://b3t3afevnm3g4" path="res://Global/Roles/SherlockHolmes/sherlock_holmes_portrait.png" id="3_4yl2b"]
+[ext_resource type="Texture2D" uid="uid://dlgqvhqpvkn56" path="res://Global/Roles/SherlockHolmes/sherlock_holmes_portrait.png" id="3_ddulq"]
 [ext_resource type="Texture2D" uid="uid://iwhmrjqpajnk" path="res://Global/Roles/SherlockHolmes/sherlock_holmes_units.png" id="5_t45n3"]
 
 [resource]
@@ -11,7 +11,7 @@ script = ExtResource("1_6pl32")
 name = "Sherlock Holmes"
 description = "London's genius detective, renowned for unmatched deduction and crime-solving prowess."
 icon = ExtResource("1_b58sr")
-portrait = ExtResource("3_4yl2b")
+portrait = ExtResource("3_ddulq")
 initial_health = 20
 initial_money = 4
 initial_units_names = Array[String](["king", "sniper"])
