@@ -2,9 +2,9 @@ class_name DetailsInterface
 extends PanelContainer
 
 @onready var unit_class_label := %UnitClassLabel
+@onready var unit_description_label := %UnitDescriptionLabel
 @onready var unit_sprite := %UnitSprite
 @onready var details_board := %DetailsBoard
-@onready var unit_description_label := %UnitDescriptionLabel
 
 # Private
 
@@ -20,6 +20,7 @@ func set_unit(unit: Unit) -> void:
 	unit_class_label.text = unit.unit_class
 	unit_description_label.text = GameManager.units_data[unit.get_unit_class()].description
 	unit_sprite.texture = RolesManager.get_unit_texture(unit.get_unit_class(), GameManager.player.role)
+	details_board.set_unit(unit)
 
 # Shows the details
 func show_details() -> void:

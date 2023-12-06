@@ -50,6 +50,7 @@ func _on_preparation_ended() -> void:
 	preparation_timer.stop()
 	preparation_time_bar.hide()
 	store.hide()
+	hide_unit_details()
 	
 # Called when a turn ends
 func _on_turn_ended() -> void:

@@ -10,8 +10,6 @@ extends Resource
 	"late": 0,
 }
 
-var current_weights: Dictionary = weights
-
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	pass # Replace with function body

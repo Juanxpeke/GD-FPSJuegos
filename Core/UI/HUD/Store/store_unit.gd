@@ -43,12 +43,14 @@ func _on_pressed() -> void:
 func _show() -> void:
 	store_unit_button.disabled = false
 	store_unit_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	store_unit_cost_label.show()
 	
 # Hides the current store unit
 func _hide() -> void:
 	store_unit_button.disabled = true
 	store_unit_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	mouse_default_cursor_shape = Control.CURSOR_ARROW
 	store_unit_cost_label.hide()
 	GameManager.map.hud.hide_unit_details()
 
