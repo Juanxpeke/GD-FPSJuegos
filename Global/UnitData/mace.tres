@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://dwec5tpahugk3"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://dwec5tpahugk3"]
 
 [ext_resource type="PackedScene" uid="uid://bp7vkgfbqcvpk" path="res://Core/Units/Mace/mace.tscn" id="1_bfmqg"]
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_ijstp"]
-[ext_resource type="Texture2D" uid="uid://dqn206kibdhdo" path="res://Core/Units/Mace/store_mace_icon.png" id="3_nim8e"]
 
 [resource]
 script = ExtResource("1_ijstp")
 scene = ExtResource("1_bfmqg")
+description = "Rare unit that attacks on each diagonal with a mace shape."
 cost = 4
 weights = {
 "early": 3,
 "late": 1,
 "middle": 5
 }
-store_sprite = ExtResource("3_nim8e")

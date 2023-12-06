@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://4lj8h63sc4hl"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://4lj8h63sc4hl"]
 
 [ext_resource type="PackedScene" uid="uid://cv30vkwusvsv0" path="res://Core/Units/Jumper/jumper.tscn" id="1_pg25w"]
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_x7ovp"]
-[ext_resource type="Texture2D" uid="uid://1lmu0j3tyxhe" path="res://Core/Units/Jumper/store_jumper_icon.png" id="3_nfqtw"]
 
 [resource]
 script = ExtResource("1_x7ovp")
 scene = ExtResource("1_pg25w")
+description = "Rare unit that can go through obstacles within a large area of jump. "
 cost = 5
 weights = {
 "early": 3,
 "late": 7,
 "middle": 5
 }
-store_sprite = ExtResource("3_nfqtw")

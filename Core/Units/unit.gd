@@ -66,7 +66,7 @@ func _process(_delta: float) -> void:
 # Called when the mouse enters the unit
 func _on_mouse_entered() -> void:
 	if is_grabbing: return
-	
+
 	ConfigManager.set_cursor_shape("grab")
 	
 	if GameManager.map.match_phase != GameManager.map.MatchPhase.BATTLE: return

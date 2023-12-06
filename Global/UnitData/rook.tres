@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://crrgm20pwhgj8"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://crrgm20pwhgj8"]
 
 [ext_resource type="PackedScene" uid="uid://cpq8fyrgjcwbv" path="res://Core/Units/Rook/rook.tscn" id="1_lktww"]
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_pe3a1"]
-[ext_resource type="Texture2D" uid="uid://bbwre44he17ed" path="res://Core/Units/Rook/store_rook_icon.png" id="3_tk0ld"]
 
 [resource]
 script = ExtResource("1_pe3a1")
 scene = ExtResource("1_lktww")
+description = "Normal unit that attacks vertically and horizontally."
 cost = 4
 weights = {
 "early": 10,
 "late": 7,
 "middle": 5
 }
-store_sprite = ExtResource("3_tk0ld")

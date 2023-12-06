@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dy17jaermquaa"]
+[gd_scene load_steps=16 format=3 uid="uid://dy17jaermquaa"]
 
 [ext_resource type="Script" path="res://Core/UI/HUD/hud.gd" id="1_ku5ab"]
 [ext_resource type="PackedScene" uid="uid://b3lux4srfnsh4" path="res://Core/UI/HUD/Store/store.tscn" id="1_xp5ni"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://sc70hdt2ucgy" path="res://Core/UI/HUD/PlayerInterface/passive_skills_list.tscn" id="4_1iykr"]
 [ext_resource type="PackedScene" uid="uid://n5317gueobj5" path="res://Core/UI/HUD/PlayerInterface/active_skills_list.tscn" id="5_q52k7"]
 [ext_resource type="PackedScene" uid="uid://b22w43jwcyyxw" path="res://Core/UI/HUD/SkillPicker/skill_picker.tscn" id="5_wpddp"]
+[ext_resource type="PackedScene" uid="uid://be8rapkyh6ild" path="res://Core/UI/HUD/DetailsInterface/details_interface.tscn" id="12_fot2m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyrol"]
 bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
@@ -415,3 +416,10 @@ texture_progress = ExtResource("4_0j1r6")
 [node name="PreparationTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="DetailsInterface" parent="." instance=ExtResource("12_fot2m")]
+unique_name_in_owner = true
+offset_left = 38.0
+offset_top = 39.0
+offset_right = 216.0
+offset_bottom = 275.0

@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://c8coosh2g4y6t"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://c8coosh2g4y6t"]
 
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_8qx06"]
 [ext_resource type="PackedScene" uid="uid://c1abx6i847qr5" path="res://Core/Units/Spike/spike.tscn" id="1_vluh3"]
-[ext_resource type="Texture2D" uid="uid://cefx2wm6j65cc" path="res://Core/Units/Spike/store_spike_icon.png" id="3_0hff8"]
 
 [resource]
 script = ExtResource("1_8qx06")
 scene = ExtResource("1_vluh3")
+description = "Normal short range unit that kills its attacker before dying."
 cost = 2
 weights = {
 "early": 5,
 "late": 1,
 "middle": 3
 }
-store_sprite = ExtResource("3_0hff8")

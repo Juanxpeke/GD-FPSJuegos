@@ -9,6 +9,7 @@ var timer_on: bool = false
 @onready var match_reward_label: Label = %MatchRewardLabel
 @onready var player_interface: PlayerInterface = %PlayerInterface
 @onready var enemy_interface: PlayerInterface = %EnemyInterface
+@onready var details_interface: DetailsInterface = %DetailsInterface
 @onready var store: Store = %Store
 @onready var skill_picker: SkillPicker = %SkillPicker
 @onready var preparation_time_bar: TextureProgressBar = %PreparationTimeBar
@@ -78,3 +79,12 @@ func update_times() -> void:
 # Shows the selectable skills
 func show_skills() -> void:
 	skill_picker.show_skills()
+
+# Shows the given unit details
+func show_unit_details(unit: Unit) -> void:
+	details_interface.set_unit(unit)
+	details_interface.show_details()
+
+# Hides the unit details interface
+func hide_unit_details() -> void:
+	details_interface.hide_details()

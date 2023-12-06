@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://bdbsuavr8a51w"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://bdbsuavr8a51w"]
 
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_lvaix"]
 [ext_resource type="PackedScene" uid="uid://neohesotd7y3" path="res://Core/Units/Bishop/bishop.tscn" id="1_tx0ya"]
-[ext_resource type="Texture2D" uid="uid://tx7s3u2mdc3t" path="res://Core/Units/Bishop/store_bishop_icon.png" id="3_11tyb"]
 
 [resource]
 script = ExtResource("1_lvaix")
 scene = ExtResource("1_tx0ya")
+description = "Normal unit that can attack diagonally."
 cost = 4
 weights = {
 "early": 10,
 "late": 1,
 "middle": 3
 }
-store_sprite = ExtResource("3_11tyb")

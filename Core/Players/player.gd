@@ -275,6 +275,18 @@ func lose_match() -> void:
 	
 #### Store ####
 
+# Gets a free base cell, returns null if no cell is free
+func get_free_base_cell() -> Variant:
+	var base_cells = GameManager.board.get_base_cells()
+	
+	for base_cell in base_cells:
+		var live_unit = get_live_unit_by_cell(base_cell)
+		
+		if live_unit == null:
+			return base_cell
+	
+	return null
+
 # Returns true if the player can afford the given amount of money
 func can_afford(amount: int) -> bool:
 	return current_money >= amount
@@ -292,18 +304,11 @@ func subtract_money(amount: int) -> void:
 		money_changed.emit()
 
 # Buys the given unit
-func buy_unit(unit_class: String) -> void:
-	var base_cells = GameManager.board.get_base_cells()
-	
-	for base_cell in base_cells:
-		var live_unit = get_live_unit_by_cell(base_cell)
-		
-		if live_unit == null:
-			var unit_position = GameManager.board.get_cell_center(base_cell)
-			spawn_unit.rpc(unit_class, unit_position)
-			subtract_money(GameManager.units_data[unit_class].cost)
-			GameManager.play_sound("cha_ching")
-			return
+func buy_unit(unit_class: String, unit_cell: Vector2i) -> void:
+	var unit_position = GameManager.board.get_cell_center(unit_cell)
+	spawn_unit.rpc(unit_class, unit_position)
+	subtract_money(GameManager.units_data[unit_class].cost)
+	GameManager.play_sound("cha_ching")
 
 #### Skills #### 
 

@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://4q7dtibqkeeq"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://4q7dtibqkeeq"]
 
 [ext_resource type="Script" path="res://Global/UnitData/unit_data.gd" id="1_o53fd"]
 [ext_resource type="PackedScene" uid="uid://db3mlnybjcrra" path="res://Core/Units/Sniper/sniper.tscn" id="1_vmajq"]
-[ext_resource type="Texture2D" uid="uid://cf0pixpyo4sbr" path="res://Core/Units/Sniper/store_sniper_icon.png" id="3_8x4sa"]
 
 [resource]
 script = ExtResource("1_o53fd")
 scene = ExtResource("1_vmajq")
+description = "Rare long range unit that changes its orientation each time is your turn."
 cost = 5
 weights = {
 "early": 3,
 "late": 7,
 "middle": 5
 }
-store_sprite = ExtResource("3_8x4sa")

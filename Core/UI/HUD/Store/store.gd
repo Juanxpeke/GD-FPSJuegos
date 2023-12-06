@@ -16,7 +16,6 @@ func _ready():
 	GameManager.set_store(self)
 	GameManager.map_initialized.connect(_on_map_initialized)
 	GameManager.player_initialized.connect(_on_player_initialized)
-	update_store()
 	
 # Called when the map is initialized
 func _on_map_initialized() -> void:
@@ -24,6 +23,8 @@ func _on_map_initialized() -> void:
 	
 # Called when the player is initialized
 func _on_player_initialized() -> void:
+	update_store()
+	
 	GameManager.player.money_changed.connect(_on_money_changed)
 	_update_player_information()
 
