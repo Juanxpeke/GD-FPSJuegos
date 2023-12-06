@@ -1,9 +1,12 @@
 class_name StoreUnit
 extends PanelContainer
 
+@export var disabled_texture: Texture2D
+
 var unit_class: String
 
 @onready var store_unit_button := %StoreUnitButton
+@onready var store_unit_sprite := %StoreUnitSprite
 @onready var store_unit_cost_label := %StoreUnitCostLabel
 
 # Public
@@ -43,15 +46,14 @@ func _on_pressed() -> void:
 func _show() -> void:
 	store_unit_button.disabled = false
 	store_unit_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	store_unit_cost_label.show()
 	
 # Hides the current store unit
 func _hide() -> void:
 	store_unit_button.disabled = true
 	store_unit_button.mouse_default_cursor_shape = Control.CURSOR_ARROW
-	mouse_default_cursor_shape = Control.CURSOR_ARROW
 	store_unit_cost_label.hide()
+	store_unit_sprite.texture = disabled_texture
 	GameManager.map.hud.hide_unit_details()
 
 # Public
@@ -59,8 +61,7 @@ func _hide() -> void:
 # Sets all the store unit data to the correspondent unit name
 func set_unit(unit_class: String):
 	self.unit_class = unit_class
-	#store_unit_button.texture_normal = GameManager.units_data[unit_class].store_sprite
-	store_unit_button.texture_normal = RolesManager.get_unit_texture(unit_class, GameManager.player.role)
+	store_unit_sprite.texture = RolesManager.get_unit_texture(unit_class, GameManager.player.role)
 	store_unit_cost_label.text = str(GameManager.units_data[unit_class].cost)
 	
 	_show()

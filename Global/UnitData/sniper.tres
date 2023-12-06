@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_o53fd")
 scene = ExtResource("1_vmajq")
-description = "Rare long range unit that changes its orientation each time is your turn."
+description = "Rare unit with long range that changes its orientation each time is your turn."
 cost = 5
 weights = {
 "early": 3,

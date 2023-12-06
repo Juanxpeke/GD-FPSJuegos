@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_8qx06")
 scene = ExtResource("1_vluh3")
-description = "Normal short range unit that kills its attacker before dying."
+description = "Norma unit with short range that kills its attacker before dying."
 cost = 2
 weights = {
 "early": 5,

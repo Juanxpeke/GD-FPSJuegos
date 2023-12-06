@@ -16,22 +16,18 @@ custom_minimum_size = Vector2(48, 48)
 offset_right = 48.0
 offset_bottom = 48.0
 size_flags_vertical = 3
-mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_mdhy2")
 script = ExtResource("2_3rvqx")
+disabled_texture = ExtResource("2_cgs7c")
 
-[node name="StoreUnitButton" type="TextureButton" parent="."]
+[node name="StoreUnitSprite" type="TextureRect" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-texture_disabled = ExtResource("2_cgs7c")
-ignore_texture_size = true
-stretch_mode = 5
 
-[node name="StoreUnitCostLabel" type="Label" parent="StoreUnitButton"]
+[node name="StoreUnitCostLabel" type="Label" parent="StoreUnitSprite"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
@@ -50,3 +46,9 @@ theme_override_font_sizes/font_size = 16
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="StoreUnitButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+mouse_default_cursor_shape = 2

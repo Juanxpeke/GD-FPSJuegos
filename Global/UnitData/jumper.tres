@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_x7ovp")
 scene = ExtResource("1_pg25w")
-description = "Rare unit that can go through obstacles within a large area of jump. "
+description = "Rare unit that can go through obstacles around  a large area of jump. "
 cost = 5
 weights = {
 "early": 3,
