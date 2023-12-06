@@ -6,8 +6,9 @@ const PORT = 5409
 var _menu_stack: Array[Control] = []
 
 @onready var matchmaking_button = %MatchmakingButton
-@onready var exit_button = %ExitButton
+@onready var tutorial_button = %TutorialButton
 @onready var credits_button = %CreditsButton
+@onready var exit_button = %ExitButton
 
 @onready var username_input = %UsernameInput
 @onready var host_button = %HostButton
@@ -24,6 +25,7 @@ var _menu_stack: Array[Control] = []
 @onready var matchmaking_menu = %MatchmakingMenu
 @onready var join_menu = %JoinMenu
 @onready var lobby_menu = %LobbyMenu
+@onready var tutorial_menu = %TutorialMenu
 
 
 # Private
@@ -35,6 +37,7 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
 	matchmaking_button.pressed.connect(_on_matchmaking_button_pressed)
+	tutorial_button.pressed.connect(_on_tutorial_button_pressed)
 	credits_button.pressed.connect(on_credits_button_pressed)
 	exit_button.pressed.connect(_on_exit_button_pressed)
 	
@@ -47,6 +50,7 @@ func _ready():
 	
 	
 	matchmaking_button.mouse_entered.connect(_on_button_hover)
+	tutorial_button.mouse_entered.connect(_on_button_hover)
 	credits_button.mouse_entered.connect(_on_button_hover)
 	exit_button.mouse_entered.connect(_on_button_hover)
 	
@@ -56,8 +60,6 @@ func _ready():
 	
 	confirm_join_button.mouse_entered.connect(_on_button_hover)
 	back_join_button.mouse_entered.connect(_on_button_hover)
-	$Menus/StartMenu/StartMenuContainer/StartMenuButtons/TutorialButton.mouse_entered.connect(_on_button_hover)
-	
 
 	_go_to_menu(start_menu)
 	
@@ -74,11 +76,15 @@ func _on_upnp_completed(status) -> void:
 # Called when matchmaking button is pressed
 func _on_matchmaking_button_pressed() -> void:
 	_go_to_menu(matchmaking_menu)
-	
+
+# Called when the tutorial button is pressed
+func _on_tutorial_button_pressed() -> void:
+	_go_to_menu(tutorial_menu)
+
 # Called when credits button is pressed
 func on_credits_button_pressed() -> void:
 	_on_button_click()
-	get_tree().change_scene_to_file("res://Core/UI/Credits/credits.tscn")
+	get_tree().change_scene_to_file("res://Core/UI/MainMenu/Credits/credits.tscn")
 	
 # Called when exit button is pressed
 func _on_exit_button_pressed() -> void:

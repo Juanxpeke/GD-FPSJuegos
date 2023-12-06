@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=10 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
 [ext_resource type="Texture2D" uid="uid://b6offli0x0nev" path="res://Core/UI/MainMenu/logo.png" id="3_bfmbd"]
+[ext_resource type="PackedScene" uid="uid://dso4tsbuys7co" path="res://Core/UI/MainMenu/Tutorial/tutorial.tscn" id="4_61ppb"]
 [ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
 [ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/Lobby/lobby.tscn" id="4_xnx4q"]
 
@@ -46,7 +47,6 @@ layout_mode = 2
 
 [node name="StartMenu" type="Control" parent="Menus"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 anchors_preset = 0
 offset_right = 1152.0
@@ -120,6 +120,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_s3k48")
 text = "Matchmaking"
 
 [node name="TutorialButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
+unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.921569, 0.898039, 0.729412, 1)
@@ -171,6 +172,7 @@ text = "Exit"
 
 [node name="MatchmakingMenu" type="Control" parent="Menus"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -374,10 +376,13 @@ layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 1152.0
 offset_bottom = 648.0
+
+[node name="TutorialMenu" parent="Menus" instance=ExtResource("4_61ppb")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="StartTimer" type="Timer" parent="."]
 

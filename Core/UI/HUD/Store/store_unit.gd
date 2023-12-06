@@ -22,8 +22,9 @@ func _on_mouse_entered() -> void:
 	if store_unit_button.disabled: return
 	
 	var temporal_unit = GameManager.units_data[unit_class].scene.instantiate()
-	
 	GameManager.map.hud.show_unit_details(temporal_unit)
+	
+	temporal_unit.free()
 
 # Called when the mouse exits the unit button
 func _on_mouse_exited() -> void:

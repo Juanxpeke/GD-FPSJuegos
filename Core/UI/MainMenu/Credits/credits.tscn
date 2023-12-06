@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://ldt2vysslkjo"]
 
-[ext_resource type="Script" path="res://Core/UI/Credits/credits.gd" id="1_0x1cf"]
-[ext_resource type="PackedScene" uid="uid://bslhrv3eo36wd" path="res://Core/UI/MainMenu/main_menu.tscn" id="2_u3bpl"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/Credits/credits.gd" id="1_4vt7v"]
+[ext_resource type="PackedScene" uid="uid://bslhrv3eo36wd" path="res://Core/UI/MainMenu/main_menu.tscn" id="2_riwl5"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource("1_0x1cf")
-main_menu_scene = ExtResource("2_u3bpl")
+[node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_4vt7v")
+main_menu_scene = ExtResource("2_riwl5")
 
 [node name="CreditsContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -21,7 +21,7 @@ offset_bottom = 248.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CreditsContainer"]
+[node name="CreditsTitle" type="Label" parent="CreditsContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "CREDITS"
@@ -29,16 +29,14 @@ horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 unique_name_in_owner = true
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -537.0
-offset_top = -67.0
-offset_right = -370.0
-offset_bottom = -37.0
-grow_horizontal = 2
+offset_left = 24.0
+offset_top = -60.0
+offset_right = 114.0
+offset_bottom = -24.0
 grow_vertical = 0
+pivot_offset = Vector2(0, 36)
 theme_override_font_sizes/font_size = 16
-text = "BACK"
+text = "Back"
