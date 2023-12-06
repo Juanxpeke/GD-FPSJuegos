@@ -4,7 +4,7 @@ extends Node2D
 signal has_dead
 signal has_revived
 
-const MAX_LEVEL: int = 4
+const MAX_LEVEL: int = 3
 
 static var level_2_material: ShaderMaterial = load("res://Core/Units/level_2_material.tres")
 static var level_3_material: ShaderMaterial = load("res://Core/Units/level_3_material.tres")
