@@ -238,6 +238,8 @@ func add_health(amount: int) -> void:
 # Subtracts a specified amount of health from the player
 func subtract_health(amount: int) -> void:
 	current_health -= amount
+	if current_health < 0: 
+		current_health = 0
 	health_changed.emit()
 
 # Tries to kill the unit in the given cell
