@@ -1,7 +1,7 @@
 class_name Board
 extends TileMap
 
-var Layer : Dictionary = { "BOARD_LAYER":0, "HOLE_LAYER":1, "MOVEMENT_LAYER":2, "BASE_LAYER":3 , "BLOOD_LAYER":4 }
+var Layer : Dictionary = { "BOARD_LAYER":0, "HOLE_LAYER":1, "MOVEMENT_LAYER":2, "BASE_LAYER":3 , "BLOOD_LAYER":4, "WINNING_LAYER": 5 }
 
 const TILES: Dictionary = {
 	"board": Vector2i(1, 1),
@@ -256,7 +256,11 @@ func hide_movement_cells() -> void:
 # Gets the base cells
 func get_base_cells() -> Array[Vector2i]:
 	return get_used_cells(Layer.BASE_LAYER)
-	
+
+# Gets the cells that when opponent king gets there you lose
+func get_lose_condition_cells() -> Array[Vector2i]:
+	return get_used_cells(Layer.WINNING_LAYER)
+
 # Shows the base cells
 func show_base_cells() -> void:
 	set_layer_enabled(Layer.BASE_LAYER, true)
