@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://lg4bolku7exk"]
+[gd_resource type="Theme" load_steps=22 format=3 uid="uid://lg4bolku7exk"]
 
 [ext_resource type="FontFile" uid="uid://b1xj8ytxk0wds" path="res://Fonts/Abaddon Bold.ttf" id="1_lb8bi"]
 
@@ -163,7 +163,26 @@ expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ulon8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8bhs"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he701"]
+bg_color = Color(0.466667, 0.431373, 0.392157, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdm4t"]
+bg_color = Color(0.921569, 0.898039, 0.729412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivy7g"]
+bg_color = Color(0.921569, 0.898039, 0.729412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [resource]
 default_font = ExtResource("1_lb8bi")
@@ -203,8 +222,8 @@ TextEdit/styles/focus = SubResource("StyleBoxFlat_sf2u7")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_xf4l8")
 TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_ulon8")
 VBoxContainer/constants/separation = 8
-VScrollBar/styles/grabber = SubResource("StyleBoxFlat_d8bhs")
-VScrollBar/styles/grabber_highlight = null
-VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_he701")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_cdm4t")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_ivy7g")
 VScrollBar/styles/scroll = null
 VScrollBar/styles/scroll_focus = null

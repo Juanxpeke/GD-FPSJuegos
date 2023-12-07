@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dso4tsbuys7co"]
+[gd_scene load_steps=17 format=3 uid="uid://dso4tsbuys7co"]
 
 [ext_resource type="Script" path="res://Core/UI/MainMenu/Tutorials/tutorials.gd" id="1_blmex"]
 [ext_resource type="Script" path="res://Core/UI/MainMenu/Tutorials/tutorial_button.gd" id="2_y2tof"]
@@ -31,6 +31,16 @@ content_margin_top = 4.0
 content_margin_right = 32.0
 content_margin_bottom = 4.0
 bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_246g0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gwmm7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rhyd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3rr31"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_77xmu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ukvj"]
 content_margin_left = 10.0
@@ -79,6 +89,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_blmex")
+metadata/_edit_horizontal_guides_ = [648.0, 624.0]
 
 [node name="OuterContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -95,6 +106,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_glv7p")
 
 [node name="TabBar" type="TabBar" parent="OuterContainer/TabBarPanel"]
+texture_filter = 2
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 1
 anchors_preset = 15
@@ -102,13 +114,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_l1a6n")
 theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_ojynu")
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_b3vbn")
 tab_alignment = 1
-tab_count = 2
+tab_count = 1
 tab_0/title = "Gameplay"
-tab_1/title = "Units"
+
+[node name="BackButton" type="Button" parent="OuterContainer/TabBarPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(18, 18)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_246g0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gwmm7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0rhyd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3rr31")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_77xmu")
+text = "x"
 
 [node name="SectionsContainer" type="HBoxContainer" parent="OuterContainer"]
 layout_mode = 2
@@ -126,7 +162,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -360.0
 offset_top = 64.0
-offset_bottom = 377.0
+offset_bottom = 559.0
 grow_horizontal = 0
 
 [node name="TutorialsButtonsList" type="VBoxContainer" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll"]
@@ -148,7 +184,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
 text = "Game"
 alignment = 0
 script = ExtResource("2_y2tof")
-tutorial_description = "Initial phase of a game, in which you have 20 seconds to prepare yourself by positioning the pieces in your base, buying new pieces in the store or choosing a new skill."
+tutorial_description = "The game consists on different {url}{Matches, matches} in which you fight against your rival. If you {url}{Battle, win} a match, you deal damage to your enemy, and you can win the game once your enemy reaches 0 health."
 
 [node name="Matches" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
 texture_filter = 2
@@ -164,7 +200,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
 text = "Matches"
 alignment = 0
 script = ExtResource("2_y2tof")
-tutorial_description = "Initial phase of a game, in which you have 20 seconds to prepare yourself by positioning the pieces in your base, buying new pieces in the store or choosing a new skill."
+tutorial_description = "Each match consists of a {url}{Preparation, preparation} phase and a {url}{Battle, battle} phase. There are different types types of matches depending on the state of the game (early, middle or late)."
 
 [node name="Preparation" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
 texture_filter = 2
@@ -196,7 +232,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
 text = "Base"
 alignment = 0
 script = ExtResource("2_y2tof")
-tutorial_description = "Cells in the game in which you can place your pieces at the start of each {url}{Matches, match}."
+tutorial_description = "Cells in the game in which you can place your pieces at the start of each {url}{Matches, match}. They contain the {url}{CoreCell, core cell} of the player."
 
 [node name="Store" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
 texture_filter = 2
@@ -212,7 +248,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
 text = "Store"
 alignment = 0
 script = ExtResource("2_y2tof")
-tutorial_description = "Interface that appears at the start of each match. It shows your current money and random units you can buy to be in your {url}{Base, base}."
+tutorial_description = "Interface that appears at the start of each match. It shows your current money and {url}{Units, units} you can buy to be in your {url}{Base, base}. Each unit class has its own price."
 
 [node name="SkillPicking" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
 texture_filter = 2
@@ -228,7 +264,88 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
 text = "Skill Picking"
 alignment = 0
 script = ExtResource("2_y2tof")
-tutorial_description = "Cells in the game in which you can place your pieces at the start of each match"
+tutorial_description = "Interface that appears on the preparation phase of the 3rd, 5th and 8th match. It shows you different {url}{Skills, skills} from which you can pick one to be added to your set of skills. The period of selection lasts 10 seconds."
+
+[node name="Battle" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Battle"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "In this phase, you play against your enemy by turns, moving your units in the board with different strategies. Once one of your units kills the enemy's King unit, or if your King reaches the {url}{CoreCell, core cell} of your enemy's base, you win the match."
+
+[node name="CoreCell" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Core Cell"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Unique cell within the {url}{Base, base cells} that makes you lose if the enemy moves to it with its King."
+
+[node name="Roles" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Roles"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Different characters which you choose from to define your initial health, initial money and initial {url}{Skills, skill}."
+
+[node name="Skills" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Skills
+"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Subdivided into passive, active and consumable skills. They can modify  your attributes, or your units movements."
+
+[node name="Units" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Units"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Pieces that you control on each {url}{Matches, match} in order to beat your enemy. You can sell them clicking the right button."
 
 [node name="TutorialContainer" type="Control" parent="OuterContainer/SectionsContainer"]
 layout_mode = 2
