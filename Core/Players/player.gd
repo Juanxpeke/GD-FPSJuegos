@@ -248,6 +248,7 @@ func receive_attack_in_cell(cell: Vector2i, enemy_unit: Unit) -> void:
 	var peer_base_cell = cell if is_multiplayer_authority() else GameManager.board.get_mirror_cell(cell)
 	
 	if enemy_unit.get_unit_class() == "king" and peer_base_cell in GameManager.board.get_lose_condition_cells():
+		GameManager.play_sound("wincon")
 		lose_match()
 		return
 	

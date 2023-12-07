@@ -24,6 +24,9 @@ func _switch_hole_layers() -> void:
 	# units fall into the abyss and die
 	for cell in get_used_cells(Layer.HOLE_LAYER):
 		for unit in units:
+			var wr = weakref(unit)
+			if (!wr.get_ref()):
+				continue
 			var unit_cell := get_cell(unit.global_position)
 							
 			if unit_cell == cell: 

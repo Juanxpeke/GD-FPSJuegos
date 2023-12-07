@@ -9,6 +9,7 @@ var audio_ui_click = preload("res://SFX/506052__mellau__button-click-3.wav")#CC4
 var audio_transaction = preload("res://SFX/75235__creek23__cha-ching.wav")#non-commercial3.0
 var audio_coin = preload("res://SFX/140382__dwoboyle__coins-01.wav")#CC4.0
 var audio_activate_skill = preload("res://SFX/583079__breviceps__file-select-metallic-wet-hollow.wav")
+var audio_wincon_reached = preload("res://SFX/702168__foxfire__click-tick-menu-navigation.wav")
 
 var audio_node: AudioStreamPlayer = self
 func _ready():
@@ -36,6 +37,8 @@ func play_sound(sound_name):
 			audio_node.stream = audio_coin
 		"activate_skill":
 			audio_node.stream = audio_activate_skill
+		"wincon":
+			audio_node.stream = audio_wincon_reached
 		_:
 			print ("UNKNOWN STREAM")
 			queue_free()

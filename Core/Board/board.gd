@@ -9,6 +9,7 @@ const TILES: Dictionary = {
 	"movement": Vector2i(10, 0),
 	"base": Vector2i(10, 1),
 	"blood": Vector2i(10, 9),
+	"wincon": Vector2i(7, 8),
 }
 
 var units: Array[Unit] = []
@@ -49,6 +50,9 @@ func _init_board_layer() -> void:
 	for cell in get_used_cells(Layer.BOARD_LAYER):
 		if ((cell[0] + cell[1]) % 2 != 0):
 			set_cell(Layer.BOARD_LAYER, cell, 0, TILES.board_alt)
+	for cell in get_used_cells(Layer.WINNING_LAYER):
+		set_cell(Layer.BOARD_LAYER, cell, 0, TILES.wincon)
+		set_cell(Layer.BOARD_LAYER, get_mirror_cell(cell), 0, TILES.wincon)
 
 # DEPRECATED
 
@@ -231,6 +235,10 @@ func get_free_cells(cell_descriptor: CellDescriptor, origin_cell := Vector2i(0, 
 			
 			
 			for unit in units:
+				var wr = weakref(unit)
+				if (!wr.get_ref()):
+					MultiplayerManager.log_msg("check for freed unit")
+					continue
 				var unit_cell := get_cell(unit.global_position)
 					
 				if unit_cell == cell:

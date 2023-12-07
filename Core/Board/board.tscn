@@ -17,6 +17,6 @@ layer_3/tile_data = PackedInt32Array()
 layer_4/name = "Blood Layer"
 layer_4/tile_data = PackedInt32Array()
 layer_5/name = "Winning Layer"
-layer_5/modulate = Color(0, 0.898039, 0.909804, 0.368627)
+layer_5/modulate = Color(0, 0.913725, 0.92549, 0.0470588)
 layer_5/tile_data = PackedInt32Array()
 script = ExtResource("2_nl1mr")

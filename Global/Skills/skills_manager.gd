@@ -8,7 +8,7 @@ var skills = [
 	"res://Global/Skills/KnightAscension/knight_ascension.tres",
 	"res://Global/Skills/RookAscension/rook_ascension.tres",
 	# "res://Global/Skills/JumperAscension/jumper_ascension.tres",
-	"res://Global/Skills/Reinforcements/reinforcements.tres",
+	# "res://Global/Skills/Reinforcements/reinforcements.tres", # disabled because 2manybugs
 	# Consumables
 	# "res://Global/Skills/Consumables/PirateFortune/pirate_fortune.tres",
 	"res://Global/Skills/Consumables/BishopLevelUp/bishop_level_up.tres",
