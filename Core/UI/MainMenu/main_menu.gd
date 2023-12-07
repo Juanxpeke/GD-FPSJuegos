@@ -6,7 +6,7 @@ const PORT = 5409
 var _menu_stack: Array[Control] = []
 
 @onready var matchmaking_button = %MatchmakingButton
-@onready var tutorial_button = %TutorialButton
+@onready var tutorials_button = %TutorialsButton
 @onready var credits_button = %CreditsButton
 @onready var exit_button = %ExitButton
 
@@ -25,7 +25,7 @@ var _menu_stack: Array[Control] = []
 @onready var matchmaking_menu = %MatchmakingMenu
 @onready var join_menu = %JoinMenu
 @onready var lobby_menu = %LobbyMenu
-@onready var tutorial_menu = %TutorialMenu
+@onready var tutorials_menu = %TutorialsMenu
 
 
 # Private
@@ -37,7 +37,7 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
 	matchmaking_button.pressed.connect(_on_matchmaking_button_pressed)
-	tutorial_button.pressed.connect(_on_tutorial_button_pressed)
+	tutorials_button.pressed.connect(_on_tutorials_button_pressed)
 	credits_button.pressed.connect(on_credits_button_pressed)
 	exit_button.pressed.connect(_on_exit_button_pressed)
 	
@@ -50,7 +50,7 @@ func _ready():
 	
 	
 	matchmaking_button.mouse_entered.connect(_on_button_hover)
-	tutorial_button.mouse_entered.connect(_on_button_hover)
+	tutorials_button.mouse_entered.connect(_on_button_hover)
 	credits_button.mouse_entered.connect(_on_button_hover)
 	exit_button.mouse_entered.connect(_on_button_hover)
 	
@@ -77,9 +77,9 @@ func _on_upnp_completed(status) -> void:
 func _on_matchmaking_button_pressed() -> void:
 	_go_to_menu(matchmaking_menu)
 
-# Called when the tutorial button is pressed
-func _on_tutorial_button_pressed() -> void:
-	_go_to_menu(tutorial_menu)
+# Called when the tutorials button is pressed
+func _on_tutorials_button_pressed() -> void:
+	_go_to_menu(tutorials_menu)
 
 # Called when credits button is pressed
 func on_credits_button_pressed() -> void:

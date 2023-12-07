@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://dso4tsbuys7co"]
 
-[ext_resource type="Script" path="res://Core/UI/MainMenu/Tutorial/tutorial_button.gd" id="1_dgf54"]
-[ext_resource type="Script" path="res://Core/UI/MainMenu/Tutorial/tutorial.gd" id="1_mdv1m"]
-[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="1_uplpg"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/Tutorials/tutorials.gd" id="1_blmex"]
+[ext_resource type="Script" path="res://Core/UI/MainMenu/Tutorials/tutorial_button.gd" id="2_y2tof"]
+[ext_resource type="Texture2D" uid="uid://b1vs0okbp4qj2" path="res://icon.svg" id="3_atk4j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glv7p"]
 bg_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
@@ -71,14 +71,14 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.921569, 0.898039, 0.729412, 1)
 
-[node name="Tutorial" type="Control"]
+[node name="Tutorials" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mdv1m")
+script = ExtResource("1_blmex")
 
 [node name="OuterContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -114,12 +114,12 @@ tab_1/title = "Units"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TutorialButtonListContainer" type="Control" parent="OuterContainer/SectionsContainer"]
+[node name="TutorialsButtonsListContainer" type="Control" parent="OuterContainer/SectionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="TutorialButtonListScroll" type="ScrollContainer" parent="OuterContainer/SectionsContainer/TutorialButtonListContainer"]
+[node name="TutoriaslButtonsListScroll" type="ScrollContainer" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -129,11 +129,44 @@ offset_top = 64.0
 offset_bottom = 377.0
 grow_horizontal = 0
 
-[node name="TutorialButtonList" type="VBoxContainer" parent="OuterContainer/SectionsContainer/TutorialButtonListContainer/TutorialButtonListScroll"]
+[node name="TutorialsButtonsList" type="VBoxContainer" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="TutorialButton" type="Button" parent="OuterContainer/SectionsContainer/TutorialButtonListContainer/TutorialButtonListScroll/TutorialButtonList"]
+[node name="Game" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Game"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Initial phase of a game, in which you have 20 seconds to prepare yourself by positioning the pieces in your base, buying new pieces in the store or choosing a new skill."
+
+[node name="Matches" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Matches"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Initial phase of a game, in which you have 20 seconds to prepare yourself by positioning the pieces in your base, buying new pieces in the store or choosing a new skill."
+
+[node name="Preparation" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
 texture_filter = 2
 custom_minimum_size = Vector2(335, 0)
 layout_mode = 2
@@ -146,8 +179,56 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
 text = "Preparation"
 alignment = 0
-script = ExtResource("1_dgf54")
-tutorial_description = "Initial phase of a game, in which you have 20 seconds to prepare yourself by positioning the pieces in your base, buying new pieces in the store or choosing a new skill."
+script = ExtResource("2_y2tof")
+tutorial_description = "Initial phase of a match, in which you have 20 seconds to prepare yourself by positioning the pieces in your {url}{Base, base}, buying new pieces in the {url}{Store, store} or {url}{SkillPicking, choosing a new skill}."
+
+[node name="Base" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Base"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Cells in the game in which you can place your pieces at the start of each {url}{Matches, match}."
+
+[node name="Store" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Store"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Interface that appears at the start of each match. It shows your current money and random units you can buy to be in your {url}{Base, base}."
+
+[node name="SkillPicking" type="Button" parent="OuterContainer/SectionsContainer/TutorialsButtonsListContainer/TutoriaslButtonsListScroll/TutorialsButtonsList"]
+texture_filter = 2
+custom_minimum_size = Vector2(335, 0)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.0313726, 0.00392157, 0.0509804, 1)
+theme_override_colors/font_disabled_color = Color(0.921569, 0.898039, 0.729412, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ukvj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tddpd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tusgg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tddpd")
+text = "Skill Picking"
+alignment = 0
+script = ExtResource("2_y2tof")
+tutorial_description = "Cells in the game in which you can place your pieces at the start of each match"
 
 [node name="TutorialContainer" type="Control" parent="OuterContainer/SectionsContainer"]
 layout_mode = 2
@@ -170,7 +251,7 @@ metadata/_edit_group_ = true
 [node name="TutorialImage" type="TextureRect" parent="OuterContainer/SectionsContainer/TutorialContainer/TutorialImageContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("1_uplpg")
+texture = ExtResource("3_atk4j")
 
 [node name="TutorialTitle" type="Label" parent="OuterContainer/SectionsContainer/TutorialContainer/TutorialImageContainer/TutorialImage"]
 unique_name_in_owner = true
@@ -206,3 +287,4 @@ grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[fill]Tutorial description that details how an specific part of the game works o how a unit behaves in the match, this is only a placeholder as the true content of this node will be set programatically.[/fill]"
+meta_underlined = false

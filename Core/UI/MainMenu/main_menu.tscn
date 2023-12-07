@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Core/UI/MainMenu/main_menu.gd" id="1_yp1u4"]
 [ext_resource type="Texture2D" uid="uid://b6offli0x0nev" path="res://Core/UI/MainMenu/logo.png" id="3_bfmbd"]
-[ext_resource type="PackedScene" uid="uid://dso4tsbuys7co" path="res://Core/UI/MainMenu/Tutorial/tutorial.tscn" id="4_61ppb"]
+[ext_resource type="PackedScene" uid="uid://dso4tsbuys7co" path="res://Core/UI/MainMenu/Tutorials/tutorials.tscn" id="4_61ppb"]
 [ext_resource type="Texture2D" uid="uid://l2txj6whhcpb" path="res://Core/UI/MainMenu/lobby_background.png" id="4_vxpdd"]
 [ext_resource type="PackedScene" uid="uid://cadmavfijp0an" path="res://Core/UI/MainMenu/Lobby/lobby.tscn" id="4_xnx4q"]
 
@@ -119,7 +119,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_rcjo1")
 theme_override_styles/focus = SubResource("StyleBoxFlat_s3k48")
 text = "Matchmaking"
 
-[node name="TutorialButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
+[node name="TutorialsButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
@@ -134,7 +134,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_s3k48")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_s3k48")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_rcjo1")
 theme_override_styles/focus = SubResource("StyleBoxFlat_s3k48")
-text = "Tutorial"
+text = "Tutorials"
 
 [node name="CreditsButton" type="Button" parent="Menus/StartMenu/StartMenuContainer/StartMenuButtons"]
 unique_name_in_owner = true
@@ -379,7 +379,7 @@ anchor_bottom = 0.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="TutorialMenu" parent="Menus" instance=ExtResource("4_61ppb")]
+[node name="TutorialsMenu" parent="Menus" instance=ExtResource("4_61ppb")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

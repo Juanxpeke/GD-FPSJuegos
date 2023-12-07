@@ -1,7 +1,7 @@
-class_name Tutorial
+class_name Tutorials
 extends Control
 
-@onready var tutorial_button_list := %TutorialButtonList
+@onready var tutorial_button_list := %TutorialsButtonsList
 @onready var tutorial_image := %TutorialImage
 @onready var tutorial_title := %TutorialTitle
 @onready var tutorial_description := %TutorialDescription
@@ -10,8 +10,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time
 func _ready() -> void:
-	pass # Replace with function body
+	tutorial_description.meta_clicked.connect(_on_tutorial_url_clicked)
 	
+# Called when a tutorial URL is clicked
+func _on_tutorial_url_clicked(meta: Variant) -> void:
+	set_tutorial_by_ref(meta)
+
+
 # Public
 
 # Sets the tutorial
@@ -29,7 +34,9 @@ func set_tutorial(tutorial_button: TutorialButton):
 # Sets the tutorial by reference
 func set_tutorial_by_ref(reference: String) -> void:
 	var tutorial_button = tutorial_button_list.get_node(reference)
-	set_tutorial(tutorial_button)
+	
+	if tutorial_button is TutorialButton:
+		set_tutorial(tutorial_button)
 
 # Sets the tutorial image
 func set_tutorial_image(image_texture: Texture2D) -> void:
