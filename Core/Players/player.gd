@@ -36,7 +36,9 @@ func _reset_units() -> void:
 	for dead_unit in dead_units:
 		match_live_units.append(dead_unit)
 	match_dead_units.clear()
-	match_live_units = match_live_units.filter(func(unit): return not unit.is_temporal)
+	for unit in match_live_units:
+		if unit.is_temporal:
+			unit.dissapear_forever.rpc()
 			
 
 # Called when the match ends
